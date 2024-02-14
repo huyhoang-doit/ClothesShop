@@ -71,7 +71,7 @@ public class LoginServlet extends HttpServlet {
                 if (arr[i].getName().equals("cUName")) {
                     request.setAttribute("uName", arr[i].getValue());
                 }
-                if (arr[i].getName().equals("pUName")) {
+                if (arr[i].getName().equals("cUPass")) {
                     request.setAttribute("uPass", arr[i].getValue());
                 }
                 if (arr[i].getName().equals("reMem")) {
@@ -108,7 +108,7 @@ public class LoginServlet extends HttpServlet {
                 session.setAttribute("account", user);
 
                 Cookie u = new Cookie("cUName", username);
-                Cookie p = new Cookie("pUName", password);
+                Cookie p = new Cookie("cUPass", password);
                 Cookie r = new Cookie("reMem", remember);
 
                 u.setMaxAge(60 * 60 * 24 * 30 * 3); //3months
