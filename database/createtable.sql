@@ -25,13 +25,13 @@ CREATE TABLE Supplier(
 
 CREATE TABLE Products(
  id INT NOT NULL IDENTITY(1,1)  PRIMARY KEY ,
- productname NVARCHAR(30)  NOT NULL,
+ productname NVARCHAR(max) NOT NULL,
  supplierid INT NOT NULL REFERENCES [dbo].[Supplier](supplierid),
  categoryid INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Category](categoryid),
- size NVARCHAR(40) NOT NULL,
+ size VARCHAR(40) NOT NULL,
  stock INT NOT NULL, 
- [description] NVARCHAR(500),
- [images] NVARCHAR(255) NOT NULL,
+ [description] NVARCHAR(max),
+ [images] VARCHAR(255) NOT NULL,
  [colors] NVARCHAR(255) NOT NULL,
  releasedate  DATE NOT NULL,
  discount FLOAT,
@@ -40,7 +40,6 @@ CREATE TABLE Products(
 )
 
 -- DROP TABLE Products
-
 
 CREATE TABLE Cart (
 cartid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -51,20 +50,16 @@ productid INT FOREIGN KEY REFERENCES [dbo].[Products]([id])
 --DROP TABLE CART
 
 CREATE TABLE WishList( 
-wishListid INT NOT NULL,
+wishListid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 username VARCHAR(30) FOREIGN KEY REFERENCES  Users(username),
 productid INT FOREIGN KEY REFERENCES [dbo].[Products]([id]),
-CONSTRAINT wishList_PK  PRIMARY KEY (wishListid,username) 
 )
 -- DROP TABLE WishList
 CREATE TABLE Payment(
 paymentid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-paymentdate DATETIME,
-amount DECIMAL(10,2),
-payment_method VARCHAR(30),
-username VARCHAR(30) FOREIGN KEY REFERENCES [dbo].[Users]([username])
+payment_method VARCHAR(30)
 )
-
+-- DROP TABLE Payment
 
 CREATE TABLE Shipment(
 shipment_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
