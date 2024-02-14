@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 public class DispatchServlet extends HttpServlet {
 
     private final String LOGINPAGE = "login.jsp";
+    private final String LOGIN = "Login";
     private final String WELCOME = "home.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -31,12 +32,10 @@ public class DispatchServlet extends HttpServlet {
 //            if (btnValue == null) {
 //                // chua lam gi
 //            } else if (btnValue.equals(LOGIN)) {
-//                url = LOGINSERVLET;
-//            } else if (btnValue.equals(SEARCH)) {
-//                url = SEARCHSERVLET;
+//                url = LOGINPAGE;
 //            }
         } catch (Exception ex) {
-
+            
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

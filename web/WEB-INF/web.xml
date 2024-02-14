@@ -4,9 +4,17 @@
         <servlet-name>DispatchServlet</servlet-name>
         <servlet-class>controller.DispatchServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>controller.LoginServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>DispatchServlet</servlet-name>
         <url-pattern>/DispatchServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -16,5 +24,4 @@
     <welcome-file-list>
         <welcome-file>DispatchServlet</welcome-file>
     </welcome-file-list>
-
 </web-app>
