@@ -298,7 +298,7 @@
 
 /* 2.3 header bottom css here*/
 .header_bottom {
-	background: #00BBA6;
+	background: #00bba6;
 	height: 50px;
 	position: relative;
 }
@@ -517,7 +517,7 @@
 	border: 3px solid #fff;
 }
 .slider_active.owl-carousel .owl-dots .owl-dot.active{
-    background: #00BBA6;
+    background: #00bba6;
 }
 .slider_active.owl-carousel .owl-dots {
 	position: absolute;
@@ -1189,7 +1189,7 @@
 	font-size: 12px;
 	display: inline-block;
 	padding: 8px 23px;
-	background: #00BBA6;
+	background: #00bba6;
 	border-radius: 5px;
 }
 .slider_content_inner a:hover{
