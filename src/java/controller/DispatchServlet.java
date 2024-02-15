@@ -27,7 +27,7 @@ public class DispatchServlet extends HttpServlet {
     private final String LOGINPAGE = "login.jsp";
     private final String LOGIN = "Login";
     private final String LOGOUT = "Logout";
-    private final String WELCOME = "home.jsp";
+    private final String WELCOME = "admin_home.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

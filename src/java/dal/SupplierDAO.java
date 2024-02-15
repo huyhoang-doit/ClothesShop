@@ -12,7 +12,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import model.CategoryDTO;
 import model.SupplierDTO;
 
 /**
@@ -36,7 +35,8 @@ public class SupplierDAO extends DBContext {
                 while (rs.next()) {
                     int supplierId = rs.getInt("supplierid");
                     String supplierName = rs.getString("suppliername");
-                    suppliers.add(new SupplierDTO(supplierId, supplierName));
+                    String supplierImage = rs.getString("supplierimage");
+                    suppliers.add(new SupplierDTO(supplierId, supplierName, supplierImage));
                 }
             }
         } catch (Exception e) {
@@ -69,7 +69,8 @@ public class SupplierDAO extends DBContext {
                 while (rs.next()) {
                     int supplierId = rs.getInt("supplierId");
                     String supplierName = rs.getString("suppliername");
-                    supplier = new SupplierDTO(supplierId, supplierName);
+                    String supplierImage = rs.getString("supplierimage");
+                    supplier = new SupplierDTO(supplierId, supplierName,supplierImage );
                 }
             }
         } catch (Exception e) {

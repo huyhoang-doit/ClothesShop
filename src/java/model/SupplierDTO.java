@@ -11,15 +11,27 @@ package model;
  */
 public class SupplierDTO {
     private int supplierId;
-    private String supplierName;
+    private String supplierName, image;
+    
 
     public SupplierDTO() {
     }
 
-    public SupplierDTO(int supplierId, String supplierName) {
+    public SupplierDTO(int supplierId, String supplierName, String image) {
         this.supplierId = supplierId;
         this.supplierName = supplierName;
+        this.image = image;
     }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    
 
     public int getSupplierId() {
         return supplierId;
