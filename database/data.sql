@@ -1,6 +1,6 @@
 ﻿INSERT INTO Users  VALUES 
 (N'admin', N'', 'admin@gmail.com', 'admin', '12345', 1, 1),
-(N'Phung', N'Thanh', 'thanh@gmail.com', 'phuuthanh2003', '12345', 2, 1)
+(N'Phùng', N'Thành', 'phuuthanh2003@gmail.com', 'phuuthanh2003', '12345', 2, 1)
 
 INSERT INTO Category VALUES
 (N'Áo sơ mi'),
@@ -11,13 +11,13 @@ INSERT INTO Category VALUES
 (N'Quần jean')
 
 INSERT INTO Supplier VALUES
-('Adidas'),
-('Nike'),
-('Louis Vuitton'),
-('Chanel'),
-('NEM'),
-('4MEN'),
-('Seven AM')
+('Adidas', 'assets/img/products/1.jpg'),
+('Nike', 'assets/img/products/2.jpg'),
+('Louis Vuitton', 'assets/img/products/3.jpg'),
+('Chanel', 'assets/img/products/4.jpg'),
+('NEM', 'assets/img/products/5.jpg'),
+('4MEN', 'assets/img/products/6.jpg'),
+('Seven AM', 'assets/img/products/7.jpg')
 
 INSERT INTO Products VALUES 
 (N'ÁO KHOÁC REGULAR TECHNICAL', 6, 3, 'S,M', 20, N'Áo sơ mi khoác bằng cotton dệt chéo, có cổ, nẹp khuy liền và cầu vai phía sau. Túi ngực mở, tay dài có nẹp tay áo và măng sét cài khuy cùng vạt tròn.'
