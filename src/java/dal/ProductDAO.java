@@ -23,6 +23,8 @@ import model.SupplierDTO;
  */
 public class ProductDAO extends DBContext {
     private static final String GETDATA = "SELECT * FROM Products";
+    private static final String GETTOTALPRODUCTS = "SELECT SUM(stock) AS Total from Products";
+    private static final String GETQUANTITYSOLD = "SELECT SUM(unitSold) AS Total from Products";
  
     public List<ProductDTO> getData() throws SQLException {
         List<ProductDTO> products = new ArrayList<>();
@@ -68,6 +70,66 @@ public class ProductDAO extends DBContext {
         }
         return products;
     }
+    
+    public int getTotalProducts() throws SQLException {
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GETTOTALPRODUCTS);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    result = rs.getInt("Total");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
+    
+    public int getQuantitySold() throws SQLException {
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GETQUANTITYSOLD);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    result = rs.getInt("Total");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
 
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
@@ -75,5 +137,6 @@ public class ProductDAO extends DBContext {
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getProductName());
         }
+        System.out.println(dao.getTotalProducts());
     }
 }

@@ -20,8 +20,8 @@ import model.CategoryDTO;
  */
 public class CategoryDAO extends DBContext {
 
-    private static final String GETDATA = "SELECT * FROM Category";
-    private static final String GETCATEGORYBYID = "SELECT * FROM Category WHERE categoryid = ?";
+    private static final String GETDATA = "SELECT * FROM Categories";
+    private static final String GETCATEGORYBYID = "SELECT * FROM Categories WHERE categoryid = ?";
 
     public List<CategoryDTO> getData() throws SQLException {
         List<CategoryDTO> categories = new ArrayList<>();
