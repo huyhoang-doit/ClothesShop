@@ -19,7 +19,7 @@ import model.UserDTO;
 public class UserDAO extends DBContext {
     private static final String LOGIN = "SELECT * FROM Users WHERE username=? AND password=? and status=1";
     
-    public UserDTO checkLogin(String userID, String password) throws SQLException {
+    public UserDTO checkLogin(String userName, String password) throws SQLException {
         UserDTO user = null;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -28,16 +28,17 @@ public class UserDAO extends DBContext {
             conn = getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(LOGIN);
-                ptm.setString(1, userID);
+                ptm.setString(1, userName);
                 ptm.setString(2, password);
                 rs = ptm.executeQuery();
                 if (rs.next()) {
                     String firstname = rs.getString("firstname");
                     String lastname = rs.getString("lastname");
                     String email = rs.getString("email");
+                    String avatar = rs.getString("avatar");
                     int roleid = rs.getInt("roleID");
                     boolean roleID = rs.getBoolean("roleID");
-                    user = new UserDTO(firstname, lastname, email, userID, password, roleid, roleID);
+                    user = new UserDTO(firstname, lastname, email, avatar, userName, password, roleid, roleID);
                 }
             }
         } catch (Exception e) {
@@ -58,7 +59,7 @@ public class UserDAO extends DBContext {
     
     public static void main(String[] args) throws SQLException {
         UserDAO dao = new UserDAO();
-        UserDTO user = dao.checkLogin("admin", "12345");
-        System.out.println(user);
+        UserDTO user = dao.checkLogin("phuuthanh2003", "12345");
+        System.out.println(user.getAvatar());
     }
 }

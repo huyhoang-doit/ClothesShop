@@ -19,8 +19,8 @@ import model.SupplierDTO;
  * @author HuuThanh
  */
 public class SupplierDAO extends DBContext {
-    private static final String GETDATA = "SELECT * FROM Supplier";
-    private static final String GETSUPPLIERBYID = "SELECT * FROM Supplier WHERE supplierid = ?";
+    private static final String GETDATA = "SELECT * FROM Suppliers";
+    private static final String GETSUPPLIERBYID = "SELECT * FROM Suppliers WHERE supplierid = ?";
     
     public List<SupplierDTO> getData() throws SQLException {
         List<SupplierDTO> suppliers = new ArrayList<>();

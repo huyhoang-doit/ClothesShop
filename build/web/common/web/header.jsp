@@ -27,11 +27,11 @@
                         <li><a href="wishlist.jsp" title="wishlist">My wishlist</a></li>
                         <li><a href="my-account.jsp" title="My account">My account</a></li>
                         <li><a href="cart.jsp" title="My cart">My cart</a></li>  
-                        <c:if test="${sessionScope.account==null}">
+                        <c:if test="${sessionScope.account == null}">
                             <li><a href="LoginServlet" title="Login">Login</a></li>  
                         </c:if>
-                        <c:if test="${sessionScope.account!=null}">
-                            <li><a href="dashboard.jsp">Hello ${sessionScope.account.firstname}${sessionScope.account.lastname}!</a></li>
+                        <c:if test="${sessionScope.account != null}">
+                            <li><a href="AdminServlet">Hello, ${sessionScope.account.firstName} ${sessionScope.account.lastName}!</a></li>
                             <li><a href="DispatchServlet?btnAction=Logout">Logout</a></li>
                         </c:if>
                     </ul>

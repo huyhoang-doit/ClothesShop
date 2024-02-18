@@ -85,7 +85,6 @@ public class AdminServlet extends HttpServlet {
             request.setAttribute("TOTALPRODUCTS", totalProducts);
             request.setAttribute("QUANTITYSOLD", quantitySold);
             request.setAttribute("LAST5ORDERS", last5Orders);
-            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

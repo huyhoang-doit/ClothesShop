@@ -8,7 +8,6 @@ package controller;
 import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +26,7 @@ public class DispatchServlet extends HttpServlet {
     private final String LOGINPAGE = "login.jsp";
     private final String LOGIN = "Login";
     private final String LOGOUT = "Logout";
-    private final String WELCOME = "admin_home.jsp";
+    private final String WELCOME = "home.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
