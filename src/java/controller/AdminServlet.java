@@ -9,10 +9,12 @@ import dal.OrderDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.OrderDTO;
 
 /**
  *
@@ -58,6 +60,8 @@ public class AdminServlet extends HttpServlet {
             double totalSaleTD = oDao.getTotalSaleToday();
             int totalProducts = pDao.getTotalProducts();
             int quantitySold = pDao.getQuantitySold();
+            List<OrderDTO> last5Orders = oDao.getLast5Orders();
+
             
             double year2018 = oDao.getTotalMoneyByYear(2018);
             double year2019 = oDao.getTotalMoneyByYear(2019);
@@ -80,6 +84,8 @@ public class AdminServlet extends HttpServlet {
             request.setAttribute("TOTALSALETODAY", totalSaleTD);
             request.setAttribute("TOTALPRODUCTS", totalProducts);
             request.setAttribute("QUANTITYSOLD", quantitySold);
+            request.setAttribute("LAST5ORDERS", last5Orders);
+            
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

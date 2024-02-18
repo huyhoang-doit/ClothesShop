@@ -52,17 +52,17 @@
                                     <form action="LoginServlet" method="post">
                                         <p> 
                                             <label>Username or email</label><br/>
-                                        <input type="text" name="txtUsername"/>
+                                            <input type="text" name="txtUsername" value="${requestScope.uName}"/>
                                         <h7 style="color: red">${requestScope.msg}</h7>
                                         </p>
                                         <p>   
                                             <label>Passwords <span>*</span></label>
-                                            <input type="password" name="txtPassword">
+                                            <input type="password" name="txtPassword" value="${requestScope.uPass}">
                                         </p>   
                                         <div class="login_submit">
                                             <button type="submit" name="btnAction" value="Login">login</button>
                                             <label for="remember">
-                                                <input id="remember" name="remember" type="checkbox">
+                                                <input ${reMem==null?"":"checked"} id="remember" name="remember" type="checkbox">
                                                 Remember me
                                             </label>
                                             <a href="#">Lost your password?</a>

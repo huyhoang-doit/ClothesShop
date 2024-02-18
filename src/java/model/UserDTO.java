@@ -11,41 +11,43 @@ package model;
  */
 public class UserDTO {
 
-    private String firstname;
-    private String lastname;
+    private String firstName;
+    private String lastName;
     private String email;
-    private String username;
+    private String avatar;
+    private String userName;
     private String password;
-    private int roleid;
+    private int roleID;
     private boolean status;
 
     public UserDTO() {
     }
 
-    public UserDTO(String firstname, String lastname, String email, String username, String password, int roleid, boolean status) {
-        this.firstname = firstname;
-        this.lastname = lastname;
+    public UserDTO(String firstName, String lastName, String email, String avatar, String userName, String password, int roleID, boolean status) {
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.email = email;
-        this.username = username;
+        this.avatar = avatar;
+        this.userName = userName;
         this.password = password;
-        this.roleid = roleid;
+        this.roleID = roleID;
         this.status = status;
     }
 
-    public String getFirstname() {
-        return firstname;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setLastname(String lastname) {
-        this.lastname = lastname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -56,12 +58,12 @@ public class UserDTO {
         this.email = email;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
     public String getPassword() {
@@ -72,12 +74,12 @@ public class UserDTO {
         this.password = password;
     }
 
-    public int getRoleid() {
-        return roleid;
+    public int getRoleID() {
+        return roleID;
     }
 
-    public void setRoleid(int roleid) {
-        this.roleid = roleid;
+    public void setRoleID(int roleID) {
+        this.roleID = roleID;
     }
 
     public boolean isStatus() {
@@ -87,4 +89,15 @@ public class UserDTO {
     public void setStatus(boolean status) {
         this.status = status;
     }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    
+    
 }
