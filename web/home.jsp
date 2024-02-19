@@ -44,7 +44,7 @@
                                 <div class="sidebar_widget catrgorie mb-35">
                                     <h3>Categories</h3>
                                     <ul>
-                                        <c:if test="${requestScope.LISTCATEGORIES != null}">
+                                        <c:if test="${requestScope.LISTCATEGORIES!= null && !requestScope.LISTCATEGORIES.isEmpty()}">
                                             <c:forEach items="${requestScope.LISTCATEGORIES}" var="c">
                                                 <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i>${c.categoryName}</a>
                                                     <ul class="categorie_sub">
@@ -63,68 +63,67 @@
                                                 </li>
                                             </c:forEach>
                                         </c:if>
-<!--                                        <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Men</a>
-                                            <ul class="categorie_sub">
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                                    <ul class="categorie_sub">
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                    </ul> 
-                                                </li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                            </ul> 
-                                        </li>
-                                        <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Footwear</a>
-                                            <ul class="categorie_sub">
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                                    <ul class="categorie_sub">
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                    </ul> 
-                                                </li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                            </ul> 
-
-                                        </li>
-                                        <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Jewelry</a>
-                                            <ul class="categorie_sub">
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                                    <ul class="categorie_sub">
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                    </ul> 
-                                                </li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                            </ul> 
-                                        </li>
-                                        <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Lady</a>
-                                            <ul class="categorie_sub">
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                                    <ul class="categorie_sub">
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                    </ul> 
-                                                </li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                            </ul> 
-                                        </li>-->
-
+                                        <!--                                        <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Men</a>
+                                                                                    <ul class="categorie_sub">
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
+                                                                                            <ul class="categorie_sub">
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
+                                                                                            </ul> 
+                                                                                        </li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
+                                                                                    </ul> 
+                                                                                </li>
+                                                                                <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Footwear</a>
+                                                                                    <ul class="categorie_sub">
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
+                                                                                            <ul class="categorie_sub">
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
+                                                                                            </ul> 
+                                                                                        </li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
+                                                                                    </ul> 
+                                        
+                                                                                </li>
+                                                                                <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Jewelry</a>
+                                                                                    <ul class="categorie_sub">
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
+                                                                                            <ul class="categorie_sub">
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
+                                                                                            </ul> 
+                                                                                        </li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
+                                                                                    </ul> 
+                                                                                </li>
+                                                                                <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Lady</a>
+                                                                                    <ul class="categorie_sub">
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
+                                                                                            <ul class="categorie_sub">
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
+                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
+                                                                                            </ul> 
+                                                                                        </li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
+                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
+                                                                                    </ul> 
+                                                                                </li>-->
                                     </ul>
                                 </div>
                                 <!--categorie menu end-->
@@ -206,9 +205,6 @@
                                     </div>
                                 </div>
                                 <!--sidebar banner end-->
-
-
-
                             </div>
                             <div class="col-lg-9 col-md-12">
                                 <!--banner slider start-->

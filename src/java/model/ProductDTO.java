@@ -12,6 +12,7 @@ import java.sql.Date;
  * @author HuuThanh
  */
 public class ProductDTO {
+    private int id;
     private String productName, description;
     private int stock, unitSold;
     private String[] images, colors, size;
@@ -23,7 +24,8 @@ public class ProductDTO {
     public ProductDTO() {
     }
 
-    public ProductDTO(String productName, String description, int stock, int unitSold, String[] images, String[] colors, String[] size, Date releasedate, double discount, double price, CategoryDTO category, SupplierDTO supplier) {
+    public ProductDTO(int id, String productName, String description, int stock, int unitSold, String[] images, String[] colors, String[] size, Date releasedate, double discount, double price, CategoryDTO category, SupplierDTO supplier) {
+        this.id = id;
         this.productName = productName;
         this.description = description;
         this.stock = stock;
@@ -36,6 +38,14 @@ public class ProductDTO {
         this.price = price;
         this.category = category;
         this.supplier = supplier;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getProductName() {
