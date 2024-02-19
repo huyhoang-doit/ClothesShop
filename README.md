@@ -34,12 +34,12 @@
 - [ ] View blog's comment
 
 **4. Admin:**
-- [ ] Managing perfumes
+- [ ] Managing product
 - [ ] Managing accounts
 - [ ] Managing categories
 - [ ] Managing orders
 - [ ] Send email
 - [ ] Update admin account information
-- [ ] Statistic revenue
+- [x] Statistic revenue
 - [ ] Manage blogs
 
