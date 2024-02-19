@@ -111,7 +111,7 @@
                 <div class="container-fluid pt-4 px-4">
                     <div class="bg-light text-center rounded p-4">
                         <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">Recent Sale</h6>
+                            <h6 class="mb-0">Recent Orders</h6>
                             <a href="">Show All</a>
                         </div>
                         <div class="table-responsive">
@@ -150,7 +150,7 @@
 
 
                 <!-- Widgets Start -->
-                <div class="container-fluid pt-4 px-4">
+<!--                <div class="container-fluid pt-4 px-4">
                     <div class="row g-4">
                         <div class="col-sm-12 col-md-6 col-xl-4">
                             <div class="h-100 bg-light rounded p-4">
@@ -267,7 +267,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div>-->
                 <!-- Widgets End -->
 
 
@@ -312,7 +312,7 @@
                     labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
                     datasets: [{
                             label: "Revenue",
-                            data: [15, 30, 55, 65, 60, 80, 95, 21, 2 , 11, 22, 11],
+                            data: [${MONTH1}, ${MONTH2}, ${MONTH3}, ${MONTH4}, ${MONTH5}, ${MONTH6}, ${MONTH7}, ${MONTH8}, ${MONTH9} , ${MONTH10}, ${MONTH11}, ${MONTH12}],
                             backgroundColor: "rgba(0, 156, 255, .7)"
                         }
                     ]

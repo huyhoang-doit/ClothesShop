@@ -39,7 +39,8 @@ public class ProductDAO extends DBContext {
                 while (rs.next()) {
                     CategoryDAO cDao = new CategoryDAO();
                     SupplierDAO sDao = new SupplierDAO();
-                    String productname = rs.getString("productname");
+                    String productname = rs.getString("productname");        
+                    int id = rs.getInt("id");
                     SupplierDTO supplierId = sDao.getSupplierById(rs.getInt("supplierid"));
                     CategoryDTO categoryid = cDao.getCategoryById(rs.getInt("categoryid"));
                     int stock = rs.getInt("stock");
@@ -51,7 +52,7 @@ public class ProductDAO extends DBContext {
                     String colors[] = rs.getString("colors").split(",");
                     String images[] = rs.getString("images").split(" ");
                     String sizes[] = rs.getString("size").split(",");
-                    ProductDTO product = new ProductDTO(productname, description, stock, unitSold, images, colors, sizes, date, discount, price, categoryid, supplierId);
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, categoryid, supplierId);
                     products.add(product);
                 }
             }

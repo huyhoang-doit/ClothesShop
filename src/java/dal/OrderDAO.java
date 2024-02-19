@@ -23,6 +23,7 @@ public class OrderDAO extends DBContext {
 
     private static final String GETTOTALSALE = "SELECT SUM(totalprice) AS TotalSale from [Orders]";
     private static final String GETTOTALMONEYYEAR = "SELECT SUM(totalprice) AS TotalSale from [Orders] where year([orderdate]) = ?";
+    private static final String GETTOTALMONEYMONTH = "SELECT SUM(totalprice) AS TotalSale from [Orders] where month([orderdate]) = ?";
     private static final String GETLAST5ORDERS = "SELECT TOP 5 * FROM [Orders] order by orderdate desc";
     private static final String GETTOTALSALETODAY = "SELECT sum(totalprice) AS TotalSale FROM [Orders] "
             + " WHERE cast(orderdate as Date) = cast(getdate() as Date)";
@@ -97,6 +98,37 @@ public class OrderDAO extends DBContext {
             if (conn != null) {
                 ptm = conn.prepareStatement(GETTOTALMONEYYEAR);
                 ptm.setInt(1, year);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    result = rs.getDouble("TotalSale");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
+    
+    public double getTotalMoneyByMonth(int month) throws SQLException {
+        double result = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GETTOTALMONEYMONTH);
+                ptm.setInt(1, month);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     result = rs.getDouble("TotalSale");

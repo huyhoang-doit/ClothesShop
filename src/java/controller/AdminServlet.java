@@ -70,6 +70,19 @@ public class AdminServlet extends HttpServlet {
             double year2022 = oDao.getTotalMoneyByYear(2022);
             double year2023 = oDao.getTotalMoneyByYear(2023);
             double year2024 = oDao.getTotalMoneyByYear(2024);
+            
+            double month1 = oDao.getTotalMoneyByMonth(1);
+            double month2 = oDao.getTotalMoneyByMonth(2);
+            double month3 = oDao.getTotalMoneyByMonth(3);
+            double month4 = oDao.getTotalMoneyByMonth(4);
+            double month5 = oDao.getTotalMoneyByMonth(5);
+            double month6 = oDao.getTotalMoneyByMonth(6);
+            double month7 = oDao.getTotalMoneyByMonth(7);
+            double month8 = oDao.getTotalMoneyByMonth(8);
+            double month9 = oDao.getTotalMoneyByMonth(9);
+            double month10 = oDao.getTotalMoneyByMonth(10);
+            double month11 = oDao.getTotalMoneyByMonth(11);
+            double month12 = oDao.getTotalMoneyByMonth(12);
 
             
             request.setAttribute("YEAR18", year2018);
@@ -80,11 +93,26 @@ public class AdminServlet extends HttpServlet {
             request.setAttribute("YEAR23", year2023);
             request.setAttribute("YEAR24", year2024);
             
+            request.setAttribute("MONTH1", month1);
+            request.setAttribute("MONTH2", month2);
+            request.setAttribute("MONTH3", month3);
+            request.setAttribute("MONTH4", month4);
+            request.setAttribute("MONTH5", month5);
+            request.setAttribute("MONTH6", month6);
+            request.setAttribute("MONTH7", month7);
+            request.setAttribute("MONTH8", month8);
+            request.setAttribute("MONTH9", month9);
+            request.setAttribute("MONTH10", month10);
+            request.setAttribute("MONTH11", month11);
+            request.setAttribute("MONTH12", month12);
+            
             request.setAttribute("TOTALSALE", totalSale);
             request.setAttribute("TOTALSALETODAY", totalSaleTD);
             request.setAttribute("TOTALPRODUCTS", totalProducts);
             request.setAttribute("QUANTITYSOLD", quantitySold);
             request.setAttribute("LAST5ORDERS", last5Orders);
+            
+            request.setAttribute("action", "DASHBOARD");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
