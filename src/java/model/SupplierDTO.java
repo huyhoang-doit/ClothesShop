@@ -31,8 +31,6 @@ public class SupplierDTO {
         this.image = image;
     }
 
-    
-
     public int getSupplierId() {
         return supplierId;
     }

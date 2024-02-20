@@ -1,10 +1,4 @@
 /********** Template CSS **********/
-:root {
-    --primary: #009CFF;
-    --light: #F3F6F9;
-    --dark: #191C24;
-}
-
 .back-to-top {
     position: fixed;
     display: none;
@@ -74,7 +68,7 @@
     width: 250px;
     height: 100vh;
     overflow-y: auto;
-    background: var(--light);
+    background: #F3F6F9;
     transition: 0.5s;
     z-index: 999;
 }
@@ -124,18 +118,18 @@
 /*** Navbar ***/
 .sidebar .navbar .navbar-nav .nav-link {
     padding: 7px 20px;
-    color: var(--dark);
+    color: #191C24;
     font-weight: 500;
-    border-left: 3px solid var(--light);
+    border-left: 3px solid #F3F6F9;
     border-radius: 0 30px 30px 0;
     outline: none;
 }
 
 .sidebar .navbar .navbar-nav .nav-link:hover,
 .sidebar .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: #009CFF;
     background: #FFFFFF;
-    border-color: var(--primary);
+    border-color: #009CFF;
 }
 
 .sidebar .navbar .navbar-nav .nav-link i {
@@ -150,7 +144,7 @@
 
 .sidebar .navbar .navbar-nav .nav-link:hover i,
 .sidebar .navbar .navbar-nav .nav-link.active i {
-    background: var(--light);
+    background: #F3F6F9;
 }
 
 .sidebar .navbar .dropdown-toggle::after {
@@ -176,13 +170,13 @@
 .content .navbar .navbar-nav .nav-link {
     margin-left: 25px;
     padding: 12px 0;
-    color: var(--dark);
+    color: #191C24;
     outline: none;
 }
 
 .content .navbar .navbar-nav .nav-link:hover,
 .content .navbar .navbar-nav .nav-link.active {
-    color: var(--primary);
+    color: #009CFF;
 }
 
 .content .navbar .sidebar-toggler,
@@ -237,11 +231,11 @@
 
 .bootstrap-datetimepicker-widget table td.active,
 .bootstrap-datetimepicker-widget table td.active:hover {
-    background: var(--primary);
+    background: #009CFF;
 }
 
 .bootstrap-datetimepicker-widget table td.today::before {
-    border-bottom-color: var(--primary);
+    border-bottom-color: #009CFF;
 }
 
 
@@ -266,12 +260,168 @@
     margin: 0 5px;
     width: 15px;
     height: 15px;
-    border: 5px solid var(--primary);
+    border: 5px solid #009CFF;
     border-radius: 15px;
     transition: .5s;
 }
 
 .testimonial-carousel .owl-dot.active {
-    background: var(--dark);
-    border-color: var(--primary);
+    background: #191C24;
+    border-color: #009CFF;
+}
+
+/* 1st alternate hover colors if hover inset shadow not working properly
+$gw-blue-dark: rgb(27, 79, 114); /*#1b4f72
+$gw-purple-dark: rgb(74, 35, 90);  /*#4a235a
+$gw-green-dark: rgb(29, 131, 72); /*#1d8348
+$black: rgb(0, 0, 0); /*#000000
+$gw-red-dark: rgb(123, 36, 28); /*#7b241c */
+
+
+.button {
+    font-family:'Open Sans';
+    font-size: 14px;
+    font-weight:400;
+    display:inline-block;
+    color:#FFF;
+    border-radius: .25em;
+    text-shadow: -1px -1px 0px rgba(0,0,0,0.4);
+    border: none;
+}
+
+.primary {
+    line-height: 40px;
+    transition:ease-in-out .2s;
+    padding: 0 16px;
+}
+
+.primary:hover, .condensed:hover, .touch:hover {
+    transform:scale(1.02);
+    box-shadow:2px 2px 5px rgba(0,0,0,0.20), inset 0 0 0 99999px rgba(0,0,0,0.2);
+}
+/* 2nd alternate hover colors if hover inset shadow not working properly 
+.edit:hover {
+  background: darken($gw-blue, 10%);
+}
+
+.save:hover {
+  background: darken($gw-purple, 10%);
+}
+
+.new:hover {
+  background: darken($gw-green, 10%);
+}
+
+.cancel:hover {
+  background: darken($gw-gray-5, 10%);
+}
+
+.delete:hover {
+  background: darken($gw-red, 10%);
+}
+*/
+
+.condensed {
+    transition:ease-in-out .2s;
+    line-height:24px;
+    padding: 0 8px;
+    box-shadow: 1px 1px 1px rgba(0,0,0,0.25);
+}
+
+.touch {
+    transition:ease-in-out .2s;
+    line-height:25px;
+    width:40px;
+    padding: 0px;
+    text-align: center;
+}
+
+.inlineIcon {}
+
+.edit:before, .save:before, .new:before, .cancel:before, .delete:before {
+    font-family: FontAwesome;
+    display: inline-block;
+    font-size:1rem;
+    background:none;
+    color:#FFF;
+}
+
+.condensed.edit:before, .condensed.save:before, .condensed.new:before, .condensed.cancel:before, .condensed.delete:before {
+    content:none;
+}
+
+.touch.edit:before, .touch.save:before, .touch.new:before, .touch.cancel:before, .touch.delete:before {
+    width:100%;
+    text-align:center;
+    line-height: 40px;
+}
+
+.inlineIcon.edit, .inlineIcon.save, .inlineIcon.new, .inlineIcon.cancel, .inlineIcon.delete {
+    background: transparent;
+}
+
+.inlineIcon.edit:before, .inlineIcon.save:before, .inlineIcon.new:before, .inlineIcon.cancel:before, .inlineIcon.delete:before {
+    line-height:32px;
+    font-size:32px;
+    padding:4px 0px;
+}
+
+.edit {
+    background: rgb(52, 152, 219);
+
+    &:before {
+        content: "\f040";
+    }
+}
+
+.inlineIcon.edit:before {
+    color: rgb(52, 152, 219);
+}
+
+.save {
+    background: rgb(142, 68, 173);
+
+    &:before {
+        content: "\f0c7";
+    }
+}
+
+.inlineIcon.save:before {
+    color: rgb(142, 68, 173);
+}
+
+.new {
+    background: rgb(46, 204, 113);
+
+    &:before {
+        content: "\f067";
+    }
+}
+
+.inlineIcon.new:before {
+    color: rgb(46, 204, 113);
+}
+
+.cancel {
+    background: rgb(85, 85, 85);
+
+    &:before {
+        content: "\f05e";
+    }
+}
+
+.inlineIcon.cancel:before {
+    color: rgb(85, 85, 85);
+}
+
+.delete {
+    background: rgb(192, 57, 43);
+
+    &:before {
+        content: "\f1f8";
+    }
+}
+
+.inlineIcon.delete:before {
+    color: rgb(192, 57, 43);
 }

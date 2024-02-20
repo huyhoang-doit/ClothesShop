@@ -1,6 +1,6 @@
 <%-- 
-    Document   : admin_categories
-    Created on : Feb 20, 2024, 12:27:23 AM
+    Document   : admin_products
+    Created on : Feb 19, 2024, 11:14:33 PM
     Author     : HuuThanh
 --%>
 
@@ -41,25 +41,33 @@
                     <div class="row g-4">
                         <div class="col-12">
                             <div class="bg-light rounded h-100 p-4">
-                                <h6 class="mb-4">Categories List</h6>
+                                <h6 class="mb-4">Users List
+                                </h6>
                                 <div class="table-responsive">
                                     <button style="margin-bottom: 20px" class="button touch new"></button>
                                     <table class="table">
                                         <thead>
                                             <tr>
-                                                <th scope="col">ID</th>
-                                                <th scope="col">Name</th>          
-                                                <th style="text-align: center" scope="col">Action</th>    
-
+                                                <th scope="col">Id</th>
+                                                <th scope="col">User name</th>
+                                                <th scope="col">Avatar</th>
+                                                <th scope="col">Full name</th>
+                                                <th scope="col">Email</th>
+                                                <th scope="col">Role</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:if test="${requestScope.LISTCATEGORIES != null && !requestScope.LISTCATEGORIES.isEmpty()}">
-                                                <c:forEach items="${requestScope.LISTCATEGORIES}" var="c">
+                                            <c:if test="${requestScope.LISTUSERS != null && !requestScope.LISTUSERS.isEmpty()}">
+                                                <c:forEach items="${requestScope.LISTUSERS}" var="u">
                                                     <tr>
-                                                        <th style="font-size: 12px">${c.categoryId}</th>
-                                                        <td style="font-size: 14px">${c.categoryName}</td>
-                                                        <td style="text-align: center">
+                                                        <th style="font-size: 12px">${u.id}</th>
+                                                        <td>${u.userName}</td>
+                                                        <td><img src="${u.avatar}" width="60"></td>
+                                                        <td style="font-size: 14px">${u.firstName} ${u.lastName}</td>
+                                                        <td>${u.email}</td>
+                                                        <td>${u.roleID == 1 ? "admin" : "user"}</td>
+                                                        <td>
                                                             <button class="button touch edit"></button>
                                                             <button class="button touch delete"></button>
                                                         </td>
