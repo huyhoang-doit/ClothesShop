@@ -43,12 +43,13 @@
                             <div class="bg-light rounded h-100 p-4">
                                 <h6 class="mb-4">Categories List</h6>
                                 <div class="table-responsive">
+                                    <button style="margin-bottom: 20px" class="button touch new"></button>
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
                                                 <th scope="col">Name</th>          
-                                                <th scope="col">Action</th>    
+                                                <th style="text-align: center" scope="col">Action</th>    
 
                                             </tr>
                                         </thead>
@@ -58,7 +59,10 @@
                                                     <tr>
                                                         <th style="font-size: 12px">${c.categoryId}</th>
                                                         <td style="font-size: 14px">${c.categoryName}</td>
-                                                        <td style="font-size: 14px">+ -</td>
+                                                        <td style="text-align: center">
+                                                            <button class="button touch edit"></button>
+                                                            <button class="button touch delete"></button>
+                                                        </td>
                                                     </tr>
                                                 </c:forEach>
                                             </c:if>

@@ -39,220 +39,11 @@
                 <!-- Table Start -->
                 <div class="container-fluid pt-4 px-4">
                     <div class="row g-4">
-                        <!--                    <div class="col-sm-12 col-xl-6">
-                                                <div class="bg-light rounded h-100 p-4">
-                                                    <h6 class="mb-4">Basic Table</h6>
-                                                    <table class="table">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">First Name</th>
-                                                                <th scope="col">Last Name</th>
-                                                                <th scope="col">Email</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>John</td>
-                                                                <td>Doe</td>
-                                                                <td>jhon@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>mark@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>jacob@email.com</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-xl-6">
-                                                <div class="bg-light rounded h-100 p-4">
-                                                    <h6 class="mb-4">Accented Table</h6>
-                                                    <table class="table table-striped">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">First Name</th>
-                                                                <th scope="col">Last Name</th>
-                                                                <th scope="col">Email</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>John</td>
-                                                                <td>Doe</td>
-                                                                <td>jhon@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>mark@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>jacob@email.com</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-xl-6">
-                                                <div class="bg-light rounded h-100 p-4">
-                                                    <h6 class="mb-4">Hoverable Table</h6>
-                                                    <table class="table table-hover">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">First Name</th>
-                                                                <th scope="col">Last Name</th>
-                                                                <th scope="col">Email</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>John</td>
-                                                                <td>Doe</td>
-                                                                <td>jhon@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>mark@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>jacob@email.com</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-xl-6">
-                                                <div class="bg-light rounded h-100 p-4">
-                                                    <h6 class="mb-4">Color Table</h6>
-                                                    <table class="table table-dark">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">First Name</th>
-                                                                <th scope="col">Last Name</th>
-                                                                <th scope="col">Email</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>John</td>
-                                                                <td>Doe</td>
-                                                                <td>jhon@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>mark@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>jacob@email.com</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-xl-6">
-                                                <div class="bg-light rounded h-100 p-4">
-                                                    <h6 class="mb-4">Bordered Table</h6>
-                                                    <table class="table table-bordered">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">First Name</th>
-                                                                <th scope="col">Last Name</th>
-                                                                <th scope="col">Email</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>John</td>
-                                                                <td>Doe</td>
-                                                                <td>jhon@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>mark@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>jacob@email.com</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-12 col-xl-6">
-                                                <div class="bg-light rounded h-100 p-4">
-                                                    <h6 class="mb-4">Table Without Border</h6>
-                                                    <table class="table table-borderless">
-                                                        <thead>
-                                                            <tr>
-                                                                <th scope="col">#</th>
-                                                                <th scope="col">First Name</th>
-                                                                <th scope="col">Last Name</th>
-                                                                <th scope="col">Email</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                                <th scope="row">1</th>
-                                                                <td>John</td>
-                                                                <td>Doe</td>
-                                                                <td>jhon@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">2</th>
-                                                                <td>Mark</td>
-                                                                <td>Otto</td>
-                                                                <td>mark@email.com</td>
-                                                            </tr>
-                                                            <tr>
-                                                                <th scope="row">3</th>
-                                                                <td>Jacob</td>
-                                                                <td>Thornton</td>
-                                                                <td>jacob@email.com</td>
-                                                            </tr>
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>-->
                         <div class="col-12">
                             <div class="bg-light rounded h-100 p-4">
                                 <h6 class="mb-4">Products List</h6>
                                 <div class="table-responsive">
+                                    <button style="margin-bottom: 20px" class="button touch new"></button>
                                     <table class="table">
                                         <thead>
                                             <tr>
@@ -262,7 +53,8 @@
                                                 <th scope="col">Release Date</th>
                                                 <th scope="col">Price</th>
                                                 <th scope="col">Stock</th>
-                                                <th scope="col">Unit Sold</th>       
+                                                <th scope="col">Unit Sold</th>
+                                                <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -270,12 +62,16 @@
                                                 <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
                                                     <tr>
                                                         <th style="font-size: 12px">${p.id}</th>
-                                                        <td style="font-size: 14px">${p.productName}</td>
+                                                        <td style="font-size: 14px; max-width: 190px">${p.productName}</td>
                                                         <td><img src="${p.images[0]}" width="60"></td>
                                                         <td>${p.releasedate}</td>
                                                         <td>${p.price}</td>
                                                         <td>${p.stock}</td>
                                                         <td>${p.unitSold}</td>
+                                                        <td>
+                                                            <button class="button touch edit"></button>
+                                                            <button class="button touch delete"></button>
+                                                        </td>
                                                     </tr>
                                                 </c:forEach>
                                             </c:if>

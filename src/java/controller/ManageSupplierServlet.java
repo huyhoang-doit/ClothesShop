@@ -5,42 +5,46 @@
  */
 package controller;
 
-import dal.ProductDAO;
+import dal.SupplierDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ProductDTO;
+import model.SupplierDTO;
 
 /**
  *
  * @author HuuThanh
  */
-@WebServlet(name = "ManageProductServlet", urlPatterns = {"/ManageProductServlet"})
-public class ManageProductServlet extends HttpServlet {
+@WebServlet(name = "ManageSupplierServlet", urlPatterns = {"/ManageSupplierServlet"})
+public class ManageSupplierServlet extends HttpServlet {
 
-    private final String MANAGEPRODUCTPAGE = "admin_products.jsp";
-
+    private final String MANAGESUPPLIERPAGE = "admin_suppliers.jsp";
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            ProductDAO pDao = new ProductDAO();
-            List<ProductDTO> list = pDao.getData();
+            SupplierDAO sDao = new SupplierDAO();
+            List<SupplierDTO> list = sDao.getData();
 
-            request.setAttribute("LISTPRODUCTS", list);
-            request.setAttribute("action", "MNGPRODUCT");
+            request.setAttribute("LISTSUPPLIERS", list);
+            request.setAttribute("action", "MNGSUPPLIER");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(MANAGEPRODUCTPAGE).forward(request, response);
+            request.getRequestDispatcher(MANAGESUPPLIERPAGE).forward(request, response);
         }
     }
 

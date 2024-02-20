@@ -1,6 +1,6 @@
 <%-- 
-    Document   : admin_categories
-    Created on : Feb 20, 2024, 12:27:23 AM
+    Document   : admin_products
+    Created on : Feb 19, 2024, 11:14:33 PM
     Author     : HuuThanh
 --%>
 
@@ -41,25 +41,26 @@
                     <div class="row g-4">
                         <div class="col-12">
                             <div class="bg-light rounded h-100 p-4">
-                                <h6 class="mb-4">Categories List</h6>
+                                <h6 class="mb-4">Suppliers List</h6>
                                 <div class="table-responsive">
                                     <button style="margin-bottom: 20px" class="button touch new"></button>
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Name</th>          
-                                                <th style="text-align: center" scope="col">Action</th>    
-
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Supplier Name</th> 
+                                                <th scope="col">Action</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:if test="${requestScope.LISTCATEGORIES != null && !requestScope.LISTCATEGORIES.isEmpty()}">
-                                                <c:forEach items="${requestScope.LISTCATEGORIES}" var="c">
+                                            <c:if test="${requestScope.LISTSUPPLIERS != null && !requestScope.LISTSUPPLIERS.isEmpty()}">
+                                                <c:forEach items="${requestScope.LISTSUPPLIERS}" var="s">
                                                     <tr>
-                                                        <th style="font-size: 12px">${c.categoryId}</th>
-                                                        <td style="font-size: 14px">${c.categoryName}</td>
-                                                        <td style="text-align: center">
+                                                        <th style="font-size: 12px">${s.supplierId}</th>
+                                                        <td><img src="${s.image}" width="60"></td>
+                                                        <td style="font-size: 14px">${s.supplierName}</td>
+                                                        <td>
                                                             <button class="button touch edit"></button>
                                                             <button class="button touch delete"></button>
                                                         </td>

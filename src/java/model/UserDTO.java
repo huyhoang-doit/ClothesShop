@@ -10,7 +10,7 @@ package model;
  * @author HuuThanh
  */
 public class UserDTO {
-
+    private int id;
     private String firstName;
     private String lastName;
     private String email;
@@ -23,7 +23,8 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    public UserDTO(String firstName, String lastName, String email, String avatar, String userName, String password, int roleID, boolean status) {
+    public UserDTO(int id, String firstName, String lastName, String email, String avatar, String userName, String password, int roleID, boolean status) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -33,6 +34,16 @@ public class UserDTO {
         this.roleID = roleID;
         this.status = status;
     }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+    
+    
 
     public String getFirstName() {
         return firstName;

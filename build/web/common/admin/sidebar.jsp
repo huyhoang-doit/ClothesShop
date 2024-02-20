@@ -16,9 +16,10 @@
         <div class="navbar-nav w-100">
             <a href="DispatchServlet" class="nav-item nav-link"><i class="fa-solid fa-house me-2"></i>Home</a>
             <a href="AdminServlet" class="nav-item nav-link ${action.equals("DASHBOARD") ? "active" : ""}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
+            <a href="ManageUserServlet" class="nav-item nav-link ${action.equals("MNGUSER") ? "active" : ""}"><i class="fa fa-user me-2"></i>Users</a>
             <a href="ManageProductServlet" class="nav-item nav-link ${action.equals("MNGPRODUCT") ? "active" : ""}"><i class="fa fa-box me-2"></i>Products</a>
             <a href="ManageCategoryServlet" class="nav-item nav-link ${action.equals("MNGCATEGORY") ? "active" : ""}"><i class="fa fa-layer-group me-2"></i>Categories</a>
-            <a href="table.html" class="nav-item nav-link"><i class="fa fa-boxes-packing me-2"></i>Suppliers</a>
+            <a href="ManageSupplierServlet" class="nav-item nav-link ${action.equals("MNGSUPPLIER") ? "active" : ""}"><i class="fa fa-boxes-packing me-2"></i>Suppliers</a>
             <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>

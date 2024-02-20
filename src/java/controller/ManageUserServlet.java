@@ -5,42 +5,39 @@
  */
 package controller;
 
-import dal.ProductDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ProductDTO;
+import model.UserDTO;
 
 /**
  *
  * @author HuuThanh
  */
-@WebServlet(name = "ManageProductServlet", urlPatterns = {"/ManageProductServlet"})
-public class ManageProductServlet extends HttpServlet {
+@WebServlet(name = "ManageUserServlet", urlPatterns = {"/ManageUserServlet"})
+public class ManageUserServlet extends HttpServlet {
 
-    private final String MANAGEPRODUCTPAGE = "admin_products.jsp";
-
+    private final String MANAGEUSERPAGE = "admin_users.jsp";
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            ProductDAO pDao = new ProductDAO();
-            List<ProductDTO> list = pDao.getData();
+            UserDAO uDao = new UserDAO();
+            List<UserDTO> list = uDao.getData();
 
-            request.setAttribute("LISTPRODUCTS", list);
-            request.setAttribute("action", "MNGPRODUCT");
+            request.setAttribute("LISTUSERS", list);
+            request.setAttribute("action", "MNGUSER");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(MANAGEPRODUCTPAGE).forward(request, response);
+            request.getRequestDispatcher(MANAGEUSERPAGE).forward(request, response);
         }
     }
 
