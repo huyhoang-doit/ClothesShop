@@ -19,7 +19,11 @@ import model.UserDTO;
  * @author HuuThanh
  */
 public class UserDAO extends DBContext {
+
     private static final String LOGIN = "SELECT * FROM Users WHERE username=? AND password=? and status=1";
+
+    private static final String CHECK_LOGIN = "SELECT roleid FROM Users WHERE username=? AND password=? and status=1 and roleid=1";
+
     private static final String GETDATA = "SELECT * FROM Users Where status = 1";
     
     
@@ -61,7 +65,7 @@ public class UserDAO extends DBContext {
         }
         return users;
     }
-    
+
     public UserDTO checkLogin(String userName, String password) throws SQLException {
         UserDTO user = null;
         Connection conn = null;
@@ -100,7 +104,43 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
-    
+
+    public boolean checkAdmin(UserDTO account) throws SQLException {
+        int roleid = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHECK_LOGIN);
+                ptm.setString(1, account.getUserName());
+                ptm.setString(2, account.getPassword());
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    roleid = rs.getInt("roleid");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        if (roleid == 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         UserDAO dao = new UserDAO();
         UserDTO user = dao.checkLogin("user1", "12345");
