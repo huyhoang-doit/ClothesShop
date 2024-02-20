@@ -26,6 +26,7 @@ public class LoginServlet extends HttpServlet {
 
     private final String WELCOME = "home.jsp";
     private final String LOGIN = "login.jsp";
+    private final String ADMIN_DASHBOARD = "admin_home.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -95,6 +96,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
+        String url = WELCOME;
         ResultSet rs = null;
         try {
             String btnValue = request.getParameter("btnAction");
@@ -123,8 +125,12 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(u);
                 response.addCookie(p);
                 response.addCookie(r);
+                if (dao.checkAdmin(user)) {
+                    response.sendRedirect(ADMIN_DASHBOARD);
+                } else {
+                    response.sendRedirect(WELCOME);
 
-                response.sendRedirect(WELCOME);
+                }
             } else {
                 String error = "Invalid username or password!";
                 request.setAttribute("msg", error);
