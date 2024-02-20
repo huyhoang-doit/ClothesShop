@@ -41,43 +41,25 @@
                     <div class="row g-4">
                         <div class="col-12">
                             <div class="bg-light rounded h-100 p-4">
-                                <h6 class="mb-4">Products List</h6>
+                                <h6 class="mb-4">Suppliers List</h6>
                                 <div class="table-responsive">
                                     <button style="margin-bottom: 20px" class="button touch new"></button>
                                     <table class="table">
                                         <thead>
                                             <tr>
                                                 <th scope="col">ID</th>
-                                                <th scope="col">Tên sản phẩm</th>
-                                                <th scope="col">Ảnh</th>
-                                                <th scope="col">Giá</th>
-                                                <th scope="col">Size</th>
-                                                <th scope="col">Màu</th>
-                                                <th scope="col">Số lượng</th>
-                                                <th scope="col">Đã bán</th>
-                                                <th scope="col">Chức năng</th>
+                                                <th scope="col">Image</th>
+                                                <th scope="col">Supplier Name</th> 
+                                                <th scope="col">Action</th> 
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <c:if test="${requestScope.LISTPRODUCTS != null && !requestScope.LISTPRODUCTS.isEmpty()}">
-                                                <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
+                                            <c:if test="${requestScope.LISTSUPPLIERS != null && !requestScope.LISTSUPPLIERS.isEmpty()}">
+                                                <c:forEach items="${requestScope.LISTSUPPLIERS}" var="s">
                                                     <tr>
-                                                        <th style="font-size: 12px">${p.id}</th>
-                                                        <td style="font-size: 14px; max-width: 190px">${p.productName}</td>
-                                                        <td><img src="${p.images[0]}" width="60"></td>
-                                                        <td>${p.price}</td>
-                                                        <td>
-                                                            <c:forEach items="${p.size}" var="s" varStatus="loop">
-                                                                ${s}<c:if test="${not loop.last}">,</c:if>
-                                                            </c:forEach>
-                                                        </td>
-                                                        <td>
-                                                            <c:forEach items="${p.colors}" var="c" varStatus="loop">
-                                                                ${c}<c:if test="${not loop.last}">,</c:if>
-                                                            </c:forEach>
-                                                        </td>
-                                                        <td style="font-size: 14px; max-width: 190px">${p.stock}</td>
-                                                        <td>${p.unitSold}</td>
+                                                        <th style="font-size: 12px">${s.supplierId}</th>
+                                                        <td><img src="${s.image}" width="60"></td>
+                                                        <td style="font-size: 14px">${s.supplierName}</td>
                                                         <td>
                                                             <button class="button touch edit"></button>
                                                             <button class="button touch delete"></button>
@@ -100,7 +82,8 @@
                 <!-- Footer End -->
             </div>
             <!-- Content End -->
-            <div class="modal fade" id="modal_box" role="dialog"></div>
+
+
             <!-- Back to Top -->
             <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
                 <%@include file="/common/admin/add_js.jsp" %>

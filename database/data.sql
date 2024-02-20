@@ -1,4 +1,5 @@
 ﻿INSERT INTO Users  VALUES 
+(N'Jung', N'Kim', 'user@gmail.com', 'assets/img/users/user.jpg','user1', '12345', 2, 0),
 (N'admin', N'', 'admin@gmail.com', 'assets/img/users/user.jpg', 'admin', '12345', 1, 1),
 (N'Phùng', N'Thành', 'thanh@gmail.com', 'assets/img/users/1.jpg','phuuthanh2003', '12345', 2, 1)
 
@@ -14,7 +15,7 @@ INSERT INTO Suppliers VALUES
 ('Adidas', 'assets/img/suppliers/1.jpg'),
 ('Nike', 'assets/img/suppliers/2.jpg'),
 ('Louis Vuitton', 'assets/img/suppliers/3.jpg'),
-('Chanel', 'assets/img/suppliers/4.jpg'),
+('Channel', 'assets/img/suppliers/4.jpg'),
 ('NEM', 'assets/img/suppliers/5.jpg'),
 ('4MEN', 'assets/img/suppliers/6.jpg'),
 ('Seven AM', 'assets/img/suppliers/7.jpg')
