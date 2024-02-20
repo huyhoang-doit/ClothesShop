@@ -3824,7 +3824,9 @@
     
 }
 /*modal css end*/
-
+.old_price {
+    text-decoration: line-through;
+}
 
 
 

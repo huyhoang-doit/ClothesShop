@@ -3,54 +3,63 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package Home.Controller;
 
 import dal.CategoryDAO;
 import dal.ProductDAO;
+import dal.SupplierDAO;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import model.CategoryDTO;
 import model.ProductDTO;
+import model.SupplierDTO;
 
 /**
  *
- * @author HuuThanh
+ * @author lvhho
  */
-@WebServlet(name = "ManageCategoryServlet", urlPatterns = {"/ManageCategoryServlet"})
-public class ManageCategoryServlet extends HttpServlet {
+public class DispatchServlet extends HttpServlet {
 
-    private final String MANAGEPRODUCTPAGE = "admin_categories.jsp";
+    private final String LOGINPAGE = "login.jsp";
+    private final String LOGIN = "Login";
+    private final String LOGOUT = "Logout";
+    private final String WELCOME = "home.jsp";
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
+        response.setContentType("text/html; charset=UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String url = WELCOME;
         try {
-            CategoryDAO cDao = new CategoryDAO();
-            List<CategoryDTO> list = cDao.getData();
+            String btnValue = request.getParameter("btnAction");
+            if (btnValue == null) {
+                ProductDAO pDao = new ProductDAO();
+                CategoryDAO cDao = new CategoryDAO();
+                SupplierDAO sDao = new SupplierDAO();
+                
+                List<ProductDTO> listProducts = pDao.getData();
+                List<CategoryDTO> listCategories = cDao.getData();
+                List<SupplierDTO> listSuppliers = sDao.getData();
+                
+                request.setAttribute("LISTPRODUCTS", listProducts);
+                request.setAttribute("LISTCATEGORIES", listCategories);
+                request.setAttribute("LISTSUPPLIERS", listSuppliers);
+            } else if (btnValue.equals(LOGOUT)) {
+                url = WELCOME;
+                HttpSession session = request.getSession();
+                if (session.getAttribute("account") != null) {
+                    session.removeAttribute("account");
+                }
+            }
+        } catch (Exception ex) {
 
-            request.setAttribute("LISTCATEGORIES", list);
-            request.setAttribute("action", "MNGCATEGORY");
-        } catch (SQLException ex) {
-            Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            request.getRequestDispatcher(MANAGEPRODUCTPAGE).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

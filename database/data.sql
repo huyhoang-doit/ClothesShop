@@ -27,7 +27,7 @@ INSERT INTO Products VALUES
 , 'assets/img/products/2-1.jpg assets/img/products/2-2.jpg', N'Trắng,Đen,Xám' , '2022-02-01', 0.37, 76, 179.000),
 (N'QUẦN JEANS XANH WASH LASER TÚI SAU FORM SLIM-CROPPED', 6, 6, 'S,M,L', 45, N'Một chiếc jeans xanh Wash Laser túi sau form slim-cropped 4MEN QJ092 trong tủ đồ có thể giúp các chàng trai mix được hàng chục, hàng trăm outfit khác nhau, từ thanh lịch đến bụi bặm cá tính, rồi năng động và tất nhiên luôn toát lên vẻ đẹp trẻ trung và hiện đại. Sở hữu ngay mẫu quần jeans xanh wash laser túi sau form slim-cropped 4MEN QJ092, chất vải mềm mịn và co giãn tốt sẽ rất thích hợp với ai yêu thích jeans.'
 , 'assets/img/products/3-1.jpg assets/img/products/3-2.jpg', N'Xanh' , '2023-11-01', 0, 72, 545.000),
-(N'ÁO HOODIE MAY ĐẮP BASIC FORM REGULAR', 7, 4, 'S,M,L', 30, N'ÁO NỈ CÓ MŨ, FORM REGULAR-FIT; NGỰC TRÁI ÁO CÓ HÌNH THÊU CHỮ SỬ DỤNG KỸ THUẬT ĐẮP VẢI CON GIỐNG SẮC NÉT ; 2 BÊN SƯỜN ÁO MAY 2 MẢNG BO ĐẢM BẢO ĐÚNG FORM DÁNG THIẾT KẾ VÀ TĂNG CẢM GIÁC THOẢI MÁI KHI MẶC; ÁP DỤNG CÔNG NGHỆ GIẶT KHÔ TRƯỚC MAY HẠN CHẾ TÌNH TRẠNG CO RÚT VẢI.'
+(N'ÁO HOODIE MAY ĐẮP BASIC FORM REGULAR', 7, 4, 'S,M,L', 30, N'Áo nỉ có mũ, form Regular-Fit; Ngực trái áo có hình thêu chữ sử dụng kỹ thuật đắp vải con giống sắc nét ; 2 bên sườn áO may 2 mảng BO đảm bảo đúng form dáng thiết kế và tăng cảm giác thoải mái khi mặc; Áp dụng công nghệ giặt khô trước may hạn chế tình trạng co rút vải.'
 , 'assets/img/products/4-1.jpg assets/img/products/4-2.jpg', N'Xanh đen,Trắng' , '2019-11-01', 0.31, 51, 399.000)
 
 INSERT INTO Carts VALUES 
