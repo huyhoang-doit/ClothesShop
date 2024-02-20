@@ -3,26 +3,32 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package Admin.Controller;
 
-import dal.SupplierDAO;
+import dal.CategoryDAO;
+import dal.ProductDAO;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.SupplierDTO;
+import model.CategoryDTO;
+import model.ProductDTO;
 
 /**
  *
  * @author HuuThanh
  */
-@WebServlet(name = "ManageSupplierServlet", urlPatterns = {"/ManageSupplierServlet"})
-public class ManageSupplierServlet extends HttpServlet {
+@WebServlet(name = "ManageCategoryServlet", urlPatterns = {"/ManageCategoryServlet"})
+public class ManageCategoryServlet extends HttpServlet {
 
-    private final String MANAGESUPPLIERPAGE = "admin_suppliers.jsp";
+    private final String MANAGEPRODUCTPAGE = "admin_categories.jsp";
+
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -36,15 +42,15 @@ public class ManageSupplierServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            SupplierDAO sDao = new SupplierDAO();
-            List<SupplierDTO> list = sDao.getData();
+            CategoryDAO cDao = new CategoryDAO();
+            List<CategoryDTO> list = cDao.getData();
 
-            request.setAttribute("LISTSUPPLIERS", list);
-            request.setAttribute("action", "MNGSUPPLIER");
-        } catch (Exception e) {
-            e.printStackTrace();
+            request.setAttribute("LISTCATEGORIES", list);
+            request.setAttribute("action", "MNGCATEGORY");
+        } catch (SQLException ex) {
+            Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            request.getRequestDispatcher(MANAGESUPPLIERPAGE).forward(request, response);
+            request.getRequestDispatcher(MANAGEPRODUCTPAGE).forward(request, response);
         }
     }
 
