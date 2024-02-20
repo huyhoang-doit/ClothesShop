@@ -6,18 +6,20 @@
 package model;
 
 import java.sql.Date;
+import java.text.DecimalFormat;
 
 /**
  *
  * @author HuuThanh
  */
 public class ProductDTO {
+
     private int id;
     private String productName, description;
     private int stock, unitSold;
     private String[] images, colors, size;
     private Date releasedate;
-    private double discount, price;
+    private double discount, price, salePrice;
     private CategoryDTO category;
     private SupplierDTO supplier;
 
@@ -25,6 +27,7 @@ public class ProductDTO {
     }
 
     public ProductDTO(int id, String productName, String description, int stock, int unitSold, String[] images, String[] colors, String[] size, Date releasedate, double discount, double price, CategoryDTO category, SupplierDTO supplier) {
+        this.salePrice = price;
         this.id = id;
         this.productName = productName;
         this.description = description;
@@ -47,7 +50,7 @@ public class ProductDTO {
     public void setId(int id) {
         this.id = id;
     }
-    
+
     public String getProductName() {
         return productName;
     }
@@ -143,6 +146,14 @@ public class ProductDTO {
     public void setSupplier(SupplierDTO supplier) {
         this.supplier = supplier;
     }
-    
-    
+
+    public double getSalePrice() {
+        double salePrice = Math.round(price * discount * 100) / 100.0;
+        if (discount > 0) {
+            return salePrice;
+        } else {
+            return price;
+        }
+    }
+
 }

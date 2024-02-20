@@ -3,56 +3,44 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller;
+package Home.Controller;
 
 import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import model.CategoryDTO;
 import model.ProductDTO;
 
 /**
  *
- * @author lvhho
+ * @author HuuThanh
  */
-public class DispatchServlet extends HttpServlet {
+public class ShopServlet extends HttpServlet {
 
-    private final String LOGINPAGE = "login.jsp";
-    private final String LOGIN = "Login";
-    private final String LOGOUT = "Logout";
-    private final String WELCOME = "home.jsp";
+    private final String SHOP = "shop-list.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
-        String url = WELCOME;
+        response.setContentType("text/html;charset=UTF-8");
         try {
-            String btnValue = request.getParameter("btnAction");
-            if (btnValue == null) {
-                ProductDAO pDao = new ProductDAO();
-                CategoryDAO cDao = new CategoryDAO();
-                List<ProductDTO> listProducts = pDao.getData();
-                List<CategoryDTO> listCategories = cDao.getData();
-                request.setAttribute("LISTPRODUCTS", listProducts);
-                request.setAttribute("LISTCATEGORIES", listCategories);
-            } else if (btnValue.equals(LOGOUT)) {
-                url = WELCOME;
-                HttpSession session = request.getSession();
-                if (session.getAttribute("account") != null) {
-                    session.removeAttribute("account");
-                }
-            }
+            ProductDAO pDao = new ProductDAO();
+            CategoryDAO cDao = new CategoryDAO();
+
+            List<ProductDTO> listProducts = pDao.getData();
+            List<CategoryDTO> listCategories = cDao.getData();
+
+            request.setAttribute("LISTPRODUCTS", listProducts);
+            request.setAttribute("LISTCATEGORIES", listCategories);
         } catch (Exception ex) {
 
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher(SHOP).forward(request, response);
         }
     }
 

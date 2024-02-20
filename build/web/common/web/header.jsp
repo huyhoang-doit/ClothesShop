@@ -3,22 +3,22 @@
     <div class="header_top">
         <div class="row align-items-center">
             <div class="col-lg-6 col-md-6">
-                <div class="switcher">
-                    <ul>
-                        <li class="languages"><a href="#"><img src="assets\img\logo\fontlogo.jpg" alt=""> English <i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown_languages">
-                                <li><a href="#"><img src="assets\img\logo\fontlogo.jpg" alt=""> English</a></li>         
-                            </ul>   
-                        </li> 
-
-                        <li class="currency"><a href="#"> Currency : $ <i class="fa fa-angle-down"></i></a>
-                            <ul class="dropdown_currency">
-                                <li><a href="#"> Dollar (USD)</a></li>
-                                <li><a href="#"> Euro (EUR)  </a></li>
-                            </ul> 
-                        </li> 
-                    </ul>
-                </div>
+                <!--                <div class="switcher">
+                                    <ul>
+                                        <li class="languages"><a href="#"><img src="assets\img\logo\fontlogo.jpg" alt=""> English <i class="fa fa-angle-down"></i></a>
+                                            <ul class="dropdown_languages">
+                                                <li><a href="#"><img src="assets\img\logo\fontlogo.jpg" alt=""> English</a></li>         
+                                            </ul>   
+                                        </li> 
+                
+                                        <li class="currency"><a href="#"> Currency : $ <i class="fa fa-angle-down"></i></a>
+                                            <ul class="dropdown_currency">
+                                                <li><a href="#"> Dollar (USD)</a></li>
+                                                <li><a href="#"> Euro (EUR)  </a></li>
+                                            </ul> 
+                                        </li> 
+                                    </ul>
+                                </div>-->
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="header_links">
@@ -47,7 +47,7 @@
             <!--logo start-->
             <div class="col-lg-3 col-md-3">
                 <div class="logo">
-                    <a href="index.html"><img src="assets\img\logo\logo.jpg.png" alt=""></a>
+                    <a href="DispatchServlet"><img src="assets\img\logo\logo.jpg.png" alt=""></a>
                 </div>
             </div>
             <!--logo end-->
@@ -117,24 +117,8 @@
                     <div class="main_menu d-none d-lg-block">
                         <nav>
                             <ul>
-                                <li class="active"><a href="home.jsp">Home</a></li>
-                                <li><a href="shop-list.jsp">shop</a>
-                                    <div class="mega_menu jewelry">
-                                        <div class="mega_items jewelry">
-                                            <ul>
-                                                <li><a href="shop-list.html">shop list</a></li>
-                                                <li><a href="shop-fullwidth.html">shop Full Width Grid</a></li>
-                                                <li><a href="shop-fullwidth-list.html">shop Full Width list</a></li>
-                                                <li><a href="shop-sidebar.html">shop Right Sidebar</a></li>
-                                                <li><a href="shop-sidebar-list.html">shop list Right Sidebar</a></li>
-                                                <li><a href="single-product.html">Product Details</a></li>
-                                                <li><a href="single-product-sidebar.html">Product sidebar</a></li>
-                                                <li><a href="single-product-video.html">Product Details video</a></li>
-                                                <li><a href="single-product-gallery.html">Product Details Gallery</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>  
-                                </li>
+                                <li class="active"><a href="DispatchServlet">Home</a></li>
+                                <li><a href="ShopServlet">SHOP</a></li>
                                 <li><a href="contact.jsp">contact us</a></li>
 
                             </ul>
