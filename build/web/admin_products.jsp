@@ -70,37 +70,39 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${ProductData}" var="p">
+                                        <c:forEach items="${LIST_PRODUCTS}" var="p">
                                             <tr>
-                                                <td>${p.product_id}</td>
-                                                <td>${p.cate.category_name}</td>
-                                                <td>${p.product_name}</td>
-                                                <td>${p.product_price}</td>
-                                                <td>
+                                                <td>${p.getId()}</td>
+                                                <td>${p.getCategory().getCategoryName()}</td>
+                                                <td>${p.getProductName()}</td>
+                                                <td>${p.getPrice()}</td>
+                                                <td>X</td>
+                                                <td>X</td>
+<!--                                                <td>
                                                     <c:forEach items="${SizeData}" var="s">
                                                         <c:if test="${p.product_id==s.product_id}">
                                                             ${s.size}   
                                                         </c:if>
                                                     </c:forEach>
-                                                </td>
+                                                </td>-->
 
-                                                <td>
+<!--                                                <td>
                                                     <c:forEach items="${ColorData}" var="c">
                                                         <c:if test="${p.product_id==c.product_id}">
                                                             ${c.color}   
                                                         </c:if>
                                                     </c:forEach>
-                                                </td>
-                                                <td>${p.product_describe}</td>
-                                                <td>${p.quantity}</td>
-                                                <td><img src="${p.img}" alt="" width="100px;"></td>
+                                                </td>-->
+                                                <td>${p.getDescription()}</td>
+                                                <td>${p.getStock()}</td>
+                                                <td><img src="assets/img/logo/logo.jpg.png" alt="" width="100px;"></td>
 
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" value="${p.product_id}"><i
+                                                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" value="${p.getId()}"><i
                                                             class="fas fa-trash-alt"></i>
                                                     </button>
                                                     <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
-                                                            data-toggle="modal" data-target="#ModalUP${p.product_id}"><i class="fas fa-edit"></i>
+                                                            data-toggle="modal" data-target="#ModalUP${p.getId()}"><i class="fas fa-edit"></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -109,7 +111,7 @@
                                             MODAL
                                             -->
 
-                                        <div class="modal fade" id="ModalUP${p.product_id}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+<!--                                        <div class="modal fade" id="ModalUP${p.getId()}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
                                              data-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -124,7 +126,7 @@
                                                         <div class="row">
                                                             <div class="form-group col-md-6">
                                                                 <label class="control-label">Mã sản phẩm </label>
-                                                                <input class="form-control" type="text" readonly name="product_id" value="${p.product_id}">
+                                                                <input class="form-control" type="text" readonly name="product_id" value="${p.getId()}">
                                                             </div>
                                                             <div class="form-group col-md-6">
                                                                 <label for="exampleSelect1" class="control-label">Danh mục</label>
@@ -162,7 +164,7 @@
                                                                 <label class="control-label">Số lượng</label>
                                                                 <input class="form-control" type="text" name="product_quantity" value="${p.quantity}">
                                                             </div>
-                                                            <!--anh san pham-->
+                                                            anh san pham
                                                             <div class="form-group col-md-12">
                                                                 <label class="control-label">Ảnh sản phẩm</label>
                                                                 <div id="myfileupload">
@@ -185,7 +187,7 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div>-->
                                         <!--
                                       MODAL
                                         -->

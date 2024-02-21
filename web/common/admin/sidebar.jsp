@@ -33,7 +33,7 @@
                 <li><a class="app-menu__item" href="ManageProductServlet"><i
                             class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
                 </li>
-                <li><a class="app-menu__item" href="ordermanager"><i class='app-menu__icon bx bx-task'></i><span
+                <li><a class="app-menu__item" href="ManageOrderServlet"><i class='app-menu__icon bx bx-task'></i><span
                             class="app-menu__label">Quản lý đơn hàng</span></a></li>
             </ul>
         </aside>

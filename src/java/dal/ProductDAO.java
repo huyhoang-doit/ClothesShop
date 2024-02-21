@@ -165,9 +165,12 @@ public class ProductDAO extends DBContext {
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
         List<ProductDTO> list = dao.getData();
+        int count = 0;
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getProductName());
+            
+            count++;
         }
         System.out.println(dao.getTotalProducts());
+        System.out.println(count);
     }
 }

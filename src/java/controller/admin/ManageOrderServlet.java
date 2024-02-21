@@ -5,7 +5,7 @@
  */
 package controller.admin;
 
-import dal.ProductDAO;
+import dal.OrderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -17,28 +17,36 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ProductDTO;
+import model.OrderDTO;
 
 /**
  *
- * @author HuuThanh
+ * @author lvhho
  */
-@WebServlet(name = "ManageProductServlet", urlPatterns = {"/ManageProductServlet"})
-public class ManageProductServlet extends HttpServlet {
+@WebServlet(name = "ManageOrderServlet", urlPatterns = {"/ManageOrderServlet"})
+public class ManageOrderServlet extends HttpServlet {
 
-    private final String MANAGEPRODUCTPAGE = "admin_products.jsp";
+    private final String MANAGEPRODUCTPAGE = "admin_order.jsp";
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
-            ProductDAO pDao = new ProductDAO();
-            List<ProductDTO> list = pDao.getData();
-
-            request.setAttribute("LIST_PRODUCTS", list);
-            request.setAttribute("action", "MNGPRODUCT");
-        } catch (Exception e) {
-            e.printStackTrace();
+            OrderDAO oDao = new OrderDAO();
+            List<OrderDTO> listOrders = oDao.getAllOrders();
+            
+            request.setAttribute("LIST_ORDERS", listOrders);
+        } catch (SQLException ex) {
+            Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             request.getRequestDispatcher(MANAGEPRODUCTPAGE).forward(request, response);
         }

@@ -83,7 +83,7 @@
             </div>
         </main>
         <c:forEach items="${LISTUSERS}" var="u">           
-            <div class="modal fade" id="ModalUP${u.c}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+            <div class="modal fade" id="ModalUP${u.getId()}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
                  data-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">

@@ -24,11 +24,12 @@ public class OrderDAO extends DBContext {
     private static final String GET_TOTAL_SALE = "SELECT SUM(totalprice) AS TotalSale from [Orders]";
     private static final String GET_TOTAL_MONEY_YEAR = "SELECT SUM(totalprice) AS TotalSale from [Orders] where year([orderdate]) = ?";
     private static final String GET_TOTAL_MONEY_MONTH = "SELECT SUM(totalprice) AS TotalSale from [Orders] where month([orderdate]) = ?";
-    private static final String GET_LAST_5_ORDERS = "SELECT TOP 5 * FROM [Orders] order by orderdate desc";
-    private static final String GET_TOTAL_ORDERS = "SELECT COUNT(*) AS Total FROM [Orders] WHERE status = True";
+    private static final String GET_NUMBER_ORDERS = "SELECT COUNT(*) AS Total FROM [Orders] WHERE Status = true";
+    private static final String GET_TOTAL_ORDERS = "SELECT * FROM [Orders]";
     private static final String GET_TOTAL_SALE_TODAY = "SELECT sum(totalprice) AS TotalSale FROM [Orders] "
             + " WHERE cast(orderdate as Date) = cast(getdate() as Date)";
     private static final String GET_ORDERS_USER = "SELECT * FROM [Orders] WHERE username = ?";
+    private static final String GET_RECENT_ORDERS = "SELECT Top 10 * FROM Orders ORDER BY orderdate DESC";
 
     public double getTotalSale() throws SQLException {
         double result = 0;
@@ -152,7 +153,7 @@ public class OrderDAO extends DBContext {
         return result;
     }
 
-    public List<OrderDTO> getLast5Orders() throws SQLException {
+    public List<OrderDTO> getRecentOrders() throws SQLException {
         List<OrderDTO> orders = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -160,7 +161,7 @@ public class OrderDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GET_LAST_5_ORDERS);
+                ptm = conn.prepareStatement(GET_RECENT_ORDERS);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int orderId = rs.getInt("order_id");
@@ -228,10 +229,84 @@ public class OrderDAO extends DBContext {
         }
         return orders;
     }
+    
+    public int getTotalOrders() throws SQLException {
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_NUMBER_ORDERS);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    result = rs.getInt("Total");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
+    
+     public List<OrderDTO> getAllOrders() throws SQLException {
+        List<OrderDTO> orders = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_TOTAL_ORDERS);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int orderId = rs.getInt("order_id");
+                    Date orderDate = rs.getDate("orderdate");
+                    double totalPrice = rs.getDouble("totalprice");
+                    int paymentId = rs.getInt("paymentid");
+                    int shipmentId = rs.getInt("shipmentid");
+                    String userName = rs.getString("username");
+                    boolean status = rs.getBoolean("status");
+                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, paymentId, shipmentId, userName, status);
+                    orders.add(order);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return orders;
+    }
 
     public static void main(String[] args) throws SQLException {
         OrderDAO dao = new OrderDAO();
         double list = dao.getTotalSaleToday();
+        List<OrderDTO> all = dao.getAllOrders();
+        int count = 0;
+        for (OrderDTO orderDTO : all) {
+            count++;
+        }
         System.out.println(list);
+        System.out.println(count);
     }
 }

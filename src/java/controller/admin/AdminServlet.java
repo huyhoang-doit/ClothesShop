@@ -64,7 +64,7 @@ public class AdminServlet extends HttpServlet {
             int numberProductsLowQuantity = pDao.getProductsLowQuantiry();
             int totalUsers = uDao.getTotalUsers();
             int totalOrders = oDao.getTotalOrders();
-            List<OrderDTO> last5Orders = oDao.getLast5Orders();
+            List<OrderDTO> lastRecentOrders = oDao.getRecentOrders();
 
             
             double year2018 = oDao.getTotalMoneyByYear(2018);
@@ -115,7 +115,7 @@ public class AdminServlet extends HttpServlet {
             request.setAttribute("PRODUCTSLOW", numberProductsLowQuantity);
             request.setAttribute("TOTALUSERS", totalUsers);
             request.setAttribute("TOTALORDERS", totalOrders);
-            request.setAttribute("LAST5ORDERS", last5Orders);
+            request.setAttribute("LAST_RECENT_ORDERS", lastRecentOrders);
             
             request.setAttribute("action", "DASHBOARD");
         } catch (Exception e) {
