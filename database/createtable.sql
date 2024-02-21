@@ -9,6 +9,8 @@ CREATE TABLE Users (
   avatar varchar(200) Not null,
   username VARCHAR(30) PRIMARY KEY NOT NULL,
   password VARCHAR(64) NOT NULL,
+  address NVARCHAR(200) NOT NULL,
+  phone NVARCHAR(15) NOT NULL,
   roleid INT NOT NULL,
   status BIT NOT NULL,
 )

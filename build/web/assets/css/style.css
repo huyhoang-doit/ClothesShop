@@ -677,26 +677,6 @@
 }
 /*  wishlist block css end */
 
-/* 2.7 popular tags css here */
-.sidebar_widget.tags .block_title h3::before {
-    width: 120px;
-}
-.block_tags a {
-    margin-right: 8px;
-    padding: 4px 12px;
-    color: #444444;
-    background: #eeeeee;
-    font-weight: 500;
-    line-height: 30px;
-    font-size: 13px;
-}
-.block_tags a:hover{
-    background-color: #00bba6;
-    color: #fff;
-}
-
-/*popular tags css end*/
-
 /* 2.8newsletter block css here */
 
 .sidebar_widget.newsletter form p {
@@ -2893,10 +2873,20 @@
     font-weight: 600;
     margin-bottom: 10px;
 }
-.dashboard_content a {
-    color: #00bba6;
+.dashboard_content button {
+    border: none;
+    color: white;
     font-weight: 600;
+    font-size: 16px;
+    background-color: #00bba6;
+    padding: 8px 18px;
+    border-radius: 36px;
 }
+
+.dashboard_content button:focus {
+    outline: none;
+}
+
 .dashboard_content address {
     font-weight: 600;
     color: #333;
@@ -2915,7 +2905,6 @@
 }
 .account_login_form form input {
     border: 1px solid #ddd;
-    background: none;
     height: 40px;
     margin-bottom: 20px;
 }
@@ -3826,6 +3815,10 @@
     text-decoration: line-through;
 }
 
+.input_read {
+    background-color: #e9ecef;
+}
 
-
-
+.default_input {
+    background-color: white;
+}

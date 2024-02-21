@@ -1,10 +1,10 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="en">
     <head>
         <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>My account</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,6 +13,8 @@
 
         <!-- all css here -->
         <%@include file="/common/web/add_css.jsp"%>
+        <style type="text/css">
+        </style>
     </head>
     <body>
         <!-- Add your site or application content here -->
@@ -32,7 +34,7 @@
                             <div class="col-12">
                                 <div class="breadcrumb_content">
                                     <ul>
-                                        <li><a href="index.html">home</a></li>
+                                        <li><a href="DispatchServlet">home</a></li>
                                         <li><i class="fa fa-angle-right"></i></li>
                                         <li>my account</li>
                                     </ul>
@@ -53,7 +55,6 @@
                                             <li style="margin-bottom: 25px"><img style="border: 5px solid #00BBA6" src="${sessionScope.account.avatar}" width="100%"></li>
                                             <li><a href="#account-details" data-toggle="tab" class="nav-link active">Account details</a></li>
                                             <li> <a href="#orders" data-toggle="tab" class="nav-link">Orders</a></li>
-                                            <li><a href="#address" data-toggle="tab" class="nav-link">Addresses</a></li>
                                         </ul>
                                     </div>    
                                 </div>
@@ -87,21 +88,6 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <div class="tab-pane" id="address">
-                                            <p>The following addresses will be used on the checkout page by default.</p>
-                                            <h4 class="billing-address">Billing address</h4>
-                                            <a href="#" class="view">Edit</a>
-                                            <p><strong>Bobby Jackson</strong></p>
-                                            <address>
-                                                House #15<br>
-                                                Road #1<br>
-                                                Block #C <br>
-                                                Banasree <br>
-                                                Dhaka <br>
-                                                1212
-                                            </address>
-                                            <p>Bangladesh</p>   
-                                        </div>
                                         <div class="tab-pane fade show active" id="account-details">
                                             <h3>Account details</h3>
                                             <div class="login">
@@ -109,22 +95,21 @@
                                                     <div class="account_login_form">
                                                         <form action="#">
                                                             <label>Username</label>
-                                                            <input style="background-color: #e9ecef;" type="text" name="user-password" value="${sessionScope.account.userName}" readonly>
+                                                            <input class="input_type input_read" type="text" name="username" value="${sessionScope.account.userName}" readonly>
                                                             <label>First Name</label>
-                                                            <input type="text" name="first-name" value="${sessionScope.account.firstName}">
+                                                            <input class="input_type input_read" type="text" name="first-name" value="${sessionScope.account.firstName}" readonly>
                                                             <label>Last Name</label>
-                                                            <input type="text" name="last-name" value="${sessionScope.account.lastName}">
+                                                            <input class="input_type input_read" type="text" name="last-name" value="${sessionScope.account.lastName}" readonly>
                                                             <label>Email</label>
-                                                            <input type="text" name="email-name" value="${sessionScope.account.email}">
+                                                            <input class="input_type input_read" type="text" name="email-name" value="${sessionScope.account.email}" readonly>
+                                                            <label>Address</label>
+                                                            <input class="input_type input_read" type="text" name="address" value="${sessionScope.account.address}" readonly>
                                                             <label>Role</label>
-                                                            <input type="text" value="${sessionScope.account.roleID == 1? "Admin" : "Customer"}" name="birthday">
-                                                            <br>
-                                                            <!--                                                            <span class="custom_checkbox">
-                                                                                                                            <input type="checkbox" value="1" name="newsletter">
-                                                                                                                            <label>Sign up for our newsletter<br><em>You may unsubscribe at any moment. For that purpose, please find our contact info in the legal notice.</em></label>
-                                                                                                                        </span>-->
+                                                            <input class="input_type input_read" type="text" value="${sessionScope.account.roleID == 1? "Admin" : "Customer"}" name="birthday" readonly>
+                                                            <label>Phone</label>
+                                                            <input class="input_type input_read" type="text" value="${sessionScope.account.phone}" name="phone" readonly>
                                                             <div class="save_button primary_btn default_button">
-                                                                <a href="#">Save</a>
+                                                                <button onclick="changeType(this)" id="edit" type="button">Edit</button>
                                                             </div>
                                                         </form>
                                                     </div>
@@ -145,15 +130,32 @@
 
         <!--footer area start-->
         <%@include file="/common/web/footer.jsp"%>
-        <!--footer area end-->
-
-
-
-
-
-
         <!-- all js here -->
         <%@include file="/common/web/add_js.jsp"%>
+        <script type="text/javascript">
+            function changeType(button) {
+                var inputElements = document.querySelectorAll(".input_type");
+                if (button.id === "edit") {
+                    button.textContent = "Save";
+                    button.id = "save";
+                    inputElements.forEach(x => {
+                        if (x.name !== "username") {
+                            x.readOnly = false;
+                            x.classList.remove("input_read");
+                            x.classList.add("default_input");
+                        }
+                    });
+                } else {
+                    button.textContent = "Edit";
+                    button.id = "edit";
+                    inputElements.forEach(x => {
+                        x.readOnly = true;
+                        x.classList.add("input_read");
+                        x.classList.remove("default_input");
+                    });
+                }
+            }
+        </script>
     </body>
 </body>
 </html>

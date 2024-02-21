@@ -49,9 +49,11 @@ public class UserDAO extends DBContext {
                     String avatar = rs.getString("avatar");
                     String userName = rs.getString("userName");
                     String password = rs.getString("password");
+                    String address = rs.getString("address");
+                    String phone = rs.getString("phone");
                     int roleId = rs.getInt("roleId");
                     boolean status = rs.getBoolean("status");
-                    users.add(new UserDTO(id, firstName, lastName, email, avatar, userName, password, roleId, status));
+                    users.add(new UserDTO(id, firstName, lastName, email, avatar, userName, password, address, phone, roleId, status));
                 }
             }
         } catch (Exception e) {
@@ -88,9 +90,11 @@ public class UserDAO extends DBContext {
                     String lastname = rs.getString("lastname");
                     String email = rs.getString("email");
                     String avatar = rs.getString("avatar");
+                    String address = rs.getString("address");
+                    String phone = rs.getString("phone");
                     int roleid = rs.getInt("roleID");
                     boolean roleID = rs.getBoolean("roleID");
-                    user = new UserDTO(id, firstname, lastname, email, avatar, userName, password, roleid, roleID);
+                    user = new UserDTO(id, firstname, lastname, email, avatar, userName, password, address, phone, roleid, roleID);
                 }
             }
         } catch (Exception e) {
