@@ -84,7 +84,6 @@ public class AdminServlet extends HttpServlet {
             double month11 = oDao.getTotalMoneyByMonth(11);
             double month12 = oDao.getTotalMoneyByMonth(12);
 
-            
             request.setAttribute("YEAR18", year2018);
             request.setAttribute("YEAR19", year2019);
             request.setAttribute("YEAR20", year2020);
