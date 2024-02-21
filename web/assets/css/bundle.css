@@ -314,7 +314,6 @@ option {
     font-size: 14px;
 }
 input:focus {
-    background: transparent;
     border: 1px solid #4FC1F0;
 }
 textarea {

@@ -17,13 +17,15 @@ public class UserDTO {
     private String avatar;
     private String userName;
     private String password;
+    private String address;
+    private String phone;
     private int roleID;
     private boolean status;
 
     public UserDTO() {
     }
 
-    public UserDTO(int id, String firstName, String lastName, String email, String avatar, String userName, String password, int roleID, boolean status) {
+    public UserDTO(int id, String firstName, String lastName, String email, String avatar, String userName, String password, String address, String phone, int roleID, boolean status) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -33,6 +35,8 @@ public class UserDTO {
         this.password = password;
         this.roleID = roleID;
         this.status = status;
+        this.address = address;
+        this.phone = phone;
     }
 
     public int getId() {
@@ -43,8 +47,6 @@ public class UserDTO {
         this.id = id;
     }
     
-    
-
     public String getFirstName() {
         return firstName;
     }
@@ -107,6 +109,22 @@ public class UserDTO {
 
     public void setAvatar(String avatar) {
         this.avatar = avatar;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     
