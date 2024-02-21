@@ -22,9 +22,10 @@ import model.SupplierDTO;
  * @author HuuThanh
  */
 public class ProductDAO extends DBContext {
-    private static final String GETDATA = "SELECT * FROM Products";
-    private static final String GETTOTALPRODUCTS = "SELECT SUM(stock) AS Total from Products";
-    private static final String GETQUANTITYSOLD = "SELECT SUM(unitSold) AS Total from Products";
+    private static final String GET_DATA = "SELECT * FROM Products";
+    private static final String GET_TOTAL_PRODUCTS = "SELECT SUM(stock) AS Total from Products";
+    private static final String GET_QUANTITY_SOLD = "SELECT SUM(unitSold) AS Total from Products";
+    private static final String GET_PRODUCTS_LOW_QUANTITY = "SELECT COUNT(*) AS Total from Products WHERE Stock < 10";
  
     public List<ProductDTO> getData() throws SQLException {
         List<ProductDTO> products = new ArrayList<>();
@@ -34,7 +35,7 @@ public class ProductDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GETDATA);
+                ptm = conn.prepareStatement(GET_DATA);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     CategoryDAO cDao = new CategoryDAO();
@@ -80,7 +81,7 @@ public class ProductDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GETTOTALPRODUCTS);
+                ptm = conn.prepareStatement(GET_TOTAL_PRODUCTS);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     result = rs.getInt("Total");
@@ -110,7 +111,36 @@ public class ProductDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GETQUANTITYSOLD);
+                ptm = conn.prepareStatement(GET_QUANTITY_SOLD);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    result = rs.getInt("Total");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
+    public int getProductsLowQuantiry() throws SQLException {
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_PRODUCTS_LOW_QUANTITY);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     result = rs.getInt("Total");

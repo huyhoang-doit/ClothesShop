@@ -7,6 +7,7 @@ package controller.admin;
 
 import dal.OrderDAO;
 import dal.ProductDAO;
+import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -55,11 +56,14 @@ public class AdminServlet extends HttpServlet {
             throws ServletException, IOException {
         ProductDAO pDao = new ProductDAO();
         OrderDAO oDao = new OrderDAO();
+        UserDAO uDao = new UserDAO();
         try {
             double totalSale = oDao.getTotalSale();
             double totalSaleTD = oDao.getTotalSaleToday();
             int totalProducts = pDao.getTotalProducts();
-            int quantitySold = pDao.getQuantitySold();
+            int numberProductsLowQuantity = pDao.getProductsLowQuantiry();
+            int totalUsers = uDao.getTotalUsers();
+            int totalOrders = oDao.getTotalOrders();
             List<OrderDTO> last5Orders = oDao.getLast5Orders();
 
             
@@ -108,7 +112,9 @@ public class AdminServlet extends HttpServlet {
             request.setAttribute("TOTALSALE", totalSale);
             request.setAttribute("TOTALSALETODAY", totalSaleTD);
             request.setAttribute("TOTALPRODUCTS", totalProducts);
-            request.setAttribute("QUANTITYSOLD", quantitySold);
+            request.setAttribute("PRODUCTSLOW", numberProductsLowQuantity);
+            request.setAttribute("TOTALUSERS", totalUsers);
+            request.setAttribute("TOTALORDERS", totalOrders);
             request.setAttribute("LAST5ORDERS", last5Orders);
             
             request.setAttribute("action", "DASHBOARD");

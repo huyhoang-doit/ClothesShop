@@ -21,11 +21,12 @@ import model.OrderDTO;
  */
 public class OrderDAO extends DBContext {
 
-    private static final String GETTOTALSALE = "SELECT SUM(totalprice) AS TotalSale from [Orders]";
-    private static final String GETTOTALMONEYYEAR = "SELECT SUM(totalprice) AS TotalSale from [Orders] where year([orderdate]) = ?";
-    private static final String GETTOTALMONEYMONTH = "SELECT SUM(totalprice) AS TotalSale from [Orders] where month([orderdate]) = ?";
-    private static final String GETLAST5ORDERS = "SELECT TOP 5 * FROM [Orders] order by orderdate desc";
-    private static final String GETTOTALSALETODAY = "SELECT sum(totalprice) AS TotalSale FROM [Orders] "
+    private static final String GET_TOTAL_SALE = "SELECT SUM(totalprice) AS TotalSale from [Orders]";
+    private static final String GET_TOTAL_MONEY_YEAR = "SELECT SUM(totalprice) AS TotalSale from [Orders] where year([orderdate]) = ?";
+    private static final String GET_TOTAL_MONEY_MONTH = "SELECT SUM(totalprice) AS TotalSale from [Orders] where month([orderdate]) = ?";
+    private static final String GET_LAST_5_ORDERS = "SELECT TOP 5 * FROM [Orders] order by orderdate desc";
+    private static final String GET_TOTAL_ORDERS = "SELECT COUNT(*) AS Total FROM [Orders] WHERE status = True";
+    private static final String GET_TOTAL_SALE_TODAY = "SELECT sum(totalprice) AS TotalSale FROM [Orders] "
             + " WHERE cast(orderdate as Date) = cast(getdate() as Date)";
 
     public double getTotalSale() throws SQLException {
@@ -36,7 +37,7 @@ public class OrderDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GETTOTALSALE);
+                ptm = conn.prepareStatement(GET_TOTAL_SALE);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     result = rs.getDouble("TotalSale");
@@ -66,7 +67,7 @@ public class OrderDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GETTOTALSALETODAY);
+                ptm = conn.prepareStatement(GET_TOTAL_SALE_TODAY);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     result = rs.getDouble("TotalSale");
@@ -96,7 +97,7 @@ public class OrderDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GETTOTALMONEYYEAR);
+                ptm = conn.prepareStatement(GET_TOTAL_MONEY_YEAR);
                 ptm.setInt(1, year);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
@@ -127,7 +128,7 @@ public class OrderDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GETTOTALMONEYMONTH);
+                ptm = conn.prepareStatement(GET_TOTAL_MONEY_MONTH);
                 ptm.setInt(1, month);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
@@ -158,7 +159,7 @@ public class OrderDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GETLAST5ORDERS);
+                ptm = conn.prepareStatement(GET_LAST_5_ORDERS);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int orderId = rs.getInt("order_id");
@@ -186,6 +187,36 @@ public class OrderDAO extends DBContext {
             }
         }
         return orders;
+    }
+    
+    public int getTotalOrders() throws SQLException {
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_TOTAL_ORDERS);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    result = rs.getInt("Total");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
     }
     
     public static void main(String[] args) throws SQLException {

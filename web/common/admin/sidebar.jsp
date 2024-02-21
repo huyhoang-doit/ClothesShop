@@ -24,7 +24,7 @@
                 </div>
             </div>
             <hr>
-            <ul class="app-menu"><li><a class="app-menu__item" href="DispatchServlet"><i class='app-menu__icon bx bx-tachometer'></i><span
+            <ul class="app-menu"><li><a class="app-menu__item" href="DispatchServlet"><i class='app-menu__icon bx bx-home'></i><span
                             class="app-menu__label">Trang chủ</span></a></li>
                 <li><a class="app-menu__item" href="AdminServlet"><i class='app-menu__icon bx bx-tachometer'></i><span
                             class="app-menu__label">Thống kê</span></a></li>

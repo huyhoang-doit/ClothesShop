@@ -29,6 +29,22 @@ public class ManageUserServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try {
+//            String action = request.getParameter("action");
+//            if (action == null) {
+//                    UserDAO dao = new UserDAO();
+//                    List<UserDTO> user1 = dao.getUser();
+//                    request.setAttribute("user", user1);
+//                    request.getRequestDispatcher("admin/customer.jsp").forward(request, response);
+//                }
+//                if (action.equals("update")) {
+//                    String user_id = request.getParameter("user_id");
+//                    String isAdmin = request.getParameter("permission");
+//                    int id = Integer.parseInt(user_id);
+//                    UserDAO dao = new UserDAO();
+//                    dao.setAdmin(id, isAdmin);
+//                    response.sendRedirect("customermanager");
+//                }
+            
             UserDAO uDao = new UserDAO();
             List<UserDTO> list = uDao.getData();
 

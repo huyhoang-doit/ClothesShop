@@ -44,7 +44,7 @@
                             <div class="widget-small primary coloured-icon"><i class='icon bx bxs-user-account fa-3x'></i>
                                 <div class="info">
                                     <h4>Tổng khách hàng</h4>
-                                    <p><b>${requestScope.user} khách hàng</b></p>
+                                    <p><b>${requestScope.TOTALUSERS} khách hàng</b></p>
                                     <p class="info-tong">Tổng số khách hàng được quản lý.</p>
                                 </div>
                             </div>
@@ -54,7 +54,7 @@
                             <div class="widget-small info coloured-icon"><i class='icon bx bxs-data fa-3x'></i>
                                 <div class="info">
                                     <h4>Tổng sản phẩm</h4>
-                                    <p><b>${requestScope.product} sản phẩm</b></p>
+                                    <p><b>${requestScope.TOTALPRODUCTS} sản phẩm</b></p>
                                     <p class="info-tong">Tổng số sản phẩm được quản lý.</p>
                                 </div>
                             </div>
@@ -64,7 +64,7 @@
                             <div class="widget-small warning coloured-icon"><i class='icon bx bxs-shopping-bags fa-3x'></i>
                                 <div class="info">
                                     <h4>Tổng đơn hàng</h4>
-                                    <p><b>${requestScope.bill} đơn hàng</b></p>
+                                    <p><b>${requestScope.TOTALORDERS} đơn hàng</b></p>
                                     <p class="info-tong">Tổng số hóa đơn bán hàng trong tháng.</p>
                                 </div>
                             </div>
@@ -74,7 +74,7 @@
                             <div class="widget-small danger coloured-icon"><i class='icon bx bxs-error-alt fa-3x'></i>
                                 <div class="info">
                                     <h4>Sắp hết hàng</h4>
-                                    <p><b>${requestScope.low} sản phẩm</b></p>
+                                    <p><b>${requestScope.PRODUCTSLOW} sản phẩm</b></p>
                                     <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
                                 </div>
                             </div>

@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 
     private final String WELCOME = "home.jsp";
     private final String LOGIN = "login.jsp";
-    private final String ADMIN_DASHBOARD = "admin_home.jsp";
+    private final String ADMIN_DASHBOARD = "AdminServlet";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

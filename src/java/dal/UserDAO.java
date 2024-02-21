@@ -24,7 +24,11 @@ public class UserDAO extends DBContext {
 
     private static final String CHECK_LOGIN = "SELECT roleid FROM Users WHERE username=? AND password=? and status=1 and roleid=1";
 
-    private static final String GETDATA = "SELECT * FROM Users Where status = 1";
+    private static final String GET_DATA = "SELECT * FROM Users WHERE status = 1";
+    
+    private static final String GET_USER = "SELECT * FROM Users WHERE status = 1";
+    
+    private static final String GET_TOTAL_USERS = "SELECT COUNT(*) AS Total FROM Users WHERE status = 1 AND roleid=2";
     
     
     public List<UserDTO> getData() throws SQLException {
@@ -35,7 +39,7 @@ public class UserDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GETDATA);
+                ptm = conn.prepareStatement(GET_DATA);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     int id = rs.getInt("id");
@@ -140,6 +144,36 @@ public class UserDAO extends DBContext {
             return true;
         }
     }
+    
+     public int getTotalUsers() throws SQLException {
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_TOTAL_USERS);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    result = rs.getInt("Total");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
 
     public static void main(String[] args) throws SQLException {
         UserDAO dao = new UserDAO();
@@ -148,6 +182,7 @@ public class UserDAO extends DBContext {
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getAvatar());
         }
-        System.out.println(user.getAvatar());
+        int slUser = dao.getTotalUsers();
+        System.out.println(slUser);
     }
 }

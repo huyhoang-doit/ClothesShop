@@ -64,14 +64,14 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${user}" var="u">
+                                    <c:forEach items="${requestScope.LISTUSERS}" var="u">
                                         <tr>
-                                            <td>${u.user_id}</td>
-                                            <td>${u.user_name}</td>
-                                            <td>${u.user_email}</td>
-                                            <td>${u.isAdmin}</td>
+                                            <td>${u.getId()}</td>
+                                            <td>${u.getFirstName()}</td>
+                                            <td>${u.getEmail()}</td>
+                                            <td>${u.getRoleID()}</td>
                                             <td><button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                        data-target="#ModalUP${u.user_id}"><i class="fas fa-edit"></i></button></td>
+                                                        data-target="#ModalUP${u.getId()}"><i class="fas fa-edit"></i></button></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -82,12 +82,12 @@
                 </div>
             </div>
         </main>
-        <c:forEach items="${user}" var="u">           
-            <div class="modal fade" id="ModalUP${u.user_id}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+        <c:forEach items="${LISTUSERS}" var="u">           
+            <div class="modal fade" id="ModalUP${u.c}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
                  data-keyboard="false">
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
-                        <form method="POST" action="customermanager?action=update">
+                        <form method="POST" action="ManageUserServlet?action=update">
                             <div class="modal-body">
                                 <div class="row">
                                     <div class="form-group  col-md-12">
@@ -99,7 +99,7 @@
                                 <div class="row">
                                     <div class="form-group col-md-6">
                                         <label for="exampleSelect1" class="control-label">Quyền quản trị</label>
-                                        <input hidden name="user_id" value="${u.user_id}">
+                                        <input hidden name="user_id" value="${u.getId()}">
                                         <select name="permission" class="form-control" id="exampleSelect1">
                                             <option value="True">Cho phép</option>
                                             <option value="False">Hủy bỏ</option>
