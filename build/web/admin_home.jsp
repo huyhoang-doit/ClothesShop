@@ -4,323 +4,216 @@
 <html lang="en">
 
     <head>
+        <title>Admin</title>
         <meta charset="utf-8">
-        <title>Dashboard</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-
-        <%@include file="/common/admin/add_css.jsp" %>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Main CSS-->
+        <link rel="stylesheet" type="text/css" href="admin/css/main.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+        <!-- or -->
+        <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+        <!-- Font-icon css-->
+        <link rel="stylesheet" type="text/css"
+              href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css">
 
     </head>
 
-    <body>
-        <div class="container-xxl position-relative bg-white d-flex p-0">
-            <!-- Spinner Start -->
-            <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
-                <div class="spinner-border text-primary" style="width: 3rem; height: 3rem;" role="status">
-                    <span class="sr-only">Loading...</span>
+    <body onload="time()" class="app sidebar-mini rtl">
+        <!-- Navbar-->
+        <%@include file="/common/admin/sidebar.jsp"%>
+        <main class="app-content">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="app-title">
+                        <ul class="app-breadcrumb breadcrumb">
+                            <li class="breadcrumb-item"><a href="#"><b>Bảng điều khiển</b></a></li>
+                        </ul>
+                        <div id="clock"></div>
+                    </div>
                 </div>
             </div>
-            <!-- Spinner End -->
-
-
-            <!-- Sidebar Start -->
-            <%@include file="/common/admin/sidebar.jsp" %>
-            <!-- Sidebar End -->
-
-
-            <!-- Content Start -->
-            <div class="content">
-                <!-- Navbar Start -->
-                <%@include file="/common/admin/header.jsp" %>
-                <!-- Navbar End -->
-
-
-                <!-- Sale & Revenue Start -->
-                <div class="container-fluid pt-4 px-4">
-                    <div class="row g-4">
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-line fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Today Sale</p>
-                                    <h6 class="mb-0">${requestScope.TOTALSALETODAY}$</h6>
+            <div class="row">
+                <div class="col-md-12 col-lg-12">
+                    <div class="row">
+                        <!-- col-6 -->
+                        <div class="col-md-6">
+                            <div class="widget-small primary coloured-icon"><i class='icon bx bxs-user-account fa-3x'></i>
+                                <div class="info">
+                                    <h4>Tổng khách hàng</h4>
+                                    <p><b>${requestScope.user} khách hàng</b></p>
+                                    <p class="info-tong">Tổng số khách hàng được quản lý.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-chart-bar fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Total Sale</p>
-                                    <h6 class="mb-0">${requestScope.TOTALSALE}$</h6>
+                        <!-- col-6 -->
+                        <div class="col-md-6">
+                            <div class="widget-small info coloured-icon"><i class='icon bx bxs-data fa-3x'></i>
+                                <div class="info">
+                                    <h4>Tổng sản phẩm</h4>
+                                    <p><b>${requestScope.product} sản phẩm</b></p>
+                                    <p class="info-tong">Tổng số sản phẩm được quản lý.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-boxes-stacked fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Total products</p>
-                                    <h6 class="mb-0">${requestScope.TOTALPRODUCTS}</h6>
+                        <!-- col-6 -->
+                        <div class="col-md-6">
+                            <div class="widget-small warning coloured-icon"><i class='icon bx bxs-shopping-bags fa-3x'></i>
+                                <div class="info">
+                                    <h4>Tổng đơn hàng</h4>
+                                    <p><b>${requestScope.bill} đơn hàng</b></p>
+                                    <p class="info-tong">Tổng số hóa đơn bán hàng trong tháng.</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-sm-6 col-xl-3">
-                            <div class="bg-light rounded d-flex align-items-center justify-content-between p-4">
-                                <i class="fa fa-truck-fast fa-3x text-primary"></i>
-                                <div class="ms-3">
-                                    <p class="mb-2">Quantity sold</p>
-                                    <h6 class="mb-0">${requestScope.QUANTITYSOLD}</h6>
+                        <!-- col-6 -->
+                        <div class="col-md-6">
+                            <div class="widget-small danger coloured-icon"><i class='icon bx bxs-error-alt fa-3x'></i>
+                                <div class="info">
+                                    <h4>Sắp hết hàng</h4>
+                                    <p><b>${requestScope.low} sản phẩm</b></p>
+                                    <p class="info-tong">Số sản phẩm cảnh báo hết cần nhập thêm.</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-                <!-- Sale & Revenue End -->
-
-
-                <!-- Sales Chart Start -->
-                <div class="container-fluid pt-4 px-4">
-                    <div class="row g-4">
-                        <div class="col-sm-12 col-xl-6">
-                            <div class="bg-light text-center rounded p-4">
-                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                    <h6 class="mb-0">Monthly revenue</h6>
-                                    <a href="">Show All</a>
-                                </div>
-                                <canvas id="worldwide-sales"></canvas>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-xl-6">
-                            <div class="bg-light text-center rounded p-4">
-                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                    <h6 class="mb-0">Yearly revenue</h6>
-                                    <a href="">Show All</a>
-                                </div>
-                                <canvas id="sale-revenue"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- Sales Chart End -->
-
-
-                <!-- Recent Sales Start -->
-                <div class="container-fluid pt-4 px-4">
-                    <div class="bg-light text-center rounded p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
-                            <h6 class="mb-0">Recent Orders</h6>
-                            <a href="">Show All</a>
-                        </div>
-                        <div class="table-responsive">
-                            <table class="table text-start align-middle table-bordered table-hover mb-0">
-                                <thead>
-                                    <tr class="text-dark">
-                                        <th scope="col"><input class="form-check-input" type="checkbox"></th>
-                                        <th scope="col">Date</th>
-                                        <th scope="col">Invoice ID</th>
-                                        <th scope="col">Customer</th>
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <c:if test="${!requestScope.LAST5ORDERS.isEmpty()}">
-                                        <c:forEach items="${requestScope.LAST5ORDERS}" var="o">
+                        <!-- col-12 -->
+                        <div class="col-md-12">
+                            <div class="tile">
+                                <h3 class="tile-title">Đơn hàng hôm nay</h3>
+                                <div>
+                                    <table class="table table-bordered">
+                                        <thead>
                                             <tr>
-                                                <td><input class="form-check-input" type="checkbox"></td>
-                                                <td>${o.orderDate}</td>
-                                                <td>${o.orderID}</td>
-                                                <td>${o.userName}</td>
-                                                <td>${o.totalPrice}</td>
-                                                <td>${o.status == true ? "Paid" : "Unpaid"}</td>
-                                                <td><a class="btn btn-sm btn-primary" href="">Detail</a></td>
+                                                <th>ID đơn hàng</th>
+                                                <th>Khách hàng</th>
+                                                <th>Số điện thoại</th>
+                                                <th>Địa chỉ</th>
+                                                <th>Ngày mua</th>
+                                                <th>Tổng tiền</th>
+                                                <th>Thanh Toán</th>
+                                                <th>Chức năng</th>
+                                                
                                             </tr>
-                                        </c:forEach>
-                                    </c:if>
-                                </tbody>
-                            </table>
+                                        </thead>
+                                        <tbody>
+                                            <c:forEach items="${billbyday}" var="b">
+                                                <tr>
+                                                    <td>${b.bill_id}</td>
+                                                    <td>${b.user.user_name}</td>
+                                                    <td>(+84)${b.phone}</td>
+                                                    <td>${b.address}</td>
+                                                    <td>${b.date}</td>
+                                                    <td>${b.total}</td>
+                                                    <td><span class="badge bg-success">${b.payment}</span></td>                                  
+                                                    <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="ordermanager?action=showdetail&bill_id=${b.bill_id}"><i class="fa"></i>Chi tiết đơn hàng</a></td>
+                                                </tr>
+                                            </c:forEach>
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- / div trống-->
+                            </div>
                         </div>
+                        <!-- / col-12 -->
                     </div>
                 </div>
-                <!-- Recent Sales End -->
-
-
-                <!-- Widgets Start -->
-<!--                <div class="container-fluid pt-4 px-4">
-                    <div class="row g-4">
-                        <div class="col-sm-12 col-md-6 col-xl-4">
-                            <div class="h-100 bg-light rounded p-4">
-                                <div class="d-flex align-items-center justify-content-between mb-2">
-                                    <h6 class="mb-0">Messages</h6>
-                                    <a href="">Show All</a>
-                                </div>
-                                <div class="d-flex align-items-center border-bottom py-3">
-                                    <img class="rounded-circle flex-shrink-0" src="assets/img/" alt="" style="width: 40px; height: 40px;">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-0">Jhon Doe</h6>
-                                            <small>15 minutes ago</small>
-                                        </div>
-                                        <span>Short message goes here...</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center border-bottom py-3">
-                                    <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-0">Jhon Doe</h6>
-                                            <small>15 minutes ago</small>
-                                        </div>
-                                        <span>Short message goes here...</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center border-bottom py-3">
-                                    <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-0">Jhon Doe</h6>
-                                            <small>15 minutes ago</small>
-                                        </div>
-                                        <span>Short message goes here...</span>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center pt-3">
-                                    <img class="rounded-circle flex-shrink-0" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h6 class="mb-0">Jhon Doe</h6>
-                                            <small>15 minutes ago</small>
-                                        </div>
-                                        <span>Short message goes here...</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-xl-4">
-                            <div class="h-100 bg-light rounded p-4">
-                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                    <h6 class="mb-0">Calender</h6>
-                                    <a href="">Show All</a>
-                                </div>
-                                <div id="calender"></div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-xl-4">
-                            <div class="h-100 bg-light rounded p-4">
-                                <div class="d-flex align-items-center justify-content-between mb-4">
-                                    <h6 class="mb-0">To Do List</h6>
-                                    <a href="">Show All</a>
-                                </div>
-                                <div class="d-flex mb-2">
-                                    <input class="form-control bg-transparent" type="text" placeholder="Enter task">
-                                    <button type="button" class="btn btn-primary ms-2">Add</button>
-                                </div>
-                                <div class="d-flex align-items-center border-bottom py-2">
-                                    <input class="form-check-input m-0" type="checkbox">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 align-items-center justify-content-between">
-                                            <span>Short task goes here...</span>
-                                            <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center border-bottom py-2">
-                                    <input class="form-check-input m-0" type="checkbox">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 align-items-center justify-content-between">
-                                            <span>Short task goes here...</span>
-                                            <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center border-bottom py-2">
-                                    <input class="form-check-input m-0" type="checkbox" checked>
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 align-items-center justify-content-between">
-                                            <span><del>Short task goes here...</del></span>
-                                            <button class="btn btn-sm text-primary"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center border-bottom py-2">
-                                    <input class="form-check-input m-0" type="checkbox">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 align-items-center justify-content-between">
-                                            <span>Short task goes here...</span>
-                                            <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center pt-2">
-                                    <input class="form-check-input m-0" type="checkbox">
-                                    <div class="w-100 ms-3">
-                                        <div class="d-flex w-100 align-items-center justify-content-between">
-                                            <span>Short task goes here...</span>
-                                            <button class="btn btn-sm"><i class="fa fa-times"></i></button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>-->
-                <!-- Widgets End -->
-
-
-                <!-- Footer Start -->
-                <%@include file="/common/admin/footer.jsp" %>
-                <!-- Footer End -->
             </div>
-            <!-- Content End -->
 
 
-            <!-- Back to Top -->
-            <a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top"><i class="bi bi-arrow-up"></i></a>
-        </div>
-
-        <!-- JavaScript Libraries -->
-        <%@include file="/common/admin/add_js.jsp" %>
+            <div class="text-center" style="font-size: 13px">
+                <p><b>Copyright
+                        <script type="text/javascript">
+                            document.write(new Date().getFullYear());
+                        </script> Phần mềm quản lý Website
+                    </b></p>
+            </div>
+        </main>
+        <script src="admin/js/jquery-3.2.1.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="admin/js/popper.min.js"></script>
+        <script src="https://unpkg.com/boxicons@latest/dist/boxicons.js"></script>
+        <!--===============================================================================================-->
+        <script src="admin/js/bootstrap.min.js"></script>
+        <!--===============================================================================================-->
+        <script src="admin/js/main.js"></script>
+        <!--===============================================================================================-->
+        <script src="admin/js/plugins/pace.min.js"></script>
+        <!--===============================================================================================-->
+        <!--===============================================================================================-->
         <script type="text/javascript">
-            // Sale & Revenue Chart
-            var ctx2 = $("#sale-revenue").get(0).getContext("2d");
-            var myChart2 = new Chart(ctx2, {
-                type: "line",
-                data: {
-                    labels: ["2018", "2019", "2020", "2021", "2022", "2023", "2024"],
-                    datasets: [{
-                            label: "Revenue",
-                            data: [${YEAR18}, ${YEAR19}, ${YEAR20}, ${YEAR21}, ${YEAR22}, ${YEAR23}, ${YEAR24}],
-                            backgroundColor: "rgba(0, 156, 255, .5)",
-                            fill: true
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true
-                }
-            });
+                            var data = {
+                                labels: ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6"],
+                                datasets: [{
+                                        label: "Dữ liệu đầu tiên",
+                                        fillColor: "rgba(255, 213, 59, 0.767), 212, 59)",
+                                        strokeColor: "rgb(255, 212, 59)",
+                                        pointColor: "rgb(255, 212, 59)",
+                                        pointStrokeColor: "rgb(255, 212, 59)",
+                                        pointHighlightFill: "rgb(255, 212, 59)",
+                                        pointHighlightStroke: "rgb(255, 212, 59)",
+                                        data: [20, 59, 90, 51, 56, 100]
+                                    },
+                                    {
+                                        label: "Dữ liệu kế tiếp",
+                                        fillColor: "rgba(9, 109, 239, 0.651)  ",
+                                        pointColor: "rgb(9, 109, 239)",
+                                        strokeColor: "rgb(9, 109, 239)",
+                                        pointStrokeColor: "rgb(9, 109, 239)",
+                                        pointHighlightFill: "rgb(9, 109, 239)",
+                                        pointHighlightStroke: "rgb(9, 109, 239)",
+                                        data: [48, 48, 49, 39, 86, 10]
+                                    }
+                                ]
+                            };
+                            var ctxl = $("#lineChartDemo").get(0).getContext("2d");
+                            var lineChart = new Chart(ctxl).Line(data);
 
-            // Worldwide Sales Chart
-            var ctx1 = $("#worldwide-sales").get(0).getContext("2d");
-            var myChart1 = new Chart(ctx1, {
-                type: "bar",
-                data: {
-                    labels: ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"],
-                    datasets: [{
-                            label: "Revenue",
-                            data: [${MONTH1}, ${MONTH2}, ${MONTH3}, ${MONTH4}, ${MONTH5}, ${MONTH6}, ${MONTH7}, ${MONTH8}, ${MONTH9} , ${MONTH10}, ${MONTH11}, ${MONTH12}],
-                            backgroundColor: "rgba(0, 156, 255, .7)"
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true
+                            var ctxb = $("#barChartDemo").get(0).getContext("2d");
+                            var barChart = new Chart(ctxb).Bar(data);
+        </script>
+        <script type="text/javascript">
+            //Thời Gian
+            function time() {
+                var today = new Date();
+                var weekday = new Array(7);
+                weekday[0] = "Chủ Nhật";
+                weekday[1] = "Thứ Hai";
+                weekday[2] = "Thứ Ba";
+                weekday[3] = "Thứ Tư";
+                weekday[4] = "Thứ Năm";
+                weekday[5] = "Thứ Sáu";
+                weekday[6] = "Thứ Bảy";
+                var day = weekday[today.getDay()];
+                var dd = today.getDate();
+                var mm = today.getMonth() + 1;
+                var yyyy = today.getFullYear();
+                var h = today.getHours();
+                var m = today.getMinutes();
+                m = checkTime(m);
+                nowTime = h + ":" + m + "";
+                if (dd < 10) {
+                    dd = '0' + dd
                 }
-            });
+                if (mm < 10) {
+                    mm = '0' + mm
+                }
+                today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+                tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+                        '</span>';
+                document.getElementById("clock").innerHTML = tmp;
+                clocktime = setTimeout("time()", "1000", "Javascript");
+
+                function checkTime(i) {
+                    if (i < 10) {
+                        i = "0" + i;
+                    }
+                    return i;
+                }
+            }
         </script>
     </body>
 

@@ -2,19 +2,19 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>DispatchServlet</servlet-name>
-        <servlet-class>Home.Controller.DispatchServlet</servlet-class>
+        <servlet-class>controller.web.DispatchServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>Home.Controller.LoginServlet</servlet-class>
+        <servlet-class>controller.web.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>Admin.Controller.AdminServlet</servlet-class>
+        <servlet-class>controller.admin.AdminServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ShopServlet</servlet-name>
-        <servlet-class>Home.Controller.ShopServlet</servlet-class>
+        <servlet-class>controller.web.ShopServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DispatchServlet</servlet-name>

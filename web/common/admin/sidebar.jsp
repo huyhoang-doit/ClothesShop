@@ -1,43 +1,38 @@
-<div class="sidebar pe-4 pb-3">
-    <nav class="navbar bg-light navbar-light">
-        <a href="home.jsp" class="navbar-brand mx-4 mb-3">
-            <img src="assets\img\logo\logo.jpg.png" alt="">
-        </a>
-        <div class="d-flex align-items-center ms-4 mb-4">
-            <div class="position-relative">
-                <img class="rounded-circle" src="${sessionScope.account.avatar}" alt="" style="width: 40px; height: 40px;">
-                <div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
-            </div>
-            <div class="ms-3">
-                <h6 class="mb-0">${sessionScope.account.firstName} ${sessionScope.account.lastName}</h6>
-                <span>Admin</span>
-            </div>
-        </div>
-        <div class="navbar-nav w-100">
-            <a href="DispatchServlet" class="nav-item nav-link"><i class="fa-solid fa-house me-2"></i>Home</a>
-            <a href="AdminServlet" class="nav-item nav-link ${action.equals("DASHBOARD") ? "active" : ""}"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <a href="ManageUserServlet" class="nav-item nav-link ${action.equals("MNGUSER") ? "active" : ""}"><i class="fa fa-user me-2"></i>Users</a>
-            <a href="ManageProductServlet" class="nav-item nav-link ${action.equals("MNGPRODUCT") ? "active" : ""}"><i class="fa fa-box me-2"></i>Products</a>
-            <a href="ManageCategoryServlet" class="nav-item nav-link ${action.equals("MNGCATEGORY") ? "active" : ""}"><i class="fa fa-layer-group me-2"></i>Categories</a>
-            <a href="ManageSupplierServlet" class="nav-item nav-link ${action.equals("MNGSUPPLIER") ? "active" : ""}"><i class="fa fa-boxes-packing me-2"></i>Suppliers</a>
-            <a href="chart.html" class="nav-item nav-link"><i class="fa fa-chart-bar me-2"></i>Charts</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="far fa-file-alt me-2"></i>Pages</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="signin.html" class="dropdown-item">Sign In</a>
-                    <a href="signup.html" class="dropdown-item">Sign Up</a>
-                    <a href="404.html" class="dropdown-item">404 Error</a>
-                    <a href="blank.html" class="dropdown-item">Blank Page</a>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>   
+<!-- Navbar-->
+        <header class="app-header">
+            <!-- Sidebar toggle button--><a class="app-sidebar__toggle" href="#" data-toggle="sidebar"
+                                            aria-label="Hide Sidebar"></a>
+            <!-- Navbar Right Menu-->
+            <ul class="app-nav">
+
+
+                <!-- User Menu-->
+                <li><a class="app-nav__item" href="home.jsp"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+
+                </li>
+            </ul>
+        </header>
+        <!-- Sidebar menu-->
+        <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+        <aside class="app-sidebar">
+            <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="admin/images/user.png" width="50px"
+                                                alt="User Image">
+                <div>
+                    <p class="app-sidebar__user-name"><b>${sessionScope.user.user_name}</b></p>
+                    <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
                 </div>
             </div>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i class="fa fa-laptop me-2"></i>Elements</a>
-                <div class="dropdown-menu bg-transparent border-0">
-                    <a href="button.html" class="dropdown-item">Buttons</a>
-                    <a href="typography.html" class="dropdown-item">Typography</a>
-                    <a href="element.html" class="dropdown-item">Other Elements</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-</div>
+            <hr>
+            <ul class="app-menu">
+                <li><a class="app-menu__item" href="dashboard"><i class='app-menu__icon bx bx-tachometer'></i><span
+                            class="app-menu__label">Bảng điều khiển</span></a></li>
+                <li><a class="app-menu__item" href="customermanager"><i class='app-menu__icon bx bx-user-voice'></i><span
+                            class="app-menu__label">Quản lý khách hàng</span></a></li>
+                <li><a class="app-menu__item" href="productmanager"><i
+                            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Quản lý sản phẩm</span></a>
+                </li>
+                <li><a class="app-menu__item" href="ordermanager"><i class='app-menu__icon bx bx-task'></i><span
+                            class="app-menu__label">Quản lý đơn hàng</span></a></li>
+            </ul>
+        </aside>
