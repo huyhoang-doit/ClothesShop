@@ -26,7 +26,7 @@ public class UserDAO extends DBContext {
 
     private static final String GET_DATA = "SELECT * FROM Users WHERE status = 1";
 
-    private static final String GET_USER = "SELECT * FROM Users WHERE status = 1";
+    private static final String GET_USER_BY_NAME = "SELECT * FROM Users WHERE username = ? AND status = 1";
 
     private static final String GET_TOTAL_USERS = "SELECT COUNT(*) AS Total FROM Users WHERE status = 1 AND roleid=2";
 
@@ -212,6 +212,46 @@ public class UserDAO extends DBContext {
         }
     }
 
+    public UserDTO getUserByName (String userName) throws SQLException {
+        UserDTO user = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_USER_BY_NAME);
+                ptm.setString(1, userName);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String firstname = rs.getString("firstname");
+                    String lastname = rs.getString("lastname");
+                    String email = rs.getString("email");
+                    String avatar = rs.getString("avatar");
+                    String address = rs.getString("address");
+                    String password = rs.getString("password");
+                    String phone = rs.getString("phone");
+                    int roleid = rs.getInt("roleID");
+                    boolean roleID = rs.getBoolean("roleID");
+                    user = new UserDTO(id, firstname, lastname, email, avatar, userName, password, address, phone, roleid, roleID);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return user;
+    }
     public static void main(String[] args) throws SQLException {
         UserDAO dao = new UserDAO();
         UserDTO user = dao.checkLogin("user1", "12345");

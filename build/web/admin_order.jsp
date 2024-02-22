@@ -65,13 +65,13 @@
                                 <tbody>
                                     <c:forEach items="${LIST_ORDERS}" var="b">
                                         <tr>
-                                            <td>${b.getOrderID()}</td>
-                                            <td>${b.getUserName()}</td>
-                                            <td>(+84) XXX</td>
-                                            <td>XXX</td>
-                                            <td>${b.getOrderDate()}</td>
-                                            <td>${b.getTotalPrice()}</td>
-                                            <td><span class="badge bg-success">${b.getPaymentID()}</span></td>                              
+                                            <td>${b.orderID}</td>
+                                            <td>${b.getUser().getUserName()}</td>
+                                            <td>(+84) ${b.getUser().getPhone()}</td>
+                                            <td>${b.getUser().getAddress()}</td>
+                                            <td>${b.orderDate}</td>
+                                            <td>${b.totalPrice}</td>
+                                            <td><span class="badge bg-success">${b.paymentMethod.paymentMethod}</span></td>                              
                                             <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="ordermanager?action=showdetail&bill_id=${b.getOrderID()}"><i class="fa"></i>Chi tiết đơn hàng</a></td>
                                         </tr>
                                     </c:forEach>

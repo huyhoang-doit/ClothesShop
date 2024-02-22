@@ -64,9 +64,9 @@ productid INT FOREIGN KEY REFERENCES [dbo].[Products]([id]),
 -- DROP TABLE WishList
 CREATE TABLE Payments(
 paymentid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-payment_method VARCHAR(30)
+payment_method NVARCHAR(30)
 )
--- DROP TABLE Payment
+-- DROP TABLE Payments
 
 CREATE TABLE Shipments(
 shipment_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,

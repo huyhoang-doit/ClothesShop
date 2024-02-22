@@ -14,12 +14,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.OrderDTO;
+import model.PaymentDTO;
+import model.UserDTO;
 
 /**
  *
  * @author HuuThanh
  */
 public class OrderDAO extends DBContext {
+
+    private UserDAO uDao = new UserDAO();
+    private PaymentDAO pDao = new PaymentDAO();
 
     private static final String GET_TOTAL_SALE = "SELECT SUM(totalprice) AS TotalSale from [Orders]";
     private static final String GET_TOTAL_MONEY_YEAR = "SELECT SUM(totalprice) AS TotalSale from [Orders] where year([orderdate]) = ? AND Status = 1";
@@ -168,10 +173,12 @@ public class OrderDAO extends DBContext {
                     Date orderDate = rs.getDate("orderdate");
                     double totalPrice = rs.getDouble("totalprice");
                     int paymentId = rs.getInt("paymentid");
+                    PaymentDTO payment = pDao.getPaymentById(paymentId);
                     int shipmentId = rs.getInt("shipmentid");
                     String userName = rs.getString("username");
+                    UserDTO user = uDao.getUserByName(userName);
                     boolean status = rs.getBoolean("status");
-                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, paymentId, shipmentId, userName, status);
+                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, payment, shipmentId, user, status);
                     orders.add(order);
                 }
             }
@@ -190,7 +197,6 @@ public class OrderDAO extends DBContext {
         }
         return orders;
     }
-
 
     public List<OrderDTO> getOrdersByUsername(String userName) throws SQLException {
         List<OrderDTO> orders = new ArrayList<>();
@@ -208,9 +214,11 @@ public class OrderDAO extends DBContext {
                     Date orderDate = rs.getDate("orderdate");
                     double totalPrice = rs.getDouble("totalprice");
                     int paymentId = rs.getInt("paymentid");
+                    PaymentDTO payment = pDao.getPaymentById(paymentId);
                     int shipmentId = rs.getInt("shipmentid");
                     boolean status = rs.getBoolean("status");
-                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, paymentId, shipmentId, userName, status);
+                    UserDTO user = uDao.getUserByName(userName);
+                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, payment, shipmentId, user, status);
                     orders.add(order);
                 }
             }
@@ -229,7 +237,7 @@ public class OrderDAO extends DBContext {
         }
         return orders;
     }
-    
+
     public int getTotalOrders() throws SQLException {
         int result = 0;
         Connection conn = null;
@@ -259,8 +267,8 @@ public class OrderDAO extends DBContext {
         }
         return result;
     }
-    
-     public List<OrderDTO> getAllOrders() throws SQLException {
+
+    public List<OrderDTO> getAllOrders() throws SQLException {
         List<OrderDTO> orders = new ArrayList<>();
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -275,10 +283,12 @@ public class OrderDAO extends DBContext {
                     Date orderDate = rs.getDate("orderdate");
                     double totalPrice = rs.getDouble("totalprice");
                     int paymentId = rs.getInt("paymentid");
+                    PaymentDTO payment = pDao.getPaymentById(paymentId);
                     int shipmentId = rs.getInt("shipmentid");
                     String userName = rs.getString("username");
+                    UserDTO user = uDao.getUserByName(userName);
                     boolean status = rs.getBoolean("status");
-                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, paymentId, shipmentId, userName, status);
+                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, payment, shipmentId, user, status);
                     orders.add(order);
                 }
             }
@@ -304,6 +314,7 @@ public class OrderDAO extends DBContext {
         List<OrderDTO> all = dao.getAllOrders();
         int count = 0;
         for (OrderDTO orderDTO : all) {
+//            System.out.println(orderDTO.getUser().getUserName());
             count++;
         }
         System.out.println(list);

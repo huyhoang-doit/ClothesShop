@@ -26,21 +26,29 @@ import model.ProductDTO;
 @WebServlet(name = "ManageProductServlet", urlPatterns = {"/ManageProductServlet"})
 public class ManageProductServlet extends HttpServlet {
 
-    private final String MANAGEPRODUCTPAGE = "admin_products.jsp";
+    private final String PRODUCT_PAGE = "admin_products.jsp";
+    private final String INSERT_PRODUCT_PAGE = "admin_products_insert.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = PRODUCT_PAGE;
         try {
+            String action = request.getParameter("action");
             ProductDAO pDao = new ProductDAO();
-            List<ProductDTO> list = pDao.getData();
-
-            request.setAttribute("LIST_PRODUCTS", list);
-            request.setAttribute("action", "MNGPRODUCT");
+                List<ProductDTO> list = pDao.getData();
+            if (action == null) {
+                request.setAttribute("LIST_PRODUCTS", list);
+                request.setAttribute("action", "MNGPRODUCT");
+            }else if(action.equals("insert")){
+                url = INSERT_PRODUCT_PAGE;
+                request.setAttribute("LIST_PRODUCTS", list);
+                request.setAttribute("action", "MNGPRODUCT");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(MANAGEPRODUCTPAGE).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

@@ -28,6 +28,8 @@
                     class="app-menu__label">Trang chủ</span></a></li>
         <li><a class="app-menu__item" href="AdminServlet"><i class='app-menu__icon bx bx-tachometer'></i><span
                     class="app-menu__label">Thống kê</span></a></li>
+        <li><a class="app-menu__item" href="ChartServlet"><i class='app-menu__icon  fa fa-chart-bar'></i><span
+                    class="app-menu__label">Biểu đồ</span></a></li>
         <li><a class="app-menu__item" href="ManageUserServlet"><i class='app-menu__icon bx bx-user-voice'></i><span
                     class="app-menu__label">Quản lý khách hàng</span></a></li>
         <li><a class="app-menu__item" href="ManageProductServlet"><i
@@ -35,7 +37,6 @@
         </li>
         <li><a class="app-menu__item" href="ManageOrderServlet"><i class='app-menu__icon bx bx-task'></i><span
                     class="app-menu__label">Quản lý đơn hàng</span></a></li>
-        <li><a class="app-menu__item" href="ChartServlet"><i class='app-menu__icon  fa fa-chart-bar'></i><span
-                    class="app-menu__label">Biểu đồ</span></a></li>
+        
     </ul>
 </aside>
