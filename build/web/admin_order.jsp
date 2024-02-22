@@ -71,7 +71,7 @@
                                             <td>XXX</td>
                                             <td>${b.getOrderDate()}</td>
                                             <td>${b.getTotalPrice()}</td>
-                                            <td><span class="badge bg-success">${b.getPaymentID()}</span></td>                                  
+                                            <td><span class="badge bg-success">${b.getPaymentID()}</span></td>                              
                                             <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="ordermanager?action=showdetail&bill_id=${b.getOrderID()}"><i class="fa"></i>Chi tiết đơn hàng</a></td>
                                         </tr>
                                     </c:forEach>

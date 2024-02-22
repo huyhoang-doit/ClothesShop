@@ -1,4 +1,5 @@
 ﻿﻿CREATE DATABASE ClothesShop
+
 USE ClothesShop
 
 CREATE TABLE Users (
