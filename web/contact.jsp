@@ -80,10 +80,10 @@
                             <div class="col-lg-6 col-md-12">
                                 <div class="contact_message contact_info">
                                     <h3>contact us</h3>    
-                                    <p>Claritas est etiam processus dynamicus, qui sequitur mutationem consuetudium lectorum. Mirum est notare quam littera gothica, quam nunc putamus parum claram anteposuerit litterarum formas human.</p>
+                                    <p>Chắc chắn! ClothesShop là điểm đến lý tưởng cho các quý ông đam mê thể thao và phong cách. Với một bộ sưu tập đa dạng từ quần áo, giày dép đến phụ kiện thể thao, chúng tôi cam kết mang đến cho quý khách hàng những sản phẩm chất lượng và thời trang nhất. Từ những bài tập nhẹ nhàng đến những buổi tập thể dục mạnh mẽ, ClothesShop luôn có những lựa chọn phù hợp để bạn tỏa sáng và thoải mái. Hãy khám phá ngay để trải nghiệm sự đẳng cấp và phong cách tại ClothesShop!</p>
                                     <ul>
-                                        <li><i class="fa fa-fax"></i>  Address : No 40 Baria Sreet 133/2 NewYork City</li>
-                                        <li><i class="fa fa-phone"></i> <a href="#">Infor@roadthemes.com</a></li>
+                                        <li><i class="fa fa-fax"></i>  Address : Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</li>
+                                        <li><i class="fa fa-phone"></i> <a href="#">ThisTeamStrong@roadthemes.com</a></li>
                                         <li><i class="fa fa-envelope-o"></i> 0(1234) 567 890</li>
                                     </ul>        
                                     <h3><strong>Working hours</strong></h3>
@@ -99,7 +99,7 @@
                     <div class="contact_map">
                         <div class="row">
                             <div class="col-12">
-                                <iframe src="https://www.google.com/maps/embed?pb" width="500" height="450" style="border:0" allowfullscreen=""></iframe>
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.6100105370224!2d106.8073080748058!3d10.84112758931163!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752731176b07b1%3A0xb752b24b379bae5e!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBGUFQgVFAuIEhDTQ!5e0!3m2!1svi!2s!4v1708621540719!5m2!1svi!2s" width="500" height="450" style="border:0" allowfullscreen=""></iframe>
                             </div>
                         </div>
                     </div>

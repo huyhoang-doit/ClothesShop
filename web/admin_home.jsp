@@ -122,15 +122,6 @@
                     </div>
                 </div>
             </div>
-
-
-            <div class="text-center" style="font-size: 13px">
-                <p><b>Copyright
-                        <script type="text/javascript">
-                            document.write(new Date().getFullYear());
-                        </script> Phần mềm quản lý Website
-                    </b></p>
-            </div>
         </main>
         <script src="admin/js/jquery-3.2.1.min.js"></script>
         <!--===============================================================================================-->
