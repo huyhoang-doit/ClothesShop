@@ -90,22 +90,25 @@
                                         </div>
                                         <div class="tab-pane fade show active" id="account-details">
                                             <h3>Account details</h3>
+                                            <c:if test="${requestScope.STATUS !=null }" >
+                                                <h6 style="color: green">${requestScope.STATUS}</h6>
+                                            </c:if>
                                             <div class="login">
                                                 <div class="login_form_container">
                                                     <div class="account_login_form">
-                                                        <form action="#">
+                                                        <form id="form-1"action="EditProfileServlet" method="get">
                                                             <label>Username</label>
                                                             <input class="input_type input_read" type="text" name="username" value="${sessionScope.account.userName}" readonly>
+                                                            <label>Role</label>
+                                                            <input class="input_type input_read" type="text" name="role" value="${sessionScope.account.roleID == 1? "Admin" : "Customer"}" readonly>
                                                             <label>First Name</label>
                                                             <input class="input_type input_read" type="text" name="first-name" value="${sessionScope.account.firstName}" readonly>
                                                             <label>Last Name</label>
                                                             <input class="input_type input_read" type="text" name="last-name" value="${sessionScope.account.lastName}" readonly>
                                                             <label>Email</label>
-                                                            <input class="input_type input_read" type="text" name="email-name" value="${sessionScope.account.email}" readonly>
+                                                            <input class="input_type input_read" type="text" name="email" value="${sessionScope.account.email}" readonly>
                                                             <label>Address</label>
                                                             <input class="input_type input_read" type="text" name="address" value="${sessionScope.account.address}" readonly>
-                                                            <label>Role</label>
-                                                            <input class="input_type input_read" type="text" value="${sessionScope.account.roleID == 1? "Admin" : "Customer"}" name="birthday" readonly>
                                                             <label>Phone</label>
                                                             <input class="input_type input_read" type="text" value="${sessionScope.account.phone}" name="phone" readonly>
                                                             <div class="save_button primary_btn default_button">
@@ -139,13 +142,14 @@
                     button.textContent = "Save";
                     button.id = "save";
                     inputElements.forEach(x => {
-                        if (x.name !== "username") {
+                        if (x.name !== "username" && x.name !== "role") {
                             x.readOnly = false;
                             x.classList.remove("input_read");
                             x.classList.add("default_input");
                         }
                     });
                 } else {
+                    document.getElementById("form-1").submit();
                     button.textContent = "Edit";
                     button.id = "edit";
                     inputElements.forEach(x => {

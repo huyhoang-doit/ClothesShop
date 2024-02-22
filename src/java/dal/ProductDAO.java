@@ -167,8 +167,7 @@ public class ProductDAO extends DBContext {
         List<ProductDTO> list = dao.getData();
         int count = 0;
         for (int i = 0; i < list.size(); i++) {
-            
-            count++;
+            System.out.println(list.get(i).getId());
         }
         System.out.println(dao.getTotalProducts());
         System.out.println(count);

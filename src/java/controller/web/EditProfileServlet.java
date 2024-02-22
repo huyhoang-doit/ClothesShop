@@ -5,38 +5,56 @@
  */
 package controller.web;
 
-import dal.OrderDAO;
+import dal.UserDAO;
 import java.io.IOException;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.OrderDTO;
 import model.UserDTO;
 
 /**
  *
  * @author HuuThanh
  */
-public class ProfileServlet extends HttpServlet {
+public class EditProfileServlet extends HttpServlet {
 
     private final String PROFILE = "my-account.jsp";
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html; charset=UTF-8");
-        response.setCharacterEncoding("UTF-8");
+        response.setContentType("text/html;charset=UTF-8");
         try {
-            OrderDAO oDao = new OrderDAO();
+            String firstName = request.getParameter("first-name");
+            String lastName = request.getParameter("last-name");
+            String email = request.getParameter("email");
+            String address = request.getParameter("address");
+            String phone = request.getParameter("phone");
+            UserDAO uDao = new UserDAO();
+
+            
             HttpSession session = request.getSession();
             UserDTO user = (UserDTO) session.getAttribute("account");
-            List<OrderDTO> listOrders = oDao.getOrdersByUsername(user.getUserName());
 
-            request.setAttribute("LISTORDERS", listOrders);
+            uDao.updateUser(firstName, lastName, email, address, phone, user.getUserName());
+            
+            // refresh lại session user vì mới update
+            user = uDao.checkLogin(user.getUserName(), user.getPassword());
+            session.setAttribute("account", user);
+            
+            request.setAttribute("STATUS", "Update successfully!!!");
         } catch (Exception ex) {
-
+            ex.printStackTrace();
         } finally {
             request.getRequestDispatcher(PROFILE).forward(request, response);
         }

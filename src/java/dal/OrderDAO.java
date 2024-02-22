@@ -22,8 +22,8 @@ import model.OrderDTO;
 public class OrderDAO extends DBContext {
 
     private static final String GET_TOTAL_SALE = "SELECT SUM(totalprice) AS TotalSale from [Orders]";
-    private static final String GET_TOTAL_MONEY_YEAR = "SELECT SUM(totalprice) AS TotalSale from [Orders] where year([orderdate]) = ?";
-    private static final String GET_TOTAL_MONEY_MONTH = "SELECT SUM(totalprice) AS TotalSale from [Orders] where month([orderdate]) = ?";
+    private static final String GET_TOTAL_MONEY_YEAR = "SELECT SUM(totalprice) AS TotalSale from [Orders] where year([orderdate]) = ? AND Status = 1";
+    private static final String GET_TOTAL_MONEY_MONTH = "SELECT SUM(totalprice) AS TotalSale from [Orders] where month([orderdate]) = ? AND Status = 1";
     private static final String GET_NUMBER_ORDERS = "SELECT COUNT(*) AS Total FROM [Orders] WHERE Status = true";
     private static final String GET_TOTAL_ORDERS = "SELECT * FROM [Orders]";
     private static final String GET_TOTAL_SALE_TODAY = "SELECT sum(totalprice) AS TotalSale FROM [Orders] "

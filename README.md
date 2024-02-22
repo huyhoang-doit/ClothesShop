@@ -26,7 +26,7 @@
 - [ ] Subscribe received new daily information
 - [ ] View blogs
 - [x] Logout
-- [ ] Update account information
+- [x] Update account information
 - [ ] View, manage orders
 - [ ] Checkout
 - [ ] Rating product
@@ -39,7 +39,7 @@
 - [ ] Managing categories
 - [ ] Managing orders
 - [ ] Send email
-- [ ] Update admin account information
+- [x] Update admin account information
 - [x] Statistic revenue
 - [ ] Manage blogs
 

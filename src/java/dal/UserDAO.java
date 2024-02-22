@@ -25,12 +25,13 @@ public class UserDAO extends DBContext {
     private static final String CHECK_LOGIN = "SELECT roleid FROM Users WHERE username=? AND password=? and status=1 and roleid=1";
 
     private static final String GET_DATA = "SELECT * FROM Users WHERE status = 1";
-    
+
     private static final String GET_USER = "SELECT * FROM Users WHERE status = 1";
-    
+
     private static final String GET_TOTAL_USERS = "SELECT COUNT(*) AS Total FROM Users WHERE status = 1 AND roleid=2";
-    
-    
+
+    private static final String UPDATE_USER = "UPDATE Users SET firstName = ?, lastName = ?, email = ?, address = ?, phone = ? WHERE username = ?";
+
     public List<UserDTO> getData() throws SQLException {
         List<UserDTO> users = new ArrayList<>();
         Connection conn = null;
@@ -148,8 +149,8 @@ public class UserDAO extends DBContext {
             return true;
         }
     }
-    
-     public int getTotalUsers() throws SQLException {
+
+    public int getTotalUsers() throws SQLException {
         int result = 0;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -177,6 +178,38 @@ public class UserDAO extends DBContext {
             }
         }
         return result;
+    }
+
+    public void updateUser(String firstName, String lastName, String email, String address, String phone, String userName) throws SQLException {
+        UserDTO user = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_USER);
+                ptm.setString(1, firstName);
+                ptm.setString(2, lastName);
+                ptm.setString(3, email);
+                ptm.setString(4, address);
+                ptm.setString(5, phone);
+                ptm.setString(6, userName);
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
     }
 
     public static void main(String[] args) throws SQLException {
