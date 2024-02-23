@@ -17,12 +17,12 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-
 /**
  *
  * @author lvhho
  */
 public class Email {
+
     private final String eFrom = "lvhhoangg1@gmail.com";
     private final String ePass = "ojlx ohfr qxwd llxx";
 
@@ -88,92 +88,133 @@ public class Email {
             e.printStackTrace();
         }
     }
-    
-     public String subjectContact(String name) {
+
+    public String subjectContact(String name) {
         return "ClothesShop - Chào " + name + " cảm ơn bạn vì đã liên hệ với chúng tôi";
     }
-     
+    
+    public String subjectSubsribe() {
+        return "ClothesShop - bạn có thông báo mới";
+    }
+
     public String messageContact(String name) {
         return "<!DOCTYPE html>\n"
-                + "<html lang=\"en\">\n"
-                + "\n"
-                + "<head>\n"
-                + "    <meta charset=\"UTF-8\">\n"
-                + "    <meta http-equiv=\"X-UA-Compatible\" content=\"IE=edge\">\n"
-                + "    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
-                + "    <title>Liên hệ - Clothes Shop</title>\n"
-                + "    <style>\n"
-                + "        body {\n"
-                + "            font-family: 'Arial', sans-serif;\n"
-                + "            margin: 0;\n"
-                + "            padding: 0;\n"
-                + "            background-color: #f4f4f4;\n"
-                + "        }\n"
-                + "\n"
-                + "        .container {\n"
-                + "            max-width: 600px;\n"
-                + "            margin: 0 auto;\n"
-                + "            background-color: #fff;\n"
-                + "            padding: 20px;\n"
-                + "            border-radius: 10px;\n"
-                + "            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n"
-                + "            margin-top: 20px;\n"
-                + "        }\n"
-                + "\n"
-                + "        h1,\n"
-                + "        p {\n"
-                + "            text-align: center;\n"
-                + "        }\n"
-                + "\n"
-                + "        .logo {\n"
-                + "            text-align: center;\n"
-                + "            margin-bottom: 20px;\n"
-                + "        }\n"
-                + "\n"
-                + "        img {\n"
-                + "            max-width: 100%;\n"
-                + "            height: auto;\n"
-                + "        }\n"
-                + "\n"
-                + "        .message {\n"
-                + "            margin-top: 20px;\n"
-                + "        }\n"
-                + "\n"
-                + "        .btn {\n"
-                + "            display: inline-block;\n"
-                + "            padding: 10px 20px;\n"
-                + "            background-color: #3498db;\n"
-                + "            color: #fff;\n"
-                + "            text-decoration: none;\n"
-                + "            border-radius: 5px;\n"
-                + "        }\n"
-                + "\n"
-                + "        .footer {\n"
-                + "            margin-top: 20px;\n"
-                + "            text-align: center;\n"
-                + "            color: #888;\n"
-                + "        }\n"
-                + "    </style>\n"
-                + "</head>\n"
-                + "\n"
-                + "<body>\n"
-                + "    <div class=\"container\">\n"
-                + "        <h1>Chào mừng bạn đến với Clothes Shop!</h1>\n"
-                + "        <div class=\"message\">\n"
-                + "            <p>Xin chân thành cảm ơn khách hàng " + name + " đã lựa chọn Clothes Shop cho nhu cầu mua sắm của mình.</p>\n"
-                + "            <p>Chúng tôi luôn cam kết mang đến cho bạn những sản phẩm chất lượng nhất và dịch vụ tận tâm.</p>\n"
-                + "            <p>Chúng tôi đã nhận được đề xuất và ý kiến của bạn, chúng tôi sẽ gửi đến bạn thông tin sớm nhất.</p>\n"
-                + "            <p>Nếu bạn có bất kỳ câu hỏi hoặc đề xuất nào khác, đừng ngần ngại liên hệ với chúng tôi qua địa chỉ email:\n"
-                + "                <a href=\"clothesshopvn@gmail.com\" class=\"btn\">customer_support@clothesshop.com</a>\n"
-                + "            </p>\n"
-                + "            <p>Cảm ơn bạn và chúc bạn có một trải nghiệm mua sắm tuyệt vời!</p>\n"
-                + "        </div>\n"
-                + "        <div class=\"footer\">\n"
-                + "            <p>Clothes Shop - Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM. - Số điện thoại: 1900 9090</p>\n"
-                + "        </div>\n"
-                + "    </div>\n"
-                + "</body>\n"
-                + "\n"
-                + "</html>";
+                + "<html>\n"
+                + "    <head>\n"
+                + "        <title>Email Contact</title>\n"
+                + "        <meta charset=\"UTF-8\">\n"
+                + "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                + "    </head>\n"
+                + "    <body style=\"font-family:arial, helvetica, sans-serif;\n"
+                + "          font-size:14px;\n"
+                + "          line-height:20px;\n"
+                + "          color: #444;\n"
+                + "          background:#f2f2f2;\">\n"
+                + "        <table width=\"100%\" class=\"wrapper\" style=\" margin:20px 0;\">\n"
+                + "            <tr>\n"
+                + "                <td class=\"container\"> \n"
+                + "                    <div class=\"content\" style=\"display: block!important;\n"
+                + "                         max-width: 600px!important;\n"
+                + "                         margin: 0 auto!important;\n"
+                + "                         clear: both!important;\n"
+                + "                         background:white;\">\n"
+                + "                        <table cellspacing=\"20\" width=\"100%\">\n"
+                + "                            <tr>\n"
+                + "                                <td>\n"
+                + "                                    <p class=\"brand\" style=\"margin:5px 0 0; font-size:30px;\n"
+                + "                                       margin:20px 0;\"><span style=\"color:#e67e22;\">Clothes</span>Shop</p> \n"
+                + "                                </td>\n"
+                + "                            </tr>\n"
+                + "                            <tr>\n"
+                + "                                <td class=\"border\" style=\"border-top:2px solid #e67e22;\n"
+                + "                                    border-bottom:2px solid #e67e22;\">\n"
+                + "                                    <h1 style=\" font-size:24px;\n"
+                + "                                        color:#e67e22;\n"
+                + "                                        margin:30px 0;\">CẢM ƠN VÌ BẠN ĐÃ LIÊN HỆ CLOTHES SHOP</h1>\n"
+                + "                                    <p style=\"margin:5px 0 0\">Chào " + name + ",</p>\n"
+                + "                                    <p style=\"margin:5px 0 0\">Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ, chính sách mua hàng của chúng tôi. </p>\n"
+                + "                                    <p style=\"margin:5px 0 0\">Chúng tôi đã nhận được yêu cầu của bạn, chúng tôi sẽ gửi đến bạn thông tin sớm nhất. </p>\n"
+                + "                                    <p style=\"margin:5px 0 0\">Nếu bạn cần hỗ trợ gấp hãy liên hệ hotline: 1900 9090. </p>\n"
+                + "                                    <p style=\"margin:5px 0 0\">Xin cảm ơn. </p>\n"
+                + "                                </td>\n"
+                + "                            </tr>\n"
+                + "                            <tr class=\"contact\" style=\"font-size:11px; color:#999;\">\n"
+                + "                                <td align=\"center\"> \n"
+                + "                                    Clothes Shop Ho Chi Minh - 0123 456 789 - clothesshop@gmail.com\n"
+                + "                                </td>\n"
+                + "                            </tr>\n"
+                + "                        </table>\n"
+                + "                    </div> \n"
+                + "                </td>\n"
+                + "            </tr>\n"
+                + "        </table>\n"
+                + "    </body>\n"
+                + "</html>\n"
+                + "";
+    }
+    public String messageSubscribe() {
+        return "<!DOCTYPE html>\n"
+                + "<html>\n"
+                + "    <head>\n"
+                + "        <title>Email Contact</title>\n"
+                + "        <meta charset=\"UTF-8\">\n"
+                + "        <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\">\n"
+                + "    </head>\n"
+                + "    <body style=\"font-family:arial, helvetica, sans-serif;\n"
+                + "          font-size:14px;\n"
+                + "          line-height:20px;\n"
+                + "          color: #444;\n"
+                + "          background:#f2f2f2;\">\n"
+                + "        <table width=\"100%\" class=\"wrapper\" style=\" margin:20px 0;\">\n"
+                + "            <tr>\n"
+                + "                <td class=\"container\"> \n"
+                + "                    <div class=\"content\" style=\"display: block!important;\n"
+                + "                         max-width: 600px!important;\n"
+                + "                         margin: 0 auto!important;\n"
+                + "                         clear: both!important;\n"
+                + "                         background:white;\">\n"
+                + "                        <table cellspacing=\"20\" width=\"100%\">\n"
+                + "                            <tr>\n"
+                + "                                <td>\n"
+                + "                                    <p class=\"brand\" style=\"margin:5px 0 0; font-size:30px;\n"
+                + "                                       margin:20px 0;\"><span style=\"color:#e67e22;\">Clothes</span>Shop</p> \n"
+                + "                                </td>\n"
+                + "                            </tr>\n"
+                + "                            <tr>\n"
+                + "                                <td class=\"border\" style=\"border-top:2px solid #e67e22;\n"
+                + "                                    border-bottom:2px solid #e67e22;\">\n"
+                + "                                    <h1 style=\" font-size:24px;\n"
+                + "                                        color:#e67e22;\n"
+                + "                                        text-height:36px;\n"
+                + "                                        margin:30px 0;\">CHÀO MỪNG BẠN ĐÃ ĐẾN VỚI CLOTHES SHOP</h1>\n"
+                + "                                    <p style=\"margin:5px 0 0\">Hello clother,</p>\n"
+                + "                                    <p style=\"margin:5px 0 0\">Cảm ơn bạn đã tin tưởng và sử dụng dịch vụ, chính sách mua hàng của chúng tôi. </p>\n"
+                + "                                    <p style=\"margin:5px 0 0\">Bạn sẽ là một trong những người được nhận thông báo <span style=\"color:#e67e22;\">SALE, NEW PRODUCT</span> sớm nhất. </p>\n"
+                + "                                    <p style=\"margin:5px 0 0\">Nếu bạn cần hỗ trợ gấp hãy liên hệ hotline: 1900 9090. </p>\n"
+                + "                                    <p style=\"margin:5px 0 0\">Xin cảm ơn. </p>\n"
+                + "                                </td>\n"
+                + "                            </tr>\n"
+                + "                            <tr class=\"contact\" style=\"font-size:11px; color:#999;\">\n"
+                + "                                <td align=\"center\"> \n"
+                + "                                    Clothes Shop Ho Chi Minh - 0123 456 789 - clothesshop@gmail.com\n"
+                + "                                </td>\n"
+                + "                            </tr>\n"
+                + "                        </table>\n"
+                + "                    </div> \n"
+                + "                </td>\n"
+                + "            </tr>\n"
+                + "        </table>\n"
+                + "    </body>\n"
+                + "</html>\n"
+                + "";
+    }
+
+    public static void main(String[] args) {
+        Email handleEmail = new Email();
+        String email = "lvhhoangg171@gmail.com";
+        String sub = "Subject";
+        String mess = "Check email";
+        handleEmail.sendEmail(sub, mess, email);
+
     }
 }

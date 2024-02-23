@@ -171,10 +171,20 @@
                                     <div class="block_title">
                                         <h3>newsletter</h3>
                                     </div> 
-                                    <form action="#">
+                                    <form action="EmailServlet" method="POST">
                                         <p>Sign up for your newsletter</p>
-                                        <input placeholder="Your email address" type="text">
-                                        <button type="submit">Subscribe</button>
+                                        <input placeholder="Your email address" type="text" name="email" value="<c:if test="${requestScope.EMAIL_CUSTOMER != null}">${requestScope.EMAIL_CUSTOMER}</c:if>">
+                                        <button type="submit" name="action" value="subscribe">Subscribe</button>
+                                        <c:if test="${requestScope.CHECK == 'success'}">
+                                                <div class="col-12">
+                                                    <span class="form-messege" style='color: green;'>${requestScope.MESSAGE}</span>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${requestScope.CHECK == 'fail'}">
+                                                <div class="col-12">
+                                                    <span class="form-messege" style='color: red;'>${requestScope.MESSAGE}</span>
+                                                </div>
+                                            </c:if>
                                     </form>   
                                 </div>
                                 <!--newsletter block end--> 

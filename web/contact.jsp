@@ -54,11 +54,11 @@
                                                 <input name="name" placeholder="Name *" type="text" value="<c:if test="${requestScope.NAME_CUSTOMER != null}">${requestScope.NAME_CUSTOMER}</c:if>">    
                                             </div>
                                             <div class="col-lg-6">
-                                                <input name="email" placeholder="Email *" type="email" value="<c:if test="${requestScope.EMAIL_CUSTOMER != null}">${requestScope.NAME_CUSTOMER}</c:if>">    
+                                                <input name="email" placeholder="Email *" type="email" value="<c:if test="${requestScope.EMAIL_CUSTOMER != null}">${requestScope.EMAIL_CUSTOMER}</c:if>">    
                                             </div>
                                             <div class="col-12">
                                                 <div class="contact_textarea">
-                                                    <textarea placeholder="Message *" name="message" class="form-control2" value=" <c:if test="${requestScope.TEXT != null}">${requestScope.TEXT}</c:if>"></textarea>     
+                                                    <textarea placeholder="Message *" name="message" class="form-control2" >${requestScope.TEXT != null ? requestScope.TEXT : ""}</textarea>     
                                                 </div>   
                                                 <button type="submit" name="action" value="sendEmail"> Send Message </button>  
                                             </div> 
