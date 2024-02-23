@@ -7,9 +7,11 @@
 INSERT INTO Categories VALUES
 (N'Áo sơ mi'),
 (N'T-Shirt'),
+(N'Sweatshirt'),
 (N'Áo khoác'),
 (N'Hoodies'),
 (N'Quần short'),
+(N'Quần thun'),
 (N'Quần jean')
 
 INSERT INTO Suppliers VALUES
@@ -26,10 +28,20 @@ INSERT INTO Products VALUES
 , 'assets/img/products/1-1.jpg assets/img/products/1-2.jpg', N'Trắng,Đen,Rêu' , '2021-12-01', 0.4, 5, 249.000),
 (N'ÁO SƠ MI TRƠN TAY NGẮN', 2, 1, 'S,M,L,XXL', 15, N'Áo Sơ Mi Tay Ngắn Nam Cotton Form Regular đem đến item tối giản với phong cách tràn đầy năng lượng, trẻ trung. Áo được làm từ chất liệu cotton với form áo suông, không ôm vào phần cơ thể đem đến sự thoải mái, nhẹ nhàng. Thân áo suông thẳng, thân sau áo có ly tạo nên điểm nổi bật cho áo.'
 , 'assets/img/products/2-1.jpg assets/img/products/2-2.jpg', N'Trắng,Đen,Xám' , '2022-02-01', 0.37, 76, 179.000),
-(N'QUẦN JEANS XANH WASH LASER TÚI SAU FORM SLIM-CROPPED', 6, 6, 'S,M,L', 45, N'Một chiếc jeans xanh Wash Laser túi sau form slim-cropped 4MEN QJ092 trong tủ đồ có thể giúp các chàng trai mix được hàng chục, hàng trăm outfit khác nhau, từ thanh lịch đến bụi bặm cá tính, rồi năng động và tất nhiên luôn toát lên vẻ đẹp trẻ trung và hiện đại. Sở hữu ngay mẫu quần jeans xanh wash laser túi sau form slim-cropped 4MEN QJ092, chất vải mềm mịn và co giãn tốt sẽ rất thích hợp với ai yêu thích jeans.'
+(N'QUẦN JEANS XANH WASH LASER TÚI SAU FORM SLIM-CROPPED', 6, 8, 'S,M,L', 45, N'Một chiếc jeans xanh Wash Laser túi sau form slim-cropped 4MEN QJ092 trong tủ đồ có thể giúp các chàng trai mix được hàng chục, hàng trăm outfit khác nhau, từ thanh lịch đến bụi bặm cá tính, rồi năng động và tất nhiên luôn toát lên vẻ đẹp trẻ trung và hiện đại. Sở hữu ngay mẫu quần jeans xanh wash laser túi sau form slim-cropped 4MEN QJ092, chất vải mềm mịn và co giãn tốt sẽ rất thích hợp với ai yêu thích jeans.'
 , 'assets/img/products/3-1.jpg assets/img/products/3-2.jpg', N'Xanh' , '2023-11-01', 0, 72, 545.000),
-(N'ÁO HOODIE MAY ĐẮP BASIC FORM REGULAR', 7, 4, 'S,M,L', 30, N'Áo nỉ có mũ, form Regular-Fit; Ngực trái áo có hình thêu chữ sử dụng kỹ thuật đắp vải con giống sắc nét ; 2 bên sườn áO may 2 mảng BO đảm bảo đúng form dáng thiết kế và tăng cảm giác thoải mái khi mặc; Áp dụng công nghệ giặt khô trước may hạn chế tình trạng co rút vải.'
-, 'assets/img/products/4-1.jpg assets/img/products/4-2.jpg', N'Xanh đen,Trắng' , '2019-11-01', 0.31, 51, 399.000)
+(N'ÁO HOODIE MAY ĐẮP BASIC FORM REGULAR', 5, 4, 'S,M,L', 30, N'Áo nỉ có mũ, form Regular-Fit; Ngực trái áo có hình thêu chữ sử dụng kỹ thuật đắp vải con giống sắc nét ; 2 bên sườn áO may 2 mảng BO đảm bảo đúng form dáng thiết kế và tăng cảm giác thoải mái khi mặc; Áp dụng công nghệ giặt khô trước may hạn chế tình trạng co rút vải.'
+, 'assets/img/products/4-1.jpg assets/img/products/4-2.jpg', N'Xanh đen,Trắng' , '2019-11-01', 0.31, 51, 399.000),
+(N'ÁO THUN RÃ PHỐI IN HOME IS FORM REGULAR', 6, 2, 'S,M,L', 30, N'Thiết kế áo thun nam basic, cổ tròn form regular tay ngắn trẻ trung, hiện đại. Áo thun nam phối kẻ ngang nam tính, phong cách hiện đại.'
+, 'assets/img/products/5-1.jpg assets/img/products/5-2.jpg', N'Nâu' , '2019-11-01', 0.17, 21, 315.000),
+(N'ÁO SWEATSHIRT BIG LOGO ADIDAS', 1, 3, 'S,M,L,XL', 10, N'Bất kể bạn chuẩn bị tập luyện buổi sáng hay nghỉ ngơi sau một ngày dài, đã có chiếc áo sweatshirt adidas này đồng hành cùng bạn. Chất liệu vải thun da cá siêu dễ chịu cùng cổ tay và gấu áo bo gân giúp bạn luôn thoải mái và duy trì nhiệt độ hoàn hảo trong mọi hoạt động. Hãy diện chiếc áo này và sẵn sàng cho tất cả.'
+, 'assets/img/products/6-1.jpg assets/img/products/6-2.jpg', N'Xám,Trắng' , '2022-11-01', 0.15, 11, 875.000),
+(N'ÁO BÓNG ĐÁ NIKE LFC M NK SSL SWOOSH TEE NAM DZ3613-010', 2, 2, 'M,L', 30, N'Chất liệu cotton mềm, nhẹ. In đồ họa tương phản với mặt trước. Cổ thuyền với tay áo ngắn. In thương hiệu logo swoosh của Nike.'
+, 'assets/img/products/7-1.jpg assets/img/products/7-2.jpg', N'Đen' , '2022-11-01', 0., 21, 699.000),
+(N'QUẦN JOGGER THUN RÃ PHỐI FORM REGULAR', 3, 7, 'S,M,L,XL', 30, N'Với xu hướng bùng nổ thời trang thể thao và thời trang đường phố hiện nay thì với Quần Jogger Nam – đại diện cho phong cách Street Style ngày càng được ưa chuộng. Đặc biệt, để phù hợp cho môi trường đi làm thì Kaki là chất liệu được đánh giá là lịch sự và trang trọng hơn hẳn chất liệu thun hay nỉ. Vì vậy mà bạn có thể tự tin diện Quần Jogger Kaki vừa để đi làm vừa để đi chơi.'
+, 'assets/img/products/8-1.jpg assets/img/products/8-2.jpg', N'Xanh rêu, Kem' , '2024-09-01', 0.34, 31, 425.000),
+(N'ÁO KHOÁC GOLF ADIDAS HYBRID-SPACER', 1, 4, 'S,M,L', 30, N'Bắt đầu buổi chơi trong phong cách thanh thoát với chiếc áo khoác golf adidas này. Cấu trúc hybrid kết hợp hai lớp vải được bố trí hợp lý để giữ ấm, cùng độ co giãn tăng cường tại những vị trí cần thiết nhất để bạn vận động tối ưu trên sân golf. Các túi giúp giữ ấm đôi tay giữa những cú đánh và cất các vật dụng nhỏ khi chơi.'
+, 'assets/img/products/9-1.jpg assets/img/products/9-2.jpg', N'Đen, Nâu' , '2024-11-01', 0.41, 51, 2660.000)
 
 INSERT INTO Carts VALUES 
 (1,'admin', 1),

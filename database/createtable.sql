@@ -2,6 +2,17 @@
 
 USE ClothesShop
 
+DROP TABLE OrderItem
+DROP TABLE Wallets
+DROP TABLE Orders
+ DROP TABLE Shipments
+ DROP TABLE Payments
+ DROP TABLE WishLists
+DROP TABLE Carts
+ DROP TABLE Products
+ DROP TABLE Suppliers
+ DROP TABLE Categories
+ DROP TABLE Users
 CREATE TABLE Users (
   id INT NOT NULL IDENTITY(1,1),
   firstname NVARCHAR(30) NOT NULL,
@@ -15,25 +26,22 @@ CREATE TABLE Users (
   roleid INT NOT NULL,
   status BIT NOT NULL,
 )
--- DROP TABLE Users
 
 CREATE TABLE Categories(
  categoryname NVARCHAR(30) ,
  categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY
 )
--- DROP TABLE Category
 
 CREATE TABLE Suppliers(
 	supplierid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY,
 	suppliername NVARCHAR(100),
 	supplierimage VARCHAR(255) NOT NULL,
 )
--- DROP TABLE Supplier
 
 CREATE TABLE Products(
  id INT NOT NULL IDENTITY(1,1)  PRIMARY KEY ,
  productname NVARCHAR(max) NOT NULL,
- supplierid INT NOT NULL REFERENCES [dbo].[Suppliers](supplierid),
+ supplierid INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Suppliers](supplierid),
  categoryid INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Categories](categoryid),
  size VARCHAR(40) NOT NULL,
  stock INT NOT NULL, 
@@ -43,10 +51,9 @@ CREATE TABLE Products(
  releasedate  DATE NOT NULL,
  discount FLOAT,
  unitSold INT,
- price INT NOT NULL
+ price money NOT NULL
 )
 
--- DROP TABLE Products
 
 CREATE TABLE Carts (
 cartid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -54,19 +61,16 @@ quantity INT,
 username VARCHAR(30) FOREIGN KEY REFERENCES  Users(username),
 productid INT FOREIGN KEY REFERENCES [dbo].[Products]([id])
 )
---DROP TABLE Cart
 
 CREATE TABLE WishLists( 
 wishListid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 username VARCHAR(30) FOREIGN KEY REFERENCES  Users(username),
 productid INT FOREIGN KEY REFERENCES [dbo].[Products]([id]),
 )
--- DROP TABLE WishList
 CREATE TABLE Payments(
 paymentid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 payment_method NVARCHAR(30)
 )
--- DROP TABLE Payments
 
 CREATE TABLE Shipments(
 shipment_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -75,7 +79,6 @@ username VARCHAR(30) FOREIGN KEY REFERENCES [dbo].[Users](username),
 address NVARCHAR(255),
 zip_code VARCHAR(100),
 )
--- DROP TABLE Shipment
 
 CREATE TABLE [Orders](
 order_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -86,7 +89,6 @@ shipmentid INT NOT NULL FOREIGN KEY REFERENCES Shipments(shipment_id) ,
 username VARCHAR(30) NOT NULL FOREIGN KEY REFERENCES Users([username]),
 status bit NOT NULL,
 )
---DROP TABLE Order
 
 
 CREATE TABLE Wallets (
@@ -97,7 +99,6 @@ CREATE TABLE Wallets (
 	CONSTRAINT [FK_Wallets_Users] FOREIGN KEY (username)
 	REFERENCES [dbo].[Users](username)
 )
---DROP TABLE Wallets
 
 CREATE TABLE OrderItem(
 order_item_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
@@ -106,4 +107,3 @@ price DECIMAL(10,2),
 prodct_id INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Products]([id]),
 order_id INT NOT NULL FOREIGN KEY REFERENCES  [dbo].[Orders](order_id)
 )
---DROP TABLE OrderItem
