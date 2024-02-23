@@ -35,7 +35,25 @@ public class ShopServlet extends HttpServlet {
             List<ProductDTO> listProducts = pDao.getData();
             List<CategoryDTO> listCategories = cDao.getData();
 
-            request.setAttribute("LISTPRODUCTS", listProducts);
+            //Paging
+            int page, numPerPage = 9;
+            int size = listProducts.size();
+            int numberpage = ((size % numPerPage == 0) ? (size / 9) : (size / 9) + 1);
+            String xpage = request.getParameter("page");
+            if (xpage == null) {
+                page = 1;
+            } else {
+                page = Integer.parseInt(xpage);
+            }
+            int start, end;
+            start = (page - 1) * 9;
+            end = Math.min(page * numPerPage, size);
+
+            List<ProductDTO> listByPage = pDao.getListByPage(listProducts, start, end);
+
+            request.setAttribute("NUMBERPAGE", numberpage);
+            request.setAttribute("CURRENTPAGE", page);
+            request.setAttribute("LISTPRODUCTS", listByPage);
             request.setAttribute("LISTCATEGORIES", listCategories);
         } catch (Exception ex) {
 

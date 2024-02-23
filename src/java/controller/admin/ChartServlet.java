@@ -81,6 +81,7 @@ public class ChartServlet extends HttpServlet {
             request.setAttribute("MONTH11", month11);
             request.setAttribute("MONTH12", month12);
             
+            request.setAttribute("action", "BIEUDO");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

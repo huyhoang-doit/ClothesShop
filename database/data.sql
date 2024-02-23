@@ -12,16 +12,16 @@ INSERT INTO Categories VALUES
 (N'Hoodies'),
 (N'Quần short'),
 (N'Quần thun'),
-(N'Quần jean')
+(N'Quần jean'),
+(N'Áo Polo')
 
 INSERT INTO Suppliers VALUES
 ('Adidas', 'assets/img/suppliers/1.jpg'),
 ('Nike', 'assets/img/suppliers/2.jpg'),
 ('Louis Vuitton', 'assets/img/suppliers/3.jpg'),
 ('Channel', 'assets/img/suppliers/4.jpg'),
-('NEM', 'assets/img/suppliers/5.jpg'),
-('4MEN', 'assets/img/suppliers/6.jpg'),
-('Seven AM', 'assets/img/suppliers/7.jpg')
+('BoBui', 'assets/img/suppliers/5.jpg'),
+('4MEN', 'assets/img/suppliers/6.jpg')
 
 INSERT INTO Products VALUES 
 (N'ÁO KHOÁC REGULAR TECHNICAL', 6, 3, 'S,M', 20, N'Áo sơ mi khoác bằng cotton dệt chéo, có cổ, nẹp khuy liền và cầu vai phía sau. Túi ngực mở, tay dài có nẹp tay áo và măng sét cài khuy cùng vạt tròn.'
@@ -41,7 +41,27 @@ INSERT INTO Products VALUES
 (N'QUẦN JOGGER THUN RÃ PHỐI FORM REGULAR', 3, 7, 'S,M,L,XL', 30, N'Với xu hướng bùng nổ thời trang thể thao và thời trang đường phố hiện nay thì với Quần Jogger Nam – đại diện cho phong cách Street Style ngày càng được ưa chuộng. Đặc biệt, để phù hợp cho môi trường đi làm thì Kaki là chất liệu được đánh giá là lịch sự và trang trọng hơn hẳn chất liệu thun hay nỉ. Vì vậy mà bạn có thể tự tin diện Quần Jogger Kaki vừa để đi làm vừa để đi chơi.'
 , 'assets/img/products/8-1.jpg assets/img/products/8-2.jpg', N'Xanh rêu, Kem' , '2024-09-01', 0.34, 31, 425.000),
 (N'ÁO KHOÁC GOLF ADIDAS HYBRID-SPACER', 1, 4, 'S,M,L', 30, N'Bắt đầu buổi chơi trong phong cách thanh thoát với chiếc áo khoác golf adidas này. Cấu trúc hybrid kết hợp hai lớp vải được bố trí hợp lý để giữ ấm, cùng độ co giãn tăng cường tại những vị trí cần thiết nhất để bạn vận động tối ưu trên sân golf. Các túi giúp giữ ấm đôi tay giữa những cú đánh và cất các vật dụng nhỏ khi chơi.'
-, 'assets/img/products/9-1.jpg assets/img/products/9-2.jpg', N'Đen, Nâu' , '2024-11-01', 0.41, 51, 2660.000)
+, 'assets/img/products/9-1.jpg assets/img/products/9-2.jpg', N'Đen, Nâu' , '2024-11-01', 0.41, 51, 2660.000),
+(N'ÁO BÓNG ĐÁ NIKE AS M NK DF FC LIBERO HOODIE', 2, 5, 'S,M,L,XL', 20, N'Áo bóng đá nike AS M NK DF FC LIBERO HOODIE nam DC9076-010'
+, 'assets/img/products/10-1.jpg assets/img/products/10-2.jpg', N'Trắng,Đen,Rêu' , '2022-12-01', 0, 5, 1053.000),
+(N'TRAVIS SCOTT CACT.US CORP X NIKE U NRG BH LONG SLEEVE T', 2, 1, 'S', 15, N'Hoạt động trong nhà/ ngoài trời.'
+, 'assets/img/products/11-1.jpg assets/img/products/11-2.jpg', N'Đen' , '2024-02-01', 0.37, 76, 1100.000),
+(N'ÁO THUN OVERSIZED *RETRO 9AS*', 5, 2, 'S,M,L', 45, N'100% COTTON, 320GSM, IN LỤA THỦ CÔNG, OVERSIZED FIT'
+, 'assets/img/products/12-1.jpg assets/img/products/12-2.jpg', N'Trắng' , '2024-11-01', 0, 72, 555.000),
+(N'QUẦN JEANS THIÊN THẦN PHUN SƠN', 5, 8, 'S,M,L', 30, N'VẢI CHÍNH: 100% SỢI BÔNG – COTTON, MẪU CAO 1M76 68KG MẶC SIZE 32'
+, 'assets/img/products/13-1.jpg assets/img/products/13-2.jpg', N'Xanh' , '2019-11-01', 0.31, 51, 325.000),
+(N'ÁO ĐẤU SÂN NHÀ MANCHESTER UNITED', 2, 2, 'M', 30, N'Chiếc áo đấu này hình thành mối liên kết vững chắc với sức ảnh hưởng lâu bền của Manchester trên toàn cầu. Vay mượn các yếu tố thiết kế từ một cây cầu gần thời Cách mạng công nghiệp, mặt trước áo phủ họa tiết hình học lấy cảm hứng từ Hoa Hồng Lancashire. Công nghệ AEROREADY đánh bay mồ hôi và các chi tiết đội tuyển siêu nhẹ phù hợp với sân cỏ — bất kể bạn chuẩn bị thi đấu quốc tế hay đá giao hữu đội hình sân 5.'
+, 'assets/img/products/14-1.jpg assets/img/products/14-2.jpg', N'Đỏ' , '2024-11-01', 0.17, 21, 2200.000),
+(N'ÁO THUN NAM THỂ THAO Z.N.E', 1, 2, 'S,M,L', 10, N'Với sự cung cấp năng lượng tích cực, chiếc áo thun adidas này được thiết kế để giúp bạn cảm thấy tốt nhất. Được làm từ chất liệu mềm mại và cắt dáng rộng rãi, nó giúp bạn tách biệt khỏi những lo lắng hàng ngày và nạp năng lượng lại. Kết hợp với quần short len hoặc quần jogger để có sự thoải mái từ đầu đến chân và tạo cảm giác bình yên. Bằng cách lựa chọn vật liệu tái chế, chúng tôi có thể tái sử dụng các vật liệu đã được tạo ra, giúp giảm thiểu lượng rác thải. Các lựa chọn vật liệu tái tạo sẽ giúp chúng tôi loại bỏ sự phụ thuộc của chúng tôi vào các nguồn tài nguyên hữu hạn. Các sản phẩm của chúng tôi được làm từ một hợp chất của các vật liệu tái chế và tái tạo có ít nhất 70% tổng số của các vật liệu này.'
+, 'assets/img/products/15-1.jpg assets/img/products/15-2.jpg', N'Vàng' , '2022-11-01', 0.2, 12, 950.000),
+(N'QUẦN SHORT JEANS ĐEN TÚI CHÉO WASH BẠC', 6, 6, 'M,L', 30, N'Phong cách: thể thao, Hàn Quốc, đường phố'
+, 'assets/img/products/16-1.jpg assets/img/products/16-2.jpg', N'Đen' , '2022-11-01', 0., 21, 415.000),
+(N'QUẦN SHORTS THỂ THAO 3 SỌC', 2, 6, 'S,M,L,XL', 30, N'Không gì có thể khiến bạn phân tâm khỏi thực tại khi bạn đang diện chiếc quần short adidas này. Mềm mại và siêu nhẹ, đôi chân bạn sẽ được bao bọc trong sự thoải mái, còn 3 Sọc biểu tượng tạo điểm nhấn tinh tế. Là lựa chọn hoàn hảo để dạo phố ban ngày cũng như ngắm sao về đêm, chiếc quần short này sẽ đồng hành cùng bạn từ lúc bắt đầu cho đến sau đó, sau đó, sau đó nữa...'
+, 'assets/img/products/17-1.jpg assets/img/products/17-2.jpg', N'Đen' , '2024-09-01', 0.5, 61, 1050.000),
+(N'ÁO THUN RAGLAN IN NGỰC BO CỔ DỆT ', 2, 2, 'S,L', 30, N'Phong cách: thể thao, Hàn Quốc, đường phố, công sở'
+, 'assets/img/products/18-1.jpg assets/img/products/18-2.jpg', N'Trắng, Đỏ' , '2022-11-01', 0.41, 51, 412.000),
+(N'ÁO POLO CỔ V PHỐI IN HỌA TIẾT', 6, 9, 'S,M,L', 30, N'Phong cách: cơ bản, đường phố, Hàn Quốc.'
+, 'assets/img/products/19-1.jpg assets/img/products/19-2.jpg', N'Đen, Trắng' , '2024-11-01', 0.11, 11, 345.000)
 
 INSERT INTO Carts VALUES 
 (1,'admin', 1),
