@@ -48,30 +48,30 @@
                             <div class="col-lg-6 col-md-12">
                                 <div class="contact_message">
                                     <h3>Tell us your project</h3>   
-                                    <form id="contact-form" method="POST" action="assets/mail.php">
+                                    <form id="contact-form" method="POST" action="EmailServlet">
                                         <div class="row">
                                             <div class="col-lg-6">
-                                                <input name="name" placeholder="Name *" type="text">    
+                                                <input name="name" placeholder="Name *" type="text" value="<c:if test="${requestScope.NAME_CUSTOMER != null}">${requestScope.NAME_CUSTOMER}</c:if>">    
                                             </div>
                                             <div class="col-lg-6">
-                                                <input name="email" placeholder="Email *" type="email">    
+                                                <input name="email" placeholder="Email *" type="email" value="<c:if test="${requestScope.EMAIL_CUSTOMER != null}">${requestScope.NAME_CUSTOMER}</c:if>">    
                                             </div>
-                                            <div class="col-lg-6">
-                                                <input name="subject" placeholder="Subject *" type="text">   
-                                            </div>
-                                            <div class="col-lg-6">
-                                                <input name="phone" placeholder="Phone *" type="text">   
-                                            </div>
-
                                             <div class="col-12">
                                                 <div class="contact_textarea">
-                                                    <textarea placeholder="Message *" name="message" class="form-control2"></textarea>     
+                                                    <textarea placeholder="Message *" name="message" class="form-control2" value=" <c:if test="${requestScope.TEXT != null}">${requestScope.TEXT}</c:if>"></textarea>     
                                                 </div>   
-                                                <button type="submit"> Send Message </button>  
+                                                <button type="submit" name="action" value="sendEmail"> Send Message </button>  
                                             </div> 
-                                            <div class="col-12">
-                                                <p class="form-messege">
-                                            </div>
+                                            <c:if test="${requestScope.CHECK == 'success'}">
+                                                <div class="col-12">
+                                                    <span class="form-messege" style='color: green;'>${requestScope.MESSAGE}</span>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${requestScope.CHECK == 'fail'}">
+                                                <div class="col-12">
+                                                    <span class="form-messege" style='color: red;'>${requestScope.MESSAGE}</span>
+                                                </div>
+                                            </c:if>
                                         </div>
                                     </form>    
                                 </div> 
