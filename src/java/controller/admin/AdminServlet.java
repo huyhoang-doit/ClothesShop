@@ -74,7 +74,7 @@ public class AdminServlet extends HttpServlet {
             request.setAttribute("TOTALORDERS", totalOrders);
             request.setAttribute("LAST_RECENT_ORDERS", lastRecentOrders);
             
-            request.setAttribute("action", "DASHBOARD");
+            request.setAttribute("action", "ADMINHOME");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

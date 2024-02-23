@@ -45,6 +45,7 @@ public class ManageOrderServlet extends HttpServlet {
             List<OrderDTO> listOrders = oDao.getAllOrders();
             
             request.setAttribute("LIST_ORDERS", listOrders);
+                request.setAttribute("action", "MNGORDER");
         } catch (SQLException ex) {
             Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
