@@ -624,7 +624,6 @@
     margin-bottom: 15px;
     display: inline-block;
     background: #fff;
-    z-index: 9;
     position: relative;
     padding-right: 20px;
 }
@@ -1411,7 +1410,7 @@
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    margin-bottom: 56px;
+    margin-bottom: 20px;
 }
 .list_button ul li {
     line-height: 15px;
@@ -3821,4 +3820,8 @@
 
 .default_input {
     background-color: white;
+}
+
+.current_number {
+    color: #e84c3d;
 }

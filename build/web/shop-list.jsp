@@ -88,6 +88,7 @@
                                 </div>                 
                                 <!--color area end--> 
 
+
                                 <!--price slider start-->                                     
                                 <div class="sidebar_widget price">
                                     <h2>Price</h2>
@@ -159,34 +160,24 @@
                                 <!--banner slider start-->
 
                                 <!--shop toolbar start-->
-                                <div class="shop_toolbar list_toolbar mb-35">
+                                <div class="shop_toolbar list_toolbar">
                                     <div class="list_button">
                                         <ul class="nav" role="tablist">
                                             <li>
-                                                <a data-toggle="tab" href="#large" role="tab" aria-controls="large" aria-selected="true"><i class="fa fa-th-large"></i></a>
+                                                <a class="active" data-toggle="tab" href="#large" role="tab" aria-controls="large" aria-selected="true"><i class="fa fa-th-large"></i></a>
                                             </li>
                                             <li>
-                                                <a class="active" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false"><i class="fa fa-th-list"></i></a>
+                                                <a data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false"><i class="fa fa-th-list"></i></a>
                                             </li>
                                         </ul>
                                     </div>
                                     <div class="page_amount">
                                         <p>Showing 1–9 of 21 results</p>
                                     </div>
-                                    <div class="select_option">
+                                    <div class="search_bar">
                                         <form action="#">
-                                            <label>Sort By</label>
-                                            <select name="orderby" id="short">
-                                                <option selected="" value="1">Position</option>
-                                                <option value="1">Price: Lowest</option>
-                                                <option value="1">Price: Highest</option>
-                                                <option value="1">Product Name:Z</option>
-                                                <option value="1">Sort by price:low</option>
-                                                <option value="1">Product Name: Z</option>
-                                                <option value="1">In stock</option>
-                                                <option value="1">Product Name: A</option>
-                                                <option value="1">In stock</option>
-                                            </select>
+                                            <input placeholder="Search..." type="text">
+                                            <button type="submit"><i class="fa fa-search"></i></button>
                                         </form>
                                     </div>
                                 </div>
@@ -195,16 +186,33 @@
                                 <!--shop tab product-->
                                 <div class="shop_tab_product">   
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade " id="large" role="tabpanel">
+                                        <div class="select_option" style="margin-bottom: 20px">
+                                            <form action="#" style="display: flex; justify-content: flex-end; align-items: center">
+                                                <label style="">Sort By: </label>
+                                                <select  name="orderby" id="short">
+                                                    <option selected="" value="1">Price: Lowest</option>
+                                                    <option value="1">Price: Highest</option>
+                                                    <option value="1">Product Name:Z</option>
+                                                    <option value="1">Sort by price:low</option>
+                                                    <option value="1">Product Name: Z</option>
+                                                    <option value="1">In stock</option>
+                                                    <option value="1">Product Name: A</option>
+                                                    <option value="1">In stock</option>
+                                                </select>
+                                            </form>
+                                        </div>
+                                        <div class="tab-pane fade show active" id="large" role="tabpanel">
                                             <div class="row">
                                                 <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
                                                     <div class="col-lg-4 col-md-6">
                                                         <div class="single_product">
                                                             <div class="product_thumb">
-                                                                <a href="single-product.html"><img src="${p.images[0]}" alt=""></a> 
-                                                                <div class="img_icone">
-                                                                    <img src="assets\img\cart\span-new.png" alt="">
-                                                                </div>
+                                                                <a href="single-product.html"><img style="width: 250px; height:250px" src="${p.images[0]}" alt=""></a> 
+                                                                    <c:if test="${p.releasedate.getYear() == 124}">
+                                                                    <div class="img_icone">
+                                                                        <img src="assets/img/cart/span-new.png" alt="">
+                                                                    </div>
+                                                                </c:if>
                                                                 <div class="product_action">
                                                                     <a href="single-product.html"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
                                                                 </div>
@@ -224,7 +232,7 @@
                                                 </c:forEach>
                                             </div>  
                                         </div>
-                                        <div class="tab-pane fade show active" id="list" role="tabpanel">
+                                        <div class="tab-pane fade" id="list" role="tabpanel">
                                             <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
 
                                                 <div class="product_list_item mb-35">
@@ -283,10 +291,22 @@
                                     <div class="page_number">
                                         <span>Pages: </span>
                                         <ul>
-                                            <li>«</li>
-                                            <li class="current_number">1</li>
-                                            <li><a href="#">2</a></li>
-                                            <li>»</li>
+                                            <c:set var="page" value="${requestScope.CURRENTPAGE}"/>
+                                            <c:if test="${page != 1}">
+                                                <li>
+                                                    <a href="ShopServlet?page=${page - 1}">«</a>
+                                                </li>
+                                            </c:if>
+                                            <c:forEach var="i" begin="1" end="${requestScope.NUMBERPAGE}">
+                                                <li>
+                                                    <a style="${page == i ? "color: #e84c3d" :""}" href="ShopServlet?page=${i}">${i}</a>
+                                                </li>
+                                            </c:forEach>
+                                            <c:if test="${page != NUMBERPAGE}">
+                                                <li>
+                                                    <a href="ShopServlet?page=${page + 1}">»</a>
+                                                </li>
+                                            </c:if>
                                         </ul>
                                     </div>
                                 </div>

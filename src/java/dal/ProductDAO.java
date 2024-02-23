@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import model.CategoryDTO;
@@ -22,11 +23,12 @@ import model.SupplierDTO;
  * @author HuuThanh
  */
 public class ProductDAO extends DBContext {
+
     private static final String GET_DATA = "SELECT * FROM Products";
     private static final String GET_TOTAL_PRODUCTS = "SELECT SUM(stock) AS Total from Products";
     private static final String GET_QUANTITY_SOLD = "SELECT SUM(unitSold) AS Total from Products";
     private static final String GET_PRODUCTS_LOW_QUANTITY = "SELECT COUNT(*) AS Total from Products WHERE Stock < 10";
- 
+
     public List<ProductDTO> getData() throws SQLException {
         List<ProductDTO> products = new ArrayList<>();
         Connection conn = null;
@@ -40,7 +42,7 @@ public class ProductDAO extends DBContext {
                 while (rs.next()) {
                     CategoryDAO cDao = new CategoryDAO();
                     SupplierDAO sDao = new SupplierDAO();
-                    String productname = rs.getString("productname");        
+                    String productname = rs.getString("productname");
                     int id = rs.getInt("id");
                     SupplierDTO supplierId = sDao.getSupplierById(rs.getInt("supplierid"));
                     CategoryDTO categoryid = cDao.getCategoryById(rs.getInt("categoryid"));
@@ -72,7 +74,7 @@ public class ProductDAO extends DBContext {
         }
         return products;
     }
-    
+
     public int getTotalProducts() throws SQLException {
         int result = 0;
         Connection conn = null;
@@ -102,7 +104,7 @@ public class ProductDAO extends DBContext {
         }
         return result;
     }
-    
+
     public int getQuantitySold() throws SQLException {
         int result = 0;
         Connection conn = null;
@@ -132,6 +134,7 @@ public class ProductDAO extends DBContext {
         }
         return result;
     }
+
     public int getProductsLowQuantiry() throws SQLException {
         int result = 0;
         Connection conn = null;
@@ -161,15 +164,21 @@ public class ProductDAO extends DBContext {
         }
         return result;
     }
+    
+    public List<ProductDTO> getListByPage(List<ProductDTO> list, int start, int end) {
+        ArrayList<ProductDTO> arr = new ArrayList<>();
+        for (int i = start; i < end; i++) {
+            arr.add(list.get(i));
+        }
+        return arr;
+    }
 
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
         List<ProductDTO> list = dao.getData();
         int count = 0;
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getId());
+            System.out.println(list.get(i).getReleasedate().getYear());
         }
-        System.out.println(dao.getTotalProducts());
-        System.out.println(count);
     }
 }
