@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
 <html class="no-js" lang="en">
@@ -98,17 +98,17 @@
                                                     <div class="account_login_form">
                                                         <form id="form-1"action="EditProfileServlet" method="get">
                                                             <label>Username</label>
-                                                            <input class="input_type input_read" type="text" name="username" value="${sessionScope.account.userName}" readonly>
+                                                            <input class="input_type " type="text" name="username" value="${sessionScope.account.userName}" readonly>
                                                             <label>Role</label>
-                                                            <input class="input_type input_read" type="text" name="role" value="${sessionScope.account.roleID == 1? "Admin" : "Customer"}" readonly>
+                                                            <input class="input_type " type="text" name="role" value="${sessionScope.account.roleID == 1? "Admin" : "Customer"}" readonly>
                                                             <label>First Name</label>
-                                                            <input class="input_type input_read" type="text" name="first-name" value="${sessionScope.account.firstName}" readonly>
+                                                            <input class="input_type " type="text" name="first-name" value="${sessionScope.account.firstName}" readonly>
                                                             <label>Last Name</label>
-                                                            <input class="input_type input_read" type="text" name="last-name" value="${sessionScope.account.lastName}" readonly>
+                                                            <input class="input_type " type="text" name="last-name" value="${sessionScope.account.lastName}" readonly>
                                                             <label>Email</label>
-                                                            <input class="input_type input_read" type="text" name="email" value="${sessionScope.account.email}" readonly>
+                                                            <input class="input_type " type="text" name="email" value="${sessionScope.account.email}" readonly>
                                                             <label>Address</label>
-                                                            <input class="input_type input_read" type="text" name="address" value="${sessionScope.account.address}" readonly>
+                                                            <input class="input_type " type="text" name="address" value="${sessionScope.account.address}" readonly>
                                                             <label>Phone</label>
                                                             <input class="input_type input_read" type="text" value="${sessionScope.account.phone}" name="phone" readonly>
                                                             <div class="save_button primary_btn default_button">
@@ -144,7 +144,6 @@
                     inputElements.forEach(x => {
                         if (x.name !== "username" && x.name !== "role") {
                             x.readOnly = false;
-                            x.classList.remove("input_read");
                             x.classList.add("default_input");
                         }
                     });
@@ -154,7 +153,6 @@
                     button.id = "edit";
                     inputElements.forEach(x => {
                         x.readOnly = true;
-                        x.classList.add("input_read");
                         x.classList.remove("default_input");
                     });
                 }

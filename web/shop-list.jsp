@@ -163,10 +163,10 @@
                                     <div class="list_button">
                                         <ul class="nav" role="tablist">
                                             <li>
-                                                <a data-toggle="tab" href="#large" role="tab" aria-controls="large" aria-selected="true"><i class="fa fa-th-large"></i></a>
+                                                <a class="active" data-toggle="tab" href="#large" role="tab" aria-controls="large" aria-selected="true"><i class="fa fa-th-large"></i></a>
                                             </li>
                                             <li>
-                                                <a class="active" data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false"><i class="fa fa-th-list"></i></a>
+                                                <a data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false"><i class="fa fa-th-list"></i></a>
                                             </li>
                                         </ul>
                                     </div>
@@ -195,16 +195,18 @@
                                 <!--shop tab product-->
                                 <div class="shop_tab_product">   
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="tab-pane fade " id="large" role="tabpanel">
+                                        <div class="tab-pane fade show active" id="large" role="tabpanel">
                                             <div class="row">
                                                 <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
                                                     <div class="col-lg-4 col-md-6">
                                                         <div class="single_product">
                                                             <div class="product_thumb">
                                                                 <a href="single-product.html"><img src="${p.images[0]}" alt=""></a> 
-                                                                <div class="img_icone">
-                                                                    <img src="assets\img\cart\span-new.png" alt="">
-                                                                </div>
+                                                                <c:if test="${p.releasedate.getYear() == 124}">
+                                                                    <div class="img_icone">
+                                                                        <img src="assets/img/cart/span-new.png" alt="">
+                                                                    </div>
+                                                                </c:if>
                                                                 <div class="product_action">
                                                                     <a href="single-product.html"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
                                                                 </div>
@@ -224,7 +226,7 @@
                                                 </c:forEach>
                                             </div>  
                                         </div>
-                                        <div class="tab-pane fade show active" id="list" role="tabpanel">
+                                        <div class="tab-pane fade" id="list" role="tabpanel">
                                             <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
 
                                                 <div class="product_list_item mb-35">
