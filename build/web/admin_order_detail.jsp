@@ -30,37 +30,7 @@
     </head>
 
     <body onload="time()" class="app sidebar-mini rtl">
-        <!-- Navbar-->
-        <header class="app-header">
-            <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
-            <ul class="app-nav">
-                <li><a class="app-nav__item" href="dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
-                </li>
-            </ul>
-        </header>
-        <!-- Sidebar menu-->
-        <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
-        <aside class="app-sidebar">
-            <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="admin/images/user.png" width="50px"
-                                                alt="User Image">
-                <div>
-                    <p class="app-sidebar__user-name"><b>${sessionScope.user.user_name}</b></p>
-                    <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
-                </div>
-            </div>
-            <hr>
-            <ul class="app-menu">
-                <li><a class="app-menu__item" href="dashboard"><i class='app-menu__icon bx bx-tachometer'></i><span
-                            class="app-menu__label">Bảng điều khiển</span></a></li>
-                <li><a class="app-menu__item" href="customermanager"><i class='app-menu__icon bx bx-user-voice'></i><span
-                            class="app-menu__label">Quản lý khách hàng</span></a></li>
-                <li><a class="app-menu__item" href="productmanager"><i
-                            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Chi tiết đơn hàng</span></a>
-                </li>
-                <li><a class="app-menu__item" href="ordermanager"><i class='app-menu__icon bx bx-task'></i><span
-                            class="app-menu__label">Quản lý đơn hàng</span></a></li>
-            </ul>
-        </aside>
+        <%@include file="/common/admin/sidebar.jsp"%>
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb side">
@@ -91,17 +61,17 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <c:forEach items="${LIST_PRODUCTS_IN_ORDER}" var="d">
-                                    <tr>
-                                        <td><img src="${d.product.images[0]}" alt="" width="100px;"></td>
-                                        <td>${d.product.id}</td>
-                                        <td>${d.product.productName}</td>
-                                        <td>${d.product.size[0]}</td>
-                                        <td>${d.product.colors[0]}</td>
-                                        <td>${d.quantity}</td>
-                                        <td>${d.price}</td>
-                                    </tr>
-                                </c:forEach>
+                                    <c:forEach items="${LIST_PRODUCTS_IN_ORDER}" var="d">
+                                        <tr>
+                                            <td><img src="${d.product.images[0]}" alt="" width="100px;"></td>
+                                            <td>${d.product.id}</td>
+                                            <td>${d.product.productName}</td>
+                                            <td>${d.product.size[0]}</td>
+                                            <td>${d.product.colors[0]}</td>
+                                            <td>${d.quantity}</td>
+                                            <td>${d.price}</td>
+                                        </tr>
+                                    </c:forEach>
                                 </tbody>
                             </table>
                         </div>

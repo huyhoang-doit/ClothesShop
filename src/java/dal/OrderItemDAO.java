@@ -38,7 +38,7 @@ public class OrderItemDAO extends DBContext{
                     int orderItemID = rs.getInt("order_item_id");
                     int quantity = rs.getInt("quantity");
                     double price = rs.getDouble("price");
-                    int productID = rs.getInt("prodct_id");
+                    int productID = rs.getInt("product_id");
                     ProductDTO product = pDao.getProductByID(productID);
                     int orderID = rs.getInt("order_id");
                     OrderItem order = new OrderItem(orderItemID, quantity, price, product, orderID);
