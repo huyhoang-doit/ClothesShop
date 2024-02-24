@@ -3,6 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/controller/admin/ManageOrderServlet.java</file>
             <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/model/OrderDTO.java</file>
             <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/admin_order_detail.jsp</file>
@@ -15,6 +16,17 @@
             <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/model/ProductDTO.java</file>
             <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/model/Email.java</file>
             <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/dal/OrderDAO.java</file>
+=======
+            <file>file:/D:/Project/ClothingStore/src/java/model/Email.java</file>
+            <file>file:/D:/Project/ClothingStore/src/java/dal/TypeDAO.java</file>
+            <file>file:/D:/Project/ClothingStore/src/java/dal/SupplierDAO.java</file>
+            <file>file:/D:/Project/ClothingStore/src/java/controller/web/LoginServlet.java</file>
+            <file>file:/D:/Project/ClothingStore/src/java/dal/PaymentDAO.java</file>
+            <file>file:/D:/Project/ClothingStore/src/java/Context/DBContext.java</file>
+            <file>file:/D:/Project/ClothingStore/src/java/dal/OrderDAO.java</file>
+            <file>file:/D:/Project/ClothingStore/src/java/dal/CategoryDAO.java</file>
+            <file>file:/D:/Project/ClothingStore/src/java/dal/ProductDAO.java</file>
+>>>>>>> fb7332844ca21c4c3f44bd03dc8028a9508aad8e
         </group>
     </open-files>
 </project-private>

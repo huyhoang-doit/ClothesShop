@@ -21,11 +21,14 @@ public class ProductDTO {
     private double discount, price, salePrice;
     private CategoryDTO category;
     private SupplierDTO supplier;
+    private TypeDTO type;
+
 
     public ProductDTO() {
     }
 
-    public ProductDTO(int id, String productName, String description, int stock, int unitSold, String[] images, String[] colors, String[] size, Date releasedate, double discount, double price, CategoryDTO category, SupplierDTO supplier) {
+    public ProductDTO(int id, String productName, String description, int stock, int unitSold, String[] images, 
+            String[] colors, String[] size, Date releasedate, double discount, double price, CategoryDTO category, SupplierDTO supplier, TypeDTO type) {
         this.salePrice = price;
         this.id = id;
         this.productName = productName;
@@ -40,6 +43,7 @@ public class ProductDTO {
         this.price = price;
         this.category = category;
         this.supplier = supplier;
+        this.type = type;
     }
 
     public int getId() {
@@ -145,6 +149,16 @@ public class ProductDTO {
     public void setSupplier(SupplierDTO supplier) {
         this.supplier = supplier;
     }
+
+    public TypeDTO getType() {
+        return type;
+    }
+
+    public void setType(TypeDTO type) {
+        this.type = type;
+    }
+    
+    
 
     public double getSalePrice() {
         double salePrice = Math.round(price * discount * 100) / 100.0;

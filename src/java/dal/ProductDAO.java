@@ -16,6 +16,7 @@ import java.util.List;
 import model.CategoryDTO;
 import model.ProductDTO;
 import model.SupplierDTO;
+import model.TypeDTO;
 
 /**
  *
@@ -42,10 +43,12 @@ public class ProductDAO extends DBContext {
                 while (rs.next()) {
                     CategoryDAO cDao = new CategoryDAO();
                     SupplierDAO sDao = new SupplierDAO();
+                    TypeDAO tDao = new TypeDAO();
                     String productname = rs.getString("productname");
                     int id = rs.getInt("id");
-                    SupplierDTO supplierId = sDao.getSupplierById(rs.getInt("supplierid"));
-                    CategoryDTO categoryid = cDao.getCategoryById(rs.getInt("categoryid"));
+                    SupplierDTO supplier = sDao.getSupplierById(rs.getInt("supplierid"));
+                    CategoryDTO category = cDao.getCategoryById(rs.getInt("categoryid"));
+                    TypeDTO type = tDao.getTypeById(rs.getInt("typeid"));
                     int stock = rs.getInt("stock");
                     String description = rs.getString("description");
                     Date date = rs.getDate("releasedate");
@@ -55,7 +58,7 @@ public class ProductDAO extends DBContext {
                     String colors[] = rs.getString("colors").split(",");
                     String images[] = rs.getString("images").split(" ");
                     String sizes[] = rs.getString("size").split(",");
-                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, categoryid, supplierId);
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
                     products.add(product);
                 }
             }
@@ -89,9 +92,11 @@ public class ProductDAO extends DBContext {
                 if(rs.next()) {
                     CategoryDAO cDao = new CategoryDAO();
                     SupplierDAO sDao = new SupplierDAO();
+                    TypeDAO tDao = new TypeDAO();
                     String productname = rs.getString("productname");
-                    SupplierDTO supplierId = sDao.getSupplierById(rs.getInt("supplierid"));
-                    CategoryDTO categoryid = cDao.getCategoryById(rs.getInt("categoryid"));
+                    SupplierDTO supplier = sDao.getSupplierById(rs.getInt("supplierid"));
+                    CategoryDTO category = cDao.getCategoryById(rs.getInt("categoryid"));
+                    TypeDTO type = tDao.getTypeById(rs.getInt("typeid"));
                     int stock = rs.getInt("stock");
                     String description = rs.getString("description");
                     Date date = rs.getDate("releasedate");
@@ -101,7 +106,7 @@ public class ProductDAO extends DBContext {
                     String colors[] = rs.getString("colors").split(",");
                     String images[] = rs.getString("images").split(" ");
                     String sizes[] = rs.getString("size").split(",");
-                    product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, categoryid, supplierId);
+                    product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
                 }
             }
         } catch (Exception e) {
