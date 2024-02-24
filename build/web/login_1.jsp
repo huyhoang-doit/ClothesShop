@@ -66,8 +66,9 @@
                                                 Remember me
                                             </label>
                                             <a href="#" style="margin-left: 20px">Lost your password?</a>
-                                            <a href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:8080/PRJ301_Sp24_ClothesShop/LoginServlet&response_type=code
-                                               &client_id=40613383185-c4qs0q74c4g95fg8l8lr34q9765bpaet.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
+                                            <a href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:8080/PRJ301_Sp24_ClothesShop/login.jsp&response_type=code
+                                               &client_id=52994450990-huqfkmuhkervonke4l2tmsp8u1rhkv9b.apps.googleusercontent.com
+                                               &approval_prompt=force">Login With Google</a>
                                         </div>
                                     </form>
                                 </div>    

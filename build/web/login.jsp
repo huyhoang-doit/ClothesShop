@@ -65,9 +65,10 @@
                                                 <input ${reMem==null?"":"checked"} id="remember" name="remember" type="checkbox">
                                                 Remember me
                                             </label>
-                                            <a href="#">Lost your password?</a>
+                                            <a href="#" style="margin-left: 20px">Lost your password?</a>
+                                            <a href="https://accounts.google.com/o/oauth2/auth?scope=profile&redirect_uri=http://localhost:8080/PRJ301_Sp24_ClothesShop/LoginServlet&response_type=code
+                                               &client_id=40613383185-c4qs0q74c4g95fg8l8lr34q9765bpaet.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
                                         </div>
-
                                     </form>
                                 </div>    
                             </div>
@@ -113,7 +114,7 @@
 
 
         <!-- all js here -->
-         <%@include file="/common/web/add_js.jsp"%>
+        <%@include file="/common/web/add_js.jsp"%>
     </body>
 </html>
 

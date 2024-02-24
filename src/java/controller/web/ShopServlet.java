@@ -8,7 +8,6 @@ package controller.web;
 import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

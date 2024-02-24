@@ -5,56 +5,71 @@
  */
 package controller.web;
 
+import model.UserGoogleDto;
+import model.Constants;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.UserDTO;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.fluent.Request;
+import org.apache.http.client.fluent.Form;
 
 /**
  *
  * @author HuuThanh
  */
+@WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
     private final String WELCOME = "home.jsp";
     private final String LOGIN = "login.jsp";
     private final String ADMIN_DASHBOARD = "AdminServlet";
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet LoginServlet</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet LoginServlet at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+        String code = request.getParameter("code");
+        String accessToken = getToken(code);
+        UserGoogleDto user = getUserInfo(accessToken);
+        System.out.println(user);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+    public static String getToken(String code) throws ClientProtocolException, IOException {
+        // call api to get token
+        String response = Request.Post(Constants.GOOGLE_LINK_GET_TOKEN)
+                .bodyForm(Form.form().add("client_id", Constants.GOOGLE_CLIENT_ID)
+                        .add("client_secret", Constants.GOOGLE_CLIENT_SECRET)
+                        .add("redirect_uri", Constants.GOOGLE_REDIRECT_URI).add("code", code)
+                        .add("grant_type", Constants.GOOGLE_GRANT_TYPE).build())
+                .execute().returnContent().asString();
+
+        JsonObject jobj = new Gson().fromJson(response, JsonObject.class);
+        String accessToken = jobj.get("access_token").toString().replaceAll("\"", "");
+        return accessToken;
+    }
+
+    public static UserGoogleDto getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
+        String link = Constants.GOOGLE_LINK_GET_USER_INFO + accessToken;
+        String response = Request.Get(link).execute().returnContent().asString();
+
+        UserGoogleDto googlePojo = new Gson().fromJson(response, UserGoogleDto.class);
+
+        return googlePojo;
+    }
+
+    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the +
+    // sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -66,21 +81,26 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Cookie arr[] = request.getCookies();
-        if (arr != null) {
-            for (int i = 0; i < arr.length; i++) {
-                if (arr[i].getName().equals("cUName")) {
-                    request.setAttribute("uName", arr[i].getValue());
-                }
-                if (arr[i].getName().equals("cUPass")) {
-                    request.setAttribute("uPass", arr[i].getValue());
-                }
-                if (arr[i].getName().equals("reMem")) {
-                    request.setAttribute("reMem", arr[i].getValue());
+        if (request.getParameter("action") != null) {
+            Cookie arr[] = request.getCookies();
+            if (arr != null) {
+                for (int i = 0; i < arr.length; i++) {
+                    if (arr[i].getName().equals("cUName")) {
+                        request.setAttribute("uName", arr[i].getValue());
+                    }
+                    if (arr[i].getName().equals("cUPass")) {
+                        request.setAttribute("uPass", arr[i].getValue());
+                    }
+                    if (arr[i].getName().equals("reMem")) {
+                        request.setAttribute("reMem", arr[i].getValue());
+                    }
                 }
             }
+            request.getRequestDispatcher(LOGIN).forward(request, response);
+        } else {
+            processRequest(request, response);
+            request.getRequestDispatcher(WELCOME).forward(request, response);
         }
-        request.getRequestDispatcher(LOGIN).forward(request, response);
     }
 
     /**
