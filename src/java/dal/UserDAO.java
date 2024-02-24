@@ -255,10 +255,10 @@ public class UserDAO extends DBContext {
     public static void main(String[] args) throws SQLException {
         UserDAO dao = new UserDAO();
         UserDTO user = dao.checkLogin("user1", "12345");
-        List<UserDTO> list = dao.getData();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getAvatar());
-        }
+//        List<UserDTO> list = dao.getData();
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i).getAvatar());
+//        }
         int slUser = dao.getTotalUsers();
         System.out.println(slUser);
     }

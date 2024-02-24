@@ -37,21 +37,21 @@ public class DispatchServlet extends HttpServlet {
         String url = WELCOME;
         try {
             String btnValue = request.getParameter("btnAction");
+            HttpSession session = request.getSession();
             if (btnValue == null) {
                 ProductDAO pDao = new ProductDAO();
                 CategoryDAO cDao = new CategoryDAO();
                 SupplierDAO sDao = new SupplierDAO();
-                
+
                 List<ProductDTO> listProducts = pDao.getData();
                 List<CategoryDTO> listCategories = cDao.getData();
                 List<SupplierDTO> listSuppliers = sDao.getData();
-                
+
                 request.setAttribute("LISTPRODUCTS", listProducts);
                 request.setAttribute("LISTCATEGORIES", listCategories);
                 request.setAttribute("LISTSUPPLIERS", listSuppliers);
             } else if (btnValue.equals(LOGOUT)) {
                 url = WELCOME;
-                HttpSession session = request.getSession();
                 if (session.getAttribute("account") != null) {
                     session.removeAttribute("account");
                 }

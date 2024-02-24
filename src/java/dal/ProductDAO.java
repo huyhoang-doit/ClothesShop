@@ -25,7 +25,7 @@ import model.TypeDTO;
 public class ProductDAO extends DBContext {
 
     private static final String GET_DATA = "SELECT * FROM Products";
-    private static final String GET_TOTAL_PRODUCTS = "SELECT SUM(stock) AS Total from Products";
+    private static final String GET_TOTAL_PRODUCTS = "SELECT COUNT(*) AS Total FROM Products";
     private static final String GET_QUANTITY_SOLD = "SELECT SUM(unitSold) AS Total from Products";
     private static final String GET_PRODUCTS_LOW_QUANTITY = "SELECT COUNT(*) AS Total from Products WHERE Stock < 10";
     private static final String GET_PRODUCTS_BYID = "SELECT * FROM Products WHERE id = ?";
@@ -216,13 +216,11 @@ public class ProductDAO extends DBContext {
 
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
-        List<ProductDTO> list = dao.getData();
-//        int count = 0;
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.get(i).getReleasedate().getYear());
-//        }
+        int count = dao.getTotalProducts();
+        System.out.println(count);
         
-        ProductDTO product = dao.getProductByID(1);
-        System.out.println(product.getProductName());
+//        ProductDTO product = dao.getProductByID(1);
+//        System.out.println(product.getProductName());
+        
     }
 }
