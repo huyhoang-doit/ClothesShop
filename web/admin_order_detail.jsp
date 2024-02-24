@@ -1,6 +1,6 @@
 <%-- 
-    Document   : admin_order
-    Created on : Feb 21, 2024, 11:42:03 PM
+    Document   : admin_order_detail
+    Created on : Feb 24, 2024, 1:30:11 PM
     Author     : lvhho
 --%>
 
@@ -10,7 +10,7 @@
 <html lang="en">
 
     <head>
-        <title>Danh sách sản phẩm | Quản trị Admin</title>
+        <title>Chi tiết đơn hàng | Quản trị Admin</title>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -31,11 +31,40 @@
 
     <body onload="time()" class="app sidebar-mini rtl">
         <!-- Navbar-->
-        <%@include file="/common/admin/sidebar.jsp"%>
+        <header class="app-header">
+            <a class="app-sidebar__toggle" href="#" data-toggle="sidebar" aria-label="Hide Sidebar"></a>
+            <ul class="app-nav">
+                <li><a class="app-nav__item" href="dashboard"><i class='bx bx-log-out bx-rotate-180'></i> </a>
+                </li>
+            </ul>
+        </header>
+        <!-- Sidebar menu-->
+        <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+        <aside class="app-sidebar">
+            <div class="app-sidebar__user"><img class="app-sidebar__user-avatar" src="admin/images/user.png" width="50px"
+                                                alt="User Image">
+                <div>
+                    <p class="app-sidebar__user-name"><b>${sessionScope.user.user_name}</b></p>
+                    <p class="app-sidebar__user-designation">Chào mừng bạn trở lại</p>
+                </div>
+            </div>
+            <hr>
+            <ul class="app-menu">
+                <li><a class="app-menu__item" href="dashboard"><i class='app-menu__icon bx bx-tachometer'></i><span
+                            class="app-menu__label">Bảng điều khiển</span></a></li>
+                <li><a class="app-menu__item" href="customermanager"><i class='app-menu__icon bx bx-user-voice'></i><span
+                            class="app-menu__label">Quản lý khách hàng</span></a></li>
+                <li><a class="app-menu__item" href="productmanager"><i
+                            class='app-menu__icon bx bx-purchase-tag-alt'></i><span class="app-menu__label">Chi tiết đơn hàng</span></a>
+                </li>
+                <li><a class="app-menu__item" href="ordermanager"><i class='app-menu__icon bx bx-task'></i><span
+                            class="app-menu__label">Quản lý đơn hàng</span></a></li>
+            </ul>
+        </aside>
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb side">
-                    <li class="breadcrumb-item active"><a href="#"><b>Danh sách đơn hàng</b></a></li>
+                    <li class="breadcrumb-item active"><a href="#"><b>Chi tiết đơn hàng</b></a></li>
                 </ul>
                 <div id="clock"></div>
             </div>
@@ -43,8 +72,8 @@
                 <div class="col-md-12">
                     <div class="tile">
                         <div class="tile-body">
-                            <div class="row element-button"
-                                 <div class="col-sm-2">
+                            <div class="row element-button">
+                                <div class="col-sm-2">
                                     <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                                             class="fas fa-print"></i> In dữ liệu</a>
                                 </div>
@@ -52,29 +81,27 @@
                             <table class="table table-hover table-bordered" id="sampleTable">
                                 <thead>
                                     <tr>
-                                        <th>ID đơn hàng</th>
-                                        <th>Khách hàng</th>
-                                        <th>Số điện thoại</th>
-                                        <th>Địa chỉ</th>
-                                        <th>Ngày mua</th>
-                                        <th>Tổng tiền</th>
-                                        <th>Thanh Toán</th>
-                                        <th>Tính năng</th>
+                                        <th>Ảnh</th>
+                                        <th>Mã sản phẩm</th>
+                                        <th>Tên sản phẩm</th>
+                                        <th>Size</th>
+                                        <th>Màu</th>
+                                        <th>Số lượng</th>
+                                        <th>Đơn giá</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <c:forEach items="${LIST_ORDERS}" var="b">
-                                        <tr>
-                                            <td>${b.orderID}</td>
-                                            <td>${b.getUser().getUserName()}</td>
-                                            <td>(+84) ${b.getUser().getPhone()}</td>
-                                            <td>${b.getUser().getAddress()}</td>
-                                            <td>${b.orderDate}</td>
-                                            <td>${b.totalPrice}</td>
-                                            <td><span class="badge bg-success">${b.paymentMethod.paymentMethod}</span></td>                              
-                                            <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="ManageOrderServlet?action=showdetail&bill_id=${b.getOrderID()}"><i class="fa"></i>Chi tiết đơn hàng</a></td>
-                                        </tr>
-                                    </c:forEach>
+                                <c:forEach items="${LIST_PRODUCTS_IN_ORDER}" var="d">
+                                    <tr>
+                                        <td><img src="${d.product.images[0]}" alt="" width="100px;"></td>
+                                        <td>${d.product.id}</td>
+                                        <td>${d.product.productName}</td>
+                                        <td>${d.product.size[0]}</td>
+                                        <td>${d.product.colors[0]}</td>
+                                        <td>${d.quantity}</td>
+                                        <td>${d.price}</td>
+                                    </tr>
+                                </c:forEach>
                                 </tbody>
                             </table>
                         </div>
@@ -82,6 +109,9 @@
                 </div>
             </div>
         </main>
+
+
+
         <!-- Essential javascripts for application to work-->
         <script src="admin/js/jquery-3.2.1.min.js"></script>
         <script src="admin/js/popper.min.js"></script>

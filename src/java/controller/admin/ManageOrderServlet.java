@@ -6,6 +6,7 @@
 package controller.admin;
 
 import dal.OrderDAO;
+import dal.OrderItemDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.OrderDTO;
+import model.OrderItem;
 
 /**
  *
@@ -26,30 +28,33 @@ import model.OrderDTO;
 @WebServlet(name = "ManageOrderServlet", urlPatterns = {"/ManageOrderServlet"})
 public class ManageOrderServlet extends HttpServlet {
 
-    private final String MANAGEPRODUCTPAGE = "admin_order.jsp";
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private final static String ORDER_PAGE ="admin_order.jsp";
+    private final static String ORDER_DETAIL_PAGE ="admin_order_detail.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url= ORDER_PAGE;
         try {
             OrderDAO oDao = new OrderDAO();
+            OrderItemDAO oIDao= new OrderItemDAO();
             List<OrderDTO> listOrders = oDao.getAllOrders();
+            String action = request.getParameter("action");
             
+            
+            if ("showdetail".equals(action)) {
+                url= ORDER_DETAIL_PAGE;
+                String bill_id = request.getParameter("bill_id");
+                OrderDTO order = oDao.getOrdersByID(bill_id);
+                int id = order.getOrderID();
+                List<OrderItem> list = oIDao.getOrderItemByOrderId(id);
+                request.setAttribute("LIST_PRODUCTS_IN_ORDER", list);
+                
+            }
             request.setAttribute("LIST_ORDERS", listOrders);
-                request.setAttribute("action", "MNGORDER");
         } catch (SQLException ex) {
             Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-            request.getRequestDispatcher(MANAGEPRODUCTPAGE).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

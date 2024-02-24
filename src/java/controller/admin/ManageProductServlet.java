@@ -5,6 +5,7 @@
  */
 package controller.admin;
 
+import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.CategoryDTO;
 import model.ProductDTO;
 
 /**
@@ -36,14 +38,35 @@ public class ManageProductServlet extends HttpServlet {
         try {
             String action = request.getParameter("action");
             ProductDAO pDao = new ProductDAO();
-                List<ProductDTO> list = pDao.getData();
+            CategoryDAO cDao = new CategoryDAO();
+            List<ProductDTO> listProducts = pDao.getData();
+            List<CategoryDTO> listCategories = cDao.getData();
             if (action == null) {
-                request.setAttribute("LIST_PRODUCTS", list);
-                request.setAttribute("action", "MNGPRODUCT");
-            }else if(action.equals("insert")){
+                request.setAttribute("LIST_PRODUCTS", listProducts);
+            } else if (action.equals("insert")) {
                 url = INSERT_PRODUCT_PAGE;
-                request.setAttribute("LIST_PRODUCTS", list);
-                request.setAttribute("action", "MNGPRODUCT");
+                request.setAttribute("LIST_CATEGORIES", listCategories);
+            } else if (action.equals("insertcategory")) {
+                String msgInsertCate = null;
+                String checkInsertCate = null;
+                url = INSERT_PRODUCT_PAGE;
+                String newCate = request.getParameter("newcate");
+                if (cDao.insertCategory(newCate)) {
+                    checkInsertCate = "success";
+                    msgInsertCate = "Thêm danh mục mới thành công";
+                    request.setAttribute("LIST_CATEGORIES", listCategories);
+                    request.setAttribute("MSG_INSERT_CATE", msgInsertCate);
+                    request.setAttribute("STATUS_INSERT_CATE", msgInsertCate);
+
+                } else {
+                    checkInsertCate = "fail";
+                    msgInsertCate = "Đã có lỗi xảy ra, thử lại sau";
+                    request.setAttribute("LIST_CATEGORIES", listCategories);
+                    request.setAttribute("MSG_INSERT_CATE", msgInsertCate);
+                    request.setAttribute("STATUS_INSERT_CATE", msgInsertCate);
+
+                }
+
             }
         } catch (Exception e) {
             e.printStackTrace();
