@@ -94,10 +94,9 @@ public class UserGoogleDto {
 		this.picture = picture;
 	}
 
-	@Override
-	public String toString() {
-		return "UserGoogleDto{" + "id=" + id + ", email=" + email + ", verified_email=" + verified_email + ", name=" + name + ", given_name=" + given_name + ", family_name=" + family_name + ", picture=" + picture + '}';
-	}
+    @Override
+    public String toString() {
+        return "UserGoogleDto{" + "id=" + id + ", email=" + email + ", verified_email=" + verified_email + ", name=" + name + ", given_name=" + given_name + ", family_name=" + family_name + ", picture=" + picture + '}';
+    }
 	
-
 }

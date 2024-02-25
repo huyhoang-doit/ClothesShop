@@ -28,7 +28,9 @@ public class DispatchServlet extends HttpServlet {
     private final String LOGINPAGE = "login.jsp";
     private final String LOGIN = "Login";
     private final String LOGOUT = "Logout";
+    private final String REGISTER = "Register";
     private final String WELCOME = "home.jsp";
+    private final String REGISTER_CONTROLLER = "RegisterServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,6 +61,8 @@ public class DispatchServlet extends HttpServlet {
                 if (session.getAttribute("account") != null) {
                     session.removeAttribute("account");
                 }
+            } else if (btnValue.equals(REGISTER)) {
+                url = REGISTER_CONTROLLER;
             }
         } catch (Exception ex) {
 

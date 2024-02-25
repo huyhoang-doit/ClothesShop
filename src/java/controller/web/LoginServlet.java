@@ -13,6 +13,9 @@ import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,16 +36,13 @@ import org.apache.http.client.fluent.Form;
 @WebServlet(name = "LoginServlet", urlPatterns = {"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 
-    private final String WELCOME = "home.jsp";
+    private final String WELCOME = "DispatchServlet";
     private final String LOGIN = "login.jsp";
     private final String ADMIN_DASHBOARD = "AdminServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String code = request.getParameter("code");
-        String accessToken = getToken(code);
-        UserGoogleDto user = getUserInfo(accessToken);
-        System.out.println(user);
+
     }
 
     public static String getToken(String code) throws ClientProtocolException, IOException {
@@ -81,25 +81,45 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        if (request.getParameter("action") != null) {
-            Cookie arr[] = request.getCookies();
-            if (arr != null) {
-                for (int i = 0; i < arr.length; i++) {
-                    if (arr[i].getName().equals("cUName")) {
-                        request.setAttribute("uName", arr[i].getValue());
+        String url = WELCOME;
+        try {
+            if (request.getParameter("action") != null) {
+                Cookie arr[] = request.getCookies();
+                if (arr != null) {
+                    for (int i = 0; i < arr.length; i++) {
+                        if (arr[i].getName().equals("cUName")) {
+                            request.setAttribute("uName", arr[i].getValue());
+                        }
+                        if (arr[i].getName().equals("cUPass")) {
+                            request.setAttribute("uPass", arr[i].getValue());
+                        }
+                        if (arr[i].getName().equals("reMem")) {
+                            request.setAttribute("reMem", arr[i].getValue());
+                        }
                     }
-                    if (arr[i].getName().equals("cUPass")) {
-                        request.setAttribute("uPass", arr[i].getValue());
-                    }
-                    if (arr[i].getName().equals("reMem")) {
-                        request.setAttribute("reMem", arr[i].getValue());
+                }
+                url = LOGIN;
+            } else {
+                String code = request.getParameter("code");
+                String accessToken = getToken(code);
+                UserGoogleDto userGG = getUserInfo(accessToken);
+                if (userGG != null) {
+                    UserDAO dao = new UserDAO();
+                    UserDTO account = dao.getUserByEmail(userGG.getEmail());
+                    if (account != null) {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("account", account);
+                    } else {
+                        String error = "You need register your account!";
+                        request.setAttribute("msg", error);
+                        url = LOGIN;
                     }
                 }
             }
-            request.getRequestDispatcher(LOGIN).forward(request, response);
-        } else {
-            processRequest(request, response);
-            request.getRequestDispatcher(WELCOME).forward(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
@@ -145,11 +165,10 @@ public class LoginServlet extends HttpServlet {
                 response.addCookie(u);
                 response.addCookie(p);
                 response.addCookie(r);
-                if (dao.checkAdmin(user)) {
+                if (user.getRoleID() == 1) {
                     response.sendRedirect(ADMIN_DASHBOARD);
                 } else {
                     response.sendRedirect(WELCOME);
-
                 }
             } else {
                 String error = "Invalid username or password!";
