@@ -1,3 +1,6 @@
+<%@page import="model.ProductDTO"%>
+<%@page import="java.util.List"%>
+<%@page import="dal.ProductDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
@@ -174,17 +177,17 @@
                                     <form action="EmailServlet" method="POST">
                                         <p>Sign up for your newsletter</p>
                                         <input placeholder="Your email address" type="text" name="email" value="<c:if test="${requestScope.EMAIL_CUSTOMER != null}">${requestScope.EMAIL_CUSTOMER}</c:if>">
-                                        <button type="submit" name="action" value="subscribe">Subscribe</button>
+                                            <button type="submit" name="action" value="subscribe">Subscribe</button>
                                         <c:if test="${requestScope.CHECK == 'success'}">
-                                                <div class="col-12">
-                                                    <span class="form-messege" style='color: green;'>${requestScope.MESSAGE}</span>
-                                                </div>
-                                            </c:if>
-                                            <c:if test="${requestScope.CHECK == 'fail'}">
-                                                <div class="col-12">
-                                                    <span class="form-messege" style='color: red;'>${requestScope.MESSAGE}</span>
-                                                </div>
-                                            </c:if>
+                                            <div class="col-12">
+                                                <span class="form-messege" style='color: green;'>${requestScope.MESSAGE}</span>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${requestScope.CHECK == 'fail'}">
+                                            <div class="col-12">
+                                                <span class="form-messege" style='color: red;'>${requestScope.MESSAGE}</span>
+                                            </div>
+                                        </c:if>
                                     </form>   
                                 </div>
                                 <!--newsletter block end--> 
@@ -363,6 +366,17 @@
                                 </div> 
                                 <!--new product area start-->  
 
+
+
+                                <!--Lay du lieu product tu database -->
+
+                                <%
+                                    ProductDAO pr = new ProductDAO();
+                                    List<ProductDTO> list = pr.getData();
+                                %>
+
+                                <!-- ket thuc code  -->
+
                                 <!--featured product start--> 
                                 <div class="featured_product">
                                     <div class="block_title">
@@ -370,6 +384,40 @@
                                     </div>
                                     <div class="row">
                                         <div class="product_active owl-carousel">
+
+
+                                            <!-- duyet foreach lay du lieu tung san pham  -->
+                                            <% for (ProductDTO p : list) {%>
+                                            <div class="col-lg-3">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="single-product.jsp?productId=<%= p.getId() %>"><img src= <%= p.getImages()[0]%> alt=""></a> 
+                                                        <div class="hot_img">
+                                                            <img src="assets\img\cart\span-hot.png" alt="">
+                                                        </div>
+                                                        <div class="product_action">
+                                                            <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <span class="product_price"> <%= p.getPrice() %>&#8363</span>
+                                                        <h3 class="product_title"><a href="single-product.html"><%= p.getProductName() %></a></h3>
+                                                    </div>
+                                                    <div class="product_info">
+                                                        <ul>
+                                                            <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+                                                            <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <% }%>
+                                            <!-- ket thuc for  -->
+
+
+
+
+                                            <!--
                                             <div class="col-lg-3">
                                                 <div class="single_product">
                                                     <div class="product_thumb">
@@ -393,6 +441,7 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                           
                                             <div class="col-lg-3">
                                                 <div class="single_product">
                                                     <div class="product_thumb">
@@ -485,6 +534,11 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            
+                                            
+                                            
+                                            -->
+
                                         </div> 
                                     </div> 
                                 </div>     

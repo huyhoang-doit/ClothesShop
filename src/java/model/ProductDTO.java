@@ -23,11 +23,10 @@ public class ProductDTO {
     private SupplierDTO supplier;
     private TypeDTO type;
 
-
     public ProductDTO() {
     }
 
-    public ProductDTO(int id, String productName, String description, int stock, int unitSold, String[] images, 
+    public ProductDTO(int id, String productName, String description, int stock, int unitSold, String[] images,
             String[] colors, String[] size, Date releasedate, double discount, double price, CategoryDTO category, SupplierDTO supplier, TypeDTO type) {
         this.salePrice = price;
         this.id = id;
@@ -157,8 +156,6 @@ public class ProductDTO {
     public void setType(TypeDTO type) {
         this.type = type;
     }
-    
-    
 
     public double getSalePrice() {
         double salePrice = Math.round(price * discount * 100) / 100.0;
@@ -167,6 +164,11 @@ public class ProductDTO {
         } else {
             return price;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "ProductDTO{" + "id=" + id + ", productName=" + productName + ", description=" + description + ", stock=" + stock + ", unitSold=" + unitSold + ", images=" + images + ", colors=" + colors + ", size=" + size + ", releasedate=" + releasedate + ", discount=" + discount + ", price=" + price + ", salePrice=" + salePrice + ", category=" + category + ", supplier=" + supplier + ", type=" + type.getName() + type.getTypeId() + '}';
     }
 
 }

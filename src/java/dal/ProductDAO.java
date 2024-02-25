@@ -29,6 +29,7 @@ public class ProductDAO extends DBContext {
     private static final String GET_TOTAL_PRODUCTS = "SELECT SUM(stock) AS Total from Products";
     private static final String GET_QUANTITY_SOLD = "SELECT SUM(unitSold) AS Total from Products";
     private static final String GET_PRODUCTS_LOW_QUANTITY = "SELECT COUNT(*) AS Total from Products WHERE Stock < 10";
+    private static final String GET_PRODUCTS_FOR_ID="SELECT * FROM Products WHERE id=?";
 
     public List<ProductDTO> getData() throws SQLException {
         List<ProductDTO> products = new ArrayList<>();
@@ -166,6 +167,55 @@ public class ProductDAO extends DBContext {
             }
         }
         return result;
+    }  
+    
+    public List<ProductDTO> getProductsforId(String ID) throws SQLException {
+        List<ProductDTO> products = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_PRODUCTS_FOR_ID);
+                ptm.setString(1,ID);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    CategoryDAO cDao = new CategoryDAO();
+                    SupplierDAO sDao = new SupplierDAO();
+                    TypeDAO tDao = new TypeDAO();
+                    String productname = rs.getString("productname");
+                    int id = rs.getInt("id");
+                    SupplierDTO supplier = sDao.getSupplierById(rs.getInt("supplierid"));
+                    CategoryDTO category = cDao.getCategoryById(rs.getInt("categoryid"));
+                    TypeDTO type = tDao.getTypeById(rs.getInt("typeid"));
+                    int stock = rs.getInt("stock");
+                    String description = rs.getString("description");
+                    Date date = rs.getDate("releasedate");
+                    double discount = rs.getDouble("discount");
+                    int unitSold = rs.getInt("unitSold");
+                    double price = rs.getDouble("price");
+                    String colors[] = rs.getString("colors").split(",");
+                    String images[] = rs.getString("images").split(" ");
+                    String sizes[] = rs.getString("size").split(",");
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
+                    products.add(product);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return products;
     }
     
     public List<ProductDTO> getListByPage(List<ProductDTO> list, int start, int end) {
@@ -180,8 +230,13 @@ public class ProductDAO extends DBContext {
         ProductDAO dao = new ProductDAO();
         List<ProductDTO> list = dao.getData();
         int count = 0;
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getReleasedate().getYear());
+        if(list==null){
+            System.out.println("null");
+        }else{
+            System.out.println("not null"+list.size());
         }
+       for(ProductDTO p: list) {
+           System.out.println(p.toString());
+       }
     }
 }
