@@ -5,10 +5,6 @@
         <servlet-class>controller.web.DispatchServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>controller.web.LoginServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>AdminServlet</servlet-name>
         <servlet-class>controller.admin.AdminServlet</servlet-class>
     </servlet>
@@ -31,10 +27,6 @@
     <servlet-mapping>
         <servlet-name>AdminServlet</servlet-name>
         <url-pattern>/AdminServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ShopServlet</servlet-name>

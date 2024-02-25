@@ -28,7 +28,9 @@ public class DispatchServlet extends HttpServlet {
     private final String LOGINPAGE = "login.jsp";
     private final String LOGIN = "Login";
     private final String LOGOUT = "Logout";
+    private final String REGISTER = "Register";
     private final String WELCOME = "home.jsp";
+    private final String REGISTER_CONTROLLER = "RegisterServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -46,15 +48,21 @@ public class DispatchServlet extends HttpServlet {
                 List<ProductDTO> listProducts = pDao.getData();
                 List<CategoryDTO> listCategories = cDao.getData();
                 List<SupplierDTO> listSuppliers = sDao.getData();
-
+                List<ProductDTO> listProductsNew = pDao.getProductNew();
+                List<ProductDTO> listProductsBestSeller = pDao.getProductsBestSeller();
+                
                 request.setAttribute("LISTPRODUCTS", listProducts);
                 request.setAttribute("LISTCATEGORIES", listCategories);
                 request.setAttribute("LISTSUPPLIERS", listSuppliers);
+                request.setAttribute("LIST_PRODUCTS_NEW", listProductsNew);
+                request.setAttribute("LIST_PRODUCTS_SELLER", listProductsBestSeller);
             } else if (btnValue.equals(LOGOUT)) {
                 url = WELCOME;
                 if (session.getAttribute("account") != null) {
                     session.removeAttribute("account");
                 }
+            } else if (btnValue.equals(REGISTER)) {
+                url = REGISTER_CONTROLLER;
             }
         } catch (Exception ex) {
 

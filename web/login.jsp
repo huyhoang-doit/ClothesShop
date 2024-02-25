@@ -65,9 +65,12 @@
                                                 <input ${reMem==null?"":"checked"} id="remember" name="remember" type="checkbox">
                                                 Remember me
                                             </label>
-                                            <a href="#">Lost your password?</a>
                                         </div>
-
+                                        <div style="margin-top: 20px">
+                                            <a class="login-with-google-btn" href="https://accounts.google.com/o/oauth2/auth?scope=email%20profile&redirect_uri=http://localhost:8080/PRJ301_Sp24_ClothesShop/LoginServlet&response_type=code
+                                               &client_id=40613383185-c4qs0q74c4g95fg8l8lr34q9765bpaet.apps.googleusercontent.com&approval_prompt=force">Login With Google</a>
+                                            <a href="#" style="margin-left: 20px">Lost your password?</a>
+                                        </div>
                                     </form>
                                 </div>    
                             </div>
@@ -77,17 +80,37 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="account_form register">
                                     <h2>Register</h2>
-                                    <form action="#">
+                                    <form action="RegisterServlet" method="post">
+                                        <h5 style="color: red">${requestScope.ERROR}</h5>
+                                        <h5 style="color: green">${requestScope.SUCCESS}</h5>
+                                        <div style="display: flex; justify-content: space-between">
+                                            <p style="width: 45%">   
+                                                <label>First Name</label>
+                                                <input name="firstname" type="text" required>
+                                            </p>
+                                            <p style="width: 45%">
+                                                <label>Last Name</label>
+                                                <input  name="lastname" type="text" required>
+                                            </p>
+                                        </div>
                                         <p>   
-                                            <label>Email address  <span>*</span></label>
-                                            <input type="text">
+                                            <label>Username</label>
+                                            <input name="username" type="text" required>
                                         </p>
                                         <p>   
-                                            <label>Passwords <span>*</span></label>
-                                            <input type="password">
+                                            <label>Passwords</label>
+                                            <input name="password" type="password" required>
+                                        </p>
+                                        <p>   
+                                            <label>Confirm Passwords</label>
+                                            <input name="cf-password" type="password" required>
+                                        </p>
+                                        <p>   
+                                            <label>Email</label>
+                                            <input name="email" type="email" required>
                                         </p>
                                         <div class="login_submit">
-                                            <button type="submit">Register</button>
+                                            <button name="btnAction" value="Register" type="submit">Register</button>
                                         </div>
                                     </form>
                                 </div>    
@@ -113,7 +136,7 @@
 
 
         <!-- all js here -->
-         <%@include file="/common/web/add_js.jsp"%>
+        <%@include file="/common/web/add_js.jsp"%>
     </body>
 </html>
 
