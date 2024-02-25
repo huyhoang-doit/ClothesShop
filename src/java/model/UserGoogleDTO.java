@@ -9,7 +9,7 @@ package model;
 /**
  * @author heaty566
  */
-public class UserGoogleDto {
+public class UserGoogleDTO {
 
 	private String id;
 
@@ -25,10 +25,10 @@ public class UserGoogleDto {
 
 	private String picture;
 
-	public UserGoogleDto() {
+	public UserGoogleDTO() {
 	}
 
-	public UserGoogleDto(String id, String email, boolean verified_email, String name, String given_name, String family_name, String picture) {
+	public UserGoogleDTO(String id, String email, boolean verified_email, String name, String given_name, String family_name, String picture) {
 		this.id = id;
 		this.email = email;
 		this.verified_email = verified_email;

@@ -63,7 +63,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        request.getRequestDispatcher("login.jsp").forward(request, response);
     }
 
     /**
@@ -83,7 +83,6 @@ public class RegisterServlet extends HttpServlet {
             String lName = request.getParameter("lastname");
             String uName = request.getParameter("username");
             String uPass = request.getParameter("password");
-            String cfPass = request.getParameter("cf-password");
             String email = request.getParameter("email");
             String message;
             UserDAO ud = new UserDAO();
@@ -96,7 +95,7 @@ public class RegisterServlet extends HttpServlet {
                 UserDTO user = new UserDTO(0, fName, lName, email, "assets/img/users/user.jpg", uName, uPass, "", "", 2, true);
                 ud.registerUser(user);
                 message = "Register successfully. Please Login!";
-                
+
                 request.setAttribute("SUCCESS", message);
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }

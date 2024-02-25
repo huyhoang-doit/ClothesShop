@@ -35,7 +35,6 @@
                                         <li><i class="fa fa-angle-right"></i></li>
                                         <li>login</li>
                                     </ul>
-
                                 </div>
                             </div>
                         </div>
@@ -49,17 +48,20 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="account_form">
                                     <h2>login</h2>
-                                    <form action="LoginServlet" method="post">
+                                    <form id="login-form" action="LoginServlet" method="post">
                                         <p> 
                                             <label>Username or email</label><br/>
                                             <input type="text" name="txtUsername" value="${requestScope.uName}"/>
                                         <h7 style="color: red">${requestScope.msg}</h7>
                                         </p>
-                                        <p>   
+                                        <p style="position: relative">   
                                             <label>Passwords <span>*</span></label>
-                                            <input type="password" name="txtPassword" value="${requestScope.uPass}">
-                                        </p>   
-                                        <div class="login_submit">
+                                            <input id="password" type="password" name="txtPassword" value="${requestScope.uPass}"/>
+                                            <i id="iconsee" style="cursor: pointer; position: absolute; top: 40px; right: 10px" onclick="changeIcon(this)" class="fa-solid fa-eye-slash"></i>
+                                        </p>
+                                        <div class="g-recaptcha" data-sitekey="6LeKLH8pAAAAAFbXR7vi-Ms_Vp1V30SuomC7J5pv"></div>
+                                        <div style="color: red" id="error"></div>
+                                        <div  style="margin-top: 10px" class="login_submit">
                                             <button type="submit" name="btnAction" value="Login">login</button>
                                             <label for="remember">
                                                 <input ${reMem==null?"":"checked"} id="remember" name="remember" type="checkbox">
@@ -80,37 +82,39 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="account_form register">
                                     <h2>Register</h2>
-                                    <form action="RegisterServlet" method="post">
-                                        <h5 style="color: red">${requestScope.ERROR}</h5>
-                                        <h5 style="color: green">${requestScope.SUCCESS}</h5>
+                                    <form id="register-form" action="RegisterServlet" method="post">
+                                        <h6 style="color: red">${requestScope.ERROR}</h6>
+                                        <h6 style="color: green">${requestScope.SUCCESS}</h6>
+                                        <h6 style="color: green">${requestScope.msgRegisterGG}</h6>
                                         <div style="display: flex; justify-content: space-between">
                                             <p style="width: 45%">   
                                                 <label>First Name</label>
-                                                <input name="firstname" type="text" required>
+                                                <input name="firstname" ${requestScope.firstNameGoogleAccount != null ? readonly : ""} value="${requestScope.firstNameGoogleAccount != null ? requestScope.firstNameGoogleAccount : ""}" type="text" required>
                                             </p>
                                             <p style="width: 45%">
                                                 <label>Last Name</label>
-                                                <input  name="lastname" type="text" required>
+                                                <input name="lastname" ${requestScope.firstNameGoogleAccount != null ? readonly : ""} value="${requestScope.lastNameGoogleAccount != null ? requestScope.lastNameGoogleAccount : ""}" type="text" required>
                                             </p>
                                         </div>
                                         <p>   
                                             <label>Username</label>
                                             <input name="username" type="text" required>
                                         </p>
-                                        <p>   
+                                        <p style="position: relative">   
                                             <label>Passwords</label>
-                                            <input name="password" type="password" required>
-                                        </p>
-                                        <p>   
-                                            <label>Confirm Passwords</label>
-                                            <input name="cf-password" type="password" required>
+                                            <input id="firstpass" oninput="checkNumberCharacter(this)" name="password" type="password" required>
+                                            <i id="iconsee" style="cursor: pointer; position: absolute; top: 40px; right: 10px" onclick="changeIcon(this)" class="fa-solid fa-eye-slash"></i>
+                                            <label style="color: red; display:none; font-size: 14px" class="mb-1" id="text1"></label>
                                         </p>
                                         <p>   
                                             <label>Email</label>
-                                            <input name="email" type="email" required>
+                                            <input name="email" type="email"
+                                                   ${requestScope.emailGG != null ? "readonly" : ""}
+                                                   style="${requestScope.emailGG != null ? "background-color: #e9ecef;" : ""}"
+                                                   value="${requestScope.emailGG != null ? requestScope.emailGG : ""}" required>
                                         </p>
                                         <div class="login_submit">
-                                            <button name="btnAction" value="Register" type="submit">Register</button>
+                                            <button name="btnAction" value="Register" type="submit" onclick="checkForm()">Register</button>
                                         </div>
                                     </form>
                                 </div>    
@@ -129,11 +133,6 @@
         <!--footer area start-->
         <%@include file="/common/web/footer.jsp"%>
         <!--footer area end-->
-
-
-
-
-
 
         <!-- all js here -->
         <%@include file="/common/web/add_js.jsp"%>
