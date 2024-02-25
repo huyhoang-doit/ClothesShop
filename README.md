@@ -9,13 +9,13 @@
 
 **1. Guest:**
 - [x] Login by account
-- [ ] Register an account
+- [x] Register an account
 - [ ] Search, view product
 - [ ] Add, update, remove cart
 - [ ] View ratings of product
 - [ ] View blogs
 - [ ] Password retrieval
-- [ ] Login by google account
+- [x] Login by google account
 - [ ] View blog's comment
 - [ ] Subscribe received new daily information
 
@@ -38,7 +38,7 @@
 - [ ] Managing accounts
 - [ ] Managing categories
 - [ ] Managing orders
-- [ ] Send email
+- [x] Send email
 - [x] Update admin account information
 - [x] Statistic revenue
 - [ ] Manage blogs
