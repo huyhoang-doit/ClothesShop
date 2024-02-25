@@ -24,7 +24,6 @@ import model.SupplierDTO;
  * @author lvhho
  */
 public class DispatchServlet extends HttpServlet {
-
     private final String LOGINPAGE = "login.jsp";
     private final String LOGIN = "Login";
     private final String LOGOUT = "Logout";

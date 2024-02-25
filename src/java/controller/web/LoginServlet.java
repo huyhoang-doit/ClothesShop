@@ -5,7 +5,7 @@
  */
 package controller.web;
 
-import model.UserGoogleDto;
+import model.UserGoogleDTO;
 import model.Constants;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
@@ -39,6 +39,8 @@ public class LoginServlet extends HttpServlet {
     private final String WELCOME = "DispatchServlet";
     private final String LOGIN = "login.jsp";
     private final String ADMIN_DASHBOARD = "AdminServlet";
+    private final String REGISTER_CONTROLLER = "RegisterServlet";
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -59,11 +61,11 @@ public class LoginServlet extends HttpServlet {
         return accessToken;
     }
 
-    public static UserGoogleDto getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
+    public static UserGoogleDTO getUserInfo(final String accessToken) throws ClientProtocolException, IOException {
         String link = Constants.GOOGLE_LINK_GET_USER_INFO + accessToken;
         String response = Request.Get(link).execute().returnContent().asString();
 
-        UserGoogleDto googlePojo = new Gson().fromJson(response, UserGoogleDto.class);
+        UserGoogleDTO googlePojo = new Gson().fromJson(response, UserGoogleDTO.class);
 
         return googlePojo;
     }
@@ -102,7 +104,7 @@ public class LoginServlet extends HttpServlet {
             } else {
                 String code = request.getParameter("code");
                 String accessToken = getToken(code);
-                UserGoogleDto userGG = getUserInfo(accessToken);
+                UserGoogleDTO userGG = getUserInfo(accessToken);
                 if (userGG != null) {
                     UserDAO dao = new UserDAO();
                     UserDTO account = dao.getUserByEmail(userGG.getEmail());
@@ -111,8 +113,12 @@ public class LoginServlet extends HttpServlet {
                         session.setAttribute("account", account);
                     } else {
                         String error = "You need register your account!";
-                        request.setAttribute("msg", error);
-                        url = LOGIN;
+                        request.setAttribute("msgRegisterGG", error);
+                        request.setAttribute("emailGG", userGG.getEmail());
+                        request.setAttribute("firstNameGoogleAccount", userGG.getGiven_name());
+                        request.setAttribute("lastNameGoogleAccount", userGG.getFamily_name());
+                        request.setAttribute("avatar", userGG.getPicture());
+                        url = REGISTER_CONTROLLER;
                     }
                 }
             }
