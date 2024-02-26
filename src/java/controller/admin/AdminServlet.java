@@ -5,9 +5,11 @@
  */
 package controller.admin;
 
+import dal.CategoryDAO;
 import dal.OrderDAO;
 import dal.OrderItemDAO;
 import dal.ProductDAO;
+import dal.TypeDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -61,6 +63,7 @@ public class AdminServlet extends HttpServlet {
         OrderItemDAO oIDao = new OrderItemDAO();
         OrderDAO oDao = new OrderDAO();
         UserDAO uDao = new UserDAO();
+  
         String url = ADMIN;
         try {
             double totalSale = oDao.getTotalSale();

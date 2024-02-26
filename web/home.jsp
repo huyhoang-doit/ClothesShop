@@ -44,9 +44,9 @@
                                 <div class="sidebar_widget catrgorie mb-35">
                                     <h3>Categories</h3>
                                     <ul>
-                                        <c:if test="${requestScope.LISTCATEGORIES!= null && !requestScope.LISTCATEGORIES.isEmpty()}">
-                                            <c:forEach items="${requestScope.LISTCATEGORIES}" var="c">
-                                                <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i>${c.categoryName}</a>
+                                        <c:if test="${requestScope.LIST_TYPEES!= null && !requestScope.LIST_TYPEES.isEmpty()}">
+                                            <c:forEach items="${requestScope.LIST_TYPEES}" var="c">
+                                                <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i>${c.name}</a>
                                                     <ul class="categorie_sub">
                                                         <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
                                                             <ul class="categorie_sub">
@@ -181,7 +181,7 @@
                                         <div class="single_slider" style="background-image: url(assets/img/slider/slide_1.png)">
                                             <div class="slider_content">
                                                 <div class="slider_content_inner">  
-                                                    <h1>Women's Fashion</h1>
+                                                    <h1>Men's Fashion</h1>
                                                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
                                                     <a href="#">shop now</a>
                                                 </div>     
@@ -315,7 +315,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="brand_active owl-carousel">
-                                            <c:forEach items="${requestScope.LISTSUPPLIERS}" var="s">
+                                            <c:forEach items="${requestScope.LIST_SUPPLIERS}" var="s">
                                                 <div class="col-lg-2">
                                                     <div class="single_brand">
                                                         <a href="#"><img src="${s.image}" alt=""></a>

@@ -12,14 +12,26 @@ package model;
 public class CategoryDTO {
     private int categoryId;
     private String categoryName;
+    private int typeId;
 
     public CategoryDTO() {
     }
 
-    public CategoryDTO(int categoryId, String categoryName) {
+    public CategoryDTO(int categoryId, String categoryName, int typeId) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
+        this.typeId = typeId;
     }
+
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
+    }
+
+    
 
     public int getCategoryId() {
         return categoryId;

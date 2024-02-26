@@ -12,8 +12,10 @@ DROP TABLE Carts
  DROP TABLE Products
  DROP TABLE Suppliers
  DROP TABLE Categories
- DROP TABLE Users
  DROP TABLE Types
+ DROP TABLE Users
+
+
 CREATE TABLE Users (
   id INT NOT NULL IDENTITY(1,1),
   firstname NVARCHAR(30) NOT NULL,
@@ -27,10 +29,15 @@ CREATE TABLE Users (
   roleid INT NOT NULL,
   status BIT NOT NULL,
 )
+CREATE TABLE Types(
+ id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+ name NVARCHAR(100)
+)
 
 CREATE TABLE Categories(
  categoryname NVARCHAR(30) ,
- categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY
+ categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY,
+ type_id INT FOREIGN KEY REFERENCES [dbo].Types(id),
 )
 
 CREATE TABLE Suppliers(
@@ -39,10 +46,7 @@ CREATE TABLE Suppliers(
 	supplierimage VARCHAR(255) NOT NULL,
 )
 
-CREATE TABLE Types(
- id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
- name varchar(100)
-)
+
 
 CREATE TABLE Products(
  id INT NOT NULL IDENTITY(1,1)  PRIMARY KEY ,

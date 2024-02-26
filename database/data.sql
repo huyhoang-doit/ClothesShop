@@ -5,16 +5,21 @@
 (N'Bé', N'Moon', 'Moon123@gmail.com', 'assets/img/users/1.jpg','user2', '12345', N'13 Hoàng Hữu Nam, Phường 2, TP.Bảo Lộc', '06868686868', 2, 1),
 (N'Phung', N'Huu Thanh', 'thanhphse170345@fpt.edu.vn', 'https://lh3.googleusercontent.com/a/ACg8ocLr-hUF3FDFfLGwVsXKxgXBIQ1trDWhb0DY2qaJhcJQTLo=s96-c', 'thanhphse170345@fpt.edu.vn', '1234', N'', '', 1, 1)
 
+INSERT INTO Types VALUES
+(N'Áo'),
+(N'Quần'),
+(N'Phụ kiện');
+
 INSERT INTO Categories VALUES
-(N'Áo sơ mi'),
-(N'T-Shirt'),
-(N'Sweatshirt'),
-(N'Áo khoác'),
-(N'Hoodies'),
-(N'Quần short'),
-(N'Quần thun'),
-(N'Quần jean'),
-(N'Áo Polo')
+(N'Áo sơ mi',1),
+(N'T-Shirt',1),
+(N'Sweatshirt',1),
+(N'Áo khoác',1),
+(N'Hoodies',1),
+(N'Quần short',2),
+(N'Quần thun',2),
+(N'Quần jean',2),
+(N'Áo Polo',1)
 
 INSERT INTO Suppliers VALUES
 ('Adidas', 'assets/img/suppliers/1.jpg'),
@@ -24,10 +29,7 @@ INSERT INTO Suppliers VALUES
 ('BoBui', 'assets/img/suppliers/5.jpg'),
 ('4MEN', 'assets/img/suppliers/6.jpg')
 
-INSERT INTO Types VALUES
-('Áo'),
-('Quần'),
-('Phụ kiện')
+
 
 INSERT INTO Products VALUES 
 (N'ÁO KHOÁC REGULAR TECHNICAL', 6, 3, 'S,M', 5, N'Áo sơ mi khoác bằng cotton dệt chéo, có cổ, nẹp khuy liền và cầu vai phía sau. Túi ngực mở, tay dài có nẹp tay áo và măng sét cài khuy cùng vạt tròn.'
@@ -67,37 +69,25 @@ INSERT INTO Products VALUES
 (N'ÁO THUN RAGLAN IN NGỰC BO CỔ DỆT ', 2, 2, 'S,L', 30, N'Phong cách: thể thao, Hàn Quốc, đường phố, công sở'
 , 'assets/img/products/18-1.jpg assets/img/products/18-2.jpg', N'Trắng, Đỏ' , '2022-11-01', 0.41, 51, 412.000,1),
 (N'ÁO POLO CỔ V PHỐI IN HỌA TIẾT', 6, 9, 'S,M,L', 30, N'Phong cách: cơ bản, đường phố, Hàn Quốc.'
-, 'assets/img/products/19-1.jpg assets/img/products/19-2.jpg', N'Đen, Trắng' , '2024-11-01', 0.11, 11, 345.000,1)
-
-,insert into Products values (N'ÁO THUN OVERSIZED *RETRO 9AS* ', 5, 2, 'S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/19-1.jpg assets/img/products/19-2.jpg', N'Đen, Trắng' , '2024-11-01', 0.11, 11, 345.000,1),
+(N'ÁO THUN OVERSIZED *RETRO 9AS* ', 5, 2, 'S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
 , 'assets/img/products/20-1.jpg assets/img/products/20-2.jpg' , N'Trắng' , '2024-11-01' , 0., 81, 550.000,1),
-
 (N'ÁO THUN DÀI TAY *CLOUD* ', 5, 2,'S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/21-1.jpg assets/img/products/21-2.jpg' , N'Trắng' , '2024-11-01' , 0., 81, 700.000,1),
-
+, 'assets/img/products/21-1.jpg assets/img/products/21-2.jpg' , N'Trắng' , '2024-12-01' , 0., 81, 700.000,1),
 (N'ÁO SƠ MI OXFORD *ANGEL* ', 1, 2,'XS,S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/22-1.jpg assets/img/products/22-2.jpg' , N'Xanh' , '2024-11-01' , 0., 81, 500.000,1),
-
+, 'assets/img/products/22-1.jpg assets/img/products/22-2.jpg' , N'Xanh' , '2024-09-01' , 0., 81, 500.000,1),
 (N'SƠ MI DÀI TAY *GLOWING HEART* ', 1, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/23-1.jpg assets/img/products/23-2.jpg' , N'Trắng,Đen' , '2024-20-01' , 0., 81, 650.000,1),
-
+, 'assets/img/products/23-1.jpg assets/img/products/23-2.jpg' , N'Trắng,Đen' , '2024-03-01' , 0., 81, 650.000,1),
 (N'ÁO KHOÁC DÙ *ANGELS* ', 4, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/24-1.jpg assets/img/products/24-2.jpg' , N'Navy' , '2024-20-01' , 0., 81, 950.000,1),
-
+, 'assets/img/products/24-1.jpg assets/img/products/24-2.jpg' , N'Navy' , '2024-10-01' , 0., 81, 950.000,1),
 (N'ÁO KHOÁC DÙ *LAST JUDGEMENT* ', 4, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/25-1.jpg assets/img/products/25-2.jpg' , N'Navy' , '2024-20-01' , 0., 81, 1500.000,1),
-
-(N'QUẦN DÀI *ANGEL BOBUI* ', 7, 2,'S' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/26-1.jpg assets/img/products/26-2.jpg' , N'Mint' , '2024-20-02' , 0., 81, 700.000,1),
-
-
-(N'QUẦN DOUBLE KNEE CANVAS WORKWEAR ', 7, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/27-1.jpg assets/img/products/27-2.jpg' , N'Beige' , '2024-20-02' , 0., 81, 750.000,1),
-
-
-
-
-
+, 'assets/img/products/25-1.jpg assets/img/products/25-2.jpg' , N'Navy' , '2023-02-01' , 0., 81, 1500.000,1),
+(N'QUẦN DÀI *ANGEL BOBUI* ', 5, 2,'S' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/26-1.jpg assets/img/products/26-2.jpg' , N'Mint' , '2023-03-02' , 0., 81, 700.000,1),
+(N'QUẦN DOUBLE KNEE CANVAS WORKWEAR ', 5, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/27-1.jpg assets/img/products/27-2.jpg' , N'Beige' , '2022-04-02' , 0., 81, 750.000,1)
+--Phu kien
+--...
 
 
 INSERT INTO Carts VALUES 

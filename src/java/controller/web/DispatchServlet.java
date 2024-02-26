@@ -8,6 +8,7 @@ package controller.web;
 import dal.CategoryDAO;
 import dal.ProductDAO;
 import dal.SupplierDAO;
+import dal.TypeDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,6 +19,7 @@ import javax.servlet.http.HttpSession;
 import model.CategoryDTO;
 import model.ProductDTO;
 import model.SupplierDTO;
+import model.TypeDTO;
 
 /**
  *
@@ -45,16 +47,20 @@ public class DispatchServlet extends HttpServlet {
                 ProductDAO pDao = new ProductDAO();
                 CategoryDAO cDao = new CategoryDAO();
                 SupplierDAO sDao = new SupplierDAO();
+                TypeDAO tDao = new TypeDAO();
+                CategoryDAO caDao= new CategoryDAO();
 
                 List<ProductDTO> listProducts = pDao.getData();
                 List<CategoryDTO> listCategories = cDao.getData();
                 List<SupplierDTO> listSuppliers = sDao.getData();
                 List<ProductDTO> listProductsNew = pDao.getProductNew();
                 List<ProductDTO> listProductsBestSeller = pDao.getProductsBestSeller();
+                List<TypeDTO> listTypes = tDao.getAllType();
+                List<CategoryDTO> listCategoriesByType = caDao.getCategoriesByTypeId(1);
                 
-                request.setAttribute("LISTPRODUCTS", listProducts);
-                request.setAttribute("LISTCATEGORIES", listCategories);
-                request.setAttribute("LISTSUPPLIERS", listSuppliers);
+                request.setAttribute("LIST_PRODUCTS", listProducts);
+                request.setAttribute("LIST_TYPEES", listTypes);
+                request.setAttribute("LIST_SUPPLIERS", listSuppliers);
                 request.setAttribute("LIST_PRODUCTS_NEW", listProductsNew);
                 request.setAttribute("LIST_PRODUCTS_SELLER", listProductsBestSeller);
             } else if (btnValue.equals(LOGOUT)) {
