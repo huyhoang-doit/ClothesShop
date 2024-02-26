@@ -26,10 +26,12 @@ import model.SupplierDTO;
 public class DispatchServlet extends HttpServlet {
     private final String LOGINPAGE = "login.jsp";
     private final String LOGIN = "Login";
+    private final String SEARCH = "Search";
     private final String LOGOUT = "Logout";
     private final String REGISTER = "Register";
     private final String WELCOME = "home.jsp";
     private final String REGISTER_CONTROLLER = "RegisterServlet";
+    private final String SEARCH_CONTROLLER = "SearchServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,6 +64,8 @@ public class DispatchServlet extends HttpServlet {
                 }
             } else if (btnValue.equals(REGISTER)) {
                 url = REGISTER_CONTROLLER;
+            } else if(btnValue.equals(SEARCH)) {
+                url = SEARCH_CONTROLLER;
             }
         } catch (Exception ex) {
 

@@ -30,7 +30,7 @@ INSERT INTO Types VALUES
 ('Phụ kiện')
 
 INSERT INTO Products VALUES 
-(N'ÁO KHOÁC REGULAR TECHNICAL', 6, 3, 'S,M', 20, N'Áo sơ mi khoác bằng cotton dệt chéo, có cổ, nẹp khuy liền và cầu vai phía sau. Túi ngực mở, tay dài có nẹp tay áo và măng sét cài khuy cùng vạt tròn.'
+(N'ÁO KHOÁC REGULAR TECHNICAL', 6, 3, 'S,M', 5, N'Áo sơ mi khoác bằng cotton dệt chéo, có cổ, nẹp khuy liền và cầu vai phía sau. Túi ngực mở, tay dài có nẹp tay áo và măng sét cài khuy cùng vạt tròn.'
 , 'assets/img/products/1-1.jpg assets/img/products/1-2.jpg', N'Trắng,Đen,Rêu' , '2021-12-01', 0.4, 5, 249.000, 1),
 (N'ÁO SƠ MI TRƠN TAY NGẮN', 2, 1, 'S,M,L,XXL', 15, N'Áo Sơ Mi Tay Ngắn Nam Cotton Form Regular đem đến item tối giản với phong cách tràn đầy năng lượng, trẻ trung. Áo được làm từ chất liệu cotton với form áo suông, không ôm vào phần cơ thể đem đến sự thoải mái, nhẹ nhàng. Thân áo suông thẳng, thân sau áo có ly tạo nên điểm nổi bật cho áo.'
 , 'assets/img/products/2-1.jpg assets/img/products/2-2.jpg', N'Trắng,Đen,Xám' , '2022-02-01', 0.37, 76, 179.000,1),

@@ -57,9 +57,9 @@
             <div class="col-lg-9 col-md-9">
                 <div class="header_right_info">
                     <div class="search_bar">
-                        <form action="#">
-                            <input placeholder="Search..." type="text">
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                        <form action="DispatchServlet" method="get" >
+                            <input name="txtSearch" value="" placeholder="Search..." type="text">
+                            <button name="btnAction" value="Search" type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                     <div class="shopping_cart">
