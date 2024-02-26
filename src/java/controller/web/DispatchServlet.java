@@ -8,6 +8,7 @@ package controller.web;
 import dal.CategoryDAO;
 import dal.ProductDAO;
 import dal.SupplierDAO;
+import dal.TypeDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,18 +19,22 @@ import javax.servlet.http.HttpSession;
 import model.CategoryDTO;
 import model.ProductDTO;
 import model.SupplierDTO;
+import model.TypeDTO;
 
 /**
  *
  * @author lvhho
  */
 public class DispatchServlet extends HttpServlet {
+
     private final String LOGINPAGE = "login.jsp";
     private final String LOGIN = "Login";
+    private final String SEARCH = "Search";
     private final String LOGOUT = "Logout";
     private final String REGISTER = "Register";
     private final String WELCOME = "home.jsp";
     private final String REGISTER_CONTROLLER = "RegisterServlet";
+    private final String SEARCH_CONTROLLER = "SearchServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,34 +45,50 @@ public class DispatchServlet extends HttpServlet {
             String btnValue = request.getParameter("btnAction");
             HttpSession session = request.getSession();
             if (btnValue == null) {
-                ProductDAO pDao = new ProductDAO();
-                CategoryDAO cDao = new CategoryDAO();
-                SupplierDAO sDao = new SupplierDAO();
-
-                List<ProductDTO> listProducts = pDao.getData();
-                List<CategoryDTO> listCategories = cDao.getData();
-                List<SupplierDTO> listSuppliers = sDao.getData();
-                List<ProductDTO> listProductsNew = pDao.getProductNew();
-                List<ProductDTO> listProductsBestSeller = pDao.getProductsBestSeller();
-                
-                request.setAttribute("LISTPRODUCTS", listProducts);
-                request.setAttribute("LISTCATEGORIES", listCategories);
-                request.setAttribute("LISTSUPPLIERS", listSuppliers);
-                request.setAttribute("LIST_PRODUCTS_NEW", listProductsNew);
-                request.setAttribute("LIST_PRODUCTS_SELLER", listProductsBestSeller);
+                getDataHomeLSP(request, response);
             } else if (btnValue.equals(LOGOUT)) {
                 url = WELCOME;
+                getDataHomeLSP(request, response);
                 if (session.getAttribute("account") != null) {
                     session.removeAttribute("account");
                 }
             } else if (btnValue.equals(REGISTER)) {
                 url = REGISTER_CONTROLLER;
+            } else if (btnValue.equals(SEARCH)) {
+                url = SEARCH_CONTROLLER;
             }
         } catch (Exception ex) {
 
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
+    }
+
+    protected void getDataHomeLSP(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            ProductDAO pDao = new ProductDAO();
+            CategoryDAO cDao = new CategoryDAO();
+            SupplierDAO sDao = new SupplierDAO();
+            TypeDAO tDao = new TypeDAO();
+            CategoryDAO caDao = new CategoryDAO();
+
+            List<ProductDTO> listProducts = pDao.getData();
+            List<CategoryDTO> listCategories = cDao.getData();
+            List<SupplierDTO> listSuppliers = sDao.getData();
+            List<ProductDTO> listProductsNew = pDao.getProductNew();
+            List<ProductDTO> listProductsBestSeller = pDao.getProductsBestSeller();
+            List<TypeDTO> listTypes = tDao.getAllType();
+            List<CategoryDTO> listCategoriesByType = caDao.getCategoriesByTypeId(1);
+
+            request.setAttribute("LIST_PRODUCTS", listProducts);
+            request.setAttribute("LIST_TYPEES", listTypes);
+            request.setAttribute("LIST_SUPPLIERS", listSuppliers);
+            request.setAttribute("LIST_PRODUCTS_NEW", listProductsNew);
+            request.setAttribute("LIST_PRODUCTS_SELLER", listProductsBestSeller);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

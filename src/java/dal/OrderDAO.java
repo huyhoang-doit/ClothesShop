@@ -353,6 +353,7 @@ public class OrderDAO extends DBContext {
         OrderDAO dao = new OrderDAO();
         double list = dao.getTotalOrders();
         
+        OrderDTO order = dao.getOrdersByID("1");
         System.out.println(list);
     }
 }

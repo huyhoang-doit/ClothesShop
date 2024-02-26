@@ -34,7 +34,7 @@
                             <li><a href="LoginServlet?action=Login" title="Login">Login</a></li>  
                             </c:if>
                             <c:if test="${sessionScope.account != null}">
-                            <li><a href="AdminServlet">Hello, ${sessionScope.account.firstName} ${sessionScope.account.lastName}!</a></li>
+                            <li><a href="${sessionScope.account.roleID == 1 ? 'AdminServlet' : 'ProfileServlet'} ">Hello, ${sessionScope.account.firstName} ${sessionScope.account.lastName}!</a></li>
                             <li><a href="DispatchServlet?btnAction=Logout">Logout</a></li>
                             </c:if>
                     </ul>
@@ -57,9 +57,9 @@
             <div class="col-lg-9 col-md-9">
                 <div class="header_right_info">
                     <div class="search_bar">
-                        <form action="#">
-                            <input placeholder="Search..." type="text">
-                            <button type="submit"><i class="fa fa-search"></i></button>
+                        <form action="DispatchServlet" method="get" >
+                            <input name="txtSearch" value="" placeholder="Search..." type="text">
+                            <button name="btnAction" value="Search" type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
                     <div class="shopping_cart">

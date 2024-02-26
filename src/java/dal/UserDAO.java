@@ -132,7 +132,7 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
-
+    
     public int getTotalUsers() throws SQLException {
         int result = 0;
         Connection conn = null;
