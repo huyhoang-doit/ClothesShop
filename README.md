@@ -10,7 +10,7 @@
 **1. Guest:**
 - [x] Login by account
 - [x] Register an account
-- [ ] Search, view product
+- [x] Search, view product
 - [ ] Add, update, remove cart
 - [ ] View ratings of product
 - [ ] View blogs
@@ -20,7 +20,7 @@
 - [ ] Subscribe received new daily information
 
 **2. User**
-- [ ] Search, view product
+- [x] Search, view product
 - [ ] Add, update, remove cart
 - [ ] View ratings of product
 - [ ] Subscribe received new daily information
