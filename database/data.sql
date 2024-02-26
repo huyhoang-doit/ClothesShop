@@ -68,6 +68,37 @@ INSERT INTO Products VALUES
 (N'ÁO POLO CỔ V PHỐI IN HỌA TIẾT', 6, 9, 'S,M,L', 30, N'Phong cách: cơ bản, đường phố, Hàn Quốc.'
 , 'assets/img/products/19-1.jpg assets/img/products/19-2.jpg', N'Đen, Trắng' , '2024-11-01', 0.11, 11, 345.000,1)
 
+,insert into Products values (N'ÁO THUN OVERSIZED *RETRO 9AS* ', 5, 2, 'S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/20-1.jpg assets/img/products/20-2.jpg' , N'Trắng' , '2024-11-01' , 0., 81, 550.000,1),
+
+(N'ÁO THUN DÀI TAY *CLOUD* ', 5, 2,'S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/21-1.jpg assets/img/products/21-2.jpg' , N'Trắng' , '2024-11-01' , 0., 81, 700.000,1),
+
+(N'ÁO SƠ MI OXFORD *ANGEL* ', 1, 2,'XS,S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/22-1.jpg assets/img/products/22-2.jpg' , N'Xanh' , '2024-11-01' , 0., 81, 500.000,1),
+
+(N'SƠ MI DÀI TAY *GLOWING HEART* ', 1, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/23-1.jpg assets/img/products/23-2.jpg' , N'Trắng,Đen' , '2024-20-01' , 0., 81, 650.000,1),
+
+(N'ÁO KHOÁC DÙ *ANGELS* ', 4, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/24-1.jpg assets/img/products/24-2.jpg' , N'Navy' , '2024-20-01' , 0., 81, 950.000,1),
+
+(N'ÁO KHOÁC DÙ *LAST JUDGEMENT* ', 4, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/25-1.jpg assets/img/products/25-2.jpg' , N'Navy' , '2024-20-01' , 0., 81, 1500.000,1),
+
+(N'QUẦN DÀI *ANGEL BOBUI* ', 7, 2,'S' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/26-1.jpg assets/img/products/26-2.jpg' , N'Mint' , '2024-20-02' , 0., 81, 700.000,1),
+
+
+(N'QUẦN DOUBLE KNEE CANVAS WORKWEAR ', 7, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/27-1.jpg assets/img/products/27-2.jpg' , N'Beige' , '2024-20-02' , 0., 81, 750.000,1),
+
+
+
+
+
+
+
 INSERT INTO Carts VALUES 
 (1,'admin', 1),
 (2,'admin', 2)
