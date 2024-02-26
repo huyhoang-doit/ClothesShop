@@ -29,7 +29,7 @@ public class OrderDAO extends DBContext {
     private static final String GET_TOTAL_SALE = "SELECT SUM(totalprice) AS TotalSale from [Orders]";
     private static final String GET_TOTAL_MONEY_YEAR = "SELECT SUM(totalprice) AS TotalSale from [Orders] where year([orderdate]) = ? AND Status = 1";
     private static final String GET_TOTAL_MONEY_MONTH = "SELECT SUM(totalprice) AS TotalSale from [Orders] where month([orderdate]) = ? AND Status = 1";
-    private static final String GET_NUMBER_ORDERS = "SELECT COUNT(*) AS Total FROM [Orders] WHERE Status = true";
+    private static final String GET_NUMBER_ORDERS = "SELECT COUNT(*) AS Total FROM [Orders] WHERE Status = 1";
     private static final String GET_TOTAL_ORDERS = "SELECT * FROM [Orders]";
     private static final String GET_TOTAL_SALE_TODAY = "SELECT sum(totalprice) AS TotalSale FROM [Orders] "
             + " WHERE cast(orderdate as Date) = cast(getdate() as Date)";
@@ -351,14 +351,9 @@ public class OrderDAO extends DBContext {
 
     public static void main(String[] args) throws SQLException {
         OrderDAO dao = new OrderDAO();
-        double list = dao.getTotalSaleToday();
-        List<OrderDTO> all = dao.getAllOrders();
-        int count = 0;
-        for (OrderDTO orderDTO : all) {
-//            System.out.println(orderDTO.getUser().getUserName());
-        }
+        double list = dao.getTotalOrders();
         
         OrderDTO order = dao.getOrdersByID("1");
-        System.out.println(order.getUser().getUserName());
+        System.out.println(list);
     }
 }
