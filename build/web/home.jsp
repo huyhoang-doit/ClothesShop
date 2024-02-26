@@ -261,7 +261,7 @@
                                                             </div>s
                                                             <div class="product_content">
                                                                 <span class="product_price"><%= p.getPrice() %> &#8363</span>
-                                                                <h3 class="product_title"><a href="single-product.?productId=<%= p.getId() %>"><%= p.getProductName() %></a></h3>
+                                                                <h3 class="product_title"><a href="single-product.jsp?productId=<%= p.getId() %>"><%= p.getProductName() %></a></h3>
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
