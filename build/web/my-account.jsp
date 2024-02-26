@@ -52,7 +52,7 @@
                                     <!-- Nav tabs -->
                                     <div class="dashboard_tab_button">
                                         <ul role="tablist" class="nav flex-column dashboard-list">
-                                            <li style="margin-bottom: 25px"><img style="border: 5px solid #00BBA6" src="${sessionScope.account.avatar}" width="100%"></li>
+                                            <li style="margin-bottom: 20px"><img style="border: 5px solid #00BBA6; height: 255px" src="${sessionScope.account.avatar}" width="100%"></li>
                                             <li><a href="#account-details" data-toggle="tab" class="nav-link active">Account details</a></li>
                                             <li> <a href="#orders" data-toggle="tab" class="nav-link">Orders</a></li>
                                         </ul>

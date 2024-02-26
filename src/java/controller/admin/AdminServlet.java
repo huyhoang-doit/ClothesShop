@@ -6,6 +6,7 @@
 package controller.admin;
 
 import dal.OrderDAO;
+import dal.OrderItemDAO;
 import dal.ProductDAO;
 import dal.UserDAO;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.OrderDTO;
+import model.OrderItem;
 
 /**
  *
@@ -24,7 +26,8 @@ import model.OrderDTO;
 public class AdminServlet extends HttpServlet {
 
     private static final String ADMIN = "admin_home.jsp";
-    
+    private final static String ORDER_DETAIL_PAGE = "admin_order_detail.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -55,8 +58,10 @@ public class AdminServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         ProductDAO pDao = new ProductDAO();
+        OrderItemDAO oIDao = new OrderItemDAO();
         OrderDAO oDao = new OrderDAO();
         UserDAO uDao = new UserDAO();
+        String url = ADMIN;
         try {
             double totalSale = oDao.getTotalSale();
             double totalSaleTD = oDao.getTotalSaleToday();
@@ -65,7 +70,7 @@ public class AdminServlet extends HttpServlet {
             int totalUsers = uDao.getTotalUsers();
             int totalOrders = oDao.getTotalOrders();
             List<OrderDTO> lastRecentOrders = oDao.getRecentOrders();
-            
+
             request.setAttribute("TOTALSALE", totalSale);
             request.setAttribute("TOTALSALETODAY", totalSaleTD);
             request.setAttribute("TOTALPRODUCTS", totalProducts);
@@ -73,8 +78,17 @@ public class AdminServlet extends HttpServlet {
             request.setAttribute("TOTALUSERS", totalUsers);
             request.setAttribute("TOTALORDERS", totalOrders);
             request.setAttribute("LAST_RECENT_ORDERS", lastRecentOrders);
-            
-            request.setAttribute("action", "ADMINHOME");
+            String action = request.getParameter("showdetail");
+            if ("showdetail".equals(action)) {
+                url = ORDER_DETAIL_PAGE;
+                String bill_id = request.getParameter("bill_id");
+                OrderDTO order = oDao.getOrdersByID(bill_id);
+                int id = order.getOrderID();
+                List<OrderItem> list = oIDao.getOrderItemByOrderId(id);
+                request.setAttribute("LIST_PRODUCTS_IN_ORDER", list);
+
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

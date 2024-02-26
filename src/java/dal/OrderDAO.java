@@ -34,6 +34,7 @@ public class OrderDAO extends DBContext {
     private static final String GET_TOTAL_SALE_TODAY = "SELECT sum(totalprice) AS TotalSale FROM [Orders] "
             + " WHERE cast(orderdate as Date) = cast(getdate() as Date)";
     private static final String GET_ORDERS_USER = "SELECT * FROM [Orders] WHERE username = ?";
+    private static final String GET_ORDERS_BYID = "SELECT * FROM [Orders] WHERE order_id = ?";
     private static final String GET_RECENT_ORDERS = "SELECT Top 10 * FROM Orders ORDER BY orderdate DESC";
 
     public double getTotalSale() throws SQLException {
@@ -238,6 +239,46 @@ public class OrderDAO extends DBContext {
         return orders;
     }
 
+    public OrderDTO getOrdersByID(String id) throws SQLException {
+        OrderDTO order = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_ORDERS_BYID);
+                ptm.setString(1, id);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int orderId = rs.getInt("order_id");
+                    Date orderDate = rs.getDate("orderdate");
+                    double totalPrice = rs.getDouble("totalprice");
+                    int paymentId = rs.getInt("paymentid");
+                    PaymentDTO payment = pDao.getPaymentById(paymentId);
+                    int shipmentId = rs.getInt("shipmentid");
+                    boolean status = rs.getBoolean("status");
+                    String userName = rs.getString("username");
+                    UserDTO user = uDao.getUserByName(userName);
+                    order = new OrderDTO(orderId, orderDate, totalPrice, payment, shipmentId, user, status);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return order;
+    }
+
     public int getTotalOrders() throws SQLException {
         int result = 0;
         Connection conn = null;
@@ -315,9 +356,9 @@ public class OrderDAO extends DBContext {
         int count = 0;
         for (OrderDTO orderDTO : all) {
 //            System.out.println(orderDTO.getUser().getUserName());
-            count++;
         }
-        System.out.println(list);
-        System.out.println(count);
+        
+        OrderDTO order = dao.getOrdersByID("1");
+        System.out.println(order.getUser().getUserName());
     }
 }

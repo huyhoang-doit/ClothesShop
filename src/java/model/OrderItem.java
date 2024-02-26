@@ -13,7 +13,7 @@ public class OrderItem {
     private int orderItemID;
     private int quantity;
     private double price;
-    private int productID;
+    private ProductDTO product;
     private int orderID;
 
     public OrderItem() {
@@ -21,11 +21,11 @@ public class OrderItem {
 
     
     
-    public OrderItem(int orderItemID, int quantity, double price, int productID, int orderID) {
+    public OrderItem(int orderItemID, int quantity, double price, ProductDTO product, int orderID) {
         this.orderItemID = orderItemID;
         this.quantity = quantity;
         this.price = price;
-        this.productID = productID;
+        this.product = product;
         this.orderID = orderID;
     }
 
@@ -53,12 +53,12 @@ public class OrderItem {
         this.price = price;
     }
 
-    public int getProductID() {
-        return productID;
+    public ProductDTO getProduct() {
+        return product;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public void setProduct(ProductDTO productID) {
+        this.product = productID;
     }
 
     public int getOrderID() {

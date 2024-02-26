@@ -20,7 +20,7 @@ import model.UserDTO;
  */
 public class UserDAO extends DBContext {
 
-    private static final String LOGIN = "SELECT * FROM Users WHERE username=? AND password=? and status=1";
+    private static final String LOGIN = "SELECT * FROM Users WHERE username=? OR email = ? AND password=? and status=1";
 
     private static final String CHECK_LOGIN = "SELECT roleid FROM Users WHERE username=? AND password=? and status=1 and roleid=1";
 
@@ -28,9 +28,27 @@ public class UserDAO extends DBContext {
 
     private static final String GET_USER_BY_NAME = "SELECT * FROM Users WHERE username = ? AND status = 1";
 
+    private static final String GET_USER_BY_EMAIL = "SELECT * FROM Users WHERE email = ? AND status = 1";
+
     private static final String GET_TOTAL_USERS = "SELECT COUNT(*) AS Total FROM Users WHERE status = 1 AND roleid=2";
 
     private static final String UPDATE_USER = "UPDATE Users SET firstName = ?, lastName = ?, email = ?, address = ?, phone = ? WHERE username = ?";
+
+    private static final String CHECK_USERNAME_DUPLICATE = "SELECT * FROM Users WHERE userName = ? or email = ? and [status] = 1";
+
+    private static final String REGISTER_USER = "INSERT INTO [dbo].[Users]\n"
+            + "           ([firstname]\n"
+            + "           ,[lastname]\n"
+            + "           ,[email]\n"
+            + "           ,[avatar]\n"
+            + "           ,[username]\n"
+            + "           ,[password]\n"
+            + "           ,[address]\n"
+            + "           ,[phone]\n"
+            + "           ,[roleid]\n"
+            + "           ,[status])\n"
+            + "     VALUES\n"
+            + "           (?,?,?,?,?,?,?,?,?,?)";
 
     public List<UserDTO> getData() throws SQLException {
         List<UserDTO> users = new ArrayList<>();
@@ -83,7 +101,8 @@ public class UserDAO extends DBContext {
             if (conn != null) {
                 ptm = conn.prepareStatement(LOGIN);
                 ptm.setString(1, userName);
-                ptm.setString(2, password);
+                ptm.setString(2, userName);
+                ptm.setString(3, password);
                 rs = ptm.executeQuery();
                 if (rs.next()) {
                     int id = rs.getInt("id");
@@ -112,42 +131,6 @@ public class UserDAO extends DBContext {
             }
         }
         return user;
-    }
-
-    public boolean checkAdmin(UserDTO account) throws SQLException {
-        int roleid = 0;
-        Connection conn = null;
-        PreparedStatement ptm = null;
-        ResultSet rs = null;
-        try {
-            conn = getConnection();
-            if (conn != null) {
-                ptm = conn.prepareStatement(CHECK_LOGIN);
-                ptm.setString(1, account.getUserName());
-                ptm.setString(2, account.getPassword());
-                rs = ptm.executeQuery();
-                if (rs.next()) {
-                    roleid = rs.getInt("roleid");
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (rs != null) {
-                rs.close();
-            }
-            if (ptm != null) {
-                ptm.close();
-            }
-            if (conn != null) {
-                conn.close();
-            }
-        }
-        if (roleid == 0) {
-            return false;
-        } else {
-            return true;
-        }
     }
 
     public int getTotalUsers() throws SQLException {
@@ -212,7 +195,7 @@ public class UserDAO extends DBContext {
         }
     }
 
-    public UserDTO getUserByName (String userName) throws SQLException {
+    public UserDTO getUserByName(String userName) throws SQLException {
         UserDTO user = null;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -252,14 +235,122 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
+
+    public UserDTO getUserByEmail(String email) throws SQLException {
+        UserDTO user = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_USER_BY_EMAIL);
+                ptm.setString(1, email);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    int id = rs.getInt("id");
+                    String firstname = rs.getString("firstname");
+                    String userName = rs.getString("userName");
+                    String lastname = rs.getString("lastname");
+                    String avatar = rs.getString("avatar");
+                    String address = rs.getString("address");
+                    String password = rs.getString("password");
+                    String phone = rs.getString("phone");
+                    int roleid = rs.getInt("roleID");
+                    boolean roleID = rs.getBoolean("roleID");
+                    user = new UserDTO(id, firstname, lastname, email, avatar, userName, password, address, phone, roleid, roleID);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return user;
+    }
+
+    public boolean checkUserNameDuplicate(String username) throws SQLException {
+        boolean ok = false;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CHECK_USERNAME_DUPLICATE);
+                ptm.setString(1, username);
+                ptm.setString(2, username);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    ok = true;
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return ok;
+    }
+
+    public void registerUser(UserDTO user) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(REGISTER_USER);
+                ptm.setString(1, user.getFirstName());
+                ptm.setString(2, user.getLastName());
+                ptm.setString(3, user.getEmail());
+                ptm.setString(4, user.getAvatar());
+                ptm.setString(5, user.getUserName());
+                ptm.setString(6, user.getPassword());
+                ptm.setString(7, user.getAddress());
+                ptm.setString(8, user.getPhone());
+                ptm.setInt(9, user.getRoleID());
+                ptm.setBoolean(10, user.isStatus());
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         UserDAO dao = new UserDAO();
-        UserDTO user = dao.checkLogin("user1", "12345");
-        List<UserDTO> list = dao.getData();
-        for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getAvatar());
-        }
-        int slUser = dao.getTotalUsers();
-        System.out.println(slUser);
+        boolean user = dao.checkUserNameDuplicate("thanhphse170345@fpt.edu.vn");
+//        List<UserDTO> list = dao.getData();
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i).getAvatar());
+//        }
+        System.out.println(user);
     }
 }

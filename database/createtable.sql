@@ -13,6 +13,7 @@ DROP TABLE Carts
  DROP TABLE Suppliers
  DROP TABLE Categories
  DROP TABLE Users
+ DROP TABLE Types
 CREATE TABLE Users (
   id INT NOT NULL IDENTITY(1,1),
   firstname NVARCHAR(30) NOT NULL,
@@ -38,6 +39,11 @@ CREATE TABLE Suppliers(
 	supplierimage VARCHAR(255) NOT NULL,
 )
 
+CREATE TABLE Types(
+ id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+ name varchar(100)
+)
+
 CREATE TABLE Products(
  id INT NOT NULL IDENTITY(1,1)  PRIMARY KEY ,
  productname NVARCHAR(max) NOT NULL,
@@ -51,7 +57,8 @@ CREATE TABLE Products(
  releasedate  DATE NOT NULL,
  discount FLOAT,
  unitSold INT,
- price money NOT NULL
+ price money NOT NULL,
+ typeid int not null FOREIGN KEY REFERENCES [dbo].[Types](id),
 )
 
 
@@ -104,6 +111,7 @@ CREATE TABLE OrderItem(
 order_item_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 quantity INT ,
 price DECIMAL(10,2),
-prodct_id INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Products]([id]),
+product_id INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Products]([id]),
 order_id INT NOT NULL FOREIGN KEY REFERENCES  [dbo].[Orders](order_id)
 )
+

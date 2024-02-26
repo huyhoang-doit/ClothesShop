@@ -1,8 +1,9 @@
-﻿INSERT INTO Users  VALUES 
+﻿INSERT INTO Users  VALUES
 (N'Jung', N'Kim', 'user@gmail.com', 'assets/img/users/user.jpg','user1', '12345', N'Ha Noi', '0981347469', 2, 0),
 (N'admin', N'', 'admin@gmail.com', 'assets/img/users/user.jpg', 'admin', '12345', N'Quận 9', '0981347469', 1, 1),
 (N'Phùng', N'Thành', 'thanh@gmail.com', 'assets/img/users/1.jpg','phuuthanh2003', '12345', N'60 Nguyễn Văn Trỗi, Phường 2, TP.Bảo Lộc', '0707064154', 1, 1),
-(N'Bé', N'Moon', 'Moon123@gmail.com', 'assets/img/users/1.jpg','user2', '12345', N'13 Hoàng Hữu Nam, Phường 2, TP.Bảo Lộc', '06868686868', 2, 1)
+(N'Bé', N'Moon', 'Moon123@gmail.com', 'assets/img/users/1.jpg','user2', '12345', N'13 Hoàng Hữu Nam, Phường 2, TP.Bảo Lộc', '06868686868', 2, 1),
+(N'Phung', N'Huu Thanh', 'thanhphse170345@fpt.edu.vn', 'https://lh3.googleusercontent.com/a/ACg8ocLr-hUF3FDFfLGwVsXKxgXBIQ1trDWhb0DY2qaJhcJQTLo=s96-c', 'thanhphse170345@fpt.edu.vn', '1234', N'', '', 1, 1)
 
 INSERT INTO Categories VALUES
 (N'Áo sơ mi'),

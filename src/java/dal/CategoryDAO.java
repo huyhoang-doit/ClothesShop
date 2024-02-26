@@ -21,7 +21,8 @@ import model.CategoryDTO;
 public class CategoryDAO extends DBContext {
 
     private static final String GETDATA = "SELECT * FROM Categories";
-    private static final String GETCATEGORYBYID = "SELECT * FROM Categories WHERE categoryid = ?";
+    private static final String GET_CATEGORY_BYID = "SELECT * FROM Categories WHERE categoryid = ?";
+    private static final String INSERT_CATEGORY = "INSERT INTO Categories VALUES (?);";
 
     public List<CategoryDTO> getData() throws SQLException {
         List<CategoryDTO> categories = new ArrayList<>();
@@ -63,7 +64,7 @@ public class CategoryDAO extends DBContext {
         try {
             conn = getConnection();
             if (conn != null) {
-                ptm = conn.prepareStatement(GETCATEGORYBYID);
+                ptm = conn.prepareStatement(GET_CATEGORY_BYID);
                 ptm.setInt(1, id);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
@@ -87,12 +88,36 @@ public class CategoryDAO extends DBContext {
         }
         return category;
     }
+    
+    public boolean insertCategory(String categoryName) {
+        Connection con = null;
+        PreparedStatement ptm = null;
+        try {
+            con = getConnection();
+            if(con != null) {
+                ptm = con.prepareStatement(INSERT_CATEGORY);
+                ptm.setString(1, categoryName);
+                ptm.executeUpdate();
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
 
     public static void main(String[] args) throws SQLException {
         CategoryDAO dao = new CategoryDAO();
         List<CategoryDTO> list = dao.getData();
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getCategoryName());
+        }
+        
+        if(dao.insertCategory("ao da")) {
+            System.out.println("OK");
+        }else {
+            System.out.println("FAIL");
         }
     }
 }
