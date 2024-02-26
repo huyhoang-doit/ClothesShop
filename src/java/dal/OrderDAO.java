@@ -29,10 +29,10 @@ public class OrderDAO extends DBContext {
     private static final String GET_TOTAL_SALE = "SELECT SUM(totalprice) AS TotalSale from [Orders]";
     private static final String GET_TOTAL_MONEY_YEAR = "SELECT SUM(totalprice) AS TotalSale from [Orders] where year([orderdate]) = ? AND Status = 1";
     private static final String GET_TOTAL_MONEY_MONTH = "SELECT SUM(totalprice) AS TotalSale from [Orders] where month([orderdate]) = ? AND Status = 1";
-    private static final String GET_NUMBER_ORDERS = "SELECT COUNT(*) AS Total FROM [Orders] WHERE Status = 1";
+    private static final String GET_NUMBER_ORDERS = "SELECT COUNT(*) AS Total FROM [Orders]";
     private static final String GET_TOTAL_ORDERS = "SELECT * FROM [Orders]";
     private static final String GET_TOTAL_SALE_TODAY = "SELECT sum(totalprice) AS TotalSale FROM [Orders] "
-            + " WHERE cast(orderdate as Date) = cast(getdate() as Date)";
+                                                    + " WHERE cast(orderdate as Date) = cast(getdate() as Date)";
     private static final String GET_ORDERS_USER = "SELECT * FROM [Orders] WHERE username = ?";
     private static final String GET_ORDERS_BYID = "SELECT * FROM [Orders] WHERE order_id = ?";
     private static final String GET_RECENT_ORDERS = "SELECT Top 10 * FROM Orders ORDER BY orderdate DESC";

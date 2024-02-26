@@ -89,7 +89,6 @@ INSERT INTO Products VALUES
 --Phu kien
 --...
 
-
 INSERT INTO Carts VALUES 
 (1,'admin', 1),
 (2,'admin', 2)
