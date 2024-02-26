@@ -21,6 +21,7 @@ import model.CategoryDTO;
 public class CategoryDAO extends DBContext {
 
     private static final String GETDATA = "SELECT * FROM Categories";
+    private static final String GET_QUANTITY_BY_NAME = "SELECT COUNT(*) AS Total FROM Categories WHERE categoryname = ?";
     private static final String GET_CATEGORY_BYID = "SELECT * FROM Categories WHERE categoryid = ?";
     private static final String INSERT_CATEGORY = "INSERT INTO Categories VALUES (?);";
     private static final String GET_CATEGORY_BY_TYPEID = "SELECT * FROM Categories WHERE type_id = ?";
@@ -92,6 +93,8 @@ public class CategoryDAO extends DBContext {
         return categories;
     }
     
+    
+    
     public CategoryDTO getCategoryById(int id) throws SQLException {
         CategoryDTO category = null;
         Connection conn = null;
@@ -126,6 +129,38 @@ public class CategoryDAO extends DBContext {
         return category;
     }
     
+    public int getQuantityByName(String name) throws SQLException {
+        int quantity = 0;
+        CategoryDTO category = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_QUANTITY_BY_NAME);
+                ptm.setString(1, name);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    quantity = rs.getInt("Total");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return quantity;
+    }
+    
     public boolean insertCategory(String categoryName) {
         Connection con = null;
         PreparedStatement ptm = null;
@@ -156,10 +191,13 @@ public class CategoryDAO extends DBContext {
 //        }else {
 //            System.out.println("FAIL");
 //        }
-    List<CategoryDTO> list = dao.getCategoriesByTypeId(1);
-        for (CategoryDTO categoryDTO : list) {
-            System.out.println(categoryDTO.getCategoryName());
-        }
+//    List<CategoryDTO> list = dao.getCategoriesByTypeId(1);
+//        for (CategoryDTO categoryDTO : list) {
+//            System.out.println(categoryDTO.getCategoryName());
+//        }
+
+        int quantity = dao.getQuantityByName("T-shirt");
+        System.out.println(quantity);
         
     }
 }

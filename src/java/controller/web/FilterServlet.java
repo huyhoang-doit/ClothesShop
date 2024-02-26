@@ -8,7 +8,6 @@ package controller.web;
 import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -20,27 +19,36 @@ import model.ProductDTO;
 
 /**
  *
- * @author Admin
+ * @author lvhho
  */
-@WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
-public class SearchServlet extends HttpServlet {
+@WebServlet(name = "FilterServlet", urlPatterns = {"/FilterServlet"})
+public class FilterServlet extends HttpServlet {
 
-    private final String SHOP = "shop-list.jsp";
+    private static final String PRODUCTS_LIST_PAGE = "shop-list.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SHOP;
+        String url = PRODUCTS_LIST_PAGE;
         try {
-            String txtSearch = request.getParameter("txtSearch");
             ProductDAO pDao = new ProductDAO();
-            List<ProductDTO> listProducts = pDao.getProductBySearch(txtSearch);
+            String action = request.getParameter("action");
             CategoryDAO cDao = new CategoryDAO();
             List<CategoryDTO> listCategories = cDao.getData();
-            request.setAttribute("LISTPRODUCTS", listProducts);
-            request.setAttribute("LISTCATEGORIES", listCategories);
-        } catch (Exception e) {
 
+            if ("filterByType".equals(action)) {
+                String typeId = request.getParameter("type_id");
+                List<ProductDTO> list = pDao.getProductByTypeId(Integer.parseInt(typeId));
+                request.setAttribute("LISTPRODUCTS", list);
+
+            } else if ("filterByCategory".equals(action)) {
+                String cateId = request.getParameter("category_id");
+                List<ProductDTO> list = pDao.getProductByCategoryId(Integer.parseInt(cateId));
+                request.setAttribute("LISTPRODUCTS", list);
+            }
+            request.setAttribute("LISTCATEGORIES", listCategories);
+
+        } catch (Exception e) {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

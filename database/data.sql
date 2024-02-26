@@ -19,7 +19,11 @@ INSERT INTO Categories VALUES
 (N'Quần short',2),
 (N'Quần thun',2),
 (N'Quần jean',2),
-(N'Áo Polo',1)
+(N'Áo Polo',1),
+(N'Mũ',3),
+(N'Balo',3),
+(N'Giày',3),
+
 
 INSERT INTO Suppliers VALUES
 ('Adidas', 'assets/img/suppliers/1.jpg'),
