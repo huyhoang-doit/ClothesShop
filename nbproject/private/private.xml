@@ -2,6 +2,9 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
+        <group/>
+=======
         <group>
             <file>file:/D:/Project/ClothingStore/web/login.jsp</file>
             <file>file:/D:/Project/ClothingStore/src/java/controller/web/LoginServlet.java</file>
@@ -10,5 +13,6 @@
             <file>file:/D:/Project/ClothingStore/web/assets/css/style.css</file>
             <file>file:/D:/Project/ClothingStore/src/java/controller/web/DispatchServlet.java</file>
         </group>
+>>>>>>> f292cd6be32dc36cf26cf676bdf9a2d068cc3aa4
     </open-files>
 </project-private>
