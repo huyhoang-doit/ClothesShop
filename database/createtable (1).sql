@@ -28,20 +28,23 @@ CREATE TABLE Users (
   status BIT NOT NULL,
 )
 
-CREATE TABLE Categories(
+
+
+CREATE TABLE Types(
+ id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+ name varchar(100)
+)
+
+CREATE TABLE Categories (
  categoryname NVARCHAR(30) ,
- categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY
+ categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY,
+ type int not null FOREIGN KEY REFERENCES [dbo].Types(id)
 )
 
 CREATE TABLE Suppliers(
 	supplierid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY,
 	suppliername NVARCHAR(100),
 	supplierimage VARCHAR(255) NOT NULL,
-)
-
-CREATE TABLE Types(
- id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
- name varchar(100)
 )
 
 CREATE TABLE Products(
