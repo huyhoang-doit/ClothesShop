@@ -26,7 +26,7 @@
                     <ul>
                         <li><a href="contact.jsp" title="Contact">Contact</a></li>
                         <li><a href="wishlist.jsp" title="wishlist">My wishlist</a></li>
-                        <c:if test="${sessionScope.account != null}">
+                            <c:if test="${sessionScope.account != null}">
                             <li><a href="ProfileServlet" title="My account">My account</a></li>
                             </c:if>
                         <li><a href="cart.jsp" title="My cart">My cart</a></li>  
@@ -36,7 +36,10 @@
                             <c:if test="${sessionScope.account != null}">
                             <li><a href="${sessionScope.account.roleID == 1 ? 'AdminServlet' : 'ProfileServlet'} ">Hello, ${sessionScope.account.firstName} ${sessionScope.account.lastName}!</a></li>
                             <li><a href="DispatchServlet?btnAction=Logout">Logout</a></li>
-                            </c:if>
+                            <!--                            <button class="btn btn-primary btn-sm logout"><i
+                                                                class="fas fa-trash-alt"></i>
+                                                        </button>-->
+                        </c:if>
                     </ul>
                 </div>   
             </div>
