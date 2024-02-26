@@ -1,3 +1,4 @@
+<%@page import="dal.TypeDAO"%>
 <%@page import="model.ProductDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="dal.ProductDAO"%>
@@ -52,8 +53,8 @@
                     <%
                         String productId = request.getParameter("productId");
                         ProductDAO pr = new ProductDAO();
+                        int idtype = 0;
                         List<ProductDTO> list = pr.getProductsforId(productId);
-
                         if (!list.isEmpty() && list.size() != 0) {
                             for (ProductDTO p : list) {
                     %>
@@ -67,15 +68,13 @@
                                 <div class="product_tab fix"> 
                                     <div class="product_tab_button">    
                                         <ul class="nav" role="tablist">
+                                            <%
+                                                for (String imq : p.getImages()) {
+                                            %>
                                             <li>
-                                                <a class="active" data-toggle="tab" href="#p_tab1" role="tab" aria-controls="p_tab1" aria-selected="false"><img src="assets\img\cart\cart.jpg" alt=""></a>
+                                                <a class="active" data-toggle="tab" href="#p_tab1" role="tab" aria-controls="p_tab1" aria-selected="false"><img src=<%= imq%> alt=""></a>
                                             </li>
-                                            <li>
-                                                <a data-toggle="tab" href="#p_tab2" role="tab" aria-controls="p_tab2" aria-selected="false"><img src="assets\img\cart\cart2.jpg" alt=""></a>
-                                            </li>
-                                            <li>
-                                                <a data-toggle="tab" href="#p_tab3" role="tab" aria-controls="p_tab3" aria-selected="false"><img src="assets\img\cart\cart4.jpg" alt=""></a>
-                                            </li>
+                                            <%}%>
                                         </ul>
                                     </div> 
                                     <div class="tab-content produc_tab_c">
@@ -150,11 +149,11 @@
 
                                         <select name="size" id="group_1">
                                             <%
-                                                int count=1;
+                                                int count = 1;
                                                 for (String cl : p.getSize()) {
                                             %>
-                                            <option value=<%= count++ %>><%= cl %></option>
-                                           
+                                            <option value=<%= count++%>><%= cl%></option>
+
                                             <%}%>
                                         </select>
 
@@ -173,7 +172,7 @@
                                     </div>                 
 
                                     <div class="product_stock mb-20">
-                                        <p><%= p.getStock() %> items</p>
+                                        <p><%= p.getStock()%> items</p>
                                         <span> In stock </span>
                                     </div>
                                     <div class="wishlist-share">
@@ -215,12 +214,7 @@
                                     <div class="tab-content">
                                         <div class="tab-pane fade show active" id="info" role="tabpanel">
                                             <div class="product_info_content">
-                                                <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs
-                                                    delivering stylish separates and statement dresses which have since evolved into a full ready-to-wear
-                                                    collection in which every item is a vital part of a woman's wardrobe. The result? Cool, easy, chic looks 
-                                                    with youthful elegance and unmistakable signature style. All the beautiful pieces are made in Italy and
-                                                    manufactured with the greatest attention. Now Fashion extends to a range of accessories including shoes,
-                                                    hats, belts and more!</p>
+                                                <p><%= p.getDescription()%></p>
                                             </div>    
                                         </div>
 
@@ -235,32 +229,34 @@
                                                             </tr>
                                                             <tr>
                                                                 <td class="first_child">Styles</td>
-                                                                <td><%= p.getType().getName() %></td>
+                                                                <td><%= p.getType().getName()%></td>
+                                                                <% idtype = p.getType().getTypeId();%>
                                                             </tr>
                                                             <tr>
                                                                 <td class="first_child">Properties</td>
-                                                                <td><%= p.getCategory().getCategoryName() %></td>
+                                                                <td><%= p.getCategory().getCategoryName()%></td>
+
                                                             </tr>
                                                         </tbody>
                                                     </table>
                                                 </form>
                                             </div>
-                                            <div class="product_info_content">
-                                                <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs delivering stylish 
-                                                    separates and statement dresses which have since evolved into a full ready-to-wear collection in which every item is
-                                                    a vital part of a woman's wardrobe. The result? Cool, easy, chic looks with youthful elegance and unmistakable signature 
-                                                    style. All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a
-                                                    range of accessories including shoes, hats, belts and more!</p>
-                                            </div>    
+                                            <!--                                            <div class="product_info_content">
+                                                                                            <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs delivering stylish 
+                                                                                                separates and statement dresses which have since evolved into a full ready-to-wear collection in which every item is
+                                                                                                a vital part of a woman's wardrobe. The result? Cool, easy, chic looks with youthful elegance and unmistakable signature 
+                                                                                                style. All the beautiful pieces are made in Italy and manufactured with the greatest attention. Now Fashion extends to a
+                                                                                                range of accessories including shoes, hats, belts and more!</p>
+                                                                                        </div>    -->
                                         </div>
                                         <div class="tab-pane fade" id="reviews" role="tabpanel">
                                             <div class="product_info_content">
-                                                <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs
-                                                    delivering stylish separates and statement dresses which have since evolved into a full ready-to-wear
-                                                    collection in which every item is a vital part of a woman's wardrobe. The result? Cool, easy, chic looks
-                                                    with youthful elegance and unmistakable signature style. All the beautiful pieces are made in Italy and
-                                                    manufactured with the greatest attention. Now Fashion extends to a range of accessories including shoes,
-                                                    hats, belts and more!</p>
+                                                <!--                                                <p>Fashion has been creating well-designed collections since 2010. The brand offers feminine designs
+                                                                                                    delivering stylish separates and statement dresses which have since evolved into a full ready-to-wear
+                                                                                                    collection in which every item is a vital part of a woman's wardrobe. The result? Cool, easy, chic looks
+                                                                                                    with youthful elegance and unmistakable signature style. All the beautiful pieces are made in Italy and
+                                                                                                    manufactured with the greatest attention. Now Fashion extends to a range of accessories including shoes,
+                                                                                                    hats, belts and more!</p>-->
                                             </div>
                                             <div class="product_info_inner">
                                                 <div class="product_ratting mb-10">
@@ -311,23 +307,31 @@
                     <%}
                         }%>
                     <!--product info end-->
-
+                    <%
+                        ProductDAO productDAO = new ProductDAO();
+                        List<ProductDTO> listProductOther = productDAO.getData();
+                        int count = listProductOther.size();
+                    %>
 
                     <!--new product area start-->
                     <div class="new_product_area product_page">
                         <div class="row">
                             <div class="col-12">
                                 <div class="block_title">
-                                    <h3>  11 other products category:</h3>
+                                    <h3>  <%= count%> other products category:</h3>
                                 </div>
                             </div> 
                         </div>
                         <div class="row">
                             <div class="single_p_active owl-carousel">
+                                <%
+                                    List<ProductDTO> list_Related_Products = null;
+                                    for (ProductDTO p : listProductOther) {
+                                %>
                                 <div class="col-lg-3">
                                     <div class="single_product">
                                         <div class="product_thumb">
-                                            <a href="single-product.html"><img src="assets\img\product\product1.jpg" alt=""></a> 
+                                            <a href="single-product.jsp?productId=<%= p.getId()%>"><img src=<%= p.getImages()[0]%> alt=""></a> 
                                             <div class="img_icone">
                                                 <img src="assets\img\cart\span-new.png" alt="">
                                             </div>
@@ -336,8 +340,8 @@
                                             </div>
                                         </div>
                                         <div class="product_content">
-                                            <span class="product_price">$50.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
+                                            <span class="product_price"><%= p.getPrice()%>&#8363</span>
+                                            <h3 class="product_title"><a href="single-product.jsp?productId=<%= p.getId()%>"><%= p.getProductName()%></a></h3>
                                         </div>
                                         <div class="product_info">
                                             <ul>
@@ -346,106 +350,19 @@
                                             </ul>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="assets\img\product\product2.jpg" alt=""></a> 
-                                            <div class="hot_img">
-                                                <img src="assets\img\cart\span-hot.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$40.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Quisque ornare dui</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="assets\img\product\product3.jpg" alt=""></a> 
-                                            <div class="img_icone">
-                                                <img src="assets\img\cart\span-new.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$60.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Sed non turpiss</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="assets\img\product\product4.jpg" alt=""></a> 
-                                            <div class="hot_img">
-                                                <img src="assets\img\cart\span-hot.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$65.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Duis convallis</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="assets\img\product\product6.jpg" alt=""></a> 
-                                            <div class="img_icone">
-                                                <img src="assets\img\cart\span-new.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$50.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+                                </div>                                      
+                                <%}%>
                             </div> 
                         </div>      
                     </div> 
-                    <!--new product area start-->  
+
+                    <!--                                new product area start  
+                    <%
 
 
-                    <!--new product area start-->
+                    %>
+                
+                                                new product area start-->
                     <div class="new_product_area product_page">
                         <div class="row">
                             <div class="col-12">
@@ -456,10 +373,14 @@
                         </div>
                         <div class="row">
                             <div class="single_p_active owl-carousel">
+                                <%                                    for (ProductDTO p : listProductOther) {
+                                        if (idtype == p.getType().getTypeId()) {
+
+                                %>
                                 <div class="col-lg-3">
                                     <div class="single_product">
                                         <div class="product_thumb">
-                                            <a href="single-product.html"><img src="assets\img\product\product6.jpg" alt=""></a> 
+                                            <a href="single-product.jsp?productId=<%= p.getId()%>"><img src=<%= p.getImages()[0]%> alt=""></a> 
                                             <div class="img_icone">
                                                 <img src="assets\img\cart\span-new.png" alt="">
                                             </div>
@@ -468,8 +389,8 @@
                                             </div>
                                         </div>
                                         <div class="product_content">
-                                            <span class="product_price">$50.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
+                                            <span class="product_price"><%= p.getPrice()%></span>
+                                            <h3 class="product_title"><a href="single-product.jsp?productId=<%= p.getId()%>"><%= p.getProductName()%></a></h3>
                                         </div>
                                         <div class="product_info">
                                             <ul>
@@ -479,98 +400,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="assets\img\product\product5.jpg" alt=""></a> 
-                                            <div class="hot_img">
-                                                <img src="assets\img\cart\span-hot.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$40.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Quisque ornare dui</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="assets\img\product\product4.jpg" alt=""></a> 
-                                            <div class="img_icone">
-                                                <img src="assets\img\cart\span-new.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$60.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Sed non turpiss</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="assets\img\product\product3.jpg" alt=""></a> 
-                                            <div class="hot_img">
-                                                <img src="assets\img\cart\span-hot.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$65.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Duis convallis</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3">
-                                    <div class="single_product">
-                                        <div class="product_thumb">
-                                            <a href="single-product.html"><img src="assets\img\product\product2.jpg" alt=""></a> 
-                                            <div class="img_icone">
-                                                <img src="assets\img\cart\span-new.png" alt="">
-                                            </div>
-                                            <div class="product_action">
-                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                            </div>
-                                        </div>
-                                        <div class="product_content">
-                                            <span class="product_price">$50.00</span>
-                                            <h3 class="product_title"><a href="single-product.html">Curabitur sodales</a></h3>
-                                        </div>
-                                        <div class="product_info">
-                                            <ul>
-                                                <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
+
+                                <%}
+                                    }%>
+
+
                             </div> 
                         </div>      
                     </div> 

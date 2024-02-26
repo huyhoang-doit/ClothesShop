@@ -234,7 +234,12 @@
                                     </div>
                                 </div> 
                                 <!--banner slider start-->
-
+                                <!-- code phan san pham moi -->
+                                <%
+                                    ProductDAO pr = new ProductDAO();
+                                    List<ProductDTO> listProductnew = pr.getData();
+                                %>
+                                <!-- ket thuc taoj danh sach sp moi -->
                                 <!--new product area start-->
                                 <div class="new_product_area">
                                     <div class="block_title">
@@ -242,22 +247,21 @@
                                     </div>
                                     <div class="row">
                                         <div class="product_active owl-carousel">
-                                            <c:if test="${requestScope.LISTPRODUCTS != null}">
-                                                <c:forEach var="i" items="${requestScope.LISTPRODUCTS}">
+                                           <% for (ProductDTO p : listProductnew) {%>
                                                     <div class="col-lg-3">
                                                         <div class="single_product">
                                                             <div class="product_thumb">
-                                                                <a href="single-product.html"><img src="${i.images[0]}" alt=""></a> 
+                                                                <a href="single-product.jsp?productId=<%= p.getId() %>"><img src=<%= p.getImages()[0] %> alt=""></a> 
                                                                 <div class="img_icone">
                                                                     <img src="" alt="">
                                                                 </div>
                                                                 <div class="product_action">
                                                                     <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
                                                                 </div>
-                                                            </div>
+                                                            </div>s
                                                             <div class="product_content">
-                                                                <span class="product_price">${i.price} &#8363</span>
-                                                                <h3 class="product_title"><a href="single-product.html">${i.productName}</a></h3>
+                                                                <span class="product_price"><%= p.getPrice() %> &#8363</span>
+                                                                <h3 class="product_title"><a href="single-product.?productId=<%= p.getId() %>"><%= p.getProductName() %></a></h3>
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
@@ -267,8 +271,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </c:forEach>
-                                            </c:if>
+                                                <%}%>
                                             <!--                                            <div class="col-lg-3">
                                                                                             <div class="single_product">
                                                                                                 <div class="product_thumb">
@@ -371,7 +374,6 @@
                                 <!--Lay du lieu product tu database -->
 
                                 <%
-                                    ProductDAO pr = new ProductDAO();
                                     List<ProductDTO> list = pr.getData();
                                 %>
 
