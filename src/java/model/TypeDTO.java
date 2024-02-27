@@ -10,7 +10,7 @@ package model;
  * @author HuuThanh
  */
 public class TypeDTO {
-     private int typeId;
+    private int typeId;
     private String name;
 
     public TypeDTO() {
