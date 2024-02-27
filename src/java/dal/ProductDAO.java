@@ -361,6 +361,56 @@ public class ProductDAO extends DBContext {
         }
         return products;
     }
+    
+     public List<ProductDTO> sortProductByPriceAscending(List<ProductDTO> list,String value) throws SQLException {
+        List<ProductDTO> products = new ArrayList<>();
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_PRODUCTS_BY_SEARCH);
+                ptm.setString(1, "%" + txtSearch + "%");
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    CategoryDAO cDao = new CategoryDAO();
+                    SupplierDAO sDao = new SupplierDAO();
+                    TypeDAO tDao = new TypeDAO();
+                    String productname = rs.getString("productname");
+                    int id = rs.getInt("id");
+                    SupplierDTO supplier = sDao.getSupplierById(rs.getInt("supplierid"));
+                    CategoryDTO category = cDao.getCategoryById(rs.getInt("categoryid"));
+                    TypeDTO type = tDao.getTypeById(rs.getInt("typeid"));
+                    int stock = rs.getInt("stock");
+                    String description = rs.getString("description");
+                    Date date = rs.getDate("releasedate");
+                    double discount = rs.getDouble("discount");
+                    int unitSold = rs.getInt("unitSold");
+                    double price = rs.getDouble("price");
+                    String colors[] = rs.getString("colors").split(",");
+                    String images[] = rs.getString("images").split(" ");
+                    String sizes[] = rs.getString("size").split(",");
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
+                    products.add(product);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return products;
+    }
+    
 
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();

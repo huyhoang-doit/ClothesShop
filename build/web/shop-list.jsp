@@ -186,23 +186,23 @@
                                 <!--shop tab product-->
                                 <div class="shop_tab_product">   
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="select_option" style="margin-bottom: 20px">
-                                            <form action="#" style="display: flex; justify-content: flex-end; align-items: center">
-                                                <label style="">Sort By: </label>
-                                                <select  name="orderby" id="short">
+                                        <div class="select_option" style="margin-bottom: 20px; display: flex; justify-content: flex-end; align-items: center">
+                                            <label style="">Sort By: </label>
+                                            <form action="SortProductsServlet" method="get">
+                                                <select onchange="sortProducts(event)" name="orderby" id="sort">
                                                     <option selected="" value="1">Price: Lowest</option>
-                                                    <option value="1">Price: Highest</option>
-                                                    <option value="1">Product Name:Z</option>
-                                                    <option value="1">Sort by price:low</option>
-                                                    <option value="1">Product Name: Z</option>
-                                                    <option value="1">In stock</option>
-                                                    <option value="1">Product Name: A</option>
-                                                    <option value="1">In stock</option>
+                                                    <option value="2">Price: Highest</option>
+                                                    <option value="3">Product Name:Z</option>
+                                                    <option value="4">Sort by price:low</option>
+                                                    <option value="5">Product Name: Z</option>
+                                                    <option value="6">In stock</option>
+                                                    <option value="7">Product Name: A</option>
+                                                    <option value="8">In stock</option>
                                                 </select>
                                             </form>
                                         </div>
                                         <div class="tab-pane fade show active" id="large" role="tabpanel">
-                                            <div class="row">
+                                            <div class="row" id="listproduct">
                                                 <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
                                                     <div class="col-lg-4 col-md-6">
                                                         <div class="single_product">

@@ -26,7 +26,7 @@
                     <ul>
                         <li><a href="contact.jsp" title="Contact">Contact</a></li>
                         <li><a href="wishlist.jsp" title="wishlist">My wishlist</a></li>
-                        <c:if test="${sessionScope.account != null}">
+                            <c:if test="${sessionScope.account != null}">
                             <li><a href="ProfileServlet" title="My account">My account</a></li>
                             </c:if>
                         <li><a href="cart.jsp" title="My cart">My cart</a></li>  

@@ -33,7 +33,18 @@ public class ShopServlet extends HttpServlet {
 
             List<ProductDTO> listProducts = pDao.getData();
             List<CategoryDTO> listCategories = cDao.getData();
-
+            
+            String valueSort = request.getParameter("value");
+            if (valueSort != null) {
+                switch (valueSort) {
+                    case "1":
+                        
+                        break;
+                    case "2":
+                        break;
+                } 
+            }
+            
             //Paging
             int page, numPerPage = 9;
             int size = listProducts.size();

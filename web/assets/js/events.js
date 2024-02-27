@@ -59,3 +59,21 @@ function checkForm(e) {
         }
     });
 }
+
+function sortProducts(event) {
+    var text = event.target.value;
+    console.log(text);
+    $.ajax({
+        url: "/PRJ301_Sp24_ClothesShop/ShopServlet",
+        type: "get",
+        data: {
+            value: text
+        },
+        success: function (data) {
+            var row = document.getElementById("listproduct");
+            row.innerHTML = data;
+        },
+        error: function (xhr) {
+        }
+    });
+}
