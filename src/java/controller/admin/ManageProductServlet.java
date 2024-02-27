@@ -8,11 +8,7 @@ package controller.admin;
 import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.SQLException;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,6 +35,7 @@ public class ManageProductServlet extends HttpServlet {
             String action = request.getParameter("action");
             ProductDAO pDao = new ProductDAO();
             CategoryDAO cDao = new CategoryDAO();
+
             List<ProductDTO> listProducts = pDao.getData();
             List<CategoryDTO> listCategories = cDao.getData();
             if (action == null) {
@@ -46,6 +43,9 @@ public class ManageProductServlet extends HttpServlet {
                 request.setAttribute("LIST_CATEGORIES", listCategories);
             } else if (action.equals("insert")) {
                 url = INSERT_PRODUCT_PAGE;
+                request.setAttribute("LIST_CATEGORIES", listCategories);
+            } else if (action.equals("update")) {
+                request.setAttribute("LIST_PRODUCTS", listProducts);
                 request.setAttribute("LIST_CATEGORIES", listCategories);
             } else if (action.equals("insertcategory")) {
                 String msgInsertCate = null;

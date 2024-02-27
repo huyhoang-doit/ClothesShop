@@ -13,7 +13,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import model.CategoryDTO;
 import model.ProductDTO;
@@ -464,14 +463,71 @@ public class ProductDAO extends DBContext {
         return result;
     }
 
+    public void editProduct(int id, String name, String description, int stock, String image,
+            String color, String size, String releasedate, double discount, double price, int categoryId, int supplierId, int typeId) {
+        String sql = "UPDATE [dbo].[Products]\n"
+                + "   SET [productname] = ?\n"
+                + "   ,[supplierid] = ?\n"
+                + "      ,[categoryid] = ?\n"
+                + "      ,[size]=? \n"
+                + "      ,[stock] =? \n"
+                + "      ,[description] =? \n";
+        if (!(image.equals(""))) {
+            sql += "      ,[images] =? \n";
+        }
+        sql += "      ,[colors] =? \n"
+                + "      ,[releasedate] =? \n"
+                + "      ,[discount] =? \n"
+                + "      ,[price] =? \n"
+                + "      ,[typeid] =? \n"
+                + " WHERE [id]=?";
+        try {
+            Connection conn = null;
+            PreparedStatement ptm = null;
+            ResultSet rs = null;
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(sql);
+                ptm.setString(1, name);
+                ptm.setInt(2, supplierId);
+                ptm.setInt(3, categoryId);
+                ptm.setString(4, size);
+                ptm.setInt(5, stock);
+                ptm.setString(6, description);
+                if (!image.equals("")) {
+                    ptm.setString(7, image);
+                    ptm.setString(8, color);
+                    ptm.setString(9, releasedate);
+                    ptm.setDouble(10, discount);
+                    ptm.setDouble(11, price);
+                    ptm.setInt(12, typeId);
+                    ptm.setInt(13, id);
+                    ptm.executeUpdate();
+                    return;
+                } else {
+                    ptm.setString(7, color);
+                    ptm.setString(8, releasedate);
+                    ptm.setDouble(9, discount);
+                    ptm.setDouble(10, price);
+                    ptm.setInt(11, typeId);
+                    ptm.setInt(12, id);
+                    ptm.executeUpdate();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
 
 //        ProductDTO product = dao.getProductByID(1);
 //        System.out.println(product.getProductName());
-        List<ProductDTO> list = dao.sortProduct(dao.getData(), "1");
-        for (ProductDTO productDTO : list) {
-            System.out.println(productDTO);
+        dao.editProduct(1, "ÁO KHOÁC REGULAR TECHNICALLL", "Áo sơ mi khoác bằng cotton dệt chéo, có cổ, nẹp khuy liền và cầu vai phía sau. Túi ngực mở, tay dài có nẹp tay áo và măng sét cài khuy cùng vạt tròn.",
+                6, "assets/img/products/1-1.jpg assets/img/products/1-2.jpg", "Trắng,Đen,Rêu", "S,M", "2021-12-01", 0.4, 249.000, 1, 1, 1);
+        for (ProductDTO productDTO : dao.getData()) {
+            System.out.println(productDTO.getName());
         }
     }
 }
