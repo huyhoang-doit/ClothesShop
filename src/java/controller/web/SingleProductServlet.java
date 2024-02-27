@@ -7,7 +7,7 @@ package controller.web;
 
 import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,7 +33,13 @@ public class SingleProductServlet extends HttpServlet {
             ProductDAO pDao = new ProductDAO();
             String product_id = request.getParameter("product_id");
             ProductDTO product = pDao.getProductByID(Integer.parseInt(product_id));
-            List<ProductDTO> listSameCategory = pDao.getProductByCategoryId(product.getCategory().getCategoryId());
+            List<ProductDTO> listProduct = pDao.getProductByCategoryId(product.getCategory().getId());
+            List<ProductDTO> listSameCategory = new ArrayList<>();
+            for (ProductDTO productDTO : listProduct) {
+                if(productDTO.getId() != product.getId()){
+                    listSameCategory.add(productDTO);
+                }
+            }
             
             
             request.setAttribute("PRODUCT", product);

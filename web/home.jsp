@@ -51,7 +51,7 @@
                                                         <c:forEach items="${requestScope.LIST_CATEGORIESS}" var="c">
                                                             <c:if test="${t.typeId == c.typeId}" >
                                                             <ul class="categorie_sub">
-                                                                <li><a href="FilterServlet?action=filterByCategory&category_id=${t.typeId}"><i class="fa fa-caret-right"></i> ${c.name}</a>
+                                                                <li><a href="FilterServlet?action=filterByCategory&category_id=${c.id}"><i class="fa fa-caret-right"></i> ${c.name}</a>
                                                                 </li>
                                                             </ul>    
                                                         </c:if>

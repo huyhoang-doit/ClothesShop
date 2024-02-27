@@ -466,11 +466,11 @@ public class ProductDAO extends DBContext {
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
 
-//        ProductDTO product = dao.getProductByID(1);
-//        System.out.println(product.getProductName());
-        List<ProductDTO> list = dao.sortProduct(dao.getData(), "1");
+        List<ProductDTO> list = dao.getProductByCategoryId(1);
+        
+//        List<ProductDTO> list = dao.sortProduct(dao.getData(), "1");
         for (ProductDTO productDTO : list) {
-            System.out.println(productDTO);
+            System.out.println(productDTO.getName());
         }
     }
 }

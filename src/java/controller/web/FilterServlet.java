@@ -5,7 +5,6 @@
  */
 package controller.web;
 
-import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +13,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.CategoryDTO;
 import model.ProductDTO;
 
 /**
@@ -24,12 +22,12 @@ import model.ProductDTO;
 @WebServlet(name = "FilterServlet", urlPatterns = {"/FilterServlet"})
 public class FilterServlet extends HttpServlet {
 
-    private static final String SHOP_PRODUCT_SERVLET = "ShopServlet";
+    private static final String SHOP_LIST = "shop-list.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SHOP_PRODUCT_SERVLET;
+        String url = SHOP_LIST;
         try {
             ProductDAO pDao = new ProductDAO();
             String action = request.getParameter("action");
@@ -44,7 +42,7 @@ public class FilterServlet extends HttpServlet {
                 List<ProductDTO> list = pDao.getProductByCategoryId(Integer.parseInt(cateId));
                 request.setAttribute("LISTPRODUCTS", list);
             }
-
+            
         } catch (Exception e) {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
