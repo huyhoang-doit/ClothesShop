@@ -3,15 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Project/ClothingStore/src/java/model/Email.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/dal/TypeDAO.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/dal/SupplierDAO.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/controller/web/LoginServlet.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/dal/PaymentDAO.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/Context/DBContext.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/dal/OrderDAO.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/dal/CategoryDAO.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/dal/ProductDAO.java</file>
+            <file>file:/D:/PRJ/PRJ_team/Project_PRJ301_Spring24/web/home.jsp</file>
+            <file>file:/D:/PRJ/PRJ_team/Project_PRJ301_Spring24/web/wishlist.jsp</file>
+            <file>file:/D:/PRJ/PRJ_team/Project_PRJ301_Spring24/src/java/dal/ProductDAO.java</file>
+            <file>file:/D:/PRJ/PRJ_team/Project_PRJ301_Spring24/src/java/dal/WishlistDAO.java</file>
         </group>
     </open-files>
 </project-private>

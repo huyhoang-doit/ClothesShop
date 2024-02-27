@@ -1,3 +1,5 @@
+<%@page import="model.WishListDTO"%>
+<%@page import="dal.WishlistDAO"%>
 <%@page import="model.ProductDTO"%>
 <%@page import="java.util.List"%>
 <%@page import="dal.ProductDAO"%>
@@ -66,105 +68,46 @@
                                                 </li>
                                             </c:forEach>
                                         </c:if>
-                                        <!--                                        <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Men</a>
-                                                                                    <ul class="categorie_sub">
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                                                                            <ul class="categorie_sub">
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                                                            </ul> 
-                                                                                        </li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                                                    </ul> 
-                                                                                </li>
-                                                                                <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Footwear</a>
-                                                                                    <ul class="categorie_sub">
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                                                                            <ul class="categorie_sub">
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                                                            </ul> 
-                                                                                        </li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                                                    </ul> 
-                                        
-                                                                                </li>
-                                                                                <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Jewelry</a>
-                                                                                    <ul class="categorie_sub">
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                                                                            <ul class="categorie_sub">
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                                                            </ul> 
-                                                                                        </li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                                                    </ul> 
-                                                                                </li>
-                                                                                <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i> Lady</a>
-                                                                                    <ul class="categorie_sub">
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
-                                                                                            <ul class="categorie_sub">
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                                                            </ul> 
-                                                                                        </li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                                                    </ul> 
-                                                                                </li>-->
                                     </ul>
                                 </div>
                                 <!--categorie menu end-->
-
+                                <%
+                                    WishlistDAO wl = new WishlistDAO();
+                                    ProductDAO product = new ProductDAO();
+                                    List<WishListDTO> lists = wl.getWishlist();
+                                    int count=0;
+                                %>
                                 <!--wishlist block start-->
                                 <div class="sidebar_widget wishlist mb-35">
                                     <div class="block_title">
                                         <h3><a href="#">Wishlist</a></h3>
                                     </div>
+
+                                    <% 
+                                        for (WishListDTO wls : lists) {
+                                        List<ProductDTO> productList = product.getProductsforId(String.valueOf(wls.getProductID()));
+                                        count++;
+                                        for (ProductDTO p : productList) {
+                                    %>
                                     <div class="cart_item">
                                         <div class="cart_img">
-                                            <a href="#"><img src="assets\img\cart\cart.jpg" alt=""></a>
+                                            <a href="single-product.jsp?productId=<%= p.getId() %>"><img src=<%= p.getImages()[0] %> alt=""></a>
                                         </div>
                                         <div class="cart_info">
-                                            <a href="#">lorem ipsum dolor</a>
-                                            <span class="cart_price">$115.00</span>
-                                            <span class="quantity">Qty: 1</span>
+                                            <a href="single-product.jsp?productId=<%= p.getId() %>"><%= p.getProductName() %></a>
+                                            <span class="cart_price"><%= p.getPrice() %>&#8363</span>                                          
                                         </div>
                                         <div class="cart_remove">
                                             <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
                                         </div>
                                     </div>
-                                    <div class="cart_item">
-                                        <div class="cart_img">
-                                            <a href="#"><img src="assets\img\cart\cart2.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart_info">
-                                            <a href="#">Quisque ornare dui</a>
-                                            <span class="cart_price">$105.00</span>
-                                            <span class="quantity">Qty: 1</span>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                        </div>
-                                    </div>
+
+
+                                    <%}}%>
+
                                     <div class="block_content">
-                                        <p>2  products</p>
-                                        <a href="#">» My wishlists</a>
+                                        <p><%= count %> products</p>
+                                        <a href="wishlist.jsp">» My wishlists</a>
                                     </div>
                                 </div>
                                 <!--wishlist block end-->
@@ -235,8 +178,7 @@
                                 </div> 
                                 <!--banner slider start-->
                                 <!-- code phan san pham moi -->
-                                <%
-                                    ProductDAO pr = new ProductDAO();
+                                <%                                    ProductDAO pr = new ProductDAO();
                                     List<ProductDTO> listProductnew = pr.getData();
                                 %>
                                 <!-- ket thuc taoj danh sach sp moi -->
@@ -247,31 +189,31 @@
                                     </div>
                                     <div class="row">
                                         <div class="product_active owl-carousel">
-                                           <% for (ProductDTO p : listProductnew) {%>
-                                                    <div class="col-lg-3">
-                                                        <div class="single_product">
-                                                            <div class="product_thumb">
-                                                                <a href="single-product.jsp?productId=<%= p.getId() %>"><img src=<%= p.getImages()[0] %> alt=""></a> 
-                                                                <div class="img_icone">
-                                                                    <img src="" alt="">
-                                                                </div>
-                                                                <div class="product_action">
-                                                                    <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                                                </div>
-                                                            </div>s
-                                                            <div class="product_content">
-                                                                <span class="product_price"><%= p.getPrice() %> &#8363</span>
-                                                                <h3 class="product_title"><a href="single-product.jsp?productId=<%= p.getId() %>"><%= p.getProductName() %></a></h3>
-                                                            </div>
-                                                            <div class="product_info">
-                                                                <ul>
-                                                                    <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                                    <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                                                </ul>
-                                                            </div>
+                                            <% for (ProductDTO p : listProductnew) {%>
+                                            <div class="col-lg-3">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="single-product.jsp?productId=<%= p.getId()%>"><img src=<%= p.getImages()[0]%> alt=""></a> 
+                                                        <div class="img_icone">
+                                                            <img src="" alt="">
                                                         </div>
+                                                        <div class="product_action">
+                                                            <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                                        </div>
+                                                    </div>s
+                                                    <div class="product_content">
+                                                        <span class="product_price"><%= p.getPrice()%> &#8363</span>
+                                                        <h3 class="product_title"><a href="single-product.jsp?productId=<%= p.getId()%>"><%= p.getProductName()%></a></h3>
                                                     </div>
-                                                <%}%>
+                                                    <div class="product_info">
+                                                        <ul>
+                                                            <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
+                                                            <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <%}%>
                                             <!--                                            <div class="col-lg-3">
                                                                                             <div class="single_product">
                                                                                                 <div class="product_thumb">
@@ -393,7 +335,7 @@
                                             <div class="col-lg-3">
                                                 <div class="single_product">
                                                     <div class="product_thumb">
-                                                        <a href="single-product.jsp?productId=<%= p.getId() %>"><img src= <%= p.getImages()[0]%> alt=""></a> 
+                                                        <a href="single-product.jsp?productId=<%= p.getId()%>"><img src= <%= p.getImages()[0]%> alt=""></a> 
                                                         <div class="hot_img">
                                                             <img src="assets\img\cart\span-hot.png" alt="">
                                                         </div>
@@ -402,8 +344,8 @@
                                                         </div>
                                                     </div>
                                                     <div class="product_content">
-                                                        <span class="product_price"> <%= p.getPrice() %>&#8363</span>
-                                                        <h3 class="product_title"><a href="single-product.html"><%= p.getProductName() %></a></h3>
+                                                        <span class="product_price"> <%= p.getPrice()%>&#8363</span>
+                                                        <h3 class="product_title"><a href="single-product.html"><%= p.getProductName()%></a></h3>
                                                     </div>
                                                     <div class="product_info">
                                                         <ul>
