@@ -36,9 +36,6 @@
                             <c:if test="${sessionScope.account != null}">
                             <li><a href="${sessionScope.account.roleID == 1 ? 'AdminServlet' : 'ProfileServlet'} ">Hello, ${sessionScope.account.firstName} ${sessionScope.account.lastName}!</a></li>
                             <li><a href="DispatchServlet?btnAction=Logout">Logout</a></li>
-                            <!--                            <button class="btn btn-primary btn-sm logout"><i
-                                                                class="fas fa-trash-alt"></i>
-                                                        </button>-->
                         </c:if>
                     </ul>
                 </div>   
