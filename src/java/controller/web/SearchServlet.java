@@ -25,12 +25,12 @@ import model.ProductDTO;
 @WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
 public class SearchServlet extends HttpServlet {
 
-    private final String SHOP = "shop-list.jsp";
+    private static final String SHOP_PRODUCT_SERVLET = "ShopServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SHOP;
+        String url = SHOP_PRODUCT_SERVLET;
         try {
             String txtSearch = request.getParameter("txtSearch");
             ProductDAO pDao = new ProductDAO();
