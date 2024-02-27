@@ -182,7 +182,7 @@
                                                 </div>     
                                             </div>    
                                         </div>
-                                        <div class="single_slider" style="background-image: url(assets/img/slider/slider_2.png)">
+                                        <div class="single_slider" style="background-image: url(assets/img/slider/slide_2.png)">
                                             <div class="slider_content">
                                                 <div class="slider_content_inner">  
                                                     <h1>New Collection</h1>
@@ -191,7 +191,7 @@
                                                 </div>         
                                             </div>         
                                         </div>
-                                        <div class="single_slider" style="background-image: url(assets/img/slider/slider_3.png)">
+                                        <div class="single_slider" style="background-image: url(assets/img/slider/slide_3.png)">
                                             <div class="slider_content">  
                                                 <div class="slider_content_inner">  
                                                     <h1>Best Collection</h1>
@@ -226,7 +226,7 @@
                                                             </div>
                                                             <div class="product_content">
                                                                 <span class="product_price">${i.price} &#8363</span>
-                                                                <h3 class="product_title"><a href="single-product.html">${i.productName}</a></h3>
+                                                                <h3 class="product_title"><a href="single-product.html">${i.name}</a></h3>
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
@@ -264,7 +264,7 @@
                                                         </div>
                                                         <div class="product_content">
                                                             <span class="product_price">${p.price}&#273</span>
-                                                            <h3 class="product_title"><a href="single-product.html">${p.productName}</a></h3>
+                                                            <h3 class="product_title"><a href="single-product.html">${p.name}</a></h3>
                                                         </div>
                                                         <div class="product_info">
                                                             <ul>

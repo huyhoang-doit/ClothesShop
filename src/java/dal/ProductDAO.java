@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import model.CategoryDTO;
 import model.ProductDTO;
@@ -444,16 +446,32 @@ public class ProductDAO extends DBContext {
         return products;
     }
 
+    public List<ProductDTO> sortProduct(List<ProductDTO> list, String value) throws SQLException {
+        List<ProductDTO> result = new ArrayList<>(list);
+        if (value.equals("1")) {
+            Collections.sort(result, (ProductDTO s1, ProductDTO s2) -> {
+                return Double.compare(s1.getPrice(), s2.getPrice());
+            });
+        } else if (value.equals("2")) {
+            Collections.sort(result, (ProductDTO s1, ProductDTO s2) -> {
+                return -(Double.compare(s1.getPrice(), s2.getPrice()));
+            });
+        } else if (value.equals("3")) {
+            Collections.sort(result, (ProductDTO s1, ProductDTO s2) -> {
+                return s1.getName().compareTo(s2.getName());
+            });
+        }
+        return result;
+    }
+
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
-        int count = dao.getTotalProducts();
-        System.out.println(count);
 
 //        ProductDTO product = dao.getProductByID(1);
 //        System.out.println(product.getProductName());
-       List<ProductDTO> list  = dao.getProductByCategoryId(1);
+        List<ProductDTO> list = dao.sortProduct(dao.getData(), "1");
         for (ProductDTO productDTO : list) {
-            System.out.println(productDTO.getProductName());
+            System.out.println(productDTO);
         }
     }
 }

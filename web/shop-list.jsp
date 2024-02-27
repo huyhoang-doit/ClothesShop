@@ -46,6 +46,7 @@
                         <div class="row pos_home">
                             <div class="col-lg-3 col-md-12">
                                 <!--layere categorie"-->
+                                <input id="sortinput" type="text" value="${requestScope.VALUESORT}" name="valueSort"/>
                                 <div class="sidebar_widget shop_c">
                                     <div class="categorie__titile">
                                         <h4>Categories</h4>
@@ -70,7 +71,6 @@
                                     <h2>Color</h2>
                                     <div class="widget_color">
                                         <ul>
-
                                             <li><a href="#">Black <span>(10)</span></a></li>
 
                                             <li><a href="#">Orange <span>(12)</span></a></li>
@@ -93,7 +93,6 @@
                                 <div class="sidebar_widget price">
                                     <h2>Price</h2>
                                     <div class="ca_search_filters">
-
                                         <input type="text" name="text" id="amount">  
                                         <div id="slider-range"></div> 
                                     </div>
@@ -186,23 +185,19 @@
                                 <!--shop tab product-->
                                 <div class="shop_tab_product">   
                                     <div class="tab-content" id="myTabContent">
-                                        <div class="select_option" style="margin-bottom: 20px">
-                                            <form action="#" style="display: flex; justify-content: flex-end; align-items: center">
-                                                <label style="">Sort By: </label>
-                                                <select  name="orderby" id="short">
-                                                    <option selected="" value="1">Price: Lowest</option>
-                                                    <option value="1">Price: Highest</option>
-                                                    <option value="1">Product Name:Z</option>
-                                                    <option value="1">Sort by price:low</option>
-                                                    <option value="1">Product Name: Z</option>
-                                                    <option value="1">In stock</option>
-                                                    <option value="1">Product Name: A</option>
-                                                    <option value="1">In stock</option>
+                                        <div class="select_option" style="margin-bottom: 20px; display: flex; justify-content: flex-end; align-items: center">
+                                            <label style="">Sort By: </label>
+                                            <form action="SortProductsServlet" method="get">
+                                                <select onchange="sortProducts(event)" name="orderby" id="sort">                                                
+                                                    <option value="0">Nổi bật</option>
+                                                    <option value="1">Giá: Thấp đến Cao</option>
+                                                    <option value="2">Giá: Cao đến Thấp</option>
+                                                    <option value="3">Tên: A- Z</option>
                                                 </select>
                                             </form>
                                         </div>
                                         <div class="tab-pane fade show active" id="large" role="tabpanel">
-                                            <div class="row">
+                                            <div class="row" id="listproduct">
                                                 <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
                                                     <div class="col-lg-4 col-md-6">
                                                         <div class="single_product">
@@ -219,7 +214,7 @@
                                                             </div>
                                                             <div class="product_content">
                                                                 <span class="product_price">${p.price}$</span>
-                                                                <h3 class="product_title"><a href="#">${p.productName}</a></h3>
+                                                                <h3 class="product_title"><a href="#">${p.name}</a></h3>
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
@@ -257,7 +252,7 @@
                                                                     </ul>
                                                                 </div>
                                                                 <div class="list_title">
-                                                                    <h3><a href="single-product.html">${p.productName}</a></h3>
+                                                                    <h3><a href="single-product.html">${p.name}</a></h3>
                                                                 </div>
                                                                 <p class="design">${p.description}</p>
                                                                 <div class="content_price">
@@ -420,9 +415,6 @@
         </div> 
 
         <!-- modal area end --> 
-
-
-
 
         <!-- all js here -->
         <%@include file="/common/web/add_js.jsp"%>

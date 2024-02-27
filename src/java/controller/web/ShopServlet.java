@@ -24,10 +24,12 @@ import model.ProductDTO;
 public class ShopServlet extends HttpServlet {
 
     private final String SHOP = "shop-list.jsp";
+    private final String SORT = "ajax/sortproducts.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = SHOP;
         try {
             ProductDAO pDao = new ProductDAO();
             CategoryDAO cDao = new CategoryDAO();
@@ -39,6 +41,22 @@ public class ShopServlet extends HttpServlet {
 
             } else {
                 listProducts = ( List<ProductDTO>) request.getAttribute("LISTPRODUCTS");
+            }
+
+            String valueSort = request.getParameter("valueSort");
+            if (valueSort != null) {
+                switch (valueSort) {
+                    case "1":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                    case "2":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                    case "3":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                }
+                url = SORT;
             }
 
             //Paging
@@ -61,10 +79,10 @@ public class ShopServlet extends HttpServlet {
             request.setAttribute("CURRENTPAGE", page);
             request.setAttribute("LISTPRODUCTS", listByPage);
             request.setAttribute("LISTCATEGORIES", listCategories);
+            request.setAttribute("VALUESORT", valueSort);
         } catch (Exception ex) {
-
         } finally {
-            request.getRequestDispatcher(SHOP).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

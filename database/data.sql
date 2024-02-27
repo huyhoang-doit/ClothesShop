@@ -22,7 +22,7 @@ INSERT INTO Categories VALUES
 (N'Áo Polo',1),
 (N'Mũ',3),
 (N'Balo',3),
-(N'Giày',3),
+(N'Giày',3)
 
 
 INSERT INTO Suppliers VALUES
