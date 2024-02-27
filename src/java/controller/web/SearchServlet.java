@@ -25,24 +25,41 @@ import model.ProductDTO;
 @WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
 public class SearchServlet extends HttpServlet {
 
-    private static final String SHOP_PRODUCT_SERVLET = "ShopServlet";
+    private static final String SEARCH_PAGE = "ajax/sortproducts.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SHOP_PRODUCT_SERVLET;
+        String url = SEARCH_PAGE;
         try {
             String txtSearch = request.getParameter("txtSearch");
             ProductDAO pDao = new ProductDAO();
             List<ProductDTO> listProducts = pDao.getProductBySearch(txtSearch);
             CategoryDAO cDao = new CategoryDAO();
             List<CategoryDTO> listCategories = cDao.getData();
-            request.setAttribute("LISTPRODUCTS", listProducts);
+            
+            //Paging
+            int page, numPerPage = 9;
+            int size = listProducts.size();
+            int numberpage = ((size % numPerPage == 0) ? (size / 9) : (size / 9) + 1);
+            String xpage = request.getParameter("page");
+            if (xpage == null) {
+                page = 1;
+            } else {
+                page = Integer.parseInt(xpage);
+            }
+            int start, end;
+            start = (page - 1) * 9;
+            end = Math.min(page * numPerPage, size);
+
+            List<ProductDTO> listByPage = pDao.getListByPage(listProducts, start, end);
+            
+            request.setAttribute("LISTPRODUCTS", listByPage);
             request.setAttribute("LISTCATEGORIES", listCategories);
         } catch (Exception e) {
 
         } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+            request.getRequestDispatcher(SEARCH_PAGE).forward(request, response);
         }
     }
 

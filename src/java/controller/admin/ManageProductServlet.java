@@ -43,6 +43,7 @@ public class ManageProductServlet extends HttpServlet {
             List<CategoryDTO> listCategories = cDao.getData();
             if (action == null) {
                 request.setAttribute("LIST_PRODUCTS", listProducts);
+                request.setAttribute("LIST_CATEGORIES", listCategories);
             } else if (action.equals("insert")) {
                 url = INSERT_PRODUCT_PAGE;
                 request.setAttribute("LIST_CATEGORIES", listCategories);

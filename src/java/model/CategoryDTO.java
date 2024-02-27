@@ -10,16 +10,16 @@ package model;
  * @author HuuThanh
  */
 public class CategoryDTO {
-    private int categoryId;
-    private String categoryName;
+    private int id;
+    private String name;
     private int typeId;
 
     public CategoryDTO() {
     }
 
-    public CategoryDTO(int categoryId, String categoryName, int typeId) {
-        this.categoryId = categoryId;
-        this.categoryName = categoryName;
+    public CategoryDTO(int id, String name, int typeId) {
+        this.id = id;
+        this.name = name;
         this.typeId = typeId;
     }
 
@@ -33,20 +33,20 @@ public class CategoryDTO {
 
     
 
-    public int getCategoryId() {
-        return categoryId;
+    public int getId() {
+        return id;
     }
 
-    public void setCategoryId(int categoryId) {
-        this.categoryId = categoryId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getName() {
+        return name;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     
