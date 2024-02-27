@@ -44,19 +44,25 @@
                     <!--pos home section-->
                     <div class=" pos_home_section">
                         <div class="row pos_home">
-                            <div class="col-lg-3 col-md-12">
+                            <form class="col-lg-3 col-md-12">
                                 <!--layere categorie"-->
-                                <input id="sortinput" type="text" value="${requestScope.VALUESORT}" name="valueSort"/>
+                                <input id="sortinput" type="hidden" value="${requestScope.VALUESORT}" name="valueSort"/>
                                 <div class="sidebar_widget shop_c">
                                     <div class="categorie__titile">
                                         <h4>Categories</h4>
                                     </div>
                                     <div class="layere_categorie">
                                         <ul>
+                                            <li>
+                                                <input checked type="checkbox">
+                                                <label>Tất cả
+                                                    <span>(1)</span>
+                                                </label>
+                                            </li>
                                             <c:forEach items="${LISTCATEGORIES}" var="c">
                                                 <li>
-                                                    <input type="checkbox">
-                                                    <label for="acces">${c.categoryName}
+                                                    <input id="${c.categoryId}" type="checkbox" name="">
+                                                    <label for="${c.categoryId}">${c.categoryName}
                                                         <span>(1)</span>
                                                     </label>
                                                 </li>
@@ -93,8 +99,7 @@
                                 <div class="sidebar_widget price">
                                     <h2>Price</h2>
                                     <div class="ca_search_filters">
-                                        <input type="text" name="text" id="amount">  
-                                        <div id="slider-range"></div> 
+                                        <input type="text" name="text" placeholder="">
                                     </div>
                                 </div>                                                       
                                 <!--price slider end-->
@@ -149,8 +154,7 @@
                                 </div>
                                 <!--special product end-->
 
-
-                            </div>
+                            </form>
                             <div class="col-lg-9 col-md-12">
                                 <!--banner slider start-->
                                 <div class="banner_slider mb-35">
@@ -175,8 +179,8 @@
                                     </div>
                                     <div class="search_bar">
                                         <form action="#">
-                                            <input placeholder="Search..." type="text">
-                                            <button type="submit"><i class="fa fa-search"></i></button>
+                                            <input oninput="searchProducts(this)" value="" placeholder="Search..." type="text">
+                                            <i style="margin-left: -24px" class="fa fa-search"></i>
                                         </form>
                                     </div>
                                 </div>

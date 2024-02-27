@@ -23,8 +23,8 @@ import model.ProductDTO;
  */
 public class ShopServlet extends HttpServlet {
 
-    private final String SHOP = "shop-list.jsp";
-    private final String SORT = "ajax/sortproducts.jsp";
+    private static final String SHOP = "shop-list.jsp";
+    private static final String SORT = "ajax/sortproducts.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,7 +38,6 @@ public class ShopServlet extends HttpServlet {
             List<CategoryDTO> listCategories = cDao.getData();
             if (request.getAttribute("LISTPRODUCTS") == null) {
                 listProducts = pDao.getData();
-
             } else {
                 listProducts = ( List<ProductDTO>) request.getAttribute("LISTPRODUCTS");
             }

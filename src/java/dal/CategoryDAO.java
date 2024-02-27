@@ -181,10 +181,10 @@ public class CategoryDAO extends DBContext {
 
     public static void main(String[] args) throws SQLException {
         CategoryDAO dao = new CategoryDAO();
-//        List<CategoryDTO> list = dao.getData();
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.get(i).getCategoryName());
-//        }
+        List<CategoryDTO> list = dao.getData();
+        for (int i = 0; i < list.size(); i++) {
+            System.out.println(list.get(i).getName());
+        }
 //        
 //        if(dao.insertCategory("ao da")) {
 //            System.out.println("OK");

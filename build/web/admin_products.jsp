@@ -30,7 +30,6 @@
     </head>
 
     <body onload="time()" class="app sidebar-mini rtl">
-        <!-- Navbar-->
         <%@include file="/common/admin/sidebar.jsp"%>
         <main class="app-content">
             <div class="app-title">
@@ -72,7 +71,7 @@
                                         <c:forEach items="${requestScope.LIST_PRODUCTS}" var="p">
                                             <tr>
                                                 <td>${p.id}</td>
-                                                <td>${p.getCategory().getCategoryName()}</td>
+                                                <td>${p.getCategory().getName()}</td>
                                                 <td style="max-width: 200px">${p.name}</td>
                                                 <td>${p.getPrice()}</td>
                                                 <td>
@@ -82,22 +81,100 @@
                                                 </td>
                                                 <td>
                                                     <c:forEach items="${p.colors}" var="c" varStatus="loop">    
-                                                            ${c}<c:if test="${not loop.last}">,</c:if>
+                                                        ${c}<c:if test="${not loop.last}">,</c:if>
                                                     </c:forEach>
                                                 </td>
                                                 <td>${p.getStock()}</td>
                                                 <td><img src="${p.images[0]}" alt="" width="100px;"></td>
 
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" value="${p.getId()}"><i
+                                                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" value="${p.id}"><i
                                                             class="fas fa-trash-alt"></i>
                                                     </button>
                                                     <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
-                                                            data-toggle="modal" data-target="#ModalUP${p.getId()}"><i class="fas fa-edit"></i>
+                                                            data-toggle="modal" data-target="#ModalUP${p.id}"><i class="fas fa-edit"></i>
                                                     </button>
                                                 </td>
                                             </tr>
-                                        </c:forEach>
+
+                                        <div class="modal fade" id="ModalUP${p.id}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+                                             data-keyboard="false">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="form-group  col-md-12">
+                                                                <span class="thong-tin-thanh-toan">
+                                                                    <h5>Chỉnh sửa thông tin sản phẩm</h5>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label">Mã sản phẩm </label>
+                                                                <input class="form-control" type="text" readonly name="product_id" value="${p.id}">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label for="exampleSelect1" class="control-label">Danh mục</label>
+                                                                <select name="category_id" class="form-control" id="exampleSelect1">
+                                                                    <option>-- Chọn danh mục --</option>
+                                                                    <c:forEach items="${requestScope.LIST_CATEGORIES}" var="cat">
+                                                                        <option value="${cat.id}">${cat.name}</option>
+                                                                    </c:forEach>
+                                                                </select>
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label">Tên sản phẩm</label>
+                                                                <input class="form-control" type="text" name="product_name" required value="${p.name}">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label">Giá</label>
+                                                                <input class="form-control" type="number" name="product_price" required value="${p.price}">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label">Màu</label>
+                                                                <input class="form-control" name="product_color" type="text" value="<c:forEach items="${p.colors}" var="c" varStatus="loop">${c}<c:if test="${not loop.last}">, </c:if></c:forEach>">
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-6">
+                                                                        <label class="control-label">Size</label>
+                                                                        <input class="form-control" name="product_size" type="text" value="<c:forEach items="${p.size}" var="s" varStatus="loop">${s}<c:if test="${not loop.last}">, </c:if></c:forEach>">
+                                                                    </div>
+
+                                                                    <div class="form-group col-md-6">
+                                                                        <label class="control-label">Thông tin</label>
+                                                                        <input class="form-control" type="text" name="product_describe" value="${p.description}">
+                                                            </div>
+
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label">Số lượng</label>
+                                                                <input class="form-control" type="text" name="product_quantity" value="${p.stock}">
+                                                            </div>
+                                                            <!--anh san pham-->
+                                                            <div class="form-group col-md-12">
+                                                                <label class="control-label">Ảnh sản phẩm</label>
+                                                                <div id="myfileupload">
+                                                                    <input type="file" id="uploadfile" name="product_img" value="${p.images[0]}" onchange="readURL(this);" />
+                                                                </div>
+                                                                <div id="thumbbox">
+                                                                    <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
+                                                                    <a class="removeimg" href="javascript:"></a>
+                                                                </div>
+                                                                <div id="boxchoice">
+                                                                    <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
+                                                                    <p style="clear:both"></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <BR>
+                                                        <button class="btn btn-save" type="submit">Lưu lại</button>
+                                                        <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
+                                                        <BR>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
                                     </tbody>
                                 </table>
                             </form>
@@ -106,9 +183,6 @@
                 </div>
             </div>
         </main>
-
-
-
         <!-- Essential javascripts for application to work-->
         <script src="admin/js/jquery-3.2.1.min.js"></script>
         <script src="admin/js/popper.min.js"></script>
@@ -123,50 +197,49 @@
         <script type="text/javascript" src="admin/js/plugins/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="admin/js/plugins/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript">
-                                        $('#sampleTable').DataTable();
-                                        //Thời Gian
-                                        function time() {
-                                            var today = new Date();
-                                            var weekday = new Array(7);
-                                            weekday[0] = "Chủ Nhật";
-                                            weekday[1] = "Thứ Hai";
-                                            weekday[2] = "Thứ Ba";
-                                            weekday[3] = "Thứ Tư";
-                                            weekday[4] = "Thứ Năm";
-                                            weekday[5] = "Thứ Sáu";
-                                            weekday[6] = "Thứ Bảy";
-                                            var day = weekday[today.getDay()];
-                                            var dd = today.getDate();
-                                            var mm = today.getMonth() + 1;
-                                            var yyyy = today.getFullYear();
-                                            var h = today.getHours();
-                                            var m = today.getMinutes();
-                                            var s = today.getSeconds();
-                                            m = checkTime(m);
-                                            s = checkTime(s);
-                                            nowTime = h + " giờ " + m + " phút " + s + " giây";
-                                            if (dd < 10) {
-                                                dd = '0' + dd
-                                            }
-                                            if (mm < 10) {
-                                                mm = '0' + mm
-                                            }
-                                            today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-                                            tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-                                                    '</span>';
-                                            document.getElementById("clock").innerHTML = tmp;
-                                            clocktime = setTimeout("time()", "1000", "Javascript");
+                                                                        $('#sampleTable').DataTable();
+                                                                        //Thời Gian
+                                                                        function time() {
+                                                                            var today = new Date();
+                                                                            var weekday = new Array(7);
+                                                                            weekday[0] = "Chủ Nhật";
+                                                                            weekday[1] = "Thứ Hai";
+                                                                            weekday[2] = "Thứ Ba";
+                                                                            weekday[3] = "Thứ Tư";
+                                                                            weekday[4] = "Thứ Năm";
+                                                                            weekday[5] = "Thứ Sáu";
+                                                                            weekday[6] = "Thứ Bảy";
+                                                                            var day = weekday[today.getDay()];
+                                                                            var dd = today.getDate();
+                                                                            var mm = today.getMonth() + 1;
+                                                                            var yyyy = today.getFullYear();
+                                                                            var h = today.getHours();
+                                                                            var m = today.getMinutes();
+                                                                            var s = today.getSeconds();
+                                                                            m = checkTime(m);
+                                                                            s = checkTime(s);
+                                                                            nowTime = h + " giờ " + m + " phút " + s + " giây";
+                                                                            if (dd < 10) {
+                                                                                dd = '0' + dd
+                                                                            }
+                                                                            if (mm < 10) {
+                                                                                mm = '0' + mm
+                                                                            }
+                                                                            today = day + ', ' + dd + '/' + mm + '/' + yyyy;
+                                                                            tmp = '<span class="date"> ' + today + ' - ' + nowTime +
+                                                                                    '</span>';
+                                                                            document.getElementById("clock").innerHTML = tmp;
+                                                                            clocktime = setTimeout("time()", "1000", "Javascript");
 
-                                            function checkTime(i) {
-                                                if (i < 10) {
-                                                    i = "0" + i;
-                                                }
-                                                return i;
-                                            }
-                                        }
+                                                                            function checkTime(i) {
+                                                                                if (i < 10) {
+                                                                                    i = "0" + i;
+                                                                                }
+                                                                                return i;
+                                                                            }
+                                                                        }
         </script>
-        <script>
-
+        <script type="text/javascript">
             $(document).ready(jQuery(function () {
                 jQuery(".trash").click(function () {
                     swal({
@@ -184,7 +257,7 @@
                 });
             }));
         </script>
-        <script>
+        <script type="text/javascript">
             var myApp = new function () {
                 this.printTable = function () {
                     var tab = document.getElementById('sampleTable');

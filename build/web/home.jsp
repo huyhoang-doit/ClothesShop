@@ -46,11 +46,12 @@
                                     <ul>
                                         <c:if test="${requestScope.LIST_TYPES!= null && !requestScope.LIST_TYPES.isEmpty()}">
                                             <c:forEach items="${requestScope.LIST_TYPES}" var="t">
-                                                <li class="has-sub"><a href="FilterServlet?action=filterByType&type_id=${t.typeId}"><i class="fa fa-caret-right"></i>${t.name}</a>
+                                                <li class="has-sub">
+                                                    <a href="FilterServlet?action=filterByType&type_id=${t.typeId}"><i class="fa fa-caret-right"></i>${t.name}</a>
                                                         <c:forEach items="${requestScope.LIST_CATEGORIESS}" var="c">
                                                             <c:if test="${t.typeId == c.typeId}" >
                                                             <ul class="categorie_sub">
-                                                                <li><a href="FilterServlet?action=filterByCategory&category_id=${t.typeId}"><i class="fa fa-caret-right"></i> ${c.categoryName}</a>
+                                                                <li><a href="FilterServlet?action=filterByCategory&category_id=${t.typeId}"><i class="fa fa-caret-right"></i> ${c.name}</a>
                                                                 </li>
                                                             </ul>    
                                                         </c:if>
