@@ -44,22 +44,17 @@
                                 <div class="sidebar_widget catrgorie mb-35">
                                     <h3>Categories</h3>
                                     <ul>
-                                        <c:if test="${requestScope.LIST_TYPEES!= null && !requestScope.LIST_TYPEES.isEmpty()}">
-                                            <c:forEach items="${requestScope.LIST_TYPEES}" var="c">
-                                                <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i>${c.name}</a>
-                                                    <ul class="categorie_sub">
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
+                                        <c:if test="${requestScope.LIST_TYPES!= null && !requestScope.LIST_TYPES.isEmpty()}">
+                                            <c:forEach items="${requestScope.LIST_TYPES}" var="t">
+                                                <li class="has-sub"><a href="FilterServlet?action=filterByType&type_id=${t.typeId}"><i class="fa fa-caret-right"></i>${t.name}</a>
+                                                        <c:forEach items="${requestScope.LIST_CATEGORIESS}" var="c">
+                                                            <c:if test="${t.typeId == c.typeId}" >
                                                             <ul class="categorie_sub">
-                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                            </ul> 
-                                                        </li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                    </ul>     
+                                                                <li><a href="FilterServlet?action=filterByCategory&category_id=${t.typeId}"><i class="fa fa-caret-right"></i> ${c.categoryName}</a>
+                                                                </li>
+                                                            </ul>    
+                                                        </c:if>
+                                                    </c:forEach>
                                                 </li>
                                             </c:forEach>
                                         </c:if>
@@ -223,15 +218,15 @@
                                                             <div class="product_thumb">
                                                                 <a href="single-product.html"><img src="${i.images[0]}" alt=""></a> 
                                                                 <div class="img_icone">
-                                                                        <img src="assets/img/cart/span-new.png" alt="">
-                                                                    </div>
+                                                                    <img src="assets/img/cart/span-new.png" alt="">
+                                                                </div>
                                                                 <div class="product_action">
                                                                     <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
                                                                 <span class="product_price">${i.price} &#8363</span>
-                                                                <h3 class="product_title"><a href="single-product.html">${i.productName}</a></h3>
+                                                                <h3 class="product_title"><a href="single-product.html">${i.name}</a></h3>
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
@@ -255,7 +250,7 @@
                                     </div>
                                     <div class="row">
                                         <div class="product_active owl-carousel">
-                                        <c:forEach items="${requestScope.LIST_PRODUCTS_SELLER}" var="p">
+                                            <c:forEach items="${requestScope.LIST_PRODUCTS_SELLER}" var="p">
                                                 <div class="col-lg-3">
                                                     <div class="single_product">
                                                         <div class="product_thumb">
@@ -269,7 +264,7 @@
                                                         </div>
                                                         <div class="product_content">
                                                             <span class="product_price">${p.price}&#273</span>
-                                                            <h3 class="product_title"><a href="single-product.html">${p.productName}</a></h3>
+                                                            <h3 class="product_title"><a href="single-product.html">${p.name}</a></h3>
                                                         </div>
                                                         <div class="product_info">
                                                             <ul>
@@ -341,7 +336,7 @@
         <!--footer area end-->
 
         <!-- modal area start --> 
-        <div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
+<!--        <div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -432,7 +427,7 @@
                     </div>    
                 </div>
             </div>
-        </div> 
+        </div> -->
 
         <!-- modal area end --> 
 

@@ -56,7 +56,7 @@ public class OrderItemDAO extends DBContext{
         OrderItemDAO dao = new OrderItemDAO();
         List<OrderItem> list = dao.getOrderItemByOrderId(1);
         for (OrderItem orderItem : list) {
-            System.out.println(orderItem.getProduct().getProductName());
+            System.out.println(orderItem.getProduct().getName());
         }
     }
 

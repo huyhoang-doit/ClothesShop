@@ -65,7 +65,7 @@ public class TypeDAO extends DBContext {
             if (conn != null) {
                 ptm = conn.prepareStatement(GET_ALL_TYPE);
                 rs = ptm.executeQuery();
-                if (rs.next()) {
+                while (rs.next()) {
                     int typeid = rs.getInt("id");
                     String name = rs.getString("name");
                     TypeDTO type = new TypeDTO(typeid, name);

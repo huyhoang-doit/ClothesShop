@@ -73,7 +73,7 @@
                                             <tr>
                                                 <td>${p.id}</td>
                                                 <td>${p.getCategory().getCategoryName()}</td>
-                                                <td style="max-width: 200px">${p.productName}</td>
+                                                <td style="max-width: 200px">${p.name}</td>
                                                 <td>${p.getPrice()}</td>
                                                 <td>
                                                     <c:forEach items="${p.size}" var="s" varStatus="loop">

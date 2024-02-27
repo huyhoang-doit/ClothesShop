@@ -5,6 +5,7 @@
  */
 package controller.web;
 
+import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -14,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.CategoryDTO;
 import model.ProductDTO;
 
 /**
@@ -24,20 +26,23 @@ import model.ProductDTO;
 public class SearchServlet extends HttpServlet {
 
     private final String SHOP = "shop-list.jsp";
-    
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-              throws ServletException, IOException {
+            throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = SHOP;
         try {
             String txtSearch = request.getParameter("txtSearch");
             ProductDAO pDao = new ProductDAO();
             List<ProductDTO> listProducts = pDao.getProductBySearch(txtSearch);
-            
+            CategoryDAO cDao = new CategoryDAO();
+            List<CategoryDTO> listCategories = cDao.getData();
             request.setAttribute("LISTPRODUCTS", listProducts);
+            request.setAttribute("LISTCATEGORIES", listCategories);
         } catch (Exception e) {
 
         } finally {
-            request.getRequestDispatcher(SHOP).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 
@@ -52,7 +57,7 @@ public class SearchServlet extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
-              throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 
@@ -66,7 +71,7 @@ public class SearchServlet extends HttpServlet {
      */
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
-              throws ServletException, IOException {
+            throws ServletException, IOException {
         processRequest(request, response);
     }
 

@@ -78,10 +78,10 @@ public class DispatchServlet extends HttpServlet {
             List<ProductDTO> listProductsNew = pDao.getProductNew();
             List<ProductDTO> listProductsBestSeller = pDao.getProductsBestSeller();
             List<TypeDTO> listTypes = tDao.getAllType();
-            List<CategoryDTO> listCategoriesByType = caDao.getCategoriesByTypeId(1);
 
             request.setAttribute("LIST_PRODUCTS", listProducts);
-            request.setAttribute("LIST_TYPEES", listTypes);
+            request.setAttribute("LIST_TYPES", listTypes);
+            request.setAttribute("LIST_CATEGORIESS", listCategories);
             request.setAttribute("LIST_SUPPLIERS", listSuppliers);
             request.setAttribute("LIST_PRODUCTS_NEW", listProductsNew);
             request.setAttribute("LIST_PRODUCTS_SELLER", listProductsBestSeller);

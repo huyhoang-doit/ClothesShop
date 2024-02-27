@@ -10,6 +10,7 @@ import dal.ProductDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -18,62 +19,36 @@ import model.ProductDTO;
 
 /**
  *
- * @author HuuThanh
+ * @author lvhho
  */
-public class ShopServlet extends HttpServlet {
+@WebServlet(name = "FilterServlet", urlPatterns = {"/FilterServlet"})
+public class FilterServlet extends HttpServlet {
 
-    private final String SHOP = "shop-list.jsp";
-    private final String SORT = "ajax/sortproducts.jsp";
+    private static final String PRODUCTS_LIST_PAGE = "shop-list.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SHOP;
+        String url = PRODUCTS_LIST_PAGE;
         try {
             ProductDAO pDao = new ProductDAO();
+            String action = request.getParameter("action");
             CategoryDAO cDao = new CategoryDAO();
-
-            List<ProductDTO> listProducts = pDao.getData();
             List<CategoryDTO> listCategories = cDao.getData();
 
-            String valueSort = request.getParameter("valueSort");
-            if (valueSort != null) {
-                switch (valueSort) {
-                    case "1":
-                        listProducts = pDao.sortProduct(listProducts, valueSort);
-                        break;
-                    case "2":
-                        listProducts = pDao.sortProduct(listProducts, valueSort);
-                        break;
-                    case "3":
-                        listProducts = pDao.sortProduct(listProducts, valueSort);
-                        break;
-                }
-                url = SORT;
+            if ("filterByType".equals(action)) {
+                String typeId = request.getParameter("type_id");
+                List<ProductDTO> list = pDao.getProductByTypeId(Integer.parseInt(typeId));
+                request.setAttribute("LISTPRODUCTS", list);
+
+            } else if ("filterByCategory".equals(action)) {
+                String cateId = request.getParameter("category_id");
+                List<ProductDTO> list = pDao.getProductByCategoryId(Integer.parseInt(cateId));
+                request.setAttribute("LISTPRODUCTS", list);
             }
-
-            //Paging
-            int page, numPerPage = 9;
-            int size = listProducts.size();
-            int numberpage = ((size % numPerPage == 0) ? (size / 9) : (size / 9) + 1);
-            String xpage = request.getParameter("page");
-            if (xpage == null) {
-                page = 1;
-            } else {
-                page = Integer.parseInt(xpage);
-            }
-            int start, end;
-            start = (page - 1) * 9;
-            end = Math.min(page * numPerPage, size);
-
-            List<ProductDTO> listByPage = pDao.getListByPage(listProducts, start, end);
-
-            request.setAttribute("NUMBERPAGE", numberpage);
-            request.setAttribute("CURRENTPAGE", page);
-            request.setAttribute("LISTPRODUCTS", listByPage);
             request.setAttribute("LISTCATEGORIES", listCategories);
-            request.setAttribute("VALUESORT", valueSort);
-        } catch (Exception ex) {
+
+        } catch (Exception e) {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
