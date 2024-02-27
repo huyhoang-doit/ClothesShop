@@ -7,6 +7,7 @@ package controller.web;
 
 import dal.ProductDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,32 +20,34 @@ import model.ProductDTO;
  *
  * @author lvhho
  */
-@WebServlet(name = "FilterServlet", urlPatterns = {"/FilterServlet"})
-public class FilterServlet extends HttpServlet {
-
-    private static final String SHOP_LIST = "shop-list.jsp";
-
+@WebServlet(name = "SingleProductServlet", urlPatterns = {"/SingleProductServlet"})
+public class SingleProductServlet extends HttpServlet {
+    
+    private static final String SINGLE_PRODUCT_PAGE ="single-product.jsp";
+     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SHOP_LIST;
+        String url = SINGLE_PRODUCT_PAGE;
         try {
             ProductDAO pDao = new ProductDAO();
-            String action = request.getParameter("action");
-
-            if ("filterByType".equals(action)) {
-                String typeId = request.getParameter("type_id");
-                List<ProductDTO> list = pDao.getProductByTypeId(Integer.parseInt(typeId));
-                request.setAttribute("LISTPRODUCTS", list);
-
-            } else if ("filterByCategory".equals(action)) {
-                String cateId = request.getParameter("category_id");
-                List<ProductDTO> list = pDao.getProductByCategoryId(Integer.parseInt(cateId));
-                request.setAttribute("LISTPRODUCTS", list);
+            String product_id = request.getParameter("product_id");
+            ProductDTO product = pDao.getProductByID(Integer.parseInt(product_id));
+            List<ProductDTO> listProduct = pDao.getProductByCategoryId(product.getCategory().getId());
+            List<ProductDTO> listSameCategory = new ArrayList<>();
+            for (ProductDTO productDTO : listProduct) {
+                if(productDTO.getId() != product.getId()){
+                    listSameCategory.add(productDTO);
+                }
             }
             
+            
+            request.setAttribute("PRODUCT", product);
+            request.setAttribute("LIST_PRODUCTS_SAME_CATEGORY", listSameCategory);
+            
         } catch (Exception e) {
-        } finally {
+            e.printStackTrace();
+        }finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
     }

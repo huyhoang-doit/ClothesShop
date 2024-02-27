@@ -5,47 +5,44 @@
  */
 package controller.web;
 
-import dal.ProductDAO;
 import java.io.IOException;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.ProductDTO;
 
 /**
  *
  * @author lvhho
  */
-@WebServlet(name = "FilterServlet", urlPatterns = {"/FilterServlet"})
-public class FilterServlet extends HttpServlet {
+@WebServlet(name = "WishlistServlet", urlPatterns = {"/WishlistServlet"})
+public class WishlistServlet extends HttpServlet {
 
-    private static final String SHOP_LIST = "shop-list.jsp";
-
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SHOP_LIST;
-        try {
-            ProductDAO pDao = new ProductDAO();
-            String action = request.getParameter("action");
-
-            if ("filterByType".equals(action)) {
-                String typeId = request.getParameter("type_id");
-                List<ProductDTO> list = pDao.getProductByTypeId(Integer.parseInt(typeId));
-                request.setAttribute("LISTPRODUCTS", list);
-
-            } else if ("filterByCategory".equals(action)) {
-                String cateId = request.getParameter("category_id");
-                List<ProductDTO> list = pDao.getProductByCategoryId(Integer.parseInt(cateId));
-                request.setAttribute("LISTPRODUCTS", list);
-            }
-            
-        } catch (Exception e) {
-        } finally {
-            request.getRequestDispatcher(url).forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet WishlistServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet WishlistServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
