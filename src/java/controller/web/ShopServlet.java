@@ -8,6 +8,7 @@ package controller.web;
 import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -32,9 +33,15 @@ public class ShopServlet extends HttpServlet {
         try {
             ProductDAO pDao = new ProductDAO();
             CategoryDAO cDao = new CategoryDAO();
-
-            List<ProductDTO> listProducts = pDao.getData();
+            List<ProductDTO> listProducts = new ArrayList<>();
+            
             List<CategoryDTO> listCategories = cDao.getData();
+            if (request.getAttribute("LISTPRODUCTS") == null) {
+                listProducts = pDao.getData();
+
+            } else {
+                listProducts = ( List<ProductDTO>) request.getAttribute("LISTPRODUCTS");
+            }
 
             String valueSort = request.getParameter("valueSort");
             if (valueSort != null) {
