@@ -34,7 +34,7 @@
 - [ ] View blog's comment
 
 **4. Admin:**
-- [ ] Managing product
+- [x] Managing product
 - [ ] Managing accounts
 - [ ] Managing categories
 - [ ] Managing orders
