@@ -35,7 +35,7 @@
                             <div class="col-12">
                                 <div class="breadcrumb_content">
                                     <ul>
-                                        <li><a href="index.html">home</a></li>
+                                        <li><a href="home.jsp">home</a></li>
                                         <li><i class="fa fa-angle-right"></i></li>
                                         <li>single product</li>
                                     </ul>

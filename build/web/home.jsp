@@ -45,6 +45,13 @@
                                 </div>
                                 <!--sidebar banner end-->
 
+                                
+                                
+                                
+                                
+                                
+                                
+                                
                                 <!--categorie menu start-->
                                 <div class="sidebar_widget catrgorie mb-35">
                                     <h3>Categories</h3>

@@ -36,7 +36,7 @@
                             <div class="col-12">
                                 <div class="breadcrumb_content">
                                     <ul>
-                                        <li><a href="index.html">home</a></li>
+                                        <li><a href="home.jsp">home</a></li>
                                         <li><i class="fa fa-angle-right"></i></li>
                                         <li>wishlist</li>
                                     </ul>
@@ -92,26 +92,6 @@
                                                     </tr>
                                                     <%}
                                                         }%>
-                                                    <!--                                                            <tr>
-                                                                                                                   <td class="product_remove"><a href="#">X</a></td>
-                                                                                                                    <td class="product_thumb"><a href="#"><img src="assets\img\cart\cart18.jpg" alt=""></a></td>
-                                                                                                                    <td class="product_name"><a href="#">Handbags justo</a></td>
-                                                                                                                    <td class="product-price">£90.00</td>
-                                                                                                                    <td class="product_quantity">In Stock</td>
-                                                                                                                    <td class="product_total"><a href="#">Add To Cart</a></td>
-                                                    
-                                                    
-                                                                                                                </tr>
-                                                                                                                <tr>
-                                                                                                                   <td class="product_remove"><a href="#">X</a></td>
-                                                                                                                    <td class="product_thumb"><a href="#"><img src="assets\img\cart\cart19.jpg" alt=""></a></td>
-                                                                                                                    <td class="product_name"><a href="#">Handbag elit</a></td>
-                                                                                                                    <td class="product-price">£80.00</td>
-                                                                                                                    <td class="product_quantity">In Stock</td>
-                                                                                                                    <td class="product_total"><a href="#">Add To Cart</a></td>
-                                                    
-                                                    
-                                                                                                                </tr>-->
 
                                                 </tbody>
                                             </table>   
