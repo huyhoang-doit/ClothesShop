@@ -1,8 +1,3 @@
-<%@page import="model.WishListDTO"%>
-<%@page import="dal.WishlistDAO"%>
-<%@page import="model.ProductDTO"%>
-<%@page import="java.util.List"%>
-<%@page import="dal.ProductDAO"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/common/taglib.jsp"%>
 <!DOCTYPE html>
@@ -45,13 +40,6 @@
                                 </div>
                                 <!--sidebar banner end-->
 
-                                
-                                
-                                
-                                
-                                
-                                
-                                
                                 <!--categorie menu start-->
                                 <div class="sidebar_widget catrgorie mb-35">
                                     <h3>Categories</h3>
@@ -74,74 +62,45 @@
                                     </ul>
                                 </div>
                                 <!--categorie menu end-->
-                                <%
-                                    WishlistDAO wl = new WishlistDAO();
-                                    ProductDAO product = new ProductDAO();
-                                    List<WishListDTO> lists = wl.getWishlist();
-                                    int count = 0;
-                                %>
+
                                 <!--wishlist block start-->
                                 <div class="sidebar_widget wishlist mb-35">
                                     <div class="block_title">
                                         <h3><a href="#">Wishlist</a></h3>
                                     </div>
-
-                                    <%
-                                        for (WishListDTO wls : lists) {
-                                            List<ProductDTO> productList = product.getProductsforId(String.valueOf(wls.getProductID()));
-                                            count++;
-                                            for (ProductDTO p : productList) {
-                                    %>
                                     <div class="cart_item">
                                         <div class="cart_img">
-                                            <a href="single-product.jsp?productId=<%= p.getId()%>"><img src=<%= p.getImages()[0]%> alt=""></a>
+                                            <a href="#"><img src="assets\img\cart\cart.jpg" alt=""></a>
                                         </div>
                                         <div class="cart_info">
-                                            <a href="single-product.jsp?productId=<%= p.getId()%>"><%= p.getProductName()%></a>
-                                            <span class="cart_price"><%= p.getPrice()%>&#8363</span>                                          
+                                            <a href="#">lorem ipsum dolor</a>
+                                            <span class="cart_price">$115.00</span>
+                                            <span class="quantity">Qty: 1</span>
                                         </div>
                                         <div class="cart_remove">
                                             <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
                                         </div>
                                     </div>
-
-
-                                    <%}
-                                        }%>
-
+                                    <div class="cart_item">
+                                        <div class="cart_img">
+                                            <a href="#"><img src="assets\img\cart\cart2.jpg" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="#">Quisque ornare dui</a>
+                                            <span class="cart_price">$105.00</span>
+                                            <span class="quantity">Qty: 1</span>
+                                        </div>
+                                        <div class="cart_remove">
+                                            <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                        </div>
+                                    </div>
                                     <div class="block_content">
-                                        <p><%= count%> products</p>
-                                        <a href="wishlist.jsp">» My wishlists</a>
+                                        <p>2  products</p>
+                                        <a href="#">» My wishlists</a>
                                     </div>
                                 </div>
                                 <!--wishlist block end-->
 
-<<<<<<< HEAD
-                                <!--newsletter block start-->
-                                <div class="sidebar_widget newsletter mb-35">
-                                    <div class="block_title">
-                                        <h3>newsletter</h3>
-                                    </div> 
-                                    <form action="EmailServlet" method="POST">
-                                        <p>Sign up for your newsletter</p>
-                                        <input placeholder="Your email address" type="text" name="email" value="<c:if test="${requestScope.EMAIL_CUSTOMER != null}">${requestScope.EMAIL_CUSTOMER}</c:if>">
-                                            <button type="submit" name="action" value="subscribe">Subscribe</button>
-                                        <c:if test="${requestScope.CHECK == 'success'}">
-                                            <div class="col-12">
-                                                <span class="form-messege" style='color: green;'>${requestScope.MESSAGE}</span>
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${requestScope.CHECK == 'fail'}">
-                                            <div class="col-12">
-                                                <span class="form-messege" style='color: red;'>${requestScope.MESSAGE}</span>
-                                            </div>
-                                        </c:if>
-                                    </form>   
-                                </div>
-                                <!--newsletter block end--> 
-
-=======
->>>>>>> 789110ee97f20087171e2644dbea488caf2ff42a
                                 <!--sidebar banner-->
                                 <div class="sidebar_widget bottom ">
                                     <div class="banner_img">
@@ -184,12 +143,7 @@
                                     </div>
                                 </div> 
                                 <!--banner slider start-->
-                                <!-- code phan san pham moi -->
-                                <%
-                                    ProductDAO pr = new ProductDAO();
-                                    List<ProductDTO> listProductnew = pr.getData();
-                                %>
-                                <!-- ket thuc taoj danh sach sp moi -->
+
                                 <!--new product area start-->
                                 <div class="new_product_area">
                                     <div class="block_title">
@@ -197,15 +151,6 @@
                                     </div>
                                     <div class="row">
                                         <div class="product_active owl-carousel">
-<<<<<<< HEAD
-                                            <% for (ProductDTO p : listProductnew) {%>
-                                            <div class="col-lg-3">
-                                                <div class="single_product">
-                                                    <div class="product_thumb">
-                                                        <a href="single-product.jsp?productId=<%= p.getId()%>"><img src=<%= p.getImages()[0]%> alt=""></a> 
-                                                        <div class="img_icone">
-                                                            <img src="" alt="">
-=======
                                             <c:if test="${requestScope.LIST_PRODUCTS_NEW != null}">
                                                 <c:forEach var="i" items="${requestScope.LIST_PRODUCTS_NEW}">
                                                     <div class="col-lg-3">
@@ -229,44 +174,14 @@
                                                                     <li><a href="SingleProductServlet?product_id=${i.id}" title="View Detail">Xem sản phẩm</a></li>
                                                                 </ul>
                                                             </div>
->>>>>>> 789110ee97f20087171e2644dbea488caf2ff42a
                                                         </div>
-                                                        <div class="product_action">
-                                                            <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
-                                                        </div>
-                                                    </div>s
-                                                    <div class="product_content">
-                                                        <span class="product_price"><%= p.getPrice()%> &#8363</span>
-                                                        <h3 class="product_title"><a href="single-product.jsp?productId=<%= p.getId()%>"><%= p.getProductName()%></a></h3>
                                                     </div>
-<<<<<<< HEAD
-                                                    <div class="product_info">
-                                                        <ul>
-                                                            <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                            <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <%}%>                                                                                                                                                                                                                                                                                                             
-=======
                                                 </c:forEach>
                                             </c:if>
->>>>>>> 789110ee97f20087171e2644dbea488caf2ff42a
                                         </div> 
                                     </div>       
                                 </div> 
                                 <!--new product area start-->  
-
-
-
-                                <!--Lay du lieu product tu database -->
-
-                                <%
-                                    List<ProductDTO> list = pr.getData();
-                                %>
-
-                                <!-- ket thuc code  -->
 
                                 <!--featured product start--> 
                                 <div class="featured_product">
@@ -275,18 +190,6 @@
                                     </div>
                                     <div class="row">
                                         <div class="product_active owl-carousel">
-<<<<<<< HEAD
-
-
-                                            <!-- duyet foreach lay du lieu tung san pham  -->
-                                            <% for (ProductDTO p : list) {%>
-                                            <div class="col-lg-3">
-                                                <div class="single_product">
-                                                    <div class="product_thumb">
-                                                        <a href="single-product.jsp?productId=<%= p.getId()%>"><img src= <%= p.getImages()[0]%> alt=""></a> 
-                                                        <div class="hot_img">
-                                                            <img src="assets\img\cart\span-hot.png" alt="">
-=======
                                             <c:forEach items="${requestScope.LIST_PRODUCTS_SELLER}" var="p">
                                                 <div class="col-lg-3">
                                                     <div class="single_product">
@@ -298,7 +201,6 @@
                                                             <div class="product_action">
                                                                 <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                             </div>
->>>>>>> 789110ee97f20087171e2644dbea488caf2ff42a
                                                         </div>
                                                         <div class="product_content">
                                                             <span class="product_price">${p.price}&#273</span>
@@ -311,26 +213,8 @@
                                                             </ul>
                                                         </div>
                                                     </div>
-<<<<<<< HEAD
-                                                    <div class="product_content">
-                                                        <span class="product_price"> <%= p.getPrice()%>&#8363</span>
-                                                        <h3 class="product_title"><a href="single-product.html"><%= p.getProductName()%></a></h3>
-                                                    </div>
-                                                    <div class="product_info">
-                                                        <ul>
-                                                            <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
-                                                            <li><a href="#" data-toggle="modal" data-target="#modal_box" title="Quick view">View Detail</a></li>
-                                                        </ul>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <% }%>
-                                            <!-- ket thuc for  -->
-
-=======
                                                 </div>
                                             </c:forEach>
->>>>>>> 789110ee97f20087171e2644dbea488caf2ff42a
                                         </div> 
                                     </div> 
                                 </div>     
