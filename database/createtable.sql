@@ -101,7 +101,6 @@ username VARCHAR(30) NOT NULL FOREIGN KEY REFERENCES Users([username]),
 status bit NOT NULL,
 )
 
-
 CREATE TABLE Wallets (
     walletid INT IDENTITY(1,1),
 	username VARCHAR(30),
