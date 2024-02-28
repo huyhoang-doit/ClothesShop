@@ -32,6 +32,7 @@ public class ProductDAO extends DBContext {
     private static final String GET_PRODUCTS_BY_ID = "SELECT * FROM Products WHERE id = ?";
     private static final String GET_PRODUCTS_BY_TYPE_ID = "SELECT * FROM Products WHERE typeid = ?";
     private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM Products WHERE categoryid = ?";
+    private static final String GET_PRODUCTS_BY_SUPPLIER_ID = "SELECT * FROM Products WHERE supplierid = ?";
     private static final String GET_PRODUCTS_NEW_YEAR = "SELECT * from Products WHERE year(releasedate) = 2024";
     private static final String GET_PRODUCTS_BEST_SELLER = "SELECT TOP(5) * from Products order by unitSold desc";
     private static final String GET_PRODUCTS_BY_SEARCH = "SELECT * FROM Products WHERE productname LIKE ?";
@@ -180,6 +181,46 @@ public class ProductDAO extends DBContext {
                     String productname = rs.getString("productname");
                     SupplierDTO supplier = sDao.getSupplierById(rs.getInt("supplierid"));
                     CategoryDTO category = cDao.getCategoryById(categoryid);
+                    int id = rs.getInt("id");
+                    TypeDTO type = tDao.getTypeById(rs.getInt("typeid"));
+                    int stock = rs.getInt("stock");
+                    String description = rs.getString("description");
+                    Date date = rs.getDate("releasedate");
+                    double discount = rs.getDouble("discount");
+                    int unitSold = rs.getInt("unitSold");
+                    double price = rs.getDouble("price");
+                    String colors[] = rs.getString("colors").split(",");
+                    String images[] = rs.getString("images").split(" ");
+                    String sizes[] = rs.getString("size").split(",");
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
+                    products.add(product);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+
+    }
+    
+    public List<ProductDTO> getProductSupplierId(int supplierid) {
+        List<ProductDTO> products = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            con = getConnection();
+            if (con != null) {
+                ptm = con.prepareStatement(GET_PRODUCTS_BY_CATEGORY_ID);
+                ptm.setInt(1, supplierid);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    CategoryDAO cDao = new CategoryDAO();
+                    SupplierDAO sDao = new SupplierDAO();
+                    TypeDAO tDao = new TypeDAO();
+                    String productname = rs.getString("productname");
+                    SupplierDTO supplier = sDao.getSupplierById(supplierid);
+                    CategoryDTO category = cDao.getCategoryById(rs.getInt("categoryid"));
                     int id = rs.getInt("id");
                     TypeDTO type = tDao.getTypeById(rs.getInt("typeid"));
                     int stock = rs.getInt("stock");

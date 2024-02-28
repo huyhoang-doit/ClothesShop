@@ -21,16 +21,16 @@ import model.ProductDTO;
  */
 @WebServlet(name = "FilterServlet", urlPatterns = {"/FilterServlet"})
 public class FilterServlet extends HttpServlet {
-
+    private static final String SHOP_SERVLET = "ShopServlet";
     private static final String SHOP_LIST = "shop-list.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = SHOP_LIST;
+        String url = SHOP_SERVLET;
         try {
             ProductDAO pDao = new ProductDAO();
-            String action = request.getParameter("action");
+            String action = request.getParameter("btnAction");
 
             if ("filterByType".equals(action)) {
                 String typeId = request.getParameter("type_id");
@@ -40,6 +40,10 @@ public class FilterServlet extends HttpServlet {
             } else if ("filterByCategory".equals(action)) {
                 String cateId = request.getParameter("category_id");
                 List<ProductDTO> list = pDao.getProductByCategoryId(Integer.parseInt(cateId));
+                request.setAttribute("LISTPRODUCTS", list);
+            }else if("filterBySupplier".equals(action)){
+                String sup_id = request.getParameter("supplier_id");
+                List<ProductDTO> list = pDao.getProductSupplierId(Integer.parseInt(sup_id));
                 request.setAttribute("LISTPRODUCTS", list);
             }
             
