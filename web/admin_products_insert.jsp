@@ -156,6 +156,12 @@
                                     <a class="btn btn-add btn-sm" data-toggle="modal" data-target="#adddanhmuc"><i
                                             class="fas fa-folder-plus"></i> Thêm danh mục</a>
                                 </div>
+                                <c:if test="${requestScope.STATUS_INSERT_CATE == 'success'}">
+                                    <span class="form-messege" style='color: green;'>${requestScope.MSG_INSERT_CATE}</span>
+                                </c:if>
+                                <c:if test="${requestScope.STATUS_INSERT_CATE == 'fail'}">
+                                    <span class="form-messege" style='color: red;'>${requestScope.MSG_INSERT_CATE}</span>
+                                </c:if>
                             </div>
 
                             <form class="row" action="productmanager?action=insertproduct" method="POST" enctype="multipart/form-data">
@@ -167,8 +173,8 @@
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
                                     <select name="category_id" class="form-control" id="exampleSelect1">
                                         <option>-- Chọn danh mục --</option>
-                                        <c:forEach items="${CategoryData}" var="cat">
-                                            <option value="${cat.category_id}">${cat.category_name}</option>
+                                        <c:forEach items="${requestScope.LIST_CATEGORIES}" var="cat">
+                                            <option value="${cat.categoryId}">${cat.categoryName}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -239,8 +245,8 @@
                                 <h2 style="color: red; padding-left: 10px">
                                     ${error}</h2>
                                 <label class="control-label">Nhập tên danh mục mới</label>
-                                <form action="productmanager?action=insertcategory" method="post"> 
-                                    <input class="form-control" type="text" name="name" required>
+                                <form action="ManageProductServlet?action=insertcategory" method="post"> 
+                                    <input class="form-control" type="text" name="newcate" required>
                                     <br>
                                     <button class="btn btn-save" type="submit">Lưu lại</button>
                                     <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
@@ -266,25 +272,25 @@
         <script src="admin/js/main.js"></script>
         <script src="admin/js/plugins/pace.min.js"></script>
         <script>
-                                        const inpFile = document.getElementById("inpFile");
-                                        const loadFile = document.getElementById("loadFile");
-                                        const previewContainer = document.getElementById("imagePreview");
-                                        const previewContainer = document.getElementById("imagePreview");
-                                        const previewImage = previewContainer.querySelector(".image-preview__image");
-                                        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-                                        const object = new ActiveXObject("Scripting.FileSystemObject");
-                                        inpFile.addEventListener("change", function () {
-                                            const file = this.files[0];
-                                            if (file) {
-                                                const reader = new FileReader();
-                                                previewDefaultText.style.display = "none";
-                                                previewImage.style.display = "block";
-                                                reader.addEventListener("load", function () {
-                                                    previewImage.setAttribute("src", this.result);
-                                                });
-                                                reader.readAsDataURL(file);
-                                            }
-                                        });
+                                            const inpFile = document.getElementById("inpFile");
+                                            const loadFile = document.getElementById("loadFile");
+                                            const previewContainer = document.getElementById("imagePreview");
+                                            const previewContainer = document.getElementById("imagePreview");
+                                            const previewImage = previewContainer.querySelector(".image-preview__image");
+                                            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+                                            const object = new ActiveXObject("Scripting.FileSystemObject");
+                                            inpFile.addEventListener("change", function () {
+                                                const file = this.files[0];
+                                                if (file) {
+                                                    const reader = new FileReader();
+                                                    previewDefaultText.style.display = "none";
+                                                    previewImage.style.display = "block";
+                                                    reader.addEventListener("load", function () {
+                                                        previewImage.setAttribute("src", this.result);
+                                                    });
+                                                    reader.readAsDataURL(file);
+                                                }
+                                            });
 
 
         </script>

@@ -56,22 +56,18 @@
                                 <div class="sidebar_widget catrgorie mb-35">
                                     <h3>Categories</h3>
                                     <ul>
-                                        <c:if test="${requestScope.LISTCATEGORIES!= null && !requestScope.LISTCATEGORIES.isEmpty()}">
-                                            <c:forEach items="${requestScope.LISTCATEGORIES}" var="c">
-                                                <li class="has-sub"><a href="#"><i class="fa fa-caret-right"></i>${c.categoryName}</a>
-                                                    <ul class="categorie_sub">
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a>
+                                        <c:if test="${requestScope.LIST_TYPES!= null && !requestScope.LIST_TYPES.isEmpty()}">
+                                            <c:forEach items="${requestScope.LIST_TYPES}" var="t">
+                                                <li class="has-sub">
+                                                    <a href="FilterServlet?action=filterByType&type_id=${t.typeId}"><i class="fa fa-caret-right"></i>${t.name}</a>
+                                                        <c:forEach items="${requestScope.LIST_CATEGORIESS}" var="c">
+                                                            <c:if test="${t.typeId == c.typeId}" >
                                                             <ul class="categorie_sub">
-                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Accessories</a></li>
-                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                                <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                                <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                            </ul> 
-                                                        </li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Dresses</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> Tops</a></li>
-                                                        <li><a href="#"><i class="fa fa-caret-right"></i> HandBags</a></li>
-                                                    </ul>     
+                                                                <li><a href="FilterServlet?action=filterByCategory&category_id=${c.id}"><i class="fa fa-caret-right"></i> ${c.name}</a>
+                                                                </li>
+                                                            </ul>    
+                                                        </c:if>
+                                                    </c:forEach>
                                                 </li>
                                             </c:forEach>
                                         </c:if>
@@ -120,6 +116,7 @@
                                 </div>
                                 <!--wishlist block end-->
 
+<<<<<<< HEAD
                                 <!--newsletter block start-->
                                 <div class="sidebar_widget newsletter mb-35">
                                     <div class="block_title">
@@ -143,6 +140,8 @@
                                 </div>
                                 <!--newsletter block end--> 
 
+=======
+>>>>>>> 789110ee97f20087171e2644dbea488caf2ff42a
                                 <!--sidebar banner-->
                                 <div class="sidebar_widget bottom ">
                                     <div class="banner_img">
@@ -158,26 +157,26 @@
                                         <div class="single_slider" style="background-image: url(assets/img/slider/slide_1.png)">
                                             <div class="slider_content">
                                                 <div class="slider_content_inner">  
-                                                    <h1>Women's Fashion</h1>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                                                    <h1>Men's Fashion</h1>
+                                                    <p>Thời trang, phong cách trẻ trung. </p>
                                                     <a href="#">shop now</a>
                                                 </div>     
                                             </div>    
                                         </div>
-                                        <div class="single_slider" style="background-image: url(assets/img/slider/slider_2.png)">
+                                        <div class="single_slider" style="background-image: url(assets/img/slider/slide_2.png)">
                                             <div class="slider_content">
                                                 <div class="slider_content_inner">  
                                                     <h1>New Collection</h1>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                                                    <p>Nơi cập nhật những trào lưu bạn cần. </p>
                                                     <a href="#">shop now</a>
                                                 </div>         
                                             </div>         
                                         </div>
-                                        <div class="single_slider" style="background-image: url(assets/img/slider/slider_3.png)">
+                                        <div class="single_slider" style="background-image: url(assets/img/slider/slide_3.png)">
                                             <div class="slider_content">  
                                                 <div class="slider_content_inner">  
                                                     <h1>Best Collection</h1>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p>
+                                                    <p>Bộ sưu tập mùa hè, mùa đông. </p>
                                                     <a href="#">shop now</a>
                                                 </div> 
                                             </div> 
@@ -194,10 +193,11 @@
                                 <!--new product area start-->
                                 <div class="new_product_area">
                                     <div class="block_title">
-                                        <h3>Mẫu mới</h3>
+                                        <h3>Mẫu mới 2024</h3>
                                     </div>
                                     <div class="row">
                                         <div class="product_active owl-carousel">
+<<<<<<< HEAD
                                             <% for (ProductDTO p : listProductnew) {%>
                                             <div class="col-lg-3">
                                                 <div class="single_product">
@@ -205,6 +205,31 @@
                                                         <a href="single-product.jsp?productId=<%= p.getId()%>"><img src=<%= p.getImages()[0]%> alt=""></a> 
                                                         <div class="img_icone">
                                                             <img src="" alt="">
+=======
+                                            <c:if test="${requestScope.LIST_PRODUCTS_NEW != null}">
+                                                <c:forEach var="i" items="${requestScope.LIST_PRODUCTS_NEW}">
+                                                    <div class="col-lg-3">
+                                                        <div class="single_product">
+                                                            <div class="product_thumb">
+                                                                <a href="SingleProductServlet?product_id=${i.id}"><img src="${i.images[0]}" alt=""></a> 
+                                                                <div class="img_icone">
+                                                                    <img src="assets/img/cart/span-new.png" alt="">
+                                                                </div>
+                                                                <div class="product_action">
+                                                                    <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                </div>
+                                                            </div>
+                                                            <div class="product_content">
+                                                                <span class="product_price">${i.price} &#8363</span>
+                                                                <h3 class="product_title"><a href="single-product.html">${i.name}</a></h3>
+                                                            </div>
+                                                            <div class="product_info">
+                                                                <ul>
+                                                                    <li><a href="#" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                    <li><a href="SingleProductServlet?product_id=${i.id}" title="View Detail">Xem sản phẩm</a></li>
+                                                                </ul>
+                                                            </div>
+>>>>>>> 789110ee97f20087171e2644dbea488caf2ff42a
                                                         </div>
                                                         <div class="product_action">
                                                             <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
@@ -214,6 +239,7 @@
                                                         <span class="product_price"><%= p.getPrice()%> &#8363</span>
                                                         <h3 class="product_title"><a href="single-product.jsp?productId=<%= p.getId()%>"><%= p.getProductName()%></a></h3>
                                                     </div>
+<<<<<<< HEAD
                                                     <div class="product_info">
                                                         <ul>
                                                             <li><a href="#" title=" Add to Wishlist ">Add to Wishlist</a></li>
@@ -223,6 +249,10 @@
                                                 </div>
                                             </div>
                                             <%}%>                                                                                                                                                                                                                                                                                                             
+=======
+                                                </c:forEach>
+                                            </c:if>
+>>>>>>> 789110ee97f20087171e2644dbea488caf2ff42a
                                         </div> 
                                     </div>       
                                 </div> 
@@ -241,10 +271,11 @@
                                 <!--featured product start--> 
                                 <div class="featured_product">
                                     <div class="block_title">
-                                        <h3>Featured Products</h3>
+                                        <h3>Bán chạy nhất</h3>
                                     </div>
                                     <div class="row">
                                         <div class="product_active owl-carousel">
+<<<<<<< HEAD
 
 
                                             <!-- duyet foreach lay du lieu tung san pham  -->
@@ -255,11 +286,32 @@
                                                         <a href="single-product.jsp?productId=<%= p.getId()%>"><img src= <%= p.getImages()[0]%> alt=""></a> 
                                                         <div class="hot_img">
                                                             <img src="assets\img\cart\span-hot.png" alt="">
+=======
+                                            <c:forEach items="${requestScope.LIST_PRODUCTS_SELLER}" var="p">
+                                                <div class="col-lg-3">
+                                                    <div class="single_product">
+                                                        <div class="product_thumb">
+                                                            <a href="SingleProductServlet?product_id=${p.id}"><img src="${p.images[0]}" alt=""></a> 
+                                                            <div class="hot_img">
+                                                                <img src="assets\img\cart\span-hot.png" alt="">
+                                                            </div>
+                                                            <div class="product_action">
+                                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                            </div>
+>>>>>>> 789110ee97f20087171e2644dbea488caf2ff42a
                                                         </div>
-                                                        <div class="product_action">
-                                                            <a href="#"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
+                                                        <div class="product_content">
+                                                            <span class="product_price">${p.price}&#273</span>
+                                                            <h3 class="product_title"><a href="single-product.html">${p.name}</a></h3>
+                                                        </div>
+                                                        <div class="product_info">
+                                                            <ul>
+                                                                <li><a href="#" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
+                                                            </ul>
                                                         </div>
                                                     </div>
+<<<<<<< HEAD
                                                     <div class="product_content">
                                                         <span class="product_price"> <%= p.getPrice()%>&#8363</span>
                                                         <h3 class="product_title"><a href="single-product.html"><%= p.getProductName()%></a></h3>
@@ -275,6 +327,10 @@
                                             <% }%>
                                             <!-- ket thuc for  -->
 
+=======
+                                                </div>
+                                            </c:forEach>
+>>>>>>> 789110ee97f20087171e2644dbea488caf2ff42a
                                         </div> 
                                     </div> 
                                 </div>     
@@ -306,11 +362,11 @@
                                 <!--brand logo strat--> 
                                 <div class="brand_logo mb-60">
                                     <div class="block_title">
-                                        <h3>Brands</h3>
+                                        <h3>Thương hiệu</h3>
                                     </div>
                                     <div class="row">
                                         <div class="brand_active owl-carousel">
-                                            <c:forEach items="${requestScope.LISTSUPPLIERS}" var="s">
+                                            <c:forEach items="${requestScope.LIST_SUPPLIERS}" var="s">
                                                 <div class="col-lg-2">
                                                     <div class="single_brand">
                                                         <a href="#"><img src="${s.image}" alt=""></a>
@@ -334,106 +390,6 @@
         <!--footer area start-->
         <%@include file="/common/web/footer.jsp"%>
         <!--footer area end-->
-
-        <!-- modal area start --> 
-        <div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    <div class="modal_body">
-                        <div class="container">
-                            <div class="row">
-                                <div class="col-lg-5 col-md-5 col-sm-12">
-                                    <div class="modal_tab">  
-                                        <div class="tab-content" id="pills-tabContent">
-                                            <div class="tab-pane fade show active" id="tab1" role="tabpanel">
-                                                <div class="modal_tab_img">
-                                                    <a href="#"><img src="assets\img\product\product13.jpg" alt=""></a>    
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="tab2" role="tabpanel">
-                                                <div class="modal_tab_img">
-                                                    <a href="#"><img src="assets\img\product\product14.jpg" alt=""></a>    
-                                                </div>
-                                            </div>
-                                            <div class="tab-pane fade" id="tab3" role="tabpanel">
-                                                <div class="modal_tab_img">
-                                                    <a href="#"><img src="assets\img\product\product15.jpg" alt=""></a>    
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="modal_tab_button">    
-                                            <ul class="nav product_navactive" role="tablist">
-                                                <li>
-                                                    <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab" aria-controls="tab1" aria-selected="false"><img src="assets\img\cart\cart17.jpg" alt=""></a>
-                                                </li>
-                                                <li>
-                                                    <a class="nav-link" data-toggle="tab" href="#tab2" role="tab" aria-controls="tab2" aria-selected="false"><img src="assets\img\cart\cart18.jpg" alt=""></a>
-                                                </li>
-                                                <li>
-                                                    <a class="nav-link button_three" data-toggle="tab" href="#tab3" role="tab" aria-controls="tab3" aria-selected="false"><img src="assets\img\cart\cart19.jpg" alt=""></a>
-                                                </li>
-                                            </ul>
-                                        </div>    
-                                    </div>  
-                                </div> 
-                                <div class="col-lg-7 col-md-7 col-sm-12">
-                                    <div class="modal_right">
-                                        <div class="modal_title mb-10">
-                                            <h2>Handbag feugiat</h2> 
-                                        </div>
-                                        <div class="modal_price mb-10">
-                                            <span class="new_price">$64.99</span>    
-                                            <span class="old_price">$78.99</span>    
-                                        </div>
-                                        <div class="modal_content mb-10">
-                                            <p>Short-sleeved blouse with feminine draped sleeve detail.</p>    
-                                        </div>
-                                        <div class="modal_size mb-15">
-                                            <h2>size</h2>
-                                            <ul>
-                                                <li><a href="#">s</a></li>
-                                                <li><a href="#">m</a></li>
-                                                <li><a href="#">l</a></li>
-                                                <li><a href="#">xl</a></li>
-                                                <li><a href="#">xxl</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="modal_add_to_cart mb-15">
-                                            <form action="#">
-                                                <input min="0" max="100" step="2" value="1" type="number">
-                                                <button type="submit">add to cart</button>
-                                            </form>
-                                        </div>   
-                                        <div class="modal_description mb-15">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</p>    
-                                        </div> 
-                                        <div class="modal_social">
-                                            <h2>Share this product</h2>
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
-                                            </ul>    
-                                        </div>      
-                                    </div>    
-                                </div>    
-                            </div>     
-                        </div>
-                    </div>    
-                </div>
-            </div>
-        </div> 
-
-        <!-- modal area end --> 
-
-
-
-
         <!-- all js here -->
         <%@include file="/common/web/add_js.jsp"%>
     </body>

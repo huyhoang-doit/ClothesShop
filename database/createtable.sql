@@ -12,7 +12,10 @@ DROP TABLE Carts
  DROP TABLE Products
  DROP TABLE Suppliers
  DROP TABLE Categories
+ DROP TABLE Types
  DROP TABLE Users
+
+
 CREATE TABLE Users (
   id INT NOT NULL IDENTITY(1,1),
   firstname NVARCHAR(30) NOT NULL,
@@ -26,10 +29,15 @@ CREATE TABLE Users (
   roleid INT NOT NULL,
   status BIT NOT NULL,
 )
+CREATE TABLE Types(
+ id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+ name NVARCHAR(100)
+)
 
 CREATE TABLE Categories(
  categoryname NVARCHAR(30) ,
- categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY
+ categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY,
+ type_id INT FOREIGN KEY REFERENCES [dbo].Types(id),
 )
 
 CREATE TABLE Suppliers(
@@ -37,6 +45,8 @@ CREATE TABLE Suppliers(
 	suppliername NVARCHAR(100),
 	supplierimage VARCHAR(255) NOT NULL,
 )
+
+
 
 CREATE TABLE Products(
  id INT NOT NULL IDENTITY(1,1)  PRIMARY KEY ,
@@ -51,7 +61,8 @@ CREATE TABLE Products(
  releasedate  DATE NOT NULL,
  discount FLOAT,
  unitSold INT,
- price money NOT NULL
+ price money NOT NULL,
+ typeid int not null FOREIGN KEY REFERENCES [dbo].[Types](id),
 )
 
 
@@ -90,7 +101,6 @@ username VARCHAR(30) NOT NULL FOREIGN KEY REFERENCES Users([username]),
 status bit NOT NULL,
 )
 
-
 CREATE TABLE Wallets (
     walletid INT IDENTITY(1,1),
 	username VARCHAR(30),
@@ -104,6 +114,7 @@ CREATE TABLE OrderItem(
 order_item_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 quantity INT ,
 price DECIMAL(10,2),
-prodct_id INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Products]([id]),
+product_id INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Products]([id]),
 order_id INT NOT NULL FOREIGN KEY REFERENCES  [dbo].[Orders](order_id)
 )
+

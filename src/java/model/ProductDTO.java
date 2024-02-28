@@ -14,7 +14,7 @@ import java.sql.Date;
 public class ProductDTO {
 
     private int id;
-    private String productName, description;
+    private String name, description;
     private int stock, unitSold;
     private String[] images, colors, size;
     private Date releasedate;
@@ -30,7 +30,7 @@ public class ProductDTO {
             String[] colors, String[] size, Date releasedate, double discount, double price, CategoryDTO category, SupplierDTO supplier, TypeDTO type) {
         this.salePrice = price;
         this.id = id;
-        this.productName = productName;
+        this.name = name;
         this.description = description;
         this.stock = stock;
         this.unitSold = unitSold;
@@ -53,12 +53,12 @@ public class ProductDTO {
         this.id = id;
     }
 
-    public String getProductName() {
-        return productName;
+    public String getName() {
+        return name;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -168,7 +168,7 @@ public class ProductDTO {
 
     @Override
     public String toString() {
-        return "ProductDTO{" + "id=" + id + ", productName=" + productName + ", description=" + description + ", stock=" + stock + ", unitSold=" + unitSold + ", images=" + images + ", colors=" + colors + ", size=" + size + ", releasedate=" + releasedate + ", discount=" + discount + ", price=" + price + ", salePrice=" + salePrice + ", category=" + category + ", supplier=" + supplier + ", type=" + type.getName() + type.getTypeId() + '}';
+        return "ProductDTO{" + "id=" + id + ", productName=" + name + ", description=" + description + ", stock=" + stock + ", unitSold=" + unitSold + ", images=" + images + ", colors=" + colors + ", size=" + size + ", releasedate=" + releasedate + ", discount=" + discount + ", price=" + price + ", salePrice=" + salePrice + ", category=" + category + ", supplier=" + supplier + ", type=" + type.getName() + type.getTypeId() + '}';
     }
 
 }

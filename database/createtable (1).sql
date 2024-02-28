@@ -22,26 +22,29 @@ CREATE TABLE Users (
   avatar varchar(200) Not null,
   username VARCHAR(30) PRIMARY KEY NOT NULL,
   password VARCHAR(64) NOT NULL,
-  address NVARCHAR(200) NOT NULL,
-  phone NVARCHAR(15) NOT NULL,
+  address NVARCHAR(200),
+  phone NVARCHAR(15),
   roleid INT NOT NULL,
   status BIT NOT NULL,
 )
 
-CREATE TABLE Categories(
+
+
+CREATE TABLE Types(
+ id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+ name varchar(100)
+)
+
+CREATE TABLE Categories (
  categoryname NVARCHAR(30) ,
- categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY
+ categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY,
+ type int not null FOREIGN KEY REFERENCES [dbo].Types(id)
 )
 
 CREATE TABLE Suppliers(
 	supplierid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY,
 	suppliername NVARCHAR(100),
 	supplierimage VARCHAR(255) NOT NULL,
-)
-
-CREATE TABLE Types(
- id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
- name varchar(100)
 )
 
 CREATE TABLE Products(

@@ -93,7 +93,7 @@ public class SupplierDAO extends DBContext {
         SupplierDAO dao = new SupplierDAO();
         List<SupplierDTO> list = dao.getData();
         for (int i = 0; i < list.size(); i++) {
-            System.out.println(list.get(i).getSupplierName());
+            System.out.println(list.get(i).getName());
         }
     }
 }

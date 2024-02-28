@@ -8,7 +8,7 @@ package controller.web;
 import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -23,17 +23,40 @@ import model.ProductDTO;
  */
 public class ShopServlet extends HttpServlet {
 
-    private final String SHOP = "shop-list.jsp";
+    private static final String SHOP = "shop-list.jsp";
+    private static final String SORT = "ajax/sortproducts.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = SHOP;
         try {
             ProductDAO pDao = new ProductDAO();
             CategoryDAO cDao = new CategoryDAO();
-
-            List<ProductDTO> listProducts = pDao.getData();
+            List<ProductDTO> listProducts = new ArrayList<>();
+            
             List<CategoryDTO> listCategories = cDao.getData();
+            if (request.getAttribute("LISTPRODUCTS") == null) {
+                listProducts = pDao.getData();
+            } else {
+                listProducts = ( List<ProductDTO>) request.getAttribute("LISTPRODUCTS");
+            }
+
+            String valueSort = request.getParameter("valueSort");
+            if (valueSort != null) {
+                switch (valueSort) {
+                    case "1":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                    case "2":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                    case "3":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                }
+                url = SORT;
+            }
 
             //Paging
             int page, numPerPage = 9;
@@ -55,10 +78,10 @@ public class ShopServlet extends HttpServlet {
             request.setAttribute("CURRENTPAGE", page);
             request.setAttribute("LISTPRODUCTS", listByPage);
             request.setAttribute("LISTCATEGORIES", listCategories);
+            request.setAttribute("VALUESORT", valueSort);
         } catch (Exception ex) {
-
         } finally {
-            request.getRequestDispatcher(SHOP).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

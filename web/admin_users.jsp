@@ -59,7 +59,7 @@
                                         <th>ID khách hàng</th>
                                         <th>Tên khách hàng</th>
                                         <th>Email</th>
-                                        <th>isAdmin</th>
+                                        <th>Role</th>
                                         <th width="70">Tính năng</th>
                                     </tr>
                                 </thead>
@@ -69,7 +69,7 @@
                                             <td>${u.getId()}</td>
                                             <td>${u.getFirstName()}</td>
                                             <td>${u.getEmail()}</td>
-                                            <td>${u.getRoleID()}</td>
+                                            <td>${u.getRoleID() == 1 ? "Admin" : "User"}</td>
                                             <td><button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
                                                         data-target="#ModalUP${u.getId()}"><i class="fas fa-edit"></i></button></td>
                                         </tr>

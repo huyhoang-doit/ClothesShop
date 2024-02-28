@@ -1,19 +1,29 @@
-﻿INSERT INTO Users  VALUES 
+﻿INSERT INTO Users  VALUES
 (N'Jung', N'Kim', 'user@gmail.com', 'assets/img/users/user.jpg','user1', '12345', N'Ha Noi', '0981347469', 2, 0),
 (N'admin', N'', 'admin@gmail.com', 'assets/img/users/user.jpg', 'admin', '12345', N'Quận 9', '0981347469', 1, 1),
 (N'Phùng', N'Thành', 'thanh@gmail.com', 'assets/img/users/1.jpg','phuuthanh2003', '12345', N'60 Nguyễn Văn Trỗi, Phường 2, TP.Bảo Lộc', '0707064154', 1, 1),
-(N'Bé', N'Moon', 'Moon123@gmail.com', 'assets/img/users/1.jpg','user2', '12345', N'13 Hoàng Hữu Nam, Phường 2, TP.Bảo Lộc', '06868686868', 2, 1)
+(N'Bé', N'Moon', 'Moon123@gmail.com', 'assets/img/users/1.jpg','user2', '12345', N'13 Hoàng Hữu Nam, Phường 2, TP.Bảo Lộc', '06868686868', 2, 1),
+(N'Phung', N'Huu Thanh', 'thanhphse170345@fpt.edu.vn', 'https://lh3.googleusercontent.com/a/ACg8ocLr-hUF3FDFfLGwVsXKxgXBIQ1trDWhb0DY2qaJhcJQTLo=s96-c', 'thanhphse170345@fpt.edu.vn', '1234', N'', '', 1, 1)
+
+INSERT INTO Types VALUES
+(N'Áo'),
+(N'Quần'),
+(N'Phụ kiện');
 
 INSERT INTO Categories VALUES
-(N'Áo sơ mi'),
-(N'T-Shirt'),
-(N'Sweatshirt'),
-(N'Áo khoác'),
-(N'Hoodies'),
-(N'Quần short'),
-(N'Quần thun'),
-(N'Quần jean'),
-(N'Áo Polo')
+(N'Áo sơ mi',1),
+(N'T-Shirt',1),
+(N'Sweatshirt',1),
+(N'Áo khoác',1),
+(N'Hoodies',1),
+(N'Quần short',2),
+(N'Quần thun',2),
+(N'Quần jean',2),
+(N'Áo Polo',1),
+(N'Mũ',3),
+(N'Balo',3),
+(N'Giày',3)
+
 
 INSERT INTO Suppliers VALUES
 ('Adidas', 'assets/img/suppliers/1.jpg'),
@@ -23,13 +33,10 @@ INSERT INTO Suppliers VALUES
 ('BoBui', 'assets/img/suppliers/5.jpg'),
 ('4MEN', 'assets/img/suppliers/6.jpg')
 
-INSERT INTO Types VALUES
-('Áo'),
-('Quần'),
-('Phụ kiện')
+
 
 INSERT INTO Products VALUES 
-(N'ÁO KHOÁC REGULAR TECHNICAL', 6, 3, 'S,M', 20, N'Áo sơ mi khoác bằng cotton dệt chéo, có cổ, nẹp khuy liền và cầu vai phía sau. Túi ngực mở, tay dài có nẹp tay áo và măng sét cài khuy cùng vạt tròn.'
+(N'ÁO KHOÁC REGULAR TECHNICAL', 6, 3, 'S,M', 5, N'Áo sơ mi khoác bằng cotton dệt chéo, có cổ, nẹp khuy liền và cầu vai phía sau. Túi ngực mở, tay dài có nẹp tay áo và măng sét cài khuy cùng vạt tròn.'
 , 'assets/img/products/1-1.jpg assets/img/products/1-2.jpg', N'Trắng,Đen,Rêu' , '2021-12-01', 0.4, 5, 249.000, 1),
 (N'ÁO SƠ MI TRƠN TAY NGẮN', 2, 1, 'S,M,L,XXL', 15, N'Áo Sơ Mi Tay Ngắn Nam Cotton Form Regular đem đến item tối giản với phong cách tràn đầy năng lượng, trẻ trung. Áo được làm từ chất liệu cotton với form áo suông, không ôm vào phần cơ thể đem đến sự thoải mái, nhẹ nhàng. Thân áo suông thẳng, thân sau áo có ly tạo nên điểm nổi bật cho áo.'
 , 'assets/img/products/2-1.jpg assets/img/products/2-2.jpg', N'Trắng,Đen,Xám' , '2022-02-01', 0.37, 76, 179.000,1),
@@ -66,7 +73,25 @@ INSERT INTO Products VALUES
 (N'ÁO THUN RAGLAN IN NGỰC BO CỔ DỆT ', 2, 2, 'S,L', 30, N'Phong cách: thể thao, Hàn Quốc, đường phố, công sở'
 , 'assets/img/products/18-1.jpg assets/img/products/18-2.jpg', N'Trắng, Đỏ' , '2022-11-01', 0.41, 51, 412.000,1),
 (N'ÁO POLO CỔ V PHỐI IN HỌA TIẾT', 6, 9, 'S,M,L', 30, N'Phong cách: cơ bản, đường phố, Hàn Quốc.'
-, 'assets/img/products/19-1.jpg assets/img/products/19-2.jpg', N'Đen, Trắng' , '2024-11-01', 0.11, 11, 345.000,1)
+, 'assets/img/products/19-1.jpg assets/img/products/19-2.jpg', N'Đen, Trắng' , '2024-11-01', 0.11, 11, 345.000,1),
+(N'ÁO THUN OVERSIZED *RETRO 9AS* ', 5, 2, 'S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/20-1.jpg assets/img/products/20-2.jpg' , N'Trắng' , '2024-11-01' , 0., 81, 550.000,1),
+(N'ÁO THUN DÀI TAY *CLOUD* ', 5, 2,'S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/21-1.jpg assets/img/products/21-2.jpg' , N'Trắng' , '2024-12-01' , 0., 81, 700.000,1),
+(N'ÁO SƠ MI OXFORD *ANGEL* ', 1, 2,'XS,S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/22-1.jpg assets/img/products/22-2.jpg' , N'Xanh' , '2024-09-01' , 0., 81, 500.000,1),
+(N'SƠ MI DÀI TAY *GLOWING HEART* ', 1, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/23-1.jpg assets/img/products/23-2.jpg' , N'Trắng,Đen' , '2024-03-01' , 0., 81, 650.000,1),
+(N'ÁO KHOÁC DÙ *ANGELS* ', 4, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/24-1.jpg assets/img/products/24-2.jpg' , N'Navy' , '2024-10-01' , 0., 81, 950.000,1),
+(N'ÁO KHOÁC DÙ *LAST JUDGEMENT* ', 4, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/25-1.jpg assets/img/products/25-2.jpg' , N'Navy' , '2023-02-01' , 0., 81, 1500.000,1),
+(N'QUẦN DÀI *ANGEL BOBUI* ', 5, 2,'S' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/26-1.jpg assets/img/products/26-2.jpg' , N'Mint' , '2023-03-02' , 0., 81, 700.000,1),
+(N'QUẦN DOUBLE KNEE CANVAS WORKWEAR ', 5, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/27-1.jpg assets/img/products/27-2.jpg' , N'Beige' , '2022-04-02' , 0., 81, 750.000,1)
+--Phu kien
+--...
 
 INSERT INTO Carts VALUES 
 (1,'admin', 1),

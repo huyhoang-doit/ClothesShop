@@ -72,7 +72,7 @@
                                             <td>${b.orderDate}</td>
                                             <td>${b.totalPrice}</td>
                                             <td><span class="badge bg-success">${b.paymentMethod.paymentMethod}</span></td>                              
-                                            <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="ordermanager?action=showdetail&bill_id=${b.getOrderID()}"><i class="fa"></i>Chi tiết đơn hàng</a></td>
+                                            <td><a style=" color: rgb(245 157 57);background-color: rgb(251 226 197); padding: 5px;border-radius: 5px;" href="ManageOrderServlet?action=showdetail&bill_id=${b.getOrderID()}"><i class="fa"></i>Chi tiết đơn hàng</a></td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
