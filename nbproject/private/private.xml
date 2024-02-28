@@ -4,9 +4,7 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/PRJ/PRJ_team/Project_PRJ301_Spring24/web/home.jsp</file>
-            <file>file:/D:/PRJ/PRJ_team/Project_PRJ301_Spring24/web/wishlist.jsp</file>
-            <file>file:/D:/PRJ/PRJ_team/Project_PRJ301_Spring24/src/java/dal/ProductDAO.java</file>
-            <file>file:/D:/PRJ/PRJ_team/Project_PRJ301_Spring24/src/java/dal/WishlistDAO.java</file>
+            <file>file:/D:/PRJ/PRJ_team/Project_PRJ301_Spring24/web/single-product.jsp</file>
         </group>
     </open-files>
 </project-private>
