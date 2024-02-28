@@ -65,7 +65,7 @@
                                         <tr>
                                             <td><img src="${d.product.images[0]}" alt="" width="100px;"></td>
                                             <td>${d.product.id}</td>
-                                            <td>${d.product.productName}</td>
+                                            <td>${d.product.name}</td>
                                             <td>${d.product.size[0]}</td>
                                             <td>${d.product.colors[0]}</td>
                                             <td>${d.quantity}</td>

@@ -61,8 +61,8 @@
                                             </li>
                                             <c:forEach items="${LISTCATEGORIES}" var="c">
                                                 <li>
-                                                    <input id="${c.categoryId}" type="checkbox" name="">
-                                                    <label for="${c.categoryId}">${c.categoryName}
+                                                    <input id="${c.id}" type="checkbox" name="">
+                                                    <label for="${c.id}">${c.name}
                                                         <span>(1)</span>
                                                     </label>
                                                 </li>

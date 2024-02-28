@@ -34,7 +34,7 @@ public class OrderItemDAO extends DBContext{
                 ptm= con.prepareStatement(GET_ODERITEM_BY_ORDER_ID);
                 ptm.setInt(1, id);
                 rs = ptm.executeQuery();
-                if(rs.next()) {
+                while(rs.next()) {
                     int orderItemID = rs.getInt("order_item_id");
                     int quantity = rs.getInt("quantity");
                     double price = rs.getDouble("price");
