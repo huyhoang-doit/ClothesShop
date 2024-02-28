@@ -175,34 +175,34 @@
                                         </ul>
                                     </div>
                                     <div class="page_amount">
-                                        <p>Showing 1–<c:if test="${LISTPRODUCTS.size() < 9}">${LISTPRODUCTS.size()}</c:if><c:if test="${LISTPRODUCTS.size() >= 9}">9</c:if> of ${LISTPRODUCTS.size()}  results</p>
+                                        <!--<p>Showing 1–<c:if test="${LISTPRODUCTS.size() < 9}">${LISTPRODUCTS.size()}</c:if><c:if test="${LISTPRODUCTS.size() >= 9}">9</c:if> of ${LISTPRODUCTS.size()}  results</p>-->
 
-                                    </div>
-                                    <div class="search_bar">
-                                        <form action="#">
-                                            <input oninput="searchProducts(this)" value="" placeholder="Search..." type="text">
-                                            <i style="margin-left: -24px" class="fa fa-search"></i>
-                                        </form>
-                                    </div>
-                                </div>
-                                <!--shop toolbar end-->
-
-                                <!--shop tab product-->
-                                <div class="shop_tab_product">   
-                                    <div class="tab-content" id="myTabContent">
-                                        <div class="select_option" style="margin-bottom: 20px; display: flex; justify-content: flex-end; align-items: center">
-                                            <label style="">Sort By: </label>
-                                            <form action="SortProductsServlet" method="get">
-                                                <select onchange="sortProducts(event)" name="orderby" id="sort">                                                
-                                                    <option value="0">Nổi bật</option>
-                                                    <option value="1">Giá: Thấp đến Cao</option>
-                                                    <option value="2">Giá: Cao đến Thấp</option>
-                                                    <option value="3">Tên: A- Z</option>
-                                                </select>
+                                        </div>
+                                        <div class="search_bar">
+                                            <form action="#">
+                                                <input oninput="searchProducts(this)" value="" placeholder="Search..." type="text">
+                                                <i style="margin-left: -24px" class="fa fa-search"></i>
                                             </form>
                                         </div>
-                                        <div class="tab-pane fade show active" id="large" role="tabpanel">
-                                            <div class="row" id="listproduct">
+                                    </div>
+                                    <!--shop toolbar end-->
+
+                                    <!--shop tab product-->
+                                    <div class="shop_tab_product">   
+                                        <div class="tab-content" id="myTabContent">
+                                            <div class="select_option" style="margin-bottom: 20px; display: flex; justify-content: flex-end; align-items: center">
+                                                <label style="">Sort By: </label>
+                                                <form action="SortProductsServlet" method="get">
+                                                    <select onchange="sortProducts(event)" name="orderby" id="sort">                                                
+                                                        <option value="0">Nổi bật</option>
+                                                        <option value="1">Giá: Thấp đến Cao</option>
+                                                        <option value="2">Giá: Cao đến Thấp</option>
+                                                        <option value="3">Tên: A- Z</option>
+                                                    </select>
+                                                </form>
+                                            </div>
+                                            <div class="tab-pane fade show active" id="large" role="tabpanel">
+                                                <div class="row" id="listproduct">
                                                 <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
                                                     <div class="col-lg-4 col-md-6">
                                                         <div class="single_product">
@@ -291,21 +291,43 @@
                                     <div class="page_number">
                                         <span>Pages: </span>
                                         <ul>
-                                            <c:set var="page" value="${requestScope.CURRENTPAGE}"/>
-                                            <c:if test="${page != 1}">
-                                                <li>
-                                                    <a href="ShopServlet?page=${page - 1}">«</a>
-                                                </li>
+                                            <!--PAGING SHOPSERVLET--> 
+                                            <c:if test="${requestScope.DATA_FROM == 'ShopServlet'}">
+                                                <c:set var="page" value="${requestScope.CURRENTPAGE}"/>
+                                                <c:if test="${page != 1}">
+                                                    <li>
+                                                        <a href="ShopServlet?page=${page - 1}">«</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:forEach var="i" begin="1" end="${requestScope.NUMBERPAGE}">
+                                                    <li>
+                                                        <a style="${page == i ? "color: #e84c3d" :""}" href="ShopServlet?page=${i}">${i}</a>
+                                                    </li>
+                                                </c:forEach>
+                                                <c:if test="${page != NUMBERPAGE}">
+                                                    <li>
+                                                        <a href="ShopServlet?page=${page + 1}">»</a>
+                                                    </li>
+                                                </c:if>
                                             </c:if>
-                                            <c:forEach var="i" begin="1" end="${requestScope.NUMBERPAGE}">
-                                                <li>
-                                                    <a style="${page == i ? "color: #e84c3d" :""}" href="ShopServlet?page=${i}">${i}</a>
-                                                </li>
-                                            </c:forEach>
-                                            <c:if test="${page != NUMBERPAGE}">
-                                                <li>
-                                                    <a href="ShopServlet?page=${page + 1}">»</a>
-                                                </li>
+                                            <!--PAGING FILTERSERVLET--> 
+                                            <c:if test="${requestScope.DATA_FROM == 'FilterServlet'}">
+                                                <c:set var="page" value="${requestScope.CURRENTPAGE}"/>
+                                                <c:if test="${page != 1}">
+                                                    <li>
+                                                        <a href="FilterServlet?page=${page - 1}&id_group=${requestScope.ID_GROUP}&sort_group=${requestScope.SORT_GROUP}">«</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:forEach var="i" begin="1" end="${requestScope.NUMBERPAGE}">
+                                                    <li>
+                                                        <a style="${page == i ? "color: #e84c3d" :""}" href="FilterServlet?page=${i}&id_group=${requestScope.ID_GROUP}&sort_group=${requestScope.SORT_GROUP}">${i}</a>
+                                                    </li>
+                                                </c:forEach>
+                                                <c:if test="${page != NUMBERPAGE}">
+                                                    <li>
+                                                        <a href="FilterServlet?page=${page + 1}&id_group=${requestScope.ID_GROUP}&sort_group=${requestScope.SORT_GROUP}">»</a>
+                                                    </li>
+                                                </c:if>
                                             </c:if>
                                         </ul>
                                     </div>
