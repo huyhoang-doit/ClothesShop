@@ -8,7 +8,7 @@ package controller.admin;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,29 +18,61 @@ import model.UserDTO;
 
 /**
  *
- * @author HuuThanh
+ * @author Administrator
  */
-@WebServlet(name = "ManageUserServlet", urlPatterns = {"/ManageUserServlet"})
-public class ManageUserServlet extends HttpServlet {
+@WebServlet(name = "InsertUserServlet", urlPatterns = {"/InsertUserServlet"})
+public class InsertUserServlet extends HttpServlet {
 
-    private final String MANAGE_USER_PAGE = "admin_users.jsp";
-    private final String INSERT_USER_PAGE = "admin_user_insert.jsp";
+    private static final String MANAGE_USER_CONTROLLER = "ManageUserServlet";
+    private static final String INSERT_USER_PAGE = "admin_user_insert.jsp";
 
+    /**
+     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
+     * methods.
+     *
+     * @param request servlet request
+     * @param response servlet response
+     * @throws ServletException if a servlet-specific error occurs
+     * @throws IOException if an I/O error occurs
+     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = MANAGE_USER_PAGE;
+        String url = MANAGE_USER_CONTROLLER;
         try {
-            String action = request.getParameter("action");
             UserDAO dao = new UserDAO();
-            if (action == null) {
-                List<UserDTO> list = dao.getData();
-                request.setAttribute("LISTUSERS", list);
-                url = MANAGE_USER_PAGE;
-            } else if (action.equals("Insert")) {
-                url = INSERT_USER_PAGE;
-            }
+            String avatar = request.getParameter("avatar");
+            String fullName = request.getParameter("fullname");
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String email = request.getParameter("email");
+            String address = request.getParameter("address");
+            String phone = request.getParameter("phone");
+            String role = request.getParameter("role");
 
+            String image = "";
+            String firstName = fullName;
+            String lastName = "";
+            int roleId = 2;
+            if (dao.checkUserNameDuplicate(username)) {
+                url = INSERT_USER_PAGE;
+                request.setAttribute("error", "Tên tài khoản đã tồn tại!");
+            } else {
+                if (!avatar.equals("")) {
+                    avatar = "assets/img/users/" + avatar;
+                }
+                if (fullName.split(" ").length > 0) {
+                    String[] nameParts = fullName.split(" ");
+                    firstName = nameParts[0];
+                    lastName = String.join(" ", Arrays.copyOfRange(nameParts, 1, nameParts.length));
+                }
+                if ("admin".equals(role)) {
+                    roleId = 1;
+                }
+                UserDTO user = new UserDTO(0, firstName, lastName, email, avatar, username, password, address, phone, roleId, true);
+                dao.registerUser(user);
+                request.setAttribute("mess", "Insert successfully!");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -35,7 +35,7 @@
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb side">
-                    <li class="breadcrumb-item active"><a href="#"><b>Danh sách sản phẩm</b></a></li>
+                    <li class="breadcrumb-item active"><a href="#"><b>Danh sách danh mục</b></a></li>
                 </ul>
                 <div id="clock"></div>
             </div>
@@ -70,7 +70,7 @@
                                             <td>${c.name}</td>
                                             <td>
                                                 <c:forEach items="${requestScope.LIST_TYPES}" var="t">
-                                                    <c:if test="${c.typeId == t.typeId}" >
+                                                    <c:if test="${c.type.id == t.id}" >
                                                         ${t.name}
                                                     </c:if>
                                                 </c:forEach>
@@ -115,7 +115,7 @@
                                                                 <label for="exampleSelect1" class="control-label">Danh mục</label>
                                                                 <select name="type_id" class="form-control" id="exampleSelect1">
                                                                     <c:forEach items="${LIST_TYPES}" var="type">
-                                                                        <option ${c.typeId == type.typeId ? "selected" : ""} value="${type.typeId}">${type.name}</option>
+                                                                        <option ${c.type.id == type.id ? "selected" : ""} value="${type.id}">${type.name}</option>
                                                                     </c:forEach>
                                                                 </select>
                                                             </div>
@@ -162,8 +162,8 @@
                                                         let modalElement = document.getElementById(modalID);
                                                         let modal = '<div class="modal-dialog modal-dialog-centered" role="document" style="text-align:center">' +
                                                                 '<div class="modal-content" style="width:500px; margin: 0 auto">' +
-                                                                '<div class="modal-header" style="color: black; font-size:28px; font-weight: 600; margin: 0 auto">Cảnh báo</div>' +
-                                                                '<div class="swal-text">Bạn có chắc chắn là muốn xóa sản phẩm này?</div>' +
+                                                                '<div class="modal-header" style="color: black; font-size:28px; font-weight: 600; margin: 15px auto">Cảnh báo</div>' +
+                                                                '<div class="swal-text">Bạn có chắc chắn là muốn xóa danh mục này?</div>' +
                                                                 '<div class="swal-footer">' +
                                                                 '<div class="swal-button-container">' +
                                                                 '<button data-dismiss="modal" aria-hidden="true" class="swal-button swal-button--cancel">Hủy bỏ</button>' +

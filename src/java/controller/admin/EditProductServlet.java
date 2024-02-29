@@ -31,7 +31,7 @@ import model.TypeDTO;
 @WebServlet(name = "EditProductServlet", urlPatterns = {"/EditProductServlet"})
 public class EditProductServlet extends HttpServlet {
 
-    private static final String EDIT_PAGE = "editproduct.jsp";
+    private static final String EDIT_PAGE = "admin_edit_product.jsp";
     private static final String MANAGE_PRODUCT_CONTROLLER = "ManageProductServlet";
 
     /**

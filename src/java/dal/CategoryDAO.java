@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.CategoryDTO;
+import model.TypeDTO;
 
 /**
  *
@@ -39,10 +40,12 @@ public class CategoryDAO extends DBContext {
                 ptm = conn.prepareStatement(GETDATA);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
+                    TypeDAO dao = new TypeDAO();
+                    TypeDTO type = dao.getTypeById(rs.getInt("type_id"));
                     int categoryId = rs.getInt("categoryid");
                     String categoryName = rs.getString("categoryname");
                     int typeid = rs.getInt("type_id");
-                    categories.add(new CategoryDTO(categoryId, categoryName, typeid));
+                    categories.add(new CategoryDTO(categoryId, categoryName, type));
                 }
             }
         } catch (Exception e) {
@@ -73,10 +76,12 @@ public class CategoryDAO extends DBContext {
                 ptm.setInt(1, typpid);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
+                    TypeDAO dao = new TypeDAO();
+                    TypeDTO type = dao.getTypeById(rs.getInt("type_id"));
                     int categoryId = rs.getInt("categoryid");
                     String categoryName = rs.getString("categoryname");
                     int typeid = rs.getInt("type_id");
-                    categories.add(new CategoryDTO(categoryId, categoryName, typeid));
+                    categories.add(new CategoryDTO(categoryId, categoryName, type));
                 }
             }
         } catch (Exception e) {
@@ -107,10 +112,12 @@ public class CategoryDAO extends DBContext {
                 ptm.setInt(1, id);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
+                    TypeDAO dao = new TypeDAO();
+                    TypeDTO type = dao.getTypeById(rs.getInt("type_id"));
                     int categoryId = rs.getInt("categoryid");
                     String categoryName = rs.getString("categoryname");
                     int typeid = rs.getInt("type_id");
-                    category = new CategoryDTO(categoryId, categoryName, typeid);
+                    category = new CategoryDTO(categoryId, categoryName, type);
                 }
             }
         } catch (Exception e) {

@@ -12,23 +12,23 @@ package model;
 public class CategoryDTO {
     private int id;
     private String name;
-    private int typeId;
+    private TypeDTO type;
 
     public CategoryDTO() {
     }
 
-    public CategoryDTO(int id, String name, int typeId) {
+    public CategoryDTO(int id, String name, TypeDTO type) {
         this.id = id;
         this.name = name;
-        this.typeId = typeId;
+        this.type = type;
     }
 
-    public int getTypeId() {
-        return typeId;
+    public TypeDTO getType() {
+        return type;
     }
 
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
+    public void setTypeId(TypeDTO type) {
+        this.type = type;
     }
 
     

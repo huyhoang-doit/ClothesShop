@@ -47,28 +47,37 @@
 
                             <div class="row element-button">
                                 <div class="col-sm-2">
+                                    <a class="btn btn-add btn-sm" href="ManageUserServlet?action=Insert" title="Thêm"><i class="fas fa-plus"></i>
+                                        Tạo mới tài khoản</a>
+                                </div>
+                                <div class="col-sm-2">
                                     <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                                             class="fas fa-print"></i> In dữ liệu</a>
                                 </div>
                             </div>
-
                             <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
                                    id="sampleTable">
                                 <thead>
                                     <tr>
                                         <th>ID khách hàng</th>
                                         <th>Tên khách hàng</th>
+                                        <th>Ảnh đại diện</th>
                                         <th>Email</th>
+                                        <th>Địa chỉ</th>
+                                        <th>Số điện thoại</th>
                                         <th>Role</th>
-                                        <th width="70">Tính năng</th>
+                                        <th width="70">Chức năng</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <c:forEach items="${requestScope.LISTUSERS}" var="u">
                                         <tr>
                                             <td>${u.getId()}</td>
-                                            <td>${u.getFirstName()}</td>
+                                            <td>${u.getFirstName()} ${u.getLastName()}</td>
+                                            <td><img src="${u.avatar}" width="50px" height="50px"></td>
                                             <td>${u.getEmail()}</td>
+                                            <td>${u.getAddress()}</td>
+                                            <td>${u.getPhone()}</td>
                                             <td>${u.getRoleID() == 1 ? "Admin" : "User"}</td>
                                             <td><button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
                                                         data-target="#ModalUP${u.getId()}"><i class="fas fa-edit"></i></button></td>
