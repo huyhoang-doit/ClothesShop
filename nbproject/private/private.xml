@@ -4,23 +4,13 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Project/ClothingStore/web/admin_categories.jsp</file>
-            <file>file:/D:/Project/ClothingStore/src/java/controller/admin/InsertProductServlet.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/model/OrderDTO.java</file>
-            <file>file:/D:/Project/ClothingStore/web/admin_users.jsp</file>
-            <file>file:/D:/Project/ClothingStore/web/admin_products_insert.jsp</file>
-            <file>file:/D:/Project/ClothingStore/src/java/dal/CategoryDAO.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/model/CategoryDTO.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/controller/admin/EditProductServlet.java</file>
             <file>file:/D:/Project/ClothingStore/web/common/admin/sidebar.jsp</file>
-            <file>file:/D:/Project/ClothingStore/src/java/dal/TypeDAO.java</file>
             <file>file:/D:/Project/ClothingStore/web/admin_products.jsp</file>
-            <file>file:/D:/Project/ClothingStore/src/java/controller/admin/ManageUserServlet.java</file>
-            <file>file:/D:/Project/ClothingStore/web/home.jsp</file>
-            <file>file:/D:/Project/ClothingStore/web/admin_user_insert.jsp</file>
+            <file>file:/D:/Project/ClothingStore/src/java/controller/web/ShopServlet.java</file>
             <file>file:/D:/Project/ClothingStore/src/java/controller/admin/ManageProductServlet.java</file>
-            <file>file:/D:/Project/ClothingStore/web/admin_edit_product.jsp</file>
+            <file>file:/D:/Project/ClothingStore/web/assets/css/style.css</file>
             <file>file:/D:/Project/ClothingStore/src/java/dal/ProductDAO.java</file>
-            <file>file:/D:/Project/ClothingStore/src/java/model/TypeDTO.java</file>
+            <file>file:/D:/Project/ClothingStore/web/assets/js/events.js</file>
         </group>
     </open-files>
 </project-private>

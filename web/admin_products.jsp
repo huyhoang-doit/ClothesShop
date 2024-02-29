@@ -102,9 +102,9 @@
                                                 <td><img src="${p.images[0]}" alt="" width="100px;"></td>
 
                                                 <td>
-                                                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" value="${p.id}"><i
-                                                            class="fas fa-trash-alt"></i>
-                                                    </button>
+                                                    <a class="btn btn-primary btn-sm trash" id="logout" data-toggle="modal" data-target="#modal_box" href="#" onclick="confirmDelete('modal_box', ${p.id})">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
                                                     <a class="btn btn-primary btn-sm edit" href="EditProductServlet?product_id=${p.id}"><i class="fas fa-edit"></i>
                                                     </a>
                                                 </td>
@@ -118,6 +118,8 @@
                 </div>
             </div>
         </main>
+
+        <div class="modal fade" id="modal_box" role="dialog"></div>
         <!-- Essential javascripts for application to work-->
         <script src="admin/js/jquery-3.2.1.min.js"></script>
         <script src="admin/js/popper.min.js"></script>
@@ -132,22 +134,26 @@
         <script type="text/javascript" src="admin/js/plugins/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="admin/js/plugins/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript">
-            $(document).ready(jQuery(function () {
-                jQuery(".trash").click(function () {
-                    swal({
-                        title: "Cảnh báo",
-                        text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
-                        buttons: ["Hủy bỏ", "Đồng ý"],
-                    })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    window.location = "productmanager?action=deleteproduct&product_id=" + $(this).attr("value");
-                                    swal("Đã xóa thành công.!", {
-                                    });
-                                }
-                            });
-                });
-            }));
+                                                        function confirmDelete(modalID, pid) {
+                                                            let modalElement = document.getElementById(modalID);
+                                                            let modal = '<div class="modal-dialog modal-dialog-centered" role="document" style="text-align:center">' +
+                                                                    '<div class="modal-content" style="width:500px; margin: 0 auto">' +
+                                                                    '<div class="modal-header" style="color: black; font-size:28px; font-weight: 600; margin: 15px auto">Cảnh báo</div>' +
+                                                                    '<div class="swal-text">Bạn có chắc chắn là muốn xóa danh mục này?</div>' +
+                                                                    '<div class="swal-footer">' +
+                                                                    '<div class="swal-button-container">' +
+                                                                    '<button data-dismiss="modal" aria-hidden="true" class="swal-button swal-button--cancel">Hủy bỏ</button>' +
+                                                                    '</div>' +
+                                                                    '<div class="swal-button-container">' +
+                                                                    '<a href="DeleteProductServlet?pid=' + pid + '" class="swal-button swal-button--confirm">Xác nhận</a>' +
+                                                                    '</div>' +
+                                                                    '</div>' +
+                                                                    '</div>' +
+                                                                    '</div>';
+                                                            console.log(modal);
+                                                            let result = modalElement.innerHTML = modal;
+                                                            return result;
+                                                        }
         </script>
     </body>
 

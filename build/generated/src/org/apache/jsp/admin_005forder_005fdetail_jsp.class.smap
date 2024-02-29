@@ -1,0 +1,24 @@
+SMAP
+admin_005forder_005fdetail_jsp.java
+JSP
+*S JSP
+*F
++ 0 admin_order_detail.jsp
+admin_order_detail.jsp
++ 1 sidebar.jsp
+common/admin/sidebar.jsp
+*L
+5,4:60
+8,26:63
+1#1,18:89
+19:107,3
+20,2:110
+22:112,5
+23,22:117
+33#0,32:139
+64:291,11
+65:302
+66,7:303,3
+73,2:324
+74,101:173
+*E

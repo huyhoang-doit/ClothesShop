@@ -178,12 +178,12 @@
                                         <!--<p>Showing 1–<c:if test="${LISTPRODUCTS.size() < 9}">${LISTPRODUCTS.size()}</c:if><c:if test="${LISTPRODUCTS.size() >= 9}">9</c:if> of ${LISTPRODUCTS.size()}  results</p>-->
 
                                         </div>
-<!--                                        <div class="search_bar">
+                                        <div class="search_bar">
                                             <form action="#">
                                                 <input oninput="searchProducts(this)" value="" placeholder="Search..." type="text">
                                                 <i style="margin-left: -24px" class="fa fa-search"></i>
                                             </form>
-                                        </div>-->
+                                        </div>
                                     </div>
                                     <!--shop toolbar end-->
 
@@ -234,7 +234,6 @@
                                         </div>
                                         <div class="tab-pane fade" id="list" role="tabpanel">
                                             <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
-
                                                 <div class="product_list_item mb-35">
                                                     <div class="row align-items-center">
                                                         <div class="col-lg-4 col-md-6 col-sm-6">
