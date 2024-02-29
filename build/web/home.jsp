@@ -51,7 +51,7 @@
                                                         <c:forEach items="${requestScope.LIST_CATEGORIESS}" var="c">
                                                             <c:if test="${t.typeId == c.typeId}" >
                                                             <ul class="categorie_sub">
-                                                                <li><a href="FilterServlet?action=filterByCategory&category_id=${c.id}"><i class="fa fa-caret-right"></i> ${c.name}</a>
+                                                                <li><a href="FilterServlet?btnAction=filterByCategory&category_id=${c.id}"><i class="fa fa-caret-right"></i> ${c.name}</a>
                                                                 </li>
                                                             </ul>    
                                                         </c:if>
@@ -118,7 +118,7 @@
                                                 <div class="slider_content_inner">  
                                                     <h1>Men's Fashion</h1>
                                                     <p>Thời trang, phong cách trẻ trung. </p>
-                                                    <a href="#">shop now</a>
+                                                    <a href="ShopServlet">shop now</a>
                                                 </div>     
                                             </div>    
                                         </div>
@@ -127,7 +127,7 @@
                                                 <div class="slider_content_inner">  
                                                     <h1>New Collection</h1>
                                                     <p>Nơi cập nhật những trào lưu bạn cần. </p>
-                                                    <a href="#">shop now</a>
+                                                    <a href="ShopServlet">shop now</a>
                                                 </div>         
                                             </div>         
                                         </div>
@@ -136,7 +136,7 @@
                                                 <div class="slider_content_inner">  
                                                     <h1>Best Collection</h1>
                                                     <p>Bộ sưu tập mùa hè, mùa đông. </p>
-                                                    <a href="#">shop now</a>
+                                                    <a href="ShopServlet">shop now</a>
                                                 </div> 
                                             </div> 
                                         </div>
@@ -161,12 +161,12 @@
                                                                     <img src="assets/img/cart/span-new.png" alt="">
                                                                 </div>
                                                                 <div class="product_action">
-                                                                    <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
                                                                 <span class="product_price">${i.price} &#8363</span>
-                                                                <h3 class="product_title"><a href="single-product.html">${i.name}</a></h3>
+                                                                <h3 class="product_title"><a href="SingleProductServlet?product_id=${i.id}">${i.name}</a></h3>
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
@@ -199,12 +199,12 @@
                                                                 <img src="assets\img\cart\span-hot.png" alt="">
                                                             </div>
                                                             <div class="product_action">
-                                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                <a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                             </div>
                                                         </div>
                                                         <div class="product_content">
                                                             <span class="product_price">${p.price}&#273</span>
-                                                            <h3 class="product_title"><a href="single-product.html">${p.name}</a></h3>
+                                                            <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
                                                         </div>
                                                         <div class="product_info">
                                                             <ul>
@@ -226,17 +226,17 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single_banner">
                                                 <a href="#"><img src="assets\img\banner\banner7.jpg" alt=""></a>
-                                                <div class="banner_title">
+<!--                                                <div class="banner_title">
                                                     <p>Up to <span> 40%</span> off</p>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single_banner">
                                                 <a href="#"><img src="assets\img\banner\banner8.jpg" alt=""></a>
-                                                <div class="banner_title title_2">
+<!--                                                <div class="banner_title title_2">
                                                     <p>sale off <span> 30%</span></p>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </div>
                                     </div>
@@ -253,7 +253,7 @@
                                             <c:forEach items="${requestScope.LIST_SUPPLIERS}" var="s">
                                                 <div class="col-lg-2">
                                                     <div class="single_brand">
-                                                        <a href="#"><img src="${s.image}" alt=""></a>
+                                                        <a href="FilterServlet?btnAction=filterBySupplier&supplier_id=${s.id}"><img src="${s.image}" alt=""></a>
                                                     </div>
                                                 </div>
                                             </c:forEach>

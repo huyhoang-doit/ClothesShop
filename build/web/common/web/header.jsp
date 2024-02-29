@@ -31,12 +31,12 @@
                             </c:if>
                         <li><a href="cart.jsp" title="My cart">My cart</a></li>  
                             <c:if test="${sessionScope.account == null}">
-                            <li><a href="LoginServlet?action=Login" title="Login">Login</a></li>  
+                            <li><a href="DispatchServlet?btnAction=Login" title="Login">Login</a></li>  
                             </c:if>
                             <c:if test="${sessionScope.account != null}">
                             <li><a href="${sessionScope.account.roleID == 1 ? 'AdminServlet' : 'ProfileServlet'} ">Hello, ${sessionScope.account.firstName} ${sessionScope.account.lastName}!</a></li>
                             <li><a href="DispatchServlet?btnAction=Logout">Logout</a></li>
-                        </c:if>
+                            </c:if>
                     </ul>
                 </div>   
             </div>
@@ -63,7 +63,12 @@
                         </form>
                     </div>
                     <div class="shopping_cart">
-                        <a href="#"><i class="fa fa-shopping-cart"></i> 2Items - $209.44 <i class="fa fa-angle-down"></i></a>
+                        <c:if test="${sessionScope.CART != null}">
+                            <a href="#"><i class="fa fa-shopping-cart"></i> ${sessionScope.CART.size()} Items <i class="fa fa-angle-down"></i></a>
+                            </c:if>
+                           <c:if test="${sessionScope.CART == null}">
+                            <a href="#"><i class="fa fa-shopping-cart"></i> ${sessionScope.CART.size()}<i class="fa fa-angle-down"></i></a>
+                            </c:if>
 
                         <!--mini cart-->
                         <div class="mini_cart">
@@ -127,32 +132,32 @@
                             </ul>
                         </nav>
                     </div>
-                    <div class="mobile-menu d-lg-none">
-                        <nav>
-                            <ul>
-                                <li><a href="home.jsp">Home</a></li>
-                                <li><a href="shop-list.jsp">shop</a>
-                                    <div>
-                                        <div>
-                                            <ul>
-                                                <li><a href="shop-list.html">shop list</a></li>
-                                                <li><a href="shop-fullwidth.html">shop Full Width Grid</a></li>
-                                                <li><a href="shop-fullwidth-list.html">shop Full Width list</a></li>
-                                                <li><a href="shop-sidebar.html">shop Right Sidebar</a></li>
-                                                <li><a href="shop-sidebar-list.html">shop list Right Sidebar</a></li>
-                                                <li><a href="single-product.html">Product Details</a></li>
-                                                <li><a href="single-product-sidebar.html">Product sidebar</a></li>
-                                                <li><a href="single-product-video.html">Product Details video</a></li>
-                                                <li><a href="single-product-gallery.html">Product Details Gallery</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>  
-                                </li>
-                                <li><a href="contact.jsp">contact us</a></li>
-
-                            </ul>
-                        </nav>
-                    </div>
+                    <!--                    <div class="mobile-menu d-lg-none">
+                                            <nav>
+                                                <ul>
+                                                    <li><a href="home.jsp">Home</a></li>
+                                                    <li><a href="shop-list.jsp">shop</a>
+                                                        <div>
+                                                            <div>
+                                                                <ul>
+                                                                    <li><a href="shop-list.html">shop list</a></li>
+                                                                    <li><a href="shop-fullwidth.html">shop Full Width Grid</a></li>
+                                                                    <li><a href="shop-fullwidth-list.html">shop Full Width list</a></li>
+                                                                    <li><a href="shop-sidebar.html">shop Right Sidebar</a></li>
+                                                                    <li><a href="shop-sidebar-list.html">shop list Right Sidebar</a></li>
+                                                                    <li><a href="single-product.html">Product Details</a></li>
+                                                                    <li><a href="single-product-sidebar.html">Product sidebar</a></li>
+                                                                    <li><a href="single-product-video.html">Product Details video</a></li>
+                                                                    <li><a href="single-product-gallery.html">Product Details Gallery</a></li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>  
+                                                    </li>
+                                                    <li><a href="contact.jsp">contact us</a></li>
+                    
+                                                </ul>
+                                            </nav>
+                                        </div>-->
                 </div>
             </div>
         </div>

@@ -208,6 +208,47 @@ public class ProductDAO extends DBContext {
 
     }
 
+    public List<ProductDTO> getProductSupplierId(int supplierid) {
+        List<ProductDTO> products = new ArrayList<>();
+        Connection con = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            con = getConnection();
+            if (con != null) {
+                ptm = con.prepareStatement(GET_PRODUCTS_BY_CATEGORY_ID);
+                ptm.setInt(1, supplierid);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    CategoryDAO cDao = new CategoryDAO();
+                    SupplierDAO sDao = new SupplierDAO();
+                    TypeDAO tDao = new TypeDAO();
+                    String productname = rs.getString("productname");
+                    SupplierDTO supplier = sDao.getSupplierById(supplierid);
+                    CategoryDTO category = cDao.getCategoryById(rs.getInt("categoryid"));
+                    int id = rs.getInt("id");
+                    TypeDTO type = tDao.getTypeById(rs.getInt("typeid"));
+                    int stock = rs.getInt("stock");
+                    String description = rs.getString("description");
+                    Date date = rs.getDate("releasedate");
+                    double discount = rs.getDouble("discount");
+                    int unitSold = rs.getInt("unitSold");
+                    boolean status = rs.getBoolean("status");
+                    double price = rs.getDouble("price");
+                    String colors[] = rs.getString("colors").split(",");
+                    String images[] = rs.getString("images").split(" ");
+                    String sizes[] = rs.getString("size").split(",");
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, status, category, supplier, type);
+                    products.add(product);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return products;
+
+    }
+
     public int getTotalProducts() throws SQLException {
         int result = 0;
         Connection conn = null;

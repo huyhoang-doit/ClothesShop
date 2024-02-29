@@ -187,7 +187,7 @@
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
                                     <select name="category_id" class="form-control" id="exampleSelect1">
                                         <c:forEach items="${requestScope.LIST_CATEGORIES}" var="cat">
-                                            <option value="${cat.id}">${cat.name}</option>
+                                            <option value="${cat.categoryId}">${cat.categoryName}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -258,6 +258,7 @@
                                 <a class="btn btn-cancel" href="productmanager">Hủy bỏ</a>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>

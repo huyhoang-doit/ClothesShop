@@ -27,12 +27,14 @@ import model.TypeDTO;
  */
 public class DispatchServlet extends HttpServlet {
 
-    private final String LOGINPAGE = "login.jsp";
     private final String LOGIN = "Login";
     private final String SEARCH = "Search";
     private final String LOGOUT = "Logout";
     private final String REGISTER = "Register";
+    private final String ADDTOCART = "AddToCart";
     private final String WELCOME = "home.jsp";
+    private final String LOGIN_CONTROLlER = "LoginServlet";
+    private final String CART_CONTROLlER = "CartServlet";
     private final String REGISTER_CONTROLLER = "RegisterServlet";
     private final String SEARCH_CONTROLLER = "SearchServlet";
 
@@ -52,10 +54,14 @@ public class DispatchServlet extends HttpServlet {
                 if (session.getAttribute("account") != null) {
                     session.removeAttribute("account");
                 }
+            } else if (btnValue.equals(LOGIN)) {
+                url = LOGIN_CONTROLlER;
             } else if (btnValue.equals(REGISTER)) {
                 url = REGISTER_CONTROLLER;
             } else if (btnValue.equals(SEARCH)) {
                 url = SEARCH_CONTROLLER;
+            } else if (btnValue.equals(ADDTOCART)) {
+                url = CART_CONTROLlER;
             }
         } catch (Exception ex) {
 

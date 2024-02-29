@@ -9,11 +9,13 @@ import model.UserGoogleDTO;
 import model.Constants;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import dal.CartDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
@@ -24,6 +26,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.CartDTO;
 import model.UserDTO;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.fluent.Request;
@@ -85,7 +88,7 @@ public class LoginServlet extends HttpServlet {
             throws ServletException, IOException {
         String url = WELCOME;
         try {
-            if (request.getParameter("action") != null) {
+            if (request.getParameter("btnAction") != null) {
                 Cookie arr[] = request.getCookies();
                 if (arr != null) {
                     for (int i = 0; i < arr.length; i++) {
@@ -149,11 +152,14 @@ public class LoginServlet extends HttpServlet {
             String username = request.getParameter("txtUsername");
             String password = request.getParameter("txtPassword");
             String remember = request.getParameter("remember");
-            UserDAO dao = new UserDAO();
-            UserDTO user = dao.checkLogin(username, password);
+            UserDAO udao = new UserDAO();
+            CartDAO cDao = new CartDAO();
+            UserDTO user = udao.checkLogin(username, password);
             if (user != null) {
                 HttpSession session = request.getSession();
+                List<CartDTO> carts = cDao.getCartByUserName(username);
                 session.setAttribute("account", user);
+                session.setAttribute("CART", carts);
 
                 Cookie u = new Cookie("cUName", username);
                 Cookie p = new Cookie("cUPass", password);
