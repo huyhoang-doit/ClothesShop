@@ -5,14 +5,17 @@
  */
 package controller.web;
 
+import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.CategoryDTO;
 import model.ProductDTO;
 
 /**
@@ -23,6 +26,7 @@ import model.ProductDTO;
 public class FilterServlet extends HttpServlet {
 
     private static final String SHOP_LIST = "shop-list.jsp";
+    private static final String SORT = "ajax/sortproducts.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,19 +34,68 @@ public class FilterServlet extends HttpServlet {
         String url = SHOP_LIST;
         try {
             ProductDAO pDao = new ProductDAO();
-            String action = request.getParameter("action");
+            List<ProductDTO> listProducts = new ArrayList<>();
+            String group = request.getParameter("sort_group");
+            String action = request.getParameter("btnAction");
+            if(action == null) {
+                action = group;
+            }
+            String id = request.getParameter("id_group");
 
             if ("filterByType".equals(action)) {
-                String typeId = request.getParameter("type_id");
-                List<ProductDTO> list = pDao.getProductByTypeId(Integer.parseInt(typeId));
-                request.setAttribute("LISTPRODUCTS", list);
+                id = request.getParameter("type_id");
+                listProducts = pDao.getProductByTypeId(Integer.parseInt(id));
 
             } else if ("filterByCategory".equals(action)) {
-                String cateId = request.getParameter("category_id");
-                List<ProductDTO> list = pDao.getProductByCategoryId(Integer.parseInt(cateId));
-                request.setAttribute("LISTPRODUCTS", list);
+                id = request.getParameter("category_id");
+                listProducts = pDao.getProductByCategoryId(Integer.parseInt(id));
+            } else if ("filterBySupplier".equals(action)) {
+                id = request.getParameter("supplier_id");
+                listProducts = pDao.getProductSupplierId(Integer.parseInt(id));
             }
-            
+            CategoryDAO cDao = new CategoryDAO();
+            List<CategoryDTO> listCategories = cDao.getData();
+            String valueSort = request.getParameter("valueSort");
+            if (valueSort != null) {
+                switch (valueSort) {
+                    case "1":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                    case "2":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                    case "3":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                }
+                url = SORT;
+            }
+
+            //Paging
+            int page, numPerPage = 9;
+            int size = listProducts.size();
+            int numberpage = ((size % numPerPage == 0) ? (size / 9) : (size / 9) + 1);
+            String xpage = request.getParameter("page");
+            if (xpage == null) {
+                page = 1;
+            } else {
+                page = Integer.parseInt(xpage);
+            }
+            int start, end;
+            start = (page - 1) * 9;
+            end = Math.min(page * numPerPage, size);
+
+            List<ProductDTO> listByPage = pDao.getListByPage(listProducts, start, end);
+
+            request.setAttribute("SORT_GROUP", action);
+            request.setAttribute("ID_GROUP", id);
+            request.setAttribute("DATA_FROM", "FilterServlet");
+            request.setAttribute("NUMBERPAGE", numberpage);
+            request.setAttribute("CURRENTPAGE", page);
+            request.setAttribute("LISTPRODUCTS", listByPage);
+            request.setAttribute("LISTCATEGORIES", listCategories);
+            request.setAttribute("VALUESORT", valueSort);
+
         } catch (Exception e) {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
