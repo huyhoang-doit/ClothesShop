@@ -23,7 +23,8 @@ public class CategoryDAO extends DBContext {
     private static final String GETDATA = "SELECT * FROM Categories";
     private static final String GET_QUANTITY_BY_NAME = "SELECT COUNT(*) AS Total FROM Categories WHERE categoryname = ?";
     private static final String GET_CATEGORY_BYID = "SELECT * FROM Categories WHERE categoryid = ?";
-    private static final String INSERT_CATEGORY = "INSERT INTO Categories VALUES (?);";
+    private static final String INSERT_CATEGORY = "INSERT INTO Categories VALUES (?,?)";
+    private static final String DELETE_CATEGORY = "DELETE FROM Categories WHERE categoryid = ?";
     private static final String GET_CATEGORY_BY_TYPEID = "SELECT * FROM Categories WHERE type_id = ?";
 
     public List<CategoryDTO> getData() throws SQLException {
@@ -161,7 +162,7 @@ public class CategoryDAO extends DBContext {
         return quantity;
     }
     
-    public boolean insertCategory(String categoryName) {
+    public boolean insertCategory(String categoryName, String typeId) {
         Connection con = null;
         PreparedStatement ptm = null;
         try {
@@ -169,6 +170,7 @@ public class CategoryDAO extends DBContext {
             if(con != null) {
                 ptm = con.prepareStatement(INSERT_CATEGORY);
                 ptm.setString(1, categoryName);
+                ptm.setString(2, typeId);
                 ptm.executeUpdate();
                 return true;
             }
@@ -177,6 +179,32 @@ public class CategoryDAO extends DBContext {
             return false;
         }
         return false;
+    }
+    
+    public void deleteCategory(String cid) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DELETE_CATEGORY);
+                ptm.setString(1, cid);
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
     }
 
     public static void main(String[] args) throws SQLException {

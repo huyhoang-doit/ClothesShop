@@ -50,28 +50,27 @@ public class ManageProductServlet extends HttpServlet {
             } else if (action.equals("update")) {
                 request.setAttribute("LIST_PRODUCTS", listProducts);
                 request.setAttribute("LIST_CATEGORIES", listCategories);
-            } else if (action.equals("insertcategory")) {
-                String msgInsertCate = null;
-                String checkInsertCate = null;
-                url = INSERT_PRODUCT_PAGE;
-                String newCate = request.getParameter("newcate");
-                if (cDao.insertCategory(newCate)) {
-                    checkInsertCate = "success";
-                    msgInsertCate = "Thêm danh mục mới thành công";
-                    request.setAttribute("LIST_CATEGORIES", listCategories);
-                    request.setAttribute("MSG_INSERT_CATE", msgInsertCate);
-                    request.setAttribute("STATUS_INSERT_CATE", msgInsertCate);
-
-                } else {
-                    checkInsertCate = "fail";
-                    msgInsertCate = "Đã có lỗi xảy ra, thử lại sau";
-                    request.setAttribute("LIST_CATEGORIES", listCategories);
-                    request.setAttribute("MSG_INSERT_CATE", msgInsertCate);
-                    request.setAttribute("STATUS_INSERT_CATE", msgInsertCate);
-
-                }
-
-            }
+            } 
+//            else if (action.equals("insertcategory")) {
+//                String msgInsertCate = null;
+//                String checkInsertCate = null;
+//                url = INSERT_PRODUCT_PAGE;
+//                String newCate = request.getParameter("newcate");
+//                if (cDao.insertCategory(newCate)) {
+//                    checkInsertCate = "success";
+//                    msgInsertCate = "Thêm danh mục mới thành công";
+//                    request.setAttribute("LIST_CATEGORIES", listCategories);
+//                    request.setAttribute("MSG_INSERT_CATE", msgInsertCate);
+//                    request.setAttribute("STATUS_INSERT_CATE", msgInsertCate);
+//
+//                } else {
+//                    checkInsertCate = "fail";
+//                    msgInsertCate = "Đã có lỗi xảy ra, thử lại sau";
+//                    request.setAttribute("LIST_CATEGORIES", listCategories);
+//                    request.setAttribute("MSG_INSERT_CATE", msgInsertCate);
+//                    request.setAttribute("STATUS_INSERT_CATE", msgInsertCate);
+//                }
+//            }
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

@@ -20,9 +20,7 @@ import model.UserDTO;
  */
 public class UserDAO extends DBContext {
 
-    private static final String LOGIN = "SELECT * FROM Users WHERE username=? OR email = ? AND password=? and status=1";
-
-    private static final String CHECK_LOGIN = "SELECT roleid FROM Users WHERE username=? AND password=? and status=1 and roleid=1";
+    private static final String LOGIN = "SELECT * FROM Users WHERE (username=? OR email = ?) AND password=? and status=1";
 
     private static final String GET_DATA = "SELECT * FROM Users WHERE status = 1";
 
@@ -346,11 +344,11 @@ public class UserDAO extends DBContext {
 
     public static void main(String[] args) throws SQLException {
         UserDAO dao = new UserDAO();
-        boolean user = dao.checkUserNameDuplicate("thanhphse170345@fpt.edu.vn");
+        UserDTO user = dao.checkLogin("phuuthanh2003", "1231231231");
 //        List<UserDTO> list = dao.getData();
 //        for (int i = 0; i < list.size(); i++) {
 //            System.out.println(list.get(i).getAvatar());
 //        }
-        System.out.println(user);
+        System.out.println(user.getFirstName());
     }
 }

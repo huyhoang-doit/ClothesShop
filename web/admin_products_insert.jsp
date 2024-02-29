@@ -192,7 +192,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="exampleSelect1" class="control-label">Danh mục</label>
+                                    <label for="exampleSelect1" class="control-label">Hãng</label>
                                     <select name="supplier_id" class="form-control" id="exampleSelect1">
                                         <c:forEach items="${requestScope.LIST_SUPPLIERS}" var="sup">
                                             <option value="${sup.id}">${sup.name}</option>
@@ -200,7 +200,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="exampleSelect1" class="control-label">Danh mục</label>
+                                    <label for="exampleSelect1" class="control-label">Loại</label>
                                     <select name="type_id" class="form-control" id="exampleSelect1">
                                         <c:forEach items="${requestScope.LIST_TYPES}" var="type">
                                             <option value="${type.typeId}">${type.name}</option>
@@ -264,70 +264,31 @@
             </div>
         </main>
 
-        <div class="modal fade" id="adddanhmuc" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-             data-backdrop="static" data-keyboard="false">
-            <div class="modal-dialog modal-dialog-centered" role="document">
-                <div class="modal-content">
-
-                    <div class="modal-body">
-                        <div class="row">
-                            <div class="form-group  col-md-12">
-                                <span class="thong-tin-thanh-toan">
-                                    <h5>Thêm mới danh mục </h5>
-                                </span>
-                            </div>
-
-                            <div class="form-group col-md-12" >
-
-                                <h2 style="color: red; padding-left: 10px">
-                                    ${error}</h2>
-                                <label class="control-label">Nhập tên danh mục mới</label>
-                                <form action="ManageProductServlet?action=insertcategory" method="post"> 
-                                    <input class="form-control" type="text" name="newcate" required>
-                                    <br>
-                                    <button class="btn btn-save" type="submit">Lưu lại</button>
-                                    <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
-                                </form>
-                            </div>
-                            <div class="form-group col-md-12">
-                                <label class="control-label">Danh mục sản phẩm hiện đang có</label>
-                                <ul style="padding-left: 20px;">
-                                    <c:forEach items="${CategoryData}" var="cat">
-                                        <li>${cat.category_name}</li>
-                                        </c:forEach>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <script src="admin/js/jquery-3.2.1.min.js"></script>
         <script src="admin/js/popper.min.js"></script>
         <script src="admin/js/bootstrap.min.js"></script>
         <script src="admin/js/main.js"></script>
         <script src="admin/js/plugins/pace.min.js"></script>
         <script>
-                                            const inpFile = document.getElementById("inpFile");
-                                            const loadFile = document.getElementById("loadFile");
-                                            const previewContainer = document.getElementById("imagePreview");
-                                            const previewContainer = document.getElementById("imagePreview");
-                                            const previewImage = previewContainer.querySelector(".image-preview__image");
-                                            const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-                                            const object = new ActiveXObject("Scripting.FileSystemObject");
-                                            inpFile.addEventListener("change", function () {
-                                                const file = this.files[0];
-                                                if (file) {
-                                                    const reader = new FileReader();
-                                                    previewDefaultText.style.display = "none";
-                                                    previewImage.style.display = "block";
-                                                    reader.addEventListener("load", function () {
-                                                        previewImage.setAttribute("src", this.result);
-                                                    });
-                                                    reader.readAsDataURL(file);
-                                                }
+                                    const inpFile = document.getElementById("inpFile");
+                                    const loadFile = document.getElementById("loadFile");
+                                    const previewContainer = document.getElementById("imagePreview");
+                                    const previewContainer = document.getElementById("imagePreview");
+                                    const previewImage = previewContainer.querySelector(".image-preview__image");
+                                    const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
+                                    const object = new ActiveXObject("Scripting.FileSystemObject");
+                                    inpFile.addEventListener("change", function () {
+                                        const file = this.files[0];
+                                        if (file) {
+                                            const reader = new FileReader();
+                                            previewDefaultText.style.display = "none";
+                                            previewImage.style.display = "block";
+                                            reader.addEventListener("load", function () {
+                                                previewImage.setAttribute("src", this.result);
                                             });
+                                            reader.readAsDataURL(file);
+                                        }
+                                    });
 
 
         </script>
