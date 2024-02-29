@@ -161,7 +161,7 @@
                                                                     <img src="assets/img/cart/span-new.png" alt="">
                                                                 </div>
                                                                 <div class="product_action">
-                                                                    <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
@@ -199,12 +199,12 @@
                                                                 <img src="assets\img\cart\span-hot.png" alt="">
                                                             </div>
                                                             <div class="product_action">
-                                                                <a href="#"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                <a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                             </div>
                                                         </div>
                                                         <div class="product_content">
                                                             <span class="product_price">${p.price}&#273</span>
-                                                            <h3 class="product_title"><a href="single-product.html">${p.name}</a></h3>
+                                                            <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
                                                         </div>
                                                         <div class="product_info">
                                                             <ul>
@@ -226,17 +226,17 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single_banner">
                                                 <a href="#"><img src="assets\img\banner\banner7.jpg" alt=""></a>
-                                                <div class="banner_title">
+<!--                                                <div class="banner_title">
                                                     <p>Up to <span> 40%</span> off</p>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single_banner">
                                                 <a href="#"><img src="assets\img\banner\banner8.jpg" alt=""></a>
-                                                <div class="banner_title title_2">
+<!--                                                <div class="banner_title title_2">
                                                     <p>sale off <span> 30%</span></p>
-                                                </div>
+                                                </div>-->
                                             </div>
                                         </div>
                                     </div>

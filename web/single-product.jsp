@@ -31,7 +31,7 @@
                             <div class="col-12">
                                 <div class="breadcrumb_content">
                                     <ul>
-                                        <li><a href="index.html">home</a></li>
+                                        <li><a href="DispatchServlet">home</a></li>
                                         <li><i class="fa fa-angle-right"></i></li>
                                         <li>single product</li>
                                     </ul>
@@ -98,7 +98,9 @@
                                                 <label>Số lượng</label>
                                                 <input min="0" max="${PRODUCT.stock}" value="1" type="number">
                                             </form> 
-                                            <button type="submit"><i class="fa fa-shopping-cart"></i> thêm vào giỏ</button>
+                                            <button type="submit">
+                                                <i class="fa fa-shopping-cart"></i> thêm vào giỏ
+                                            </button>
                                             <a href="#" title="add to wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a>    
                                         </div>
                                         <div class="sidebar_widget color">

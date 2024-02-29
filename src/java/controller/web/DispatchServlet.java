@@ -31,8 +31,10 @@ public class DispatchServlet extends HttpServlet {
     private final String SEARCH = "Search";
     private final String LOGOUT = "Logout";
     private final String REGISTER = "Register";
+    private final String ADDTOCART = "AddToCart";
     private final String WELCOME = "home.jsp";
     private final String LOGIN_CONTROLlER = "LoginServlet";
+    private final String CART_CONTROLlER = "CartServlet";
     private final String REGISTER_CONTROLLER = "RegisterServlet";
     private final String SEARCH_CONTROLLER = "SearchServlet";
 
@@ -58,6 +60,8 @@ public class DispatchServlet extends HttpServlet {
                 url = REGISTER_CONTROLLER;
             } else if (btnValue.equals(SEARCH)) {
                 url = SEARCH_CONTROLLER;
+            } else if (btnValue.equals(ADDTOCART)) {
+                url = CART_CONTROLlER;
             }
         } catch (Exception ex) {
 

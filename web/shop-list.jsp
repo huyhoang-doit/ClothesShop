@@ -49,7 +49,7 @@
                                 <input id="sortinput" type="hidden" value="${requestScope.VALUESORT}" name="valueSort"/>
                                 <div class="sidebar_widget shop_c">
                                     <div class="categorie__titile">
-                                        <h4>Categories</h4>
+                                        <h4>Phân loại</h4>
                                     </div>
                                     <div class="layere_categorie">
                                         <ul>
@@ -178,12 +178,12 @@
                                         <!--<p>Showing 1–<c:if test="${LISTPRODUCTS.size() < 9}">${LISTPRODUCTS.size()}</c:if><c:if test="${LISTPRODUCTS.size() >= 9}">9</c:if> of ${LISTPRODUCTS.size()}  results</p>-->
 
                                         </div>
-                                        <div class="search_bar">
+<!--                                        <div class="search_bar">
                                             <form action="#">
                                                 <input oninput="searchProducts(this)" value="" placeholder="Search..." type="text">
                                                 <i style="margin-left: -24px" class="fa fa-search"></i>
                                             </form>
-                                        </div>
+                                        </div>-->
                                     </div>
                                     <!--shop toolbar end-->
 
@@ -214,7 +214,7 @@
                                                                     </div>
                                                                 </c:if>
                                                                 <div class="product_action">
-                                                                    <a href="single-product.html"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
@@ -247,15 +247,6 @@
                                                         </div>
                                                         <div class="col-lg-8 col-md-6 col-sm-6">
                                                             <div class="list_product_content">
-                                                                <div class="product_ratting">
-                                                                    <ul>
-                                                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                                        <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                                    </ul>
-                                                                </div>
                                                                 <div class="list_title">
                                                                     <h3><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
                                                                 </div>
@@ -269,7 +260,7 @@
                                                                 </div>
                                                                 <div class="add_links">
                                                                     <ul>
-                                                                        <li><a href="#" title="add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+                                                                        <li><a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}" title="add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
                                                                         <li><a href="#" title="add to wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
 
                                                                         <li><a href="SingleProductServlet?product_id=${p.id}" title="Quick view"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
