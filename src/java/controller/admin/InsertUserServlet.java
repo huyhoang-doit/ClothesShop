@@ -5,33 +5,26 @@
  */
 package controller.admin;
 
-import dal.CategoryDAO;
-import dal.TypeDAO;
+import dal.UserDAO;
 import java.io.IOException;
-import java.sql.SQLException;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.PrintWriter;
+import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.CategoryDTO;
-import model.TypeDTO;
+import model.UserDTO;
 
 /**
  *
- * @author HuuThanh
+ * @author Administrator
  */
-@WebServlet(name = "ManageCategoryServlet", urlPatterns = {"/ManageCategoryServlet"})
-public class ManageCategoryServlet extends HttpServlet {
+@WebServlet(name = "InsertUserServlet", urlPatterns = {"/InsertUserServlet"})
+public class InsertUserServlet extends HttpServlet {
 
-    private static final String MANAGE_CATEGORY_PAGE = "admin_categories.jsp";
-    private static final String INSERT_CATEGORY_PAGE = "admin_categories_insert.jsp";
-    private static final String UPDATE_CATEGORY_SERVLET = "EditCategoryServlet";
-    private static final String INSERT = "Insert";
-    private static final String UPDATE = "Update";
+    private static final String MANAGE_USER_CONTROLLER = "ManageUserServlet";
+    private static final String INSERT_USER_PAGE = "admin_user_insert.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -45,22 +38,43 @@ public class ManageCategoryServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = MANAGE_CATEGORY_PAGE;
+        String url = MANAGE_USER_CONTROLLER;
         try {
-            CategoryDAO cDao = new CategoryDAO();
-            TypeDAO tDao = new TypeDAO();
+            UserDAO dao = new UserDAO();
+            String avatar = request.getParameter("avatar");
+            String fullName = request.getParameter("fullname");
+            String username = request.getParameter("username");
+            String password = request.getParameter("password");
+            String email = request.getParameter("email");
+            String address = request.getParameter("address");
+            String phone = request.getParameter("phone");
+            String role = request.getParameter("role");
 
-            List<TypeDTO> listTypes = tDao.getAllType();
-
-            String action = request.getParameter("action");
-            if (INSERT.equals(action)) {
-                url = INSERT_CATEGORY_PAGE;
+            String image = "";
+            String firstName = fullName;
+            String lastName = "";
+            int roleId = 2;
+            if (dao.checkUserNameDuplicate(username)) {
+                url = INSERT_USER_PAGE;
+                request.setAttribute("error", "Tên tài khoản đã tồn tại!");
+            } else {
+                if (!avatar.equals("")) {
+                    avatar = "assets/img/users/" + avatar;
+                }
+                if (fullName.split(" ").length > 0) {
+                    String[] nameParts = fullName.split(" ");
+                    firstName = nameParts[0];
+                    lastName = String.join(" ", Arrays.copyOfRange(nameParts, 1, nameParts.length));
+                }
+                if ("admin".equals(role)) {
+                    roleId = 1;
+                }
+                UserDTO user = new UserDTO(0, firstName, lastName, email, avatar, username, password, address, phone, roleId, true);
+                dao.registerUser(user);
+                request.setAttribute("mess", "Insert successfully!");
             }
-            List<CategoryDTO> list = cDao.getData();
-            request.setAttribute("LIST_CATEGORIES", list);
-            request.setAttribute("LIST_TYPES", listTypes);
-        } catch (SQLException ex) {
-            Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

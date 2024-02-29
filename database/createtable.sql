@@ -5,15 +5,15 @@ USE ClothesShop
 DROP TABLE OrderItem
 DROP TABLE Wallets
 DROP TABLE Orders
- DROP TABLE Shipments
- DROP TABLE Payments
- DROP TABLE WishLists
+DROP TABLE Shipments
+DROP TABLE Payments
+DROP TABLE WishLists
 DROP TABLE Carts
- DROP TABLE Products
- DROP TABLE Suppliers
- DROP TABLE Categories
- DROP TABLE Types
- DROP TABLE Users
+DROP TABLE Products
+DROP TABLE Suppliers
+DROP TABLE Categories
+DROP TABLE Types
+DROP TABLE Users
 
 
 CREATE TABLE Users (
@@ -33,7 +33,6 @@ CREATE TABLE Types(
  id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
  name NVARCHAR(100)
 )
-
 CREATE TABLE Categories(
  categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY,
  categoryname NVARCHAR(30) ,
@@ -111,10 +110,9 @@ CREATE TABLE Wallets (
 )
 
 CREATE TABLE OrderItem(
-order_item_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-quantity INT ,
-price DECIMAL(10,2),
-product_id INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Products]([id]) ON DELETE CASCADE,
-order_id INT NOT NULL FOREIGN KEY REFERENCES  [dbo].[Orders](order_id)
+	order_item_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
+	quantity INT ,
+	price DECIMAL(10,2),
+	product_id INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Products]([id]) ON DELETE CASCADE,
+	order_id INT NOT NULL FOREIGN KEY REFERENCES  [dbo].[Orders](order_id)
 )
-

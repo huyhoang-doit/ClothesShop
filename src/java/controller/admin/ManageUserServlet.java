@@ -23,37 +23,28 @@ import model.UserDTO;
 @WebServlet(name = "ManageUserServlet", urlPatterns = {"/ManageUserServlet"})
 public class ManageUserServlet extends HttpServlet {
 
-    private final String MANAGEUSERPAGE = "admin_users.jsp";
-    
+    private final String MANAGE_USER_PAGE = "admin_users.jsp";
+    private final String INSERT_USER_PAGE = "admin_user_insert.jsp";
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        String url = MANAGE_USER_PAGE;
         try {
-//            String action = request.getParameter("action");
-//            if (action == null) {
-//                    UserDAO dao = new UserDAO();
-//                    List<UserDTO> user1 = dao.getUser();
-//                    request.setAttribute("user", user1);
-//                    request.getRequestDispatcher("admin/customer.jsp").forward(request, response);
-//                }
-//                if (action.equals("update")) {
-//                    String user_id = request.getParameter("user_id");
-//                    String isAdmin = request.getParameter("permission");
-//                    int id = Integer.parseInt(user_id);
-//                    UserDAO dao = new UserDAO();
-//                    dao.setAdmin(id, isAdmin);
-//                    response.sendRedirect("customermanager");
-//                }
-            
-            UserDAO uDao = new UserDAO();
-            List<UserDTO> list = uDao.getData();
+            String action = request.getParameter("action");
+            UserDAO dao = new UserDAO();
+            if (action == null) {
+                List<UserDTO> list = dao.getData();
+                request.setAttribute("LISTUSERS", list);
+                url = MANAGE_USER_PAGE;
+            } else if (action.equals("Insert")) {
+                url = INSERT_USER_PAGE;
+            }
 
-            request.setAttribute("LISTUSERS", list);
-            request.setAttribute("action", "MNGUSER");
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            request.getRequestDispatcher(MANAGEUSERPAGE).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

@@ -6,33 +6,24 @@
 package controller.admin;
 
 import dal.CategoryDAO;
-import dal.TypeDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.List;
 import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.CategoryDTO;
-import model.TypeDTO;
 
 /**
  *
- * @author HuuThanh
+ * @author Administrator
  */
-@WebServlet(name = "ManageCategoryServlet", urlPatterns = {"/ManageCategoryServlet"})
-public class ManageCategoryServlet extends HttpServlet {
+@WebServlet(name = "EditCategoryServlet", urlPatterns = {"/EditCategoryServlet"})
+public class EditCategoryServlet extends HttpServlet {
 
-    private static final String MANAGE_CATEGORY_PAGE = "admin_categories.jsp";
-    private static final String INSERT_CATEGORY_PAGE = "admin_categories_insert.jsp";
-    private static final String UPDATE_CATEGORY_SERVLET = "EditCategoryServlet";
-    private static final String INSERT = "Insert";
-    private static final String UPDATE = "Update";
-
+    private static final String MANAGE_CATEGORY_CONTROLLER = "ManageCategoryServlet";
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -45,22 +36,17 @@ public class ManageCategoryServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = MANAGE_CATEGORY_PAGE;
+        String url = MANAGE_CATEGORY_CONTROLLER;
         try {
-            CategoryDAO cDao = new CategoryDAO();
-            TypeDAO tDao = new TypeDAO();
+            CategoryDAO dao = new CategoryDAO();
+            String cId = request.getParameter("category_id");
+            String cName = request.getParameter("category_name");
+            String tId = request.getParameter("type_id");
 
-            List<TypeDTO> listTypes = tDao.getAllType();
-
-            String action = request.getParameter("action");
-            if (INSERT.equals(action)) {
-                url = INSERT_CATEGORY_PAGE;
-            }
-            List<CategoryDTO> list = cDao.getData();
-            request.setAttribute("LIST_CATEGORIES", list);
-            request.setAttribute("LIST_TYPES", listTypes);
+            dao.editCategory(cName, tId, cId);
+            request.setAttribute("mess", "Edit successfully!");
         } catch (SQLException ex) {
-            Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+            ex.printStackTrace();
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

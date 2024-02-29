@@ -10,7 +10,6 @@ package model;
  * @author lvhho
  */
 public class OrderItem {
-    private int orderItemID;
     private int quantity;
     private double price;
     private ProductDTO product;
@@ -21,20 +20,11 @@ public class OrderItem {
 
     
     
-    public OrderItem(int orderItemID, int quantity, double price, ProductDTO product, int orderID) {
-        this.orderItemID = orderItemID;
+    public OrderItem(int quantity, double price, ProductDTO product, int orderID) {
         this.quantity = quantity;
         this.price = price;
         this.product = product;
         this.orderID = orderID;
-    }
-
-    public int getOrderItemID() {
-        return orderItemID;
-    }
-
-    public void setOrderItemID(int orderItemID) {
-        this.orderItemID = orderItemID;
     }
 
     public int getQuantity() {

@@ -36,7 +36,7 @@
 **4. Admin:**
 - [x] Managing product
 - [ ] Managing accounts
-- [ ] Managing categories
+- [x] Managing categories
 - [ ] Managing orders
 - [x] Send email
 - [x] Update admin account information

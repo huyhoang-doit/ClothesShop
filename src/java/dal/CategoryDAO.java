@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.CategoryDTO;
+import model.TypeDTO;
 
 /**
  *
@@ -26,6 +27,7 @@ public class CategoryDAO extends DBContext {
     private static final String INSERT_CATEGORY = "INSERT INTO Categories VALUES (?,?)";
     private static final String DELETE_CATEGORY = "DELETE FROM Categories WHERE categoryid = ?";
     private static final String GET_CATEGORY_BY_TYPEID = "SELECT * FROM Categories WHERE type_id = ?";
+    private static final String UPDATE_CATEGORY = "UPDATE Categories SET categoryname = ?, Type_id = ? WHERE categoryid = ?";
 
     public List<CategoryDTO> getData() throws SQLException {
         List<CategoryDTO> categories = new ArrayList<>();
@@ -38,10 +40,12 @@ public class CategoryDAO extends DBContext {
                 ptm = conn.prepareStatement(GETDATA);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
+                    TypeDAO dao = new TypeDAO();
+                    TypeDTO type = dao.getTypeById(rs.getInt("type_id"));
                     int categoryId = rs.getInt("categoryid");
                     String categoryName = rs.getString("categoryname");
                     int typeid = rs.getInt("type_id");
-                    categories.add(new CategoryDTO(categoryId, categoryName,typeid));
+                    categories.add(new CategoryDTO(categoryId, categoryName, type));
                 }
             }
         } catch (Exception e) {
@@ -59,7 +63,7 @@ public class CategoryDAO extends DBContext {
         }
         return categories;
     }
-    
+
     public List<CategoryDTO> getCategoriesByTypeId(int typpid) throws SQLException {
         List<CategoryDTO> categories = new ArrayList<>();
         Connection conn = null;
@@ -69,13 +73,15 @@ public class CategoryDAO extends DBContext {
             conn = getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(GET_CATEGORY_BY_TYPEID);
-                ptm.setInt(1,typpid);
+                ptm.setInt(1, typpid);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
+                    TypeDAO dao = new TypeDAO();
+                    TypeDTO type = dao.getTypeById(rs.getInt("type_id"));
                     int categoryId = rs.getInt("categoryid");
                     String categoryName = rs.getString("categoryname");
                     int typeid = rs.getInt("type_id");
-                    categories.add(new CategoryDTO(categoryId, categoryName,typeid));
+                    categories.add(new CategoryDTO(categoryId, categoryName, type));
                 }
             }
         } catch (Exception e) {
@@ -93,9 +99,7 @@ public class CategoryDAO extends DBContext {
         }
         return categories;
     }
-    
-    
-    
+
     public CategoryDTO getCategoryById(int id) throws SQLException {
         CategoryDTO category = null;
         Connection conn = null;
@@ -108,10 +112,12 @@ public class CategoryDAO extends DBContext {
                 ptm.setInt(1, id);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
+                    TypeDAO dao = new TypeDAO();
+                    TypeDTO type = dao.getTypeById(rs.getInt("type_id"));
                     int categoryId = rs.getInt("categoryid");
                     String categoryName = rs.getString("categoryname");
-                     int typeid = rs.getInt("type_id");
-                    category = new CategoryDTO(categoryId, categoryName,typeid);
+                    int typeid = rs.getInt("type_id");
+                    category = new CategoryDTO(categoryId, categoryName, type);
                 }
             }
         } catch (Exception e) {
@@ -129,7 +135,7 @@ public class CategoryDAO extends DBContext {
         }
         return category;
     }
-    
+
     public int getQuantityByName(String name) throws SQLException {
         int quantity = 0;
         CategoryDTO category = null;
@@ -161,13 +167,13 @@ public class CategoryDAO extends DBContext {
         }
         return quantity;
     }
-    
+
     public boolean insertCategory(String categoryName, String typeId) {
         Connection con = null;
         PreparedStatement ptm = null;
         try {
             con = getConnection();
-            if(con != null) {
+            if (con != null) {
                 ptm = con.prepareStatement(INSERT_CATEGORY);
                 ptm.setString(1, categoryName);
                 ptm.setString(2, typeId);
@@ -180,7 +186,7 @@ public class CategoryDAO extends DBContext {
         }
         return false;
     }
-    
+
     public void deleteCategory(String cid) throws SQLException {
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -207,8 +213,37 @@ public class CategoryDAO extends DBContext {
         }
     }
 
+    public void editCategory(String name, String tId, String id) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_CATEGORY);
+                ptm.setString(1, name);
+                ptm.setString(2, tId);
+                ptm.setString(3, id);
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         CategoryDAO dao = new CategoryDAO();
+        dao.editCategory("mimo", "1", "1");
         List<CategoryDTO> list = dao.getData();
         for (int i = 0; i < list.size(); i++) {
             System.out.println(list.get(i).getName());
@@ -220,12 +255,12 @@ public class CategoryDAO extends DBContext {
 //            System.out.println("FAIL");
 //        }
 //    List<CategoryDTO> list = dao.getCategoriesByTypeId(1);
-//        for (CategoryDTO categoryDTO : list) {
-//            System.out.println(categoryDTO.getCategoryName());
-//        }
+        for (CategoryDTO categoryDTO : list) {
+            System.out.println(categoryDTO.getName());
+        }
 
         int quantity = dao.getQuantityByName("T-shirt");
         System.out.println(quantity);
-        
+
     }
 }

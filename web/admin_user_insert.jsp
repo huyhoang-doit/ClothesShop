@@ -64,7 +64,9 @@
                 });
             })
         </script>
+    </head>
 
+    <body class="app sidebar-mini rtl">
         <style>
             select {
                 width: 32.3%;
@@ -149,48 +151,72 @@
                 margin-top: -2px;
             }
         </style>
-    </head>
-
-    <body class="app sidebar-mini rtl">
         <!-- Navbar-->
         <%@include file="/common/admin/sidebar.jsp"%>
         <main class="app-content">
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
-                    <li class="breadcrumb-item">Danh sách danh mục</li>
-                    <li class="breadcrumb-item"><a href="">Tạo mới danh mục</a></li>
+                    <li class="breadcrumb-item">Danh sách người dùng</li>
+                    <li class="breadcrumb-item"><a href="">Tạo mới tài khoản</a></li>
                 </ul>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="tile">
-                        <h3 class="tile-title">Tạo mới danh mục</h3>
+                        <h3 class="tile-title">Tạo mới tài khoản</h3>
                         <div class="tile-body">
-                            <form class="row" action="InsertCategoryServlet" method="get">
+                            <h3 style="color: green; text-align: center; margin: 20px 0">${requestScope.mess}</h3>
+                            <h3 style="color: red; text-align: center; margin: 20px 0">${requestScope.error}</h3>
+                            <form class="row" action="InsertUserServlet" method="get">
+                                <div class="form-group col-md-12">
+                                    <label class="control-label">Ảnh đại diện</label>
+                                    <div id="myfileupload">
+                                        <input type="file" id="uploadfile" multiple name="avatar" onchange="readURL(this);" />
+                                    </div>
+                                    <div id="thumbbox">
+                                        <img height="250" width="200" alt="Thumb image" id="thumbimage" style="display: none" />
+                                        <a class="removeimg" href="javascript:"></a>
+                                    </div>
+                                    <div id="boxchoice">
+                                        <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
+                                        <p style="clear:both"></p>
+                                    </div>
+                                </div>
                                 <div class="form-group  col-md-3">
-                                    <label class="control-label">Tên danh mục</label>
-                                    <input class="form-control" required="" name="newcate" type="text">
+                                    <label class="control-label">Tên đầy đủ</label>
+                                    <input class="form-control" required="" name="fullname" type="text">
+                                </div>
+                                <div class="form-group  col-md-3">
+                                    <label class="control-label">Tên người dùng</label>
+                                    <input class="form-control" required="" name="username" type="text">
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label for="exampleSelect1" class="control-label">Type</label>
-                                    <select name="type_id" class="form-control" id="exampleSelect1">
-                                        <c:forEach items="${requestScope.LIST_TYPES}" var="type">
-                                            <option value="${type.id}">${type.name}</option>
-                                        </c:forEach>
+                                    <label class="control-label">Mật khẩu</label>
+                                    <input class="form-control" required="" name="password" type="text">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Email</label>
+                                    <input class="form-control" required="" name="email" type="text">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Địa chỉ</label>
+                                    <input class="form-control" required="" name="address" type="text">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label class="control-label">Số điện thoại</label>
+                                    <input class="form-control" required="" name="phone" type="text">
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="exampleSelect1" class="control-label">Quyền quản trị</label>
+                                    <select name="role" class="form-control" id="exampleSelect1">
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-12">
-                                    <label for="exampleSelect1" class="control-label">Danh mục hiện có</label>
-                                    <select class="form-control" id="exampleSelect1">
-                                        <c:forEach items="${requestScope.LIST_CATEGORIES}" var="cat">
-                                            <option value="${cat.id}">${cat.name}</option>
-                                        </c:forEach>
-                                    </select>
-                                </div>
-                                <div class="form-group col-md-12">
-                                    <button onclick="setValue()" class="btn btn-save" type="submit">Lưu lại</button>
+                                    <button class="btn btn-save" type="submit">Lưu lại</button>
                                     &nbsp;
-                                    <a class="btn btn-cancel" href="ManageCategoryServlet">Hủy bỏ</a>
+                                    <a class="btn btn-cancel" href="ManageUserServlet">Hủy bỏ</a>
                                 </div>
                             </form>
                         </div>
@@ -204,29 +230,6 @@
         <script src="admin/js/bootstrap.min.js"></script>
         <script src="admin/js/main.js"></script>
         <script src="admin/js/plugins/pace.min.js"></script>
-        <script>
-                                        const inpFile = document.getElementById("inpFile");
-                                        const loadFile = document.getElementById("loadFile");
-                                        const previewContainer = document.getElementById("imagePreview");
-                                        const previewContainer = document.getElementById("imagePreview");
-                                        const previewImage = previewContainer.querySelector(".image-preview__image");
-                                        const previewDefaultText = previewContainer.querySelector(".image-preview__default-text");
-                                        const object = new ActiveXObject("Scripting.FileSystemObject");
-                                        inpFile.addEventListener("change", function () {
-                                            const file = this.files[0];
-                                            if (file) {
-                                                const reader = new FileReader();
-                                                previewDefaultText.style.display = "none";
-                                                previewImage.style.display = "block";
-                                                reader.addEventListener("load", function () {
-                                                    previewImage.setAttribute("src", this.result);
-                                                });
-                                                reader.readAsDataURL(file);
-                                            }
-                                        });
-
-
-        </script>
     </body>
 
 </html>

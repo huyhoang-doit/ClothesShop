@@ -64,9 +64,7 @@
                 });
             })
         </script>
-    </head>
 
-    <body class="app sidebar-mini rtl">
         <style>
             select {
                 width: 32.3%;
@@ -151,6 +149,9 @@
                 margin-top: -2px;
             }
         </style>
+    </head>
+
+    <body class="app sidebar-mini rtl">
         <!-- Navbar-->
         <%@include file="/common/admin/sidebar.jsp"%>
         <main class="app-content">
@@ -174,7 +175,7 @@
                                     <label for="exampleSelect1" class="control-label">Type</label>
                                     <select name="type_id" class="form-control" id="exampleSelect1">
                                         <c:forEach items="${requestScope.LIST_TYPES}" var="type">
-                                            <option value="${type.typeId}">${type.name}</option>
+                                            <option value="${type.id}">${type.name}</option>
                                         </c:forEach>
                                     </select>
                                 </div>

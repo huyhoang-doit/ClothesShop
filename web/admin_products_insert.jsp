@@ -36,7 +36,6 @@
                     reader.readAsDataURL(input.files[0]);
                 } else { // Sử dụng cho IE
                     $("#thumbimage").attr('src', input.value);
-
                 }
                 $("#thumbimage").show();
                 $('.filename').text($("#uploadfile").val());
@@ -64,9 +63,6 @@
                 });
             })
         </script>
-    </head>
-
-    <body class="app sidebar-mini rtl">
         <style>
             select {
                 width: 32.3%;
@@ -118,13 +114,12 @@
                 height: 25px;
                 position: absolute;
                 background-repeat: no-repeat;
-                top: 5px;
+                top: 0px;
                 left: 5px;
                 background-size: 25px;
                 width: 25px;
                 /* border: 3px solid red; */
                 border-radius: 50%;
-
             }
 
             .removeimg::before {
@@ -151,6 +146,9 @@
                 margin-top: -2px;
             }
         </style>
+    </head>
+
+    <body class="app sidebar-mini rtl">
         <!-- Navbar-->
         <%@include file="/common/admin/sidebar.jsp"%>
         <main class="app-content">
@@ -187,7 +185,7 @@
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
                                     <select name="category_id" class="form-control" id="exampleSelect1">
                                         <c:forEach items="${requestScope.LIST_CATEGORIES}" var="cat">
-                                            <option value="${cat.categoryId}">${cat.categoryName}</option>
+                                            <option value="${cat.id}">${cat.name}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
@@ -203,7 +201,7 @@
                                     <label for="exampleSelect1" class="control-label">Loại</label>
                                     <select name="type_id" class="form-control" id="exampleSelect1">
                                         <c:forEach items="${requestScope.LIST_TYPES}" var="type">
-                                            <option value="${type.typeId}">${type.name}</option>
+                                            <option value="${type.id}">${type.name}</option>
                                         </c:forEach>
                                     </select>
                                 </div>

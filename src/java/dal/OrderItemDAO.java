@@ -21,7 +21,7 @@ import model.ProductDTO;
 public class OrderItemDAO extends DBContext{
     private ProductDAO pDao = new ProductDAO();
 
-    private static final String GET_ODERITEM_BY_ORDER_ID= "SELECT * FROM OrderItem WHERE order_id = ?";
+    private static final String GET_ORDER_ITEM_BY_ORDER_ID= "SELECT order_id, product_id, SUM(quantity) AS quantity, price FROM OrderItem WHERE order_id = ? GROUP BY order_id, product_id, price";
     
     public List<OrderItem> getOrderItemByOrderId(int id) {
         List<OrderItem> list = new ArrayList<>();
@@ -31,17 +31,16 @@ public class OrderItemDAO extends DBContext{
         try {
             con = getConnection();
             if(con !=null) {
-                ptm= con.prepareStatement(GET_ODERITEM_BY_ORDER_ID);
+                ptm= con.prepareStatement(GET_ORDER_ITEM_BY_ORDER_ID);
                 ptm.setInt(1, id);
                 rs = ptm.executeQuery();
                 while(rs.next()) {
-                    int orderItemID = rs.getInt("order_item_id");
                     int quantity = rs.getInt("quantity");
                     double price = rs.getDouble("price");
                     int productID = rs.getInt("product_id");
                     ProductDTO product = pDao.getProductByID(productID);
                     int orderID = rs.getInt("order_id");
-                    OrderItem order = new OrderItem(orderItemID, quantity, price, product, orderID);
+                    OrderItem order = new OrderItem(quantity, price, product, orderID);
                     list.add(order);
                 }
             }

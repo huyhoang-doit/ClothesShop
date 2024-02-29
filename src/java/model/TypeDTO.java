@@ -10,23 +10,23 @@ package model;
  * @author HuuThanh
  */
 public class TypeDTO {
-    private int typeId;
+    private int id;
     private String name;
 
     public TypeDTO() {
     }
 
-    public TypeDTO(int typeId, String name) {
-        this.typeId = typeId;
+    public TypeDTO(int id, String name) {
+        this.id = id;
         this.name = name;
     }
 
-    public int getTypeId() {
-        return typeId;
+    public int getId() {
+        return id;
     }
 
-    public void setTypeId(int typeId) {
-        this.typeId = typeId;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
