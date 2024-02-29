@@ -54,121 +54,88 @@
                                 </div>
                             </div>
                             <h3 style="color: green; text-align: center; margin: 20px 0">${requestScope.mess}</h3>
-                            <form action="productmanager?action=updateproduct" method="POST">
-                                <table class="table table-hover table-bordered" id="sampleTable">
-                                    <thead>
+                            <table class="table table-hover table-bordered" id="sampleTable">
+                                <thead>
+                                    <tr>
+                                        <th>Mã</th>
+                                        <th>Tên danh mục</th>
+                                        <th>Loại</th>
+                                        <th>Chức năng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <c:forEach items="${LIST_CATEGORIES}" var="c">
                                         <tr>
-                                            <th>Mã</th>
-                                            <th>Tên danh mục</th>
-                                            <th>Type</th>
-                                            <th>Chức năng</th>
+                                            <td>${c.id}</td>
+                                            <td>${c.name}</td>
+                                            <td>
+                                                <c:forEach items="${requestScope.LIST_TYPES}" var="t">
+                                                    <c:if test="${c.typeId == t.typeId}" >
+                                                        ${t.name}
+                                                    </c:if>
+                                                </c:forEach>
+                                            </td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm trash" id="logout" data-toggle="modal" data-target="#modal_box" href="#" onclick="confirmDelete('modal_box', ${c.id})">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
+                                                        data-toggle="modal" data-target="#ModalUP${c.id}"><i class="fas fa-edit"></i>
+                                                </button>
+                                            </td>
                                         </tr>
-                                    </thead>
-                                    <tbody>
-                                        <c:forEach items="${LIST_CATEGORIES}" var="c">
-                                            <tr>
-                                                <td>${c.id}</td>
-                                                <td>${c.name}</td>
-                                                <td>${c.typeId}</td>
-                                                <td>
-                                                    <a class="btn btn-primary btn-sm trash" id="logout" data-toggle="modal" data-target="#modal_box" href="#" onclick="confirmDelete('modal_box', ${c.id})">
-                                                        <i class="fas fa-trash-alt"></i>
-                                                    </a>
-                                                    <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
-                                                            data-toggle="modal" data-target="#ModalUP${c.id}"><i class="fas fa-edit"></i>
-                                                    </button>
-                                                </td>
-                                            </tr>
 
-                                            <!--
-                                            MODAL
-                                            -->
+                                        <!--
+                                        MODAL
+                                        -->
 
-                                        <div class="modal fade" id="ModalUP${c.id}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
-                                             data-keyboard="false">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="form-group  col-md-12">
-                                                                <span class="thong-tin-thanh-toan">
-                                                                    <h5>Chỉnh sửa thông tin sản phẩm</h5>
-                                                                </span>
-                                                            </div>
+                                    <div class="modal fade" id="ModalUP${c.id}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+                                         data-keyboard="false">
+                                        <div class="modal-dialog modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <div class="row">
+                                                        <div class="form-group  col-md-12">
+                                                            <span class="thong-tin-thanh-toan">
+                                                                <h5>Chỉnh sửa thông tin sản phẩm</h5>
+                                                            </span>
                                                         </div>
+                                                    </div>
+                                                    <form action="EditCategoryServlet" method="GET">
                                                         <div class="row">
                                                             <div class="form-group col-md-6">
-                                                                <label class="control-label">Mã sản phẩm </label>
-                                                                <input class="form-control" type="text" readonly name="product_id" value="${p.product_id}">
+                                                                <label class="control-label">Mã danh mục</label>
+                                                                <input class="form-control" type="text" readonly name="category_id" value="${c.id}">
+                                                            </div>
+                                                            <div class="form-group col-md-6">
+                                                                <label class="control-label">Tên</label>
+                                                                <input class="form-control" type="text" name="category_name" value="${c.name}">
                                                             </div>
                                                             <div class="form-group col-md-6">
                                                                 <label for="exampleSelect1" class="control-label">Danh mục</label>
-                                                                <select name="category_id" class="form-control" id="exampleSelect1">
-                                                                    <option>-- Chọn danh mục --</option>
-                                                                    <c:forEach items="${CategoryData}" var="cat">
-                                                                        <option value="${cat.category_id}">${cat.category_name}</option>
+                                                                <select name="type_id" class="form-control" id="exampleSelect1">
+                                                                    <c:forEach items="${LIST_TYPES}" var="type">
+                                                                        <option ${c.typeId == type.typeId ? "selected" : ""} value="${type.typeId}">${type.name}</option>
                                                                     </c:forEach>
                                                                 </select>
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label class="control-label">Tên sản phẩm</label>
-                                                                <input class="form-control" type="text" name="product_name" required value="${p.product_name}">
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label class="control-label">Giá</label>
-                                                                <input class="form-control" type="number" name="product_price" required value="${p.product_price}">
-                                                            </div>
-                                                            <div class="form-group col-md-6">
-                                                                <label class="control-label">Màu</label>
-                                                                <input class="form-control" name="product_color" type="text" value="<c:forEach items="${ColorData}" var="c"><c:if test="${p.product_id==c.product_id}">${c.color},</c:if></c:forEach>">
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-6">
-                                                                        <label class="control-label">Size</label>
-                                                                        <input class="form-control" name="product_size" type="text" value="<c:forEach items="${SizeData}" var="s"><c:if test="${p.product_id==s.product_id}">${s.size},</c:if></c:forEach>">
-                                                                    </div>
-
-                                                                    <div class="form-group col-md-6">
-                                                                        <label class="control-label">Thông tin</label>
-                                                                        <input class="form-control" type="text" name="product_describe" value="${p.product_describe}">
-                                                            </div>
-
-                                                            <div class="form-group col-md-6">
-                                                                <label class="control-label">Số lượng</label>
-                                                                <input class="form-control" type="text" name="product_quantity" value="${p.quantity}">
-                                                            </div>
-                                                            anh san pham
-                                                            <div class="form-group col-md-12">
-                                                                <label class="control-label">Ảnh sản phẩm</label>
-                                                                <div id="myfileupload">
-                                                                    <input type="file" id="uploadfile" name="product_img" value="${p.img}" onchange="readURL(this);" />
-                                                                </div>
-                                                                <div id="thumbbox">
-                                                                    <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
-                                                                    <a class="removeimg" href="javascript:"></a>
-                                                                </div>
-                                                                <div id="boxchoice">
-                                                                    <a href="javascript:" class="Choicefile"><i class="fas fa-cloud-upload-alt"></i> Chọn ảnh</a>
-                                                                    <p style="clear:both"></p>
-                                                                </div>
                                                             </div>
                                                         </div>
                                                         <BR>
                                                         <button class="btn btn-save" type="submit">Lưu lại</button>
                                                         <a class="btn btn-cancel" data-dismiss="modal" href="#">Hủy bỏ</a>
                                                         <BR>
-                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <!--
-                                      MODAL
-                                        -->
-                                    </c:forEach>
-                                    </tbody>
-                                </table>
-                            </form>
+                                    <!--
+                                  MODAL
+                                    -->
+                                </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -191,26 +158,26 @@
         <script type="text/javascript" src="admin/js/plugins/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="admin/js/plugins/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript">
-                                                                        function confirmDelete(modalID, cid) {
-                                                                            let modalElement = document.getElementById(modalID);
-                                                                            let modal = '<div class="modal-dialog modal-dialog-centered" role="document" style="text-align:center">' +
-                                                                                    '<div class="modal-content" style="width:500px; margin: 0 auto">' +
-                                                                                    '<div class="modal-header" style="color: black; font-size:28px; font-weight: 600; margin: 0 auto">Cảnh báo</div>' +
-                                                                                    '<div class="swal-text">Bạn có chắc chắn là muốn xóa sản phẩm này?</div>' +
-                                                                                    '<div class="swal-footer">' +
-                                                                                    '<div class="swal-button-container">' +
-                                                                                    '<button data-dismiss="modal" aria-hidden="true" class="swal-button swal-button--cancel">Hủy bỏ</button>' +
-                                                                                    '</div>' +
-                                                                                    '<div class="swal-button-container">' +
-                                                                                    '<a href="DeleteCategoryServlet?cid=' + cid + '" class="swal-button swal-button--confirm">Xác nhận</a>' +
-                                                                                    '</div>' +
-                                                                                    '</div>' +
-                                                                                    '</div>' +
-                                                                                    '</div>';
-                                                                            console.log(modal);
-                                                                            let result = modalElement.innerHTML = modal;
-                                                                            return result;
-                                                                        }
+                                                    function confirmDelete(modalID, cid) {
+                                                        let modalElement = document.getElementById(modalID);
+                                                        let modal = '<div class="modal-dialog modal-dialog-centered" role="document" style="text-align:center">' +
+                                                                '<div class="modal-content" style="width:500px; margin: 0 auto">' +
+                                                                '<div class="modal-header" style="color: black; font-size:28px; font-weight: 600; margin: 0 auto">Cảnh báo</div>' +
+                                                                '<div class="swal-text">Bạn có chắc chắn là muốn xóa sản phẩm này?</div>' +
+                                                                '<div class="swal-footer">' +
+                                                                '<div class="swal-button-container">' +
+                                                                '<button data-dismiss="modal" aria-hidden="true" class="swal-button swal-button--cancel">Hủy bỏ</button>' +
+                                                                '</div>' +
+                                                                '<div class="swal-button-container">' +
+                                                                '<a href="DeleteCategoryServlet?cid=' + cid + '" class="swal-button swal-button--confirm">Xác nhận</a>' +
+                                                                '</div>' +
+                                                                '</div>' +
+                                                                '</div>' +
+                                                                '</div>';
+                                                        console.log(modal);
+                                                        let result = modalElement.innerHTML = modal;
+                                                        return result;
+                                                    }
         </script>
     </body>
 
