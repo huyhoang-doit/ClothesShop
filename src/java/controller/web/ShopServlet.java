@@ -73,8 +73,7 @@ public class ShopServlet extends HttpServlet {
             end = Math.min(page * numPerPage, size);
 
             List<ProductDTO> listByPage = pDao.getListByPage(listProducts, start, end);
-            
-            request.setAttribute("DATA_FROM", "ShopServlet");
+
             request.setAttribute("NUMBERPAGE", numberpage);
             request.setAttribute("CURRENTPAGE", page);
             request.setAttribute("LISTPRODUCTS", listByPage);

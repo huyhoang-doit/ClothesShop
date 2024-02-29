@@ -31,7 +31,7 @@
                             </c:if>
                         <li><a href="cart.jsp" title="My cart">My cart</a></li>  
                             <c:if test="${sessionScope.account == null}">
-                            <li><a href="DispatchServlet?btnAction=Login" title="Login">Login</a></li>  
+                            <li><a href="LoginServlet?action=Login" title="Login">Login</a></li>  
                             </c:if>
                             <c:if test="${sessionScope.account != null}">
                             <li><a href="${sessionScope.account.roleID == 1 ? 'AdminServlet' : 'ProfileServlet'} ">Hello, ${sessionScope.account.firstName} ${sessionScope.account.lastName}!</a></li>
