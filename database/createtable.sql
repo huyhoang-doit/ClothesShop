@@ -35,8 +35,8 @@ CREATE TABLE Types(
 )
 
 CREATE TABLE Categories(
- categoryname NVARCHAR(30) ,
  categoryid INT NOT NULL IDENTITY(1,1)  PRIMARY KEY,
+ categoryname NVARCHAR(30) ,
  type_id INT FOREIGN KEY REFERENCES [dbo].Types(id),
 )
 

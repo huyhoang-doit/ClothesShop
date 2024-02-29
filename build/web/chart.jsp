@@ -61,14 +61,6 @@
                                             <canvas id="sale-revenue"></canvas>
                                         </div>
                                     </div>
-                                    <div class="col-sm-12 col-xl-6">
-                                        <div class="bg-light text-center rounded p-4">
-                                            <div class="d-flex align-items-center justify-content-between mb-4">
-                                                <h6 class="mb-0">Revenue this week</h6>
-                                            </div>
-                                            <canvas id="pie-chart"></canvas>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -111,28 +103,6 @@
                         fill: true
                     }
                 ]
-            },
-            options: {
-                responsive: true
-            }
-        });
-        // Pie Chart
-        var ctx5 = document.getElementById("pie-chart").getContext("2d");
-        var myChart5 = new Chart(ctx5, {
-            type: "pie",
-            data: {
-                labels: ["Monday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-                datasets: [{
-                        backgroundColor: [
-                            "rgba(0, 156, 255, 0.5)", // Monday - Starting color
-                            "rgba(30, 136, 255, 0.5)", // Tuesday
-                            "rgba(60, 116, 255, 0.5)", // Wednesday
-                            "rgba(90, 96, 255, 0.5)", // Thursday
-                            "rgba(120, 76, 255, 0.5)", // Friday
-                            "rgba(150, 56, 255, 0.5)"   // Saturday - Ending color
-                        ],
-                        data: [55, 49, 44, 24, 15, 12, 65]
-                    }]
             },
             options: {
                 responsive: true

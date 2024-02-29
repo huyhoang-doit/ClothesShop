@@ -32,7 +32,7 @@ public class OrderDAO extends DBContext {
     private static final String GET_NUMBER_ORDERS = "SELECT COUNT(*) AS Total FROM [Orders]";
     private static final String GET_TOTAL_ORDERS = "SELECT * FROM [Orders]";
     private static final String GET_TOTAL_SALE_TODAY = "SELECT sum(totalprice) AS TotalSale FROM [Orders] "
-                                                    + " WHERE cast(orderdate as Date) = cast(getdate() as Date)";
+            + " WHERE cast(orderdate as Date) = cast(getdate() as Date)";
     private static final String GET_ORDERS_USER = "SELECT * FROM [Orders] WHERE username = ?";
     private static final String GET_ORDERS_BYID = "SELECT * FROM [Orders] WHERE order_id = ?";
     private static final String GET_RECENT_ORDERS = "SELECT Top 10 * FROM Orders ORDER BY orderdate DESC";
@@ -352,7 +352,7 @@ public class OrderDAO extends DBContext {
     public static void main(String[] args) throws SQLException {
         OrderDAO dao = new OrderDAO();
         double list = dao.getTotalOrders();
-        
+
         OrderDTO order = dao.getOrdersByID("1");
         System.out.println(list);
     }

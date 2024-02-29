@@ -45,62 +45,37 @@
                         <div class="tile-body">
                             <div class="row element-button">
                                 <div class="col-sm-2">
-                                    <a class="btn btn-add btn-sm" href="productmanager?action=insert" title="Thêm"><i class="fas fa-plus"></i>
-                                        Tạo mới sản phẩm</a>
+                                    <a class="btn btn-add btn-sm" href="ManageCategoryServlet?action=Insert" title="Thêm"><i class="fas fa-plus"></i>
+                                        Tạo mới danh mục</a>
                                 </div>
                                 <div class="col-sm-2">
                                     <a class="btn btn-delete btn-sm print-file" type="button" title="In" onclick="myApp.printTable()"><i
                                             class="fas fa-print"></i> In dữ liệu</a>
                                 </div>
                             </div>
+                            <h3 style="color: green; text-align: center; margin: 20px 0">${requestScope.mess}</h3>
                             <form action="productmanager?action=updateproduct" method="POST">
                                 <table class="table table-hover table-bordered" id="sampleTable">
                                     <thead>
                                         <tr>
-                                            <th>Mã sản phẩm</th>
-                                            <th>Danh mục</th>
-                                            <th>Tên sản phẩm</th>
-                                            <th>Giá</th>
-                                            <th>Size</th>
-                                            <th>Màu</th>
-                                            <th>Thông tin</th>
-                                            <th>Số lượng</th>
-                                            <th>Ảnh</th>
+                                            <th>Mã</th>
+                                            <th>Tên danh mục</th>
+                                            <th>Type</th>
                                             <th>Chức năng</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <c:forEach items="${ProductData}" var="p">
+                                        <c:forEach items="${LIST_CATEGORIES}" var="c">
                                             <tr>
-                                                <td>${p.product_id}</td>
-                                                <td>${p.cate.category_name}</td>
-                                                <td>${p.product_name}</td>
-                                                <td>${p.product_price}</td>
+                                                <td>${c.id}</td>
+                                                <td>${c.name}</td>
+                                                <td>${c.typeId}</td>
                                                 <td>
-                                                    <c:forEach items="${SizeData}" var="s">
-                                                        <c:if test="${p.product_id==s.product_id}">
-                                                            ${s.size}   
-                                                        </c:if>
-                                                    </c:forEach>
-                                                </td>
-
-                                                <td>
-                                                    <c:forEach items="${ColorData}" var="c">
-                                                        <c:if test="${p.product_id==c.product_id}">
-                                                            ${c.color}   
-                                                        </c:if>
-                                                    </c:forEach>
-                                                </td>
-                                                <td>${p.product_describe}</td>
-                                                <td>${p.quantity}</td>
-                                                <td><img src="${p.img}" alt="" width="100px;"></td>
-
-                                                <td>
-                                                    <button class="btn btn-primary btn-sm trash" type="button" title="Xóa" value="${p.product_id}"><i
-                                                            class="fas fa-trash-alt"></i>
-                                                    </button>
+                                                    <a class="btn btn-primary btn-sm trash" id="logout" data-toggle="modal" data-target="#modal_box" href="#" onclick="confirmDelete('modal_box', ${c.id})">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </a>
                                                     <button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp"
-                                                            data-toggle="modal" data-target="#ModalUP${p.product_id}"><i class="fas fa-edit"></i>
+                                                            data-toggle="modal" data-target="#ModalUP${c.id}"><i class="fas fa-edit"></i>
                                                     </button>
                                                 </td>
                                             </tr>
@@ -109,7 +84,7 @@
                                             MODAL
                                             -->
 
-                                        <div class="modal fade" id="ModalUP${p.product_id}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
+                                        <div class="modal fade" id="ModalUP${c.id}" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static"
                                              data-keyboard="false">
                                             <div class="modal-dialog modal-dialog-centered" role="document">
                                                 <div class="modal-content">
@@ -162,7 +137,7 @@
                                                                 <label class="control-label">Số lượng</label>
                                                                 <input class="form-control" type="text" name="product_quantity" value="${p.quantity}">
                                                             </div>
-                                                            <!--anh san pham-->
+                                                            anh san pham
                                                             <div class="form-group col-md-12">
                                                                 <label class="control-label">Ảnh sản phẩm</label>
                                                                 <div id="myfileupload">
@@ -186,6 +161,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <!--
                                       MODAL
                                         -->
@@ -201,6 +177,7 @@
 
 
 
+        <div class="modal fade" id="modal_box" role="dialog"></div>
         <!-- Essential javascripts for application to work-->
         <script src="admin/js/jquery-3.2.1.min.js"></script>
         <script src="admin/js/popper.min.js"></script>
@@ -208,84 +185,32 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="admin/js/main.js"></script>
         <!-- The javascript plugin to display page loading on top-->
-        <script src="admin/js/plugins/pace.min.js"></script>
         <!-- Page specific javascripts-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
         <!-- Data table plugin-->
         <script type="text/javascript" src="admin/js/plugins/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="admin/js/plugins/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript">
-                                                                        $('#sampleTable').DataTable();
-                                                                        //Thời Gian
-                                                                        function time() {
-                                                                            var today = new Date();
-                                                                            var weekday = new Array(7);
-                                                                            weekday[0] = "Chủ Nhật";
-                                                                            weekday[1] = "Thứ Hai";
-                                                                            weekday[2] = "Thứ Ba";
-                                                                            weekday[3] = "Thứ Tư";
-                                                                            weekday[4] = "Thứ Năm";
-                                                                            weekday[5] = "Thứ Sáu";
-                                                                            weekday[6] = "Thứ Bảy";
-                                                                            var day = weekday[today.getDay()];
-                                                                            var dd = today.getDate();
-                                                                            var mm = today.getMonth() + 1;
-                                                                            var yyyy = today.getFullYear();
-                                                                            var h = today.getHours();
-                                                                            var m = today.getMinutes();
-                                                                            var s = today.getSeconds();
-                                                                            m = checkTime(m);
-                                                                            s = checkTime(s);
-                                                                            nowTime = h + " giờ " + m + " phút " + s + " giây";
-                                                                            if (dd < 10) {
-                                                                                dd = '0' + dd
-                                                                            }
-                                                                            if (mm < 10) {
-                                                                                mm = '0' + mm
-                                                                            }
-                                                                            today = day + ', ' + dd + '/' + mm + '/' + yyyy;
-                                                                            tmp = '<span class="date"> ' + today + ' - ' + nowTime +
-                                                                                    '</span>';
-                                                                            document.getElementById("clock").innerHTML = tmp;
-                                                                            clocktime = setTimeout("time()", "1000", "Javascript");
-
-                                                                            function checkTime(i) {
-                                                                                if (i < 10) {
-                                                                                    i = "0" + i;
-                                                                                }
-                                                                                return i;
-                                                                            }
+                                                                        function confirmDelete(modalID, cid) {
+                                                                            let modalElement = document.getElementById(modalID);
+                                                                            let modal = '<div class="modal-dialog modal-dialog-centered" role="document" style="text-align:center">' +
+                                                                                    '<div class="modal-content" style="width:500px; margin: 0 auto">' +
+                                                                                    '<div class="modal-header" style="color: black; font-size:28px; font-weight: 600; margin: 0 auto">Cảnh báo</div>' +
+                                                                                    '<div class="swal-text">Bạn có chắc chắn là muốn xóa sản phẩm này?</div>' +
+                                                                                    '<div class="swal-footer">' +
+                                                                                    '<div class="swal-button-container">' +
+                                                                                    '<button data-dismiss="modal" aria-hidden="true" class="swal-button swal-button--cancel">Hủy bỏ</button>' +
+                                                                                    '</div>' +
+                                                                                    '<div class="swal-button-container">' +
+                                                                                    '<a href="DeleteCategoryServlet?cid=' + cid + '" class="swal-button swal-button--confirm">Xác nhận</a>' +
+                                                                                    '</div>' +
+                                                                                    '</div>' +
+                                                                                    '</div>' +
+                                                                                    '</div>';
+                                                                            console.log(modal);
+                                                                            let result = modalElement.innerHTML = modal;
+                                                                            return result;
                                                                         }
-        </script>
-        <script>
-
-            $(document).ready(jQuery(function () {
-                jQuery(".trash").click(function () {
-                    swal({
-                        title: "Cảnh báo",
-                        text: "Bạn có chắc chắn là muốn xóa sản phẩm này?",
-                        buttons: ["Hủy bỏ", "Đồng ý"],
-                    })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    window.location = "productmanager?action=deleteproduct&product_id=" + $(this).attr("value");
-                                    swal("Đã xóa thành công.!", {
-                                    });
-                                }
-                            });
-                });
-            }));
-        </script>
-        <script>
-            var myApp = new function () {
-                this.printTable = function () {
-                    var tab = document.getElementById('sampleTable');
-                    var win = window.open('', '', 'height=700,width=700');
-                    win.document.write(tab.outerHTML);
-                    win.document.close();
-                    win.print();
-                }
-            }
         </script>
     </body>
 
