@@ -19,6 +19,7 @@ public class ProductDTO {
     private String[] images, colors, size;
     private Date releasedate;
     private double discount, price, salePrice;
+    private boolean status;
     private CategoryDTO category;
     private SupplierDTO supplier;
     private TypeDTO type;
@@ -28,7 +29,7 @@ public class ProductDTO {
     }
 
     public ProductDTO(int id, String name, String description, int stock, int unitSold, String[] images, 
-            String[] colors, String[] size, Date releasedate, double discount, double price, CategoryDTO category, SupplierDTO supplier, TypeDTO type) {
+            String[] colors, String[] size, Date releasedate, double discount, double price, boolean status, CategoryDTO category, SupplierDTO supplier, TypeDTO type) {
         this.salePrice = price;
         this.id = id;
         this.name = name;
@@ -41,6 +42,7 @@ public class ProductDTO {
         this.releasedate = releasedate;
         this.discount = discount;
         this.price = price;
+        this.status = status;
         this.category = category;
         this.supplier = supplier;
         this.type = type;
@@ -157,8 +159,14 @@ public class ProductDTO {
     public void setType(TypeDTO type) {
         this.type = type;
     }
-    
-    
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 
     public double getSalePrice() {
         double salePrice = Math.round(price * discount * 100) / 100.0;

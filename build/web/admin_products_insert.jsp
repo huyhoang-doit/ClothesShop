@@ -68,6 +68,20 @@
 
     <body class="app sidebar-mini rtl">
         <style>
+            select {
+                width: 32.3%;
+                margin: 0;
+                font-size: 100%;
+                padding: 10px;
+                font-family: Segoe UI, Helvetica, sans-serif;
+                border: 1px solid #D0D0D0;
+                -webkit-box-sizing: border-box;
+                -moz-box-sizing: border-box;
+                box-sizing: border-box;
+                border-radius: 15px;
+                outline: none;
+            }
+
             .Choicefile {
                 display: block;
                 background: #14142B;
@@ -143,7 +157,7 @@
             <div class="app-title">
                 <ul class="app-breadcrumb breadcrumb">
                     <li class="breadcrumb-item">Danh sách sản phẩm</li>
-                    <li class="breadcrumb-item"><a href="#">Thêm sản phẩm</a></li>
+                    <li class="breadcrumb-item"><a href="">Thêm sản phẩm</a></li>
                 </ul>
             </div>
             <div class="row">
@@ -164,27 +178,42 @@
                                 </c:if>
                             </div>
 
-                            <form class="row" action="productmanager?action=insertproduct" method="POST" enctype="multipart/form-data">
+                            <form class="row" action="InsertProductServlet" method="get">
                                 <div class="form-group col-md-3">
-                                    <label class="control-label">Mã sản phẩm </label>
-                                    <input class="form-control" name="product_id" type="text" placeholder="">
+                                    <label class="control-label">Tên sản phẩm</label>
+                                    <input class="form-control" name="product_name" type="text">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label for="exampleSelect1" class="control-label">Danh mục</label>
                                     <select name="category_id" class="form-control" id="exampleSelect1">
-                                        <option>-- Chọn danh mục --</option>
                                         <c:forEach items="${requestScope.LIST_CATEGORIES}" var="cat">
                                             <option value="${cat.id}">${cat.name}</option>
                                         </c:forEach>
                                     </select>
                                 </div>
                                 <div class="form-group col-md-3">
-                                    <label class="control-label">Tên sản phẩm</label>
-                                    <input class="form-control" name="product_name" type="text">
+                                    <label for="exampleSelect1" class="control-label">Danh mục</label>
+                                    <select name="supplier_id" class="form-control" id="exampleSelect1">
+                                        <c:forEach items="${requestScope.LIST_SUPPLIERS}" var="sup">
+                                            <option value="${sup.id}">${sup.name}</option>
+                                        </c:forEach>
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-3">
+                                    <label for="exampleSelect1" class="control-label">Danh mục</label>
+                                    <select name="type_id" class="form-control" id="exampleSelect1">
+                                        <c:forEach items="${requestScope.LIST_TYPES}" var="type">
+                                            <option value="${type.typeId}">${type.name}</option>
+                                        </c:forEach>
+                                    </select>
                                 </div>
                                 <div class="form-group  col-md-3">
                                     <label class="control-label">Giá bán</label>
-                                    <input class="form-control" name="price" type="number">
+                                    <input class="form-control" name="price" min="0" step="0.01" type="number">
+                                </div>
+                                <div class="form-group  col-md-3">
+                                    <label class="control-label">Giảm giá</label>
+                                    <input class="form-control" name="discount" type="number" min="0" max="1" step="0.01">
                                 </div>
                                 <div class="form-group col-md-3">
                                     <label class="control-label">Size</label>
@@ -196,12 +225,20 @@
                                 </div>
                                 <div class="form-group  col-md-3">
                                     <label class="control-label">Số lượng</label>
-                                    <input class="form-control" name="quantity" type="number">
+                                    <input class="form-control" name="stock" min="0" type="number">
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label class="control-label">Release Date</label><br/>
+                                    <input type="hidden" id="stringdateolb" value="">
+                                    <input type="hidden" name="date" value="" id="here"/>
+                                    <select class="bear-dates" id="dobDay"></select>
+                                    <select class="bear-months" id="dobMonth"></select>
+                                    <select class="bear-years" id="dobYear"></select>
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>
                                     <div id="myfileupload">
-                                        <input type="file" id="uploadfile" name="product_img" onchange="readURL(this);" />
+                                        <input type="file" id="uploadfile" multiple name="product_img" onchange="readURL(this);" />
                                     </div>
                                     <div id="thumbbox">
                                         <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
@@ -214,9 +251,9 @@
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Mô tả sản phẩm</label>
-                                    <textarea class="form-control" name="describe" id="describe"></textarea>
+                                    <textarea class="form-control" name="description" id="describe"></textarea>
                                 </div>
-                                <button class="btn btn-save" type="submit">Lưu lại</button>
+                                <button onclick="setValue()" class="btn btn-save" type="submit">Lưu lại</button>
                                 &nbsp;
                                 <a class="btn btn-cancel" href="productmanager">Hủy bỏ</a>
                             </form>

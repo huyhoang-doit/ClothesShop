@@ -51,8 +51,8 @@ CREATE TABLE Suppliers(
 CREATE TABLE Products(
  id INT NOT NULL IDENTITY(1,1)  PRIMARY KEY ,
  productname NVARCHAR(max) NOT NULL,
- supplierid INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Suppliers](supplierid),
- categoryid INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Categories](categoryid),
+ supplierid INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Suppliers](supplierid) ON DELETE CASCADE ON UPDATE CASCADE,
+ categoryid INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Categories](categoryid) ON DELETE CASCADE ON UPDATE CASCADE,
  size VARCHAR(40) NOT NULL,
  stock INT NOT NULL, 
  [description] NVARCHAR(max),
@@ -62,15 +62,15 @@ CREATE TABLE Products(
  discount FLOAT,
  unitSold INT,
  price money NOT NULL,
- typeid int not null FOREIGN KEY REFERENCES [dbo].[Types](id),
+ status bit not null,
+ typeid int not null FOREIGN KEY REFERENCES [dbo].[Types](id) ON DELETE CASCADE ON UPDATE CASCADE
 )
-
 
 CREATE TABLE Carts (
 cartid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 quantity INT,
 username VARCHAR(30) FOREIGN KEY REFERENCES  Users(username),
-productid INT FOREIGN KEY REFERENCES [dbo].[Products]([id])
+productid INT FOREIGN KEY REFERENCES [dbo].[Products]([id]) ON DELETE CASCADE ON UPDATE CASCADE
 )
 
 CREATE TABLE WishLists( 
@@ -114,7 +114,7 @@ CREATE TABLE OrderItem(
 order_item_id INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 quantity INT ,
 price DECIMAL(10,2),
-product_id INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Products]([id]),
+product_id INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Products]([id]) ON DELETE CASCADE,
 order_id INT NOT NULL FOREIGN KEY REFERENCES  [dbo].[Orders](order_id)
 )
 
