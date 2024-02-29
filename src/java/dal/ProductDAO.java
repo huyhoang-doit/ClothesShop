@@ -25,17 +25,18 @@ import model.TypeDTO;
  */
 public class ProductDAO extends DBContext {
 
-    private static final String GET_DATA = "SELECT * FROM Products";
-    private static final String GET_TOTAL_PRODUCTS = "SELECT COUNT(*) AS Total FROM Products";
+    private static final String GET_DATA = "SELECT * FROM Products WHERE status = 1";
+    private static final String GET_TOTAL_PRODUCTS = "SELECT COUNT(*) AS Total FROM Products WHERE status = 1";
     private static final String GET_QUANTITY_SOLD = "SELECT SUM(unitSold) AS Total from Products";
-    private static final String GET_PRODUCTS_LOW_QUANTITY = "SELECT COUNT(*) AS Total from Products WHERE Stock < 10";
-    private static final String GET_PRODUCTS_BY_ID = "SELECT * FROM Products WHERE id = ?";
-    private static final String GET_PRODUCTS_BY_TYPE_ID = "SELECT * FROM Products WHERE typeid = ?";
-    private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM Products WHERE categoryid = ?";
-    private static final String GET_PRODUCTS_BY_SUPPLIER_ID = "SELECT * FROM Products WHERE supplierid = ?";
-    private static final String GET_PRODUCTS_NEW_YEAR = "SELECT * from Products WHERE year(releasedate) = 2024";
-    private static final String GET_PRODUCTS_BEST_SELLER = "SELECT TOP(5) * from Products order by unitSold desc";
-    private static final String GET_PRODUCTS_BY_SEARCH = "SELECT * FROM Products WHERE productname LIKE ?";
+    private static final String GET_PRODUCTS_LOW_QUANTITY = "SELECT COUNT(*) AS Total from Products WHERE Stock < 10 AND status = 1";
+    private static final String GET_PRODUCTS_BY_ID = "SELECT * FROM Products WHERE id = ? AND status = 1";
+    private static final String GET_PRODUCTS_BY_TYPE_ID = "SELECT * FROM Products WHERE typeid = ? AND status = 1";
+    private static final String GET_PRODUCTS_BY_CATEGORY_ID = "SELECT * FROM Products WHERE categoryid = ? AND status = 1";
+    private static final String GET_PRODUCTS_NEW_YEAR = "SELECT * from Products WHERE year(releasedate) = 2024 AND status = 1";
+    private static final String GET_PRODUCTS_BEST_SELLER = "SELECT TOP(5) * from Products WHERE status = 1 order by unitSold desc";
+    private static final String GET_PRODUCTS_BY_SEARCH = "SELECT * FROM Products WHERE productname LIKE ? AND status = 1";
+    private static final String DELETE_PRODUCT = "UPDATE Products SET status = 0 WHERE id = ?";
+    private static final String INSERT_PRODUCT = "INSERT INTO Products VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     public List<ProductDTO> getData() throws SQLException {
         List<ProductDTO> products = new ArrayList<>();
@@ -62,10 +63,11 @@ public class ProductDAO extends DBContext {
                     double discount = rs.getDouble("discount");
                     int unitSold = rs.getInt("unitSold");
                     double price = rs.getDouble("price");
+                    boolean status = rs.getBoolean("status");
                     String colors[] = rs.getString("colors").split(",");
                     String images[] = rs.getString("images").split(" ");
                     String sizes[] = rs.getString("size").split(",");
-                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, status, category, supplier, type);
                     products.add(product);
                 }
             }
@@ -110,10 +112,11 @@ public class ProductDAO extends DBContext {
                     double discount = rs.getDouble("discount");
                     int unitSold = rs.getInt("unitSold");
                     double price = rs.getDouble("price");
+                    boolean status = rs.getBoolean("status");
                     String colors[] = rs.getString("colors").split(",");
                     String images[] = rs.getString("images").split(" ");
                     String sizes[] = rs.getString("size").split(",");
-                    product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
+                    product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, status, category, supplier, type);
                 }
             }
         } catch (Exception e) {
@@ -149,10 +152,11 @@ public class ProductDAO extends DBContext {
                     double discount = rs.getDouble("discount");
                     int unitSold = rs.getInt("unitSold");
                     double price = rs.getDouble("price");
+                    boolean status = rs.getBoolean("status");
                     String colors[] = rs.getString("colors").split(",");
                     String images[] = rs.getString("images").split(" ");
                     String sizes[] = rs.getString("size").split(",");
-                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, status, category, supplier, type);
                     products.add(product);
                 }
             }
@@ -189,50 +193,11 @@ public class ProductDAO extends DBContext {
                     double discount = rs.getDouble("discount");
                     int unitSold = rs.getInt("unitSold");
                     double price = rs.getDouble("price");
+                    boolean status = rs.getBoolean("status");
                     String colors[] = rs.getString("colors").split(",");
                     String images[] = rs.getString("images").split(" ");
                     String sizes[] = rs.getString("size").split(",");
-                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
-                    products.add(product);
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return products;
-
-    }
-    
-    public List<ProductDTO> getProductSupplierId(int supplierid) {
-        List<ProductDTO> products = new ArrayList<>();
-        Connection con = null;
-        PreparedStatement ptm = null;
-        ResultSet rs = null;
-        try {
-            con = getConnection();
-            if (con != null) {
-                ptm = con.prepareStatement(GET_PRODUCTS_BY_CATEGORY_ID);
-                ptm.setInt(1, supplierid);
-                rs = ptm.executeQuery();
-                while (rs.next()) {
-                    CategoryDAO cDao = new CategoryDAO();
-                    SupplierDAO sDao = new SupplierDAO();
-                    TypeDAO tDao = new TypeDAO();
-                    String productname = rs.getString("productname");
-                    SupplierDTO supplier = sDao.getSupplierById(supplierid);
-                    CategoryDTO category = cDao.getCategoryById(rs.getInt("categoryid"));
-                    int id = rs.getInt("id");
-                    TypeDTO type = tDao.getTypeById(rs.getInt("typeid"));
-                    int stock = rs.getInt("stock");
-                    String description = rs.getString("description");
-                    Date date = rs.getDate("releasedate");
-                    double discount = rs.getDouble("discount");
-                    int unitSold = rs.getInt("unitSold");
-                    double price = rs.getDouble("price");
-                    String colors[] = rs.getString("colors").split(",");
-                    String images[] = rs.getString("images").split(" ");
-                    String sizes[] = rs.getString("size").split(",");
-                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, status, category, supplier, type);
                     products.add(product);
                 }
             }
@@ -366,10 +331,11 @@ public class ProductDAO extends DBContext {
                     double discount = rs.getDouble("discount");
                     int unitSold = rs.getInt("unitSold");
                     double price = rs.getDouble("price");
+                    boolean status = rs.getBoolean("status");
                     String colors[] = rs.getString("colors").split(",");
                     String images[] = rs.getString("images").split(" ");
                     String sizes[] = rs.getString("size").split(",");
-                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, status, category, supplier, type);
                     products.add(product);
                 }
             }
@@ -414,10 +380,11 @@ public class ProductDAO extends DBContext {
                     double discount = rs.getDouble("discount");
                     int unitSold = rs.getInt("unitSold");
                     double price = rs.getDouble("price");
+                    boolean status = rs.getBoolean("status");
                     String colors[] = rs.getString("colors").split(",");
                     String images[] = rs.getString("images").split(" ");
                     String sizes[] = rs.getString("size").split(",");
-                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, status, category, supplier, type);
                     products.add(product);
                 }
             }
@@ -463,10 +430,11 @@ public class ProductDAO extends DBContext {
                     double discount = rs.getDouble("discount");
                     int unitSold = rs.getInt("unitSold");
                     double price = rs.getDouble("price");
+                    boolean status = rs.getBoolean("status");
                     String colors[] = rs.getString("colors").split(",");
                     String images[] = rs.getString("images").split(" ");
                     String sizes[] = rs.getString("size").split(",");
-                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, category, supplier, type);
+                    ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, status, category, supplier, type);
                     products.add(product);
                 }
             }
@@ -560,13 +528,81 @@ public class ProductDAO extends DBContext {
         }
     }
 
+    public void deleteProduct(String pid) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DELETE_PRODUCT);
+                ptm.setString(1, pid);
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
+    public void insertProduct(String name, int cId, int sId, int tId, double price, double discount, String size, String color, int stock,
+            String date, String images, String description) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(INSERT_PRODUCT);
+                ptm.setString(1, name);
+                ptm.setInt(2, sId);
+                ptm.setInt(3, cId);
+                ptm.setString(4, size);
+                ptm.setInt(5, stock);
+                ptm.setString(6, description);
+                ptm.setString(7, images);
+                ptm.setString(8, color);
+                ptm.setString(9, date);
+                ptm.setDouble(10, discount);
+                ptm.setInt(11, 0);
+                ptm.setDouble(12, price);
+                ptm.setInt(13, 1);
+                ptm.setInt(14, tId);
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
 
 //        ProductDTO product = dao.getProductByID(1);
 //        System.out.println(product.getProductName());
-        dao.editProduct(1, "ÁO KHOÁC REGULAR TECHNICALLL", "Áo sơ mi khoác bằng cotton dệt chéo, có cổ, nẹp khuy liền và cầu vai phía sau. Túi ngực mở, tay dài có nẹp tay áo và măng sét cài khuy cùng vạt tròn.",
-                6, "assets/img/products/1-1.jpg assets/img/products/1-2.jpg", "Trắng,Đen,Rêu", "S,M", "2021-12-01", 0.4, 249.000, 1, 1, 1);
+//        dao.insertProduct("GIÀY CHELSEA BOOTS ALL BLACK", 12, 6, 3, 123.0, 0.7, "40,41,42,43", "Đen", 123, "2022-05-04", "assets/img/products/28-1.jpg assets/img/products/29-2.jpg assets/img/products/29-3.jpg ",
+//                "Vẻ đẹp của một đôi giày Chelsea boots bắt đầu bằng sự đơn giản. Từ việc không có những đường viền cầu kỳ đến hình dáng phức tạp là điều nổi bật nhất để sản phẩm này trường tồn mãi với thời gian.");
+        dao.insertProduct("", 12, 6, 3, 123.0, 1, "", "", 123, "", "",
+                "");
         for (ProductDTO productDTO : dao.getData()) {
             System.out.println(productDTO.getName());
         }

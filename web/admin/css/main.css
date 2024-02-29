@@ -15555,7 +15555,6 @@ td, th {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
     left: 0;
     top: 0;
     width: 100%; /* Full width */
@@ -15617,7 +15616,7 @@ td, th {
 }
 
 .modal-header {
-    padding: 5px 16px;
+    padding: 15px 16px;
     background-color: white;
     color: white;
 }

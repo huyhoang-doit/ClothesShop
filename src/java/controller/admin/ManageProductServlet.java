@@ -26,6 +26,10 @@ public class ManageProductServlet extends HttpServlet {
 
     private final String PRODUCT_PAGE = "admin_products.jsp";
     private final String INSERT_PRODUCT_PAGE = "admin_products_insert.jsp";
+    private final String INSERT = "Insert";
+    private final String DELETE_PRODUCT_CONTROLLER = "DeleteProductServlet";
+    private final String INSERT_PRODUCT_CONTROLLER = "InsertProductServlet";
+    private final String Delete = "Delete";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -41,9 +45,8 @@ public class ManageProductServlet extends HttpServlet {
             if (action == null) {
                 request.setAttribute("LIST_PRODUCTS", listProducts);
                 request.setAttribute("LIST_CATEGORIES", listCategories);
-            } else if (action.equals("insert")) {
-                url = INSERT_PRODUCT_PAGE;
-                request.setAttribute("LIST_CATEGORIES", listCategories);
+            } else if (action.equals(INSERT)) {
+                url = INSERT_PRODUCT_CONTROLLER;
             } else if (action.equals("update")) {
                 request.setAttribute("LIST_PRODUCTS", listProducts);
                 request.setAttribute("LIST_CATEGORIES", listCategories);
