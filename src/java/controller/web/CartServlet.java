@@ -26,8 +26,8 @@ import model.UserDTO;
 @WebServlet(name = "CartServlet", urlPatterns = {"/CartServlet"})
 public class CartServlet extends HttpServlet {
 
-    private static final String LOGIN = "LoginServlet";
-    private static final String CART_AJAX = "ajax/cart_ajax.jsp";
+    private static final String LOGIN = "LoginServlet?btnAction=Login";
+    private static final String CART_AJAX = "DispatchServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -40,7 +40,7 @@ public class CartServlet extends HttpServlet {
             UserDTO user = (UserDTO) session.getAttribute("account");
             ProductDAO pDao = new ProductDAO();
             CartDAO cDao = new CartDAO();
-            
+
             ProductDTO product = pDao.getProductByID(Integer.parseInt(product_id));
             if (user == null) {
                 url = LOGIN;

@@ -39,6 +39,7 @@ public class DispatchServlet extends HttpServlet {
     private final String WISHLIST_CONTROLlER = "WishlistServlet";
     private final String REGISTER_CONTROLLER = "RegisterServlet";
     private final String SEARCH_CONTROLLER = "SearchServlet";
+    private final String SHOP_CONTROLLER = "SearchServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -62,9 +63,7 @@ public class DispatchServlet extends HttpServlet {
                 url = REGISTER_CONTROLLER;
             } else if (btnValue.equals(SEARCH)) {
                 url = SEARCH_CONTROLLER;
-            } else if (btnValue.equals(ADDTOCART)) {
-                url = CART_CONTROLlER;
-            }else if (btnValue.equals(ADDTOWISHLIST)) {
+            } else if (btnValue.equals(ADDTOWISHLIST)) {
                 url = WISHLIST_CONTROLlER;
             }
         } catch (Exception ex) {

@@ -177,26 +177,26 @@
                                     <div class="row">
                                         <div class="product_active owl-carousel">
                                             <c:if test="${requestScope.LIST_PRODUCTS_NEW != null}">
-                                                <c:forEach var="i" items="${requestScope.LIST_PRODUCTS_NEW}">
+                                                <c:forEach var="p" items="${requestScope.LIST_PRODUCTS_NEW}">
                                                     <div class="col-lg-3">
                                                         <div class="single_product">
                                                             <div class="product_thumb">
-                                                                <a href="SingleProductServlet?product_id=${i.id}"><img src="${i.images[0]}" alt=""></a> 
+                                                                <a href="SingleProductServlet?product_id=${p.id}"><img src="${p.images[0]}" alt=""></a> 
                                                                 <div class="img_icone">
                                                                     <img src="assets/img/cart/span-new.png" alt="">
                                                                 </div>
                                                                 <div class="product_action">
-                                                                    <a href="CartServlet?product_id=${i.id}&quantity=1"  > <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <a href="CartServlet?product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
-                                                                <span class="product_price">${i.price} &#8363</span>
-                                                                <h3 class="product_title"><a href="SingleProductServlet?product_id=${i.id}">${i.name}</a></h3>
+                                                                <span class="product_price">${p.price} &#8363</span>
+                                                                <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
-                                                                    <li><a href="DispatchServlet?btnAction=AddToWishList&product_id=${i.id}" title=" Add to Wishlist ">Yêu thích</a></li>
-                                                                    <li><a href="SingleProductServlet?product_id=${i.id}" title="View Detail">Xem sản phẩm</a></li>
+                                                                    <li><a href="DispatchServlet?btnAction=AddToWishList&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                    <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -224,7 +224,7 @@
                                                                 <img src="assets\img\cart\span-hot.png" alt="">
                                                             </div>
                                                             <div class="product_action">
-                                                                <a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                <a href="CartServlet?product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                             </div>
                                                         </div>
                                                         <div class="product_content">

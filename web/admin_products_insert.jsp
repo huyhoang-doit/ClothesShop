@@ -236,7 +236,7 @@
                                 <div class="form-group col-md-12">
                                     <label class="control-label">Ảnh sản phẩm</label>
                                     <div id="myfileupload">
-                                        <input type="file" id="uploadfile" multiple name="product_img" onchange="readURL(this);" />
+                                        <input type="file" id="uploadfile" multiple="" name="product_img" onchange="readURL(this);" />
                                     </div>
                                     <div id="thumbbox">
                                         <img height="450" width="400" alt="Thumb image" id="thumbimage" style="display: none" />
