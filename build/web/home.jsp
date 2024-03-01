@@ -47,11 +47,11 @@
                                         <c:if test="${requestScope.LIST_TYPES!= null && !requestScope.LIST_TYPES.isEmpty()}">
                                             <c:forEach items="${requestScope.LIST_TYPES}" var="t">
                                                 <li class="has-sub">
-                                                    <a href="FilterServlet?action=filterByType&type_id=${t.id}"><i class="fa fa-caret-right"></i>${t.name}</a>
+                                                    <a href="#"><i class="fa fa-caret-right"></i>${t.name}</a>
                                                         <c:forEach items="${requestScope.LIST_CATEGORIESS}" var="c">
                                                             <c:if test="${t.id == c.type.id}" >
                                                             <ul class="categorie_sub">
-                                                                <li><a href="FilterServlet?btnAction=filterByCategory&category_id=${c.id}"><i class="fa fa-caret-right"></i> ${c.name}</a>
+                                                                <li><a href="FilterServlet?btnAction=filterByCategory&id=${c.id}"><i class="fa fa-caret-right"></i> ${c.name}</a>
                                                                 </li>
                                                             </ul>    
                                                         </c:if>
@@ -278,7 +278,7 @@
                                             <c:forEach items="${requestScope.LIST_SUPPLIERS}" var="s">
                                                 <div class="col-lg-2">
                                                     <div class="single_brand">
-                                                        <a href="FilterServlet?btnAction=filterBySupplier&supplier_id=${s.id}"><img src="${s.image}" alt=""></a>
+                                                        <a href="FilterServlet?btnAction=filterBySupplier&id=${s.id}"><img src="${s.image}" alt=""></a>
                                                     </div>
                                                 </div>
                                             </c:forEach>
