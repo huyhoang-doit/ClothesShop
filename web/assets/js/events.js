@@ -78,16 +78,37 @@ function sortProducts(event) {
     });
 }
 
-function searchProducts(tag) {
+function searchProducts(tag,scope) {
     var text = tag.value;
+    var scope = scope;
     $.ajax({
         url: "/PRJ301_Sp24_ClothesShop/SearchServlet",
         type: "get",
         data: {
-            txtSearch: text
+            txtSearch: text,
+            scope: scope
         },
         success: function (data) {
             var row = document.getElementById("listproduct");
+            row.innerHTML = data;
+        },
+        error: function (xhr) {
+        }
+    });
+}
+
+function addProductToCart(product_id,quantity) {
+    var productId = product_id;
+    var sl = quantity;
+    $.ajax({
+        url: "/PRJ301_Sp24_ClothesShop/CartServlet",
+        type: "get",
+        data: {
+            product_id: productId,
+            quantity: sl
+        },
+        success: function (data) {
+            var row = document.getElementById("cart-icon");
             row.innerHTML = data;
         },
         error: function (xhr) {

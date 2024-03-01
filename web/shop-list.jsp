@@ -180,7 +180,7 @@
                                         </div>
                                         <div class="search_bar">
                                             <form action="#">
-                                                <input oninput="searchProducts(this)" value="" placeholder="Search..." type="text">
+                                                <input oninput="searchProducts(this,'shop-list.jsp')" value="" placeholder="Search..." type="text">
                                                 <i style="margin-left: -24px" class="fa fa-search"></i>
                                             </form>
                                         </div>

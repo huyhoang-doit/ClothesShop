@@ -62,44 +62,69 @@
                                     </ul>
                                 </div>
                                 <!--categorie menu end-->
-
-                                <!--wishlist block start-->
-                                <div class="sidebar_widget wishlist mb-35">
-                                    <div class="block_title">
-                                        <h3><a href="#">Wishlist</a></h3>
+                                <c:if test="${sessionScope.account !=null}">
+                                    <!--wishlist block start-->
+                                    <div class="sidebar_widget wishlist mb-35">
+                                        <div class="block_title">
+                                            <h3><a href="#">Wishlist</a></h3>
+                                        </div>
+                                        <div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="#"><img src="assets\img\cart\cart.jpg" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="#">lorem ipsum dolor</a>
+                                                <span class="cart_price">$115.00</span>
+                                                <span class="quantity">Qty: 1</span>
+                                            </div>
+                                            <div class="cart_remove">
+                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="#"><img src="assets\img\cart\cart2.jpg" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="#">Quisque ornare dui</a>
+                                                <span class="cart_price">$105.00</span>
+                                                <span class="quantity">Qty: 1</span>
+                                            </div>
+                                            <div class="cart_remove">
+                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="block_content">
+                                            <p>2  products</p>
+                                            <a href="#">» My wishlists</a>
+                                        </div>
                                     </div>
-                                    <div class="cart_item">
-                                        <div class="cart_img">
-                                            <a href="#"><img src="assets\img\cart\cart.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart_info">
-                                            <a href="#">lorem ipsum dolor</a>
-                                            <span class="cart_price">$115.00</span>
-                                            <span class="quantity">Qty: 1</span>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                        </div>
+                                    <!--wishlist block end-->
+                                </c:if>
+                                <c:if test="${sessionScope.account == null}">
+                                    <!--newsletter block start-->
+                                    <div class="sidebar_widget newsletter mb-35">
+                                        <div class="block_title">
+                                            <h3>newsletter</h3>
+                                        </div> 
+                                        <form action="EmailServlet" method="POST">
+                                            <p>Sign up for your newsletter</p>
+                                            <input placeholder="Your email address" type="text" name="email" value="<c:if test="${requestScope.EMAIL_CUSTOMER != null}">${requestScope.EMAIL_CUSTOMER}</c:if>">
+                                                <button type="submit" name="action" value="subscribe">Subscribe</button>
+                                            <c:if test="${requestScope.CHECK == 'success'}">
+                                                <div class="col-12">
+                                                    <span class="form-messege" style='color: green;'>${requestScope.MESSAGE}</span>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${requestScope.CHECK == 'fail'}">
+                                                <div class="col-12">
+                                                    <span class="form-messege" style='color: red;'>${requestScope.MESSAGE}</span>
+                                                </div>
+                                            </c:if>
+                                        </form>   
                                     </div>
-                                    <div class="cart_item">
-                                        <div class="cart_img">
-                                            <a href="#"><img src="assets\img\cart\cart2.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart_info">
-                                            <a href="#">Quisque ornare dui</a>
-                                            <span class="cart_price">$105.00</span>
-                                            <span class="quantity">Qty: 1</span>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="block_content">
-                                        <p>2  products</p>
-                                        <a href="#">» My wishlists</a>
-                                    </div>
-                                </div>
-                                <!--wishlist block end-->
+                                    <!--newsletter block end--> 
+                                </c:if>
 
                                 <!--sidebar banner-->
                                 <div class="sidebar_widget bottom ">
@@ -161,7 +186,7 @@
                                                                     <img src="assets/img/cart/span-new.png" alt="">
                                                                 </div>
                                                                 <div class="product_action">
-                                                                    <a href="DispatchServlet?btnAction=AddToCart&product_id=${i.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <a href="CartServlet?product_id=${i.id}&quantity=1"  > <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
@@ -226,17 +251,17 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single_banner">
                                                 <a href="#"><img src="assets\img\banner\banner7.jpg" alt=""></a>
-<!--                                                <div class="banner_title">
-                                                    <p>Up to <span> 40%</span> off</p>
-                                                </div>-->
+                                                <!--                                                <div class="banner_title">
+                                                                                                    <p>Up to <span> 40%</span> off</p>
+                                                                                                </div>-->
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single_banner">
                                                 <a href="#"><img src="assets\img\banner\banner8.jpg" alt=""></a>
-<!--                                                <div class="banner_title title_2">
-                                                    <p>sale off <span> 30%</span></p>
-                                                </div>-->
+                                                <!--                                                <div class="banner_title title_2">
+                                                                                                    <p>sale off <span> 30%</span></p>
+                                                                                                </div>-->
                                             </div>
                                         </div>
                                     </div>

@@ -62,7 +62,7 @@
                             <button name="btnAction" value="Search" type="submit"><i class="fa fa-search"></i></button>
                         </form>
                     </div>
-                    <div class="shopping_cart">
+                    <div class="shopping_cart" id="cart-icon">
                         <c:if test="${sessionScope.CART != null}">
                             <a href="#"><i class="fa fa-shopping-cart"></i> ${sessionScope.CART.size()} Items <i class="fa fa-angle-down"></i></a>
                             </c:if>
