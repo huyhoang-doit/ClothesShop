@@ -27,12 +27,12 @@ import model.UserDTO;
 public class CartServlet extends HttpServlet {
 
     private static final String LOGIN = "LoginServlet";
-    private static final String WELCOME = "DispatchServlet";
+    private static final String CART_AJAX = "ajax/cart_ajax.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = WELCOME;
+        String url = CART_AJAX;
         try {
             HttpSession session = request.getSession();
             String quantity = request.getParameter("quantity");

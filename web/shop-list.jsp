@@ -178,12 +178,12 @@
                                         <!--<p>Showing 1–<c:if test="${LISTPRODUCTS.size() < 9}">${LISTPRODUCTS.size()}</c:if><c:if test="${LISTPRODUCTS.size() >= 9}">9</c:if> of ${LISTPRODUCTS.size()}  results</p>-->
 
                                         </div>
-<!--                                        <div class="search_bar">
+                                        <div class="search_bar">
                                             <form action="#">
-                                                <input oninput="searchProducts(this)" value="" placeholder="Search..." type="text">
+                                                <input oninput="searchProducts(this,'shop-list.jsp')" value="" placeholder="Search..." type="text">
                                                 <i style="margin-left: -24px" class="fa fa-search"></i>
                                             </form>
-                                        </div>-->
+                                        </div>
                                     </div>
                                     <!--shop toolbar end-->
 
