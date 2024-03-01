@@ -25,7 +25,8 @@ import model.ProductDTO;
 @WebServlet(name = "SearchServlet", urlPatterns = {"/SearchServlet"})
 public class SearchServlet extends HttpServlet {
 
-    private static final String SEARCH_PAGE = "ajax/sortproducts.jsp";
+    private static final String SEARCH_PAGE = "shop-list.jsp";
+    private static final String SEARCH_IN_SHOPLIST = "ajax/sortproducts.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -33,11 +34,16 @@ public class SearchServlet extends HttpServlet {
         String url = SEARCH_PAGE;
         try {
             String txtSearch = request.getParameter("txtSearch");
+            String scope = request.getParameter("scope");
             ProductDAO pDao = new ProductDAO();
             List<ProductDTO> listProducts = pDao.getProductBySearch(txtSearch);
             CategoryDAO cDao = new CategoryDAO();
             List<CategoryDTO> listCategories = cDao.getData();
             
+            
+            if(("shop-list.jsp").equals(scope)) {
+                url = SEARCH_IN_SHOPLIST;
+            }
             //Paging
             int page, numPerPage = 9;
             int size = listProducts.size();
@@ -54,12 +60,14 @@ public class SearchServlet extends HttpServlet {
 
             List<ProductDTO> listByPage = pDao.getListByPage(listProducts, start, end);
             
+            
+            
             request.setAttribute("LISTPRODUCTS", listByPage);
             request.setAttribute("LISTCATEGORIES", listCategories);
         } catch (Exception e) {
 
         } finally {
-            request.getRequestDispatcher(SEARCH_PAGE).forward(request, response);
+            request.getRequestDispatcher(url).forward(request, response);
         }
     }
 

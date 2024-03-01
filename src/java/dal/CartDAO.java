@@ -12,12 +12,14 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 import model.CartDTO;
+import model.ProductDTO;
 
 /**
  *
  * @author lvhho
  */
 public class CartDAO extends DBContext {
+    private ProductDAO pDao = new ProductDAO();
 
     private static final String GET_CART_BY_USERNAME = "SELECT * FROM Carts WHERE username = ?";
     private static final String CREATE_CART = "INSERT INTO Carts VALUES (?,?,?)";
@@ -31,7 +33,7 @@ public class CartDAO extends DBContext {
             con = getConnection();
             if (con != null) {
                 ptm = con.prepareStatement(CREATE_CART);
-                ptm.setInt(1, cart.getProductID());
+                ptm.setInt(1, cart.getProduct().getId());
                 ptm.setString(2, cart.getUserName());
                 ptm.setInt(3, cart.getQuantity());
                 int result = ptm.executeUpdate();
@@ -54,7 +56,7 @@ public class CartDAO extends DBContext {
             con = getConnection();
             if (con != null) {
                 ptm = con.prepareStatement(INSERT_CART);
-                ptm.setInt(1, cart.getProductID());
+                ptm.setInt(1, cart.getProduct().getId());
                 ptm.setString(2, cart.getUserName());
                 ptm.setInt(3, cart.getQuantity());
                 int result = ptm.executeUpdate();
@@ -83,7 +85,8 @@ public class CartDAO extends DBContext {
                     int quantity = rs.getInt("quantity");
                     String userName = name;
                     int product_id = rs.getInt("productid");
-                    CartDTO c = new CartDTO(product_id, quantity, userName);
+                    ProductDTO product = pDao.getProductByID(product_id);
+                    CartDTO c = new CartDTO(product, quantity, userName);
                     list.add(c);
                 }
             }
@@ -97,7 +100,7 @@ public class CartDAO extends DBContext {
         CartDAO dao = new CartDAO();
         List<CartDTO> list = dao.getCartByUserName("admin");
         for (CartDTO cartDTO : list) {
-            System.out.println(cartDTO.getProductID());
+            System.out.println(cartDTO.getProduct().getId());
         }
     }
 }

@@ -180,7 +180,7 @@
                                         </div>
                                         <div class="search_bar">
                                             <form action="#">
-                                                <input oninput="searchProducts(this)" value="" placeholder="Search..." type="text">
+                                                <input oninput="searchProducts(this,'shop-list.jsp')" value="" placeholder="Search..." type="text">
                                                 <i style="margin-left: -24px" class="fa fa-search"></i>
                                             </form>
                                         </div>
@@ -214,7 +214,7 @@
                                                                     </div>
                                                                 </c:if>
                                                                 <div class="product_action">
-                                                                    <a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <a href="CartServlet?product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
@@ -259,7 +259,7 @@
                                                                 </div>
                                                                 <div class="add_links">
                                                                     <ul>
-                                                                        <li><a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}" title="add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+                                                                        <li><a href="CartServlet?product_id=${p.id}&quantity=1" title="add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
                                                                         <li><a href="#" title="add to wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
 
                                                                         <li><a href="SingleProductServlet?product_id=${p.id}" title="Quick view"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
@@ -310,7 +310,7 @@
                                                 </c:if>
                                                 <c:forEach var="i" begin="1" end="${requestScope.NUMBERPAGE}">
                                                     <li>
-                                                        <a style="${page == i ? "color: #e84c3d" :""}" href="FilterServlet?page=${i}&id_group=${requestScope.ID_GROUP}&sort_group=${requestScope.SORT_GROUP}">${i}</a>
+                                                        <a style="${page == i ? "color: #e84c3d" :""}" href="FilterServlet?category_id=${requestScope.ID_GROUP}&page=${i}&id_group=${requestScope.ID_GROUP}&sort_group=${requestScope.SORT_GROUP}">${i}</a>
                                                     </li>
                                                 </c:forEach>
                                                 <c:if test="${page != NUMBERPAGE}">

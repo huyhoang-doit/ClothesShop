@@ -42,11 +42,7 @@ public class FilterServlet extends HttpServlet {
             }
             String id = request.getParameter("id_group");
 
-            if ("filterByType".equals(action)) {
-                id = request.getParameter("type_id");
-                listProducts = pDao.getProductByTypeId(Integer.parseInt(id));
-
-            } else if ("filterByCategory".equals(action)) {
+            if ("filterByCategory".equals(action)) {
                 id = request.getParameter("category_id");
                 listProducts = pDao.getProductByCategoryId(Integer.parseInt(id));
             } else if ("filterBySupplier".equals(action)) {

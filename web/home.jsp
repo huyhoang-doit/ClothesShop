@@ -42,14 +42,14 @@
 
                                 <!--categorie menu start-->
                                 <div class="sidebar_widget catrgorie mb-35">
-                                    <h3>Categories</h3>
+                                    <h3>Bạn tìm</h3>
                                     <ul>
                                         <c:if test="${requestScope.LIST_TYPES!= null && !requestScope.LIST_TYPES.isEmpty()}">
                                             <c:forEach items="${requestScope.LIST_TYPES}" var="t">
                                                 <li class="has-sub">
                                                     <a href="FilterServlet?action=filterByType&type_id=${t.id}"><i class="fa fa-caret-right"></i>${t.name}</a>
                                                         <c:forEach items="${requestScope.LIST_CATEGORIESS}" var="c">
-                                                            <c:if test="${t.id == c.id}" >
+                                                            <c:if test="${t.id == c.type.id}" >
                                                             <ul class="categorie_sub">
                                                                 <li><a href="FilterServlet?btnAction=filterByCategory&category_id=${c.id}"><i class="fa fa-caret-right"></i> ${c.name}</a>
                                                                 </li>
@@ -62,44 +62,69 @@
                                     </ul>
                                 </div>
                                 <!--categorie menu end-->
-
-                                <!--wishlist block start-->
-                                <div class="sidebar_widget wishlist mb-35">
-                                    <div class="block_title">
-                                        <h3><a href="#">Wishlist</a></h3>
+                                <c:if test="${sessionScope.account !=null}">
+                                    <!--wishlist block start-->
+                                    <div class="sidebar_widget wishlist mb-35">
+                                        <div class="block_title">
+                                            <h3><a href="#">Wishlist</a></h3>
+                                        </div>
+                                        <div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="#"><img src="assets\img\cart\cart.jpg" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="#">lorem ipsum dolor</a>
+                                                <span class="cart_price">$115.00</span>
+                                                <span class="quantity">Qty: 1</span>
+                                            </div>
+                                            <div class="cart_remove">
+                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="#"><img src="assets\img\cart\cart2.jpg" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="#">Quisque ornare dui</a>
+                                                <span class="cart_price">$105.00</span>
+                                                <span class="quantity">Qty: 1</span>
+                                            </div>
+                                            <div class="cart_remove">
+                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="block_content">
+                                            <p>2  products</p>
+                                            <a href="#">» My wishlists</a>
+                                        </div>
                                     </div>
-                                    <div class="cart_item">
-                                        <div class="cart_img">
-                                            <a href="#"><img src="assets\img\cart\cart.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart_info">
-                                            <a href="#">lorem ipsum dolor</a>
-                                            <span class="cart_price">$115.00</span>
-                                            <span class="quantity">Qty: 1</span>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                        </div>
+                                    <!--wishlist block end-->
+                                </c:if>
+                                <c:if test="${sessionScope.account == null}">
+                                    <!--newsletter block start-->
+                                    <div class="sidebar_widget newsletter mb-35">
+                                        <div class="block_title">
+                                            <h3>newsletter</h3>
+                                        </div> 
+                                        <form action="EmailServlet" method="POST">
+                                            <p>Sign up for your newsletter</p>
+                                            <input placeholder="Your email address" type="text" name="email" value="<c:if test="${requestScope.EMAIL_CUSTOMER != null}">${requestScope.EMAIL_CUSTOMER}</c:if>">
+                                                <button type="submit" name="action" value="subscribe">Subscribe</button>
+                                            <c:if test="${requestScope.CHECK == 'success'}">
+                                                <div class="col-12">
+                                                    <span class="form-messege" style='color: green;'>${requestScope.MESSAGE}</span>
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${requestScope.CHECK == 'fail'}">
+                                                <div class="col-12">
+                                                    <span class="form-messege" style='color: red;'>${requestScope.MESSAGE}</span>
+                                                </div>
+                                            </c:if>
+                                        </form>   
                                     </div>
-                                    <div class="cart_item">
-                                        <div class="cart_img">
-                                            <a href="#"><img src="assets\img\cart\cart2.jpg" alt=""></a>
-                                        </div>
-                                        <div class="cart_info">
-                                            <a href="#">Quisque ornare dui</a>
-                                            <span class="cart_price">$105.00</span>
-                                            <span class="quantity">Qty: 1</span>
-                                        </div>
-                                        <div class="cart_remove">
-                                            <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                        </div>
-                                    </div>
-                                    <div class="block_content">
-                                        <p>2  products</p>
-                                        <a href="#">» My wishlists</a>
-                                    </div>
-                                </div>
-                                <!--wishlist block end-->
+                                    <!--newsletter block end--> 
+                                </c:if>
 
                                 <!--sidebar banner-->
                                 <div class="sidebar_widget bottom ">
@@ -152,26 +177,26 @@
                                     <div class="row">
                                         <div class="product_active owl-carousel">
                                             <c:if test="${requestScope.LIST_PRODUCTS_NEW != null}">
-                                                <c:forEach var="i" items="${requestScope.LIST_PRODUCTS_NEW}">
+                                                <c:forEach var="p" items="${requestScope.LIST_PRODUCTS_NEW}">
                                                     <div class="col-lg-3">
                                                         <div class="single_product">
                                                             <div class="product_thumb">
-                                                                <a href="SingleProductServlet?product_id=${i.id}"><img src="${i.images[0]}" alt=""></a> 
+                                                                <a href="SingleProductServlet?product_id=${p.id}"><img src="${p.images[0]}" alt=""></a> 
                                                                 <div class="img_icone">
                                                                     <img src="assets/img/cart/span-new.png" alt="">
                                                                 </div>
                                                                 <div class="product_action">
-                                                                    <a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <a href="CartServlet?product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
-                                                                <span class="product_price">${i.price} &#8363</span>
-                                                                <h3 class="product_title"><a href="SingleProductServlet?product_id=${i.id}">${i.name}</a></h3>
+                                                                <span class="product_price">${p.price} &#8363</span>
+                                                                <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
-                                                                    <li><a href="#" title=" Add to Wishlist ">Yêu thích</a></li>
-                                                                    <li><a href="SingleProductServlet?product_id=${i.id}" title="View Detail">Xem sản phẩm</a></li>
+                                                                    <li><a href="DispatchServlet?btnAction=AddToWishList&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                    <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                                 </ul>
                                                             </div>
                                                         </div>
@@ -199,7 +224,7 @@
                                                                 <img src="assets\img\cart\span-hot.png" alt="">
                                                             </div>
                                                             <div class="product_action">
-                                                                <a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                <a href="CartServlet?product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                             </div>
                                                         </div>
                                                         <div class="product_content">
@@ -208,7 +233,7 @@
                                                         </div>
                                                         <div class="product_info">
                                                             <ul>
-                                                                <li><a href="#" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                <li><a href="DispatchServlet?btnAction=AddToWishList&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
                                                                 <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                             </ul>
                                                         </div>
@@ -226,17 +251,17 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single_banner">
                                                 <a href="#"><img src="assets\img\banner\banner7.jpg" alt=""></a>
-<!--                                                <div class="banner_title">
-                                                    <p>Up to <span> 40%</span> off</p>
-                                                </div>-->
+                                                <!--                                                <div class="banner_title">
+                                                                                                    <p>Up to <span> 40%</span> off</p>
+                                                                                                </div>-->
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single_banner">
                                                 <a href="#"><img src="assets\img\banner\banner8.jpg" alt=""></a>
-<!--                                                <div class="banner_title title_2">
-                                                    <p>sale off <span> 30%</span></p>
-                                                </div>-->
+                                                <!--                                                <div class="banner_title title_2">
+                                                                                                    <p>sale off <span> 30%</span></p>
+                                                                                                </div>-->
                                             </div>
                                         </div>
                                     </div>
