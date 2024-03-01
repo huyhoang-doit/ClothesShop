@@ -10,22 +10,22 @@ package model;
  * @author lvhho
  */
 public class CartDTO {
-    private int productID;
+    private ProductDTO product;
     private int quantity;
     private String userName;
 
-    public CartDTO(int productID, int quantity, String userName) {
-        this.productID = productID;
+    public CartDTO(ProductDTO product, int quantity, String userName) {
+        this.product = product;
         this.quantity = quantity;
         this.userName = userName;
     }
 
-    public int getProductID() {
-        return productID;
+    public ProductDTO getProduct() {
+        return product;
     }
 
-    public void setProductID(int productID) {
-        this.productID = productID;
+    public void setProduct(ProductDTO product) {
+        this.product = product;
     }
 
     public int getQuantity() {

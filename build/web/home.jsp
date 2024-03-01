@@ -42,14 +42,14 @@
 
                                 <!--categorie menu start-->
                                 <div class="sidebar_widget catrgorie mb-35">
-                                    <h3>Categories</h3>
+                                    <h3>Bạn tìm</h3>
                                     <ul>
                                         <c:if test="${requestScope.LIST_TYPES!= null && !requestScope.LIST_TYPES.isEmpty()}">
                                             <c:forEach items="${requestScope.LIST_TYPES}" var="t">
                                                 <li class="has-sub">
                                                     <a href="FilterServlet?action=filterByType&type_id=${t.id}"><i class="fa fa-caret-right"></i>${t.name}</a>
                                                         <c:forEach items="${requestScope.LIST_CATEGORIESS}" var="c">
-                                                            <c:if test="${t.id == c.id}" >
+                                                            <c:if test="${t.id == c.type.id}" >
                                                             <ul class="categorie_sub">
                                                                 <li><a href="FilterServlet?btnAction=filterByCategory&category_id=${c.id}"><i class="fa fa-caret-right"></i> ${c.name}</a>
                                                                 </li>
@@ -161,7 +161,7 @@
                                                                     <img src="assets/img/cart/span-new.png" alt="">
                                                                 </div>
                                                                 <div class="product_action">
-                                                                    <a href="DispatchServlet?btnAction=AddToCart&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <a href="DispatchServlet?btnAction=AddToCart&product_id=${i.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
@@ -170,7 +170,7 @@
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
-                                                                    <li><a href="#" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                    <li><a href="DispatchServlet?btnAction=AddToWishList&product_id=${i.id}" title=" Add to Wishlist ">Yêu thích</a></li>
                                                                     <li><a href="SingleProductServlet?product_id=${i.id}" title="View Detail">Xem sản phẩm</a></li>
                                                                 </ul>
                                                             </div>
@@ -208,7 +208,7 @@
                                                         </div>
                                                         <div class="product_info">
                                                             <ul>
-                                                                <li><a href="#" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                <li><a href="DispatchServlet?btnAction=AddToWishList&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
                                                                 <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                             </ul>
                                                         </div>
