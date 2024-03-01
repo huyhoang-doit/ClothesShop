@@ -165,8 +165,8 @@
                     win.document.write(tab.outerHTML);
                     win.document.close();
                     win.print();
-                }
-            }
+                };
+            };
         </script>
     </body>
 

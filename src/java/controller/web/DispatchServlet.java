@@ -37,6 +37,7 @@ public class DispatchServlet extends HttpServlet {
     private final String CART_CONTROLlER = "CartServlet";
     private final String REGISTER_CONTROLLER = "RegisterServlet";
     private final String SEARCH_CONTROLLER = "SearchServlet";
+    private final String SHOP_CONTROLLER = "SearchServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

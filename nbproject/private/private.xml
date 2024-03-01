@@ -4,13 +4,19 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/Project/ClothingStore/web/admin_categories.jsp</file>
+            <file>file:/D:/Project/ClothingStore/src/java/controller/admin/InsertProductServlet.java</file>
+            <file>file:/D:/Project/ClothingStore/web/admin/js/jquery-3.2.1.min.js</file>
+            <file>file:/D:/Project/ClothingStore/web/admin_users.jsp</file>
+            <file>file:/D:/Project/ClothingStore/web/admin/js/main.js</file>
+            <file>file:/D:/Project/ClothingStore/web/chart.jsp</file>
+            <file>file:/D:/Project/ClothingStore/web/admin_order.jsp</file>
+            <file>file:/D:/Project/ClothingStore/src/java/controller/web/DispatchServlet.java</file>
+            <file>file:/D:/Project/ClothingStore/web/admin/js/popper.min.js</file>
             <file>file:/D:/Project/ClothingStore/web/common/admin/sidebar.jsp</file>
             <file>file:/D:/Project/ClothingStore/web/admin_products.jsp</file>
-            <file>file:/D:/Project/ClothingStore/src/java/controller/web/ShopServlet.java</file>
+            <file>file:/D:/Project/ClothingStore/web/admin_user_insert.jsp</file>
             <file>file:/D:/Project/ClothingStore/src/java/controller/admin/ManageProductServlet.java</file>
-            <file>file:/D:/Project/ClothingStore/web/assets/css/style.css</file>
             <file>file:/D:/Project/ClothingStore/src/java/dal/ProductDAO.java</file>
-            <file>file:/D:/Project/ClothingStore/web/assets/js/events.js</file>
         </group>
     </open-files>
 </project-private>
