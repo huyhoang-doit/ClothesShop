@@ -310,12 +310,31 @@
                                                 </c:if>
                                                 <c:forEach var="i" begin="1" end="${requestScope.NUMBERPAGE}">
                                                     <li>
-                                                        <a style="${page == i ? "color: #e84c3d" :""}" href="FilterServlet?category_id=${requestScope.ID_GROUP}&page=${i}&id_group=${requestScope.ID_GROUP}&sort_group=${requestScope.SORT_GROUP}">${i}</a>
+                                                        <a style="${page == i ? "color: #e84c3d" :""}" href="FilterServlet?id=${requestScope.ID_GROUP}&page=${i}&sort_group=${requestScope.SORT_GROUP}">${i}</a>
                                                     </li>
                                                 </c:forEach>
                                                 <c:if test="${page != NUMBERPAGE}">
                                                     <li>
                                                         <a href="FilterServlet?page=${page + 1}&id_group=${requestScope.ID_GROUP}&sort_group=${requestScope.SORT_GROUP}">»</a>
+                                                    </li>
+                                                </c:if>
+                                            </c:if>
+                                                     <!--PAGING SEARCHSERLET--> 
+                                            <c:if test="${requestScope.DATA_FROM == 'SearchServlet'}">
+                                                <c:set var="page" value="${requestScope.CURRENTPAGE}"/>
+                                                <c:if test="${page != 1}">
+                                                    <li>
+                                                        <a href="SearchServlet?page=${page - 1}&sort_group=${requestScope.SORT_GROUP}">«</a>
+                                                    </li>
+                                                </c:if>
+                                                <c:forEach var="i" begin="1" end="${requestScope.NUMBERPAGE}">
+                                                    <li>
+                                                        <a style="${page == i ? "color: #e84c3d" :""}" href="SearchServlet?&page=${i}&sort_group=${requestScope.SORT_GROUP}">${i}</a>
+                                                    </li>
+                                                </c:forEach>
+                                                <c:if test="${page != NUMBERPAGE}">
+                                                    <li>
+                                                        <a href="SearchServlet?page=${page + 1}&id_group=${requestScope.ID_GROUP}&sort_group=${requestScope.SORT_GROUP}">»</a>
                                                     </li>
                                                 </c:if>
                                             </c:if>

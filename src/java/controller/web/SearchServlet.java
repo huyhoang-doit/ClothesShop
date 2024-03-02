@@ -27,6 +27,7 @@ public class SearchServlet extends HttpServlet {
 
     private static final String SEARCH_PAGE = "shop-list.jsp";
     private static final String SEARCH_IN_SHOPLIST = "ajax/sortproducts.jsp";
+    private static final String SORT = "ajax/sortproducts.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -34,15 +35,35 @@ public class SearchServlet extends HttpServlet {
         String url = SEARCH_PAGE;
         try {
             String txtSearch = request.getParameter("txtSearch");
+            String sort_group = request.getParameter("sort_group");
             String scope = request.getParameter("scope");
             ProductDAO pDao = new ProductDAO();
             List<ProductDTO> listProducts = pDao.getProductBySearch(txtSearch);
             CategoryDAO cDao = new CategoryDAO();
             List<CategoryDTO> listCategories = cDao.getData();
-            
-            
-            if(("shop-list.jsp").equals(scope)) {
+
+            if (("shop-list.jsp").equals(scope)) {
                 url = SEARCH_IN_SHOPLIST;
+            }
+            
+            if(sort_group == null) {
+                sort_group = txtSearch;
+            }
+
+            String valueSort = request.getParameter("valueSort");
+            if (valueSort != null) {
+                switch (valueSort) {
+                    case "1":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                    case "2":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                    case "3":
+                        listProducts = pDao.sortProduct(listProducts, valueSort);
+                        break;
+                }
+                url = SORT;
             }
             //Paging
             int page, numPerPage = 9;
@@ -59,9 +80,13 @@ public class SearchServlet extends HttpServlet {
             end = Math.min(page * numPerPage, size);
 
             List<ProductDTO> listByPage = pDao.getListByPage(listProducts, start, end);
-            
-            
-            
+
+            request.setAttribute("DATA_FROM", "SearchServlet");
+            request.setAttribute("SORT_GROUP", sort_group);
+            request.setAttribute("CURRENTPAGE", page);
+            request.setAttribute("LISTPRODUCTS", listByPage);
+            request.setAttribute("LISTCATEGORIES", listCategories);
+            request.setAttribute("VALUESORT", valueSort);
             request.setAttribute("LISTPRODUCTS", listByPage);
             request.setAttribute("LISTCATEGORIES", listCategories);
         } catch (Exception e) {

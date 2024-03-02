@@ -37,16 +37,14 @@ public class FilterServlet extends HttpServlet {
             List<ProductDTO> listProducts = new ArrayList<>();
             String group = request.getParameter("sort_group");
             String action = request.getParameter("btnAction");
+            String id = request.getParameter("id");
             if(action == null) {
                 action = group;
             }
-            String id = request.getParameter("id_group");
 
             if ("filterByCategory".equals(action)) {
-                id = request.getParameter("category_id");
                 listProducts = pDao.getProductByCategoryId(Integer.parseInt(id));
             } else if ("filterBySupplier".equals(action)) {
-                id = request.getParameter("supplier_id");
                 listProducts = pDao.getProductSupplierId(Integer.parseInt(id));
             }
             CategoryDAO cDao = new CategoryDAO();
