@@ -1296,13 +1296,14 @@
     transform: translatey(-50%);
 }
 .widget_color ul li:first-child a::before{
-    background: #000;
+    background: black;
 }
 .widget_color ul li:last-child a::before{
-    background: #93D52D;
+    background: white;
+    border: 0.5px solid black;
 }
 .widget_color ul li:nth-last-child(2) a::before{
-    background: #F3349E;
+    background: brown;
 }
 .widget_color ul li:nth-last-child(3) a::before{
     background: #F6EF04;

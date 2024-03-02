@@ -190,7 +190,13 @@
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
-                                                                <span class="product_price">${p.price} &#8363</span>
+                                                                <div style="display: flex; justify-content: center">
+                                                                    <c:if test="${p.price != p.salePrice}">
+                                                                        <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}</span>
+                                                                    </c:if>
+                                                                    <span class="current_price ani-fire">Rs. ${p.salePrice}
+                                                                    </span>
+                                                                </div>
                                                                 <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
                                                             </div>
                                                             <div class="product_info">
@@ -228,7 +234,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="product_content">
-                                                            <span class="product_price">${p.price}&#273</span>
+                                                            <div style="display: flex; justify-content: center">
+                                                                <c:if test="${p.price != p.salePrice}">
+                                                                    <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}</span>
+                                                                </c:if>
+                                                                <span class="current_price ani-fire">Rs. ${p.salePrice}
+                                                                </span>
+                                                            </div>
                                                             <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
                                                         </div>
                                                         <div class="product_info">
@@ -251,17 +263,17 @@
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single_banner">
                                                 <a href="#"><img src="assets\img\banner\banner7.jpg" alt=""></a>
-                                                <!--                                                <div class="banner_title">
-                                                                                                    <p>Up to <span> 40%</span> off</p>
-                                                                                                </div>-->
+                                                <div class="banner_title">
+                                                    <p>Up to <span> 40%</span> off</p>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-lg-6 col-md-6">
                                             <div class="single_banner">
                                                 <a href="#"><img src="assets\img\banner\banner8.jpg" alt=""></a>
-                                                <!--                                                <div class="banner_title title_2">
-                                                                                                    <p>sale off <span> 30%</span></p>
-                                                                                                </div>-->
+                                                <div class="banner_title title_2">
+                                                    <p>sale off <span> 30%</span></p>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

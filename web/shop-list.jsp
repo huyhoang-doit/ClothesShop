@@ -44,7 +44,7 @@
                     <!--pos home section-->
                     <div class=" pos_home_section">
                         <div class="row pos_home">
-                            <form class="col-lg-3 col-md-12">
+                            <form action="FilterServlet" method="get" class="col-lg-3 col-md-12">
                                 <!--layere categorie"-->
                                 <input id="sortinput" type="hidden" value="${requestScope.VALUESORT}" name="valueSort"/>
                                 <div class="sidebar_widget shop_c">
@@ -77,18 +77,17 @@
                                     <h2>Color</h2>
                                     <div class="widget_color">
                                         <ul>
-                                            <li><a href="#">Black <span>(10)</span></a></li>
+                                            <li><a href="">Đen <span>(10)</span></a></li>
 
-                                            <li><a href="#">Orange <span>(12)</span></a></li>
+                                            <li><a href="#">Cam <span>(12)</span></a></li>
 
-                                            <li> <a href="#">Blue <span>(14)</span></a></li>
+                                            <li><a href="#">Xanh <span>(14)</span></a></li>
 
-                                            <li><a href="#">Yellow <span>(15)</span></a></li>
+                                            <li><a href="#">Vàng <span>(15)</span></a></li>
 
-                                            <li><a href="#">pink <span>(16)</span></a></li>
+                                            <li><a href="#">Nâu <span>(16)</span></a></li>
 
-                                            <li><a href="#">green <span>(11)</span></a></li>
-
+                                            <li><a href="#">Trắng <span>(11)</span></a></li>
                                         </ul>
                                     </div>
                                 </div>                 
@@ -98,11 +97,57 @@
                                 <!--price slider start-->                                     
                                 <div class="sidebar_widget price">
                                     <h2>Price</h2>
-                                    <div class="ca_search_filters">
-                                        <input type="text" name="text" placeholder="">
+                                    <div class="shopee-price-range-filter__inputs" style="margin: 1.25rem 2px 0.625rem;
+                                         display: flex;
+                                         justify-content: space-between;
+                                         align-items: center;
+                                         padding-right: 30px">
+                                        <input type="number" style="height: 35px; width: 90px; background-color: white" name="pricefrom" class="shopee-price-range-filter__input" placeholder="$ FROM" value="${price1 == 0 ? "$ FROM" : price1}" step="0.5" min=1>
+                                        <div class="shopee-price-range-filter__range-line" style="
+                                             flex: 1;
+                                             height: 1px;
+                                             background: #bdbdbd;
+                                             margin: 0 10px;">
+                                        </div>
+                                        <input type="number" style="height: 35px; width: 90px; background-color: white" name="priceto" class="shopee-price-range-filter__input" placeholder="$ TO" value="${price2 == 0 ? "" : price2}" step="0.5" min=1">
                                     </div>
-                                </div>                                                       
+                                    <button  class="submit-price" style="font-size: 16px;
+                                             background-color: black;
+                                             color: white;
+                                             font-weight: 600;
+                                             padding: 5px 40px;
+                                             border-radius: 20px;
+                                             margin: 10px 0 20px">Apply</button>
+                                </div>                                    
                                 <!--price slider end-->
+
+                                <div class="sidebar_widget shop_c">
+                                    <div class="categorie__titile">
+                                        <h4>Discount</h4>
+                                    </div>
+                                    <div class="layere_categorie">
+                                        <ul>
+                                            <li>
+                                                <input id="dis25" type="checkbox" name="discount">
+                                                <label for="dis25">Up to 25%
+                                                    <span>(1)</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input id="dis50" type="checkbox" name="discount">
+                                                <label for="dis50">Up to 50%
+                                                    <span>(1)</span>
+                                                </label>
+                                            </li>
+                                            <li>
+                                                <input id="dis75" type="checkbox" name="discount">
+                                                <label for="dis75">Up to 75%
+                                                    <span>(1)</span>
+                                                </label>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
 
                                 <!--special product start-->
                                 <div class="sidebar_widget special">
@@ -218,7 +263,13 @@
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
-                                                                <span class="product_price">${p.price}$</span>
+                                                                <div style="display: flex; justify-content: center">
+                                                                    <c:if test="${p.price != p.salePrice}">
+                                                                        <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}</span>
+                                                                    </c:if>
+                                                                    <span class="current_price ani-fire">Rs. ${p.salePrice}
+                                                                    </span>
+                                                                </div>
                                                                 <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
                                                             </div>
                                                             <div class="product_info">
@@ -319,7 +370,7 @@
                                                     </li>
                                                 </c:if>
                                             </c:if>
-                                                     <!--PAGING SEARCHSERLET--> 
+                                            <!--PAGING SEARCHSERLET--> 
                                             <c:if test="${requestScope.DATA_FROM == 'SearchServlet'}">
                                                 <c:set var="page" value="${requestScope.CURRENTPAGE}"/>
                                                 <c:if test="${page != 1}">

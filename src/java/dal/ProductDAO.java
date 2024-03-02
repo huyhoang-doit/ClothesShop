@@ -635,6 +635,72 @@ public class ProductDAO extends DBContext {
         }
     }
 
+    public List<ProductDTO> searchByPrice(double priceFrom, double priceTo
+    //            , int[] cid
+    ) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        List<ProductDTO> list = new ArrayList<>();
+        String sql = "SELECT * FROM Products WHERE 1=1";
+        if (priceFrom != 0) {
+            sql += " and (price * discount) >= " + priceFrom;
+        }
+        if (priceTo != 0) {
+            sql += " and (price * discount) <= " + priceTo;
+        }
+//        if ((cid != null) && (cid[0] != 0)) {
+//            sql += " AND CategoryID in(";
+//            for (int i = 0; i < cid.length; i++) {
+//                sql += cid[i] + ",";
+//            }
+//            if (sql.endsWith(",")) {
+//                sql = sql.substring(0, sql.length() - 1);
+//            }
+//            sql += ")";
+//        }
+        try {
+            conn = getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            rs = st.executeQuery();
+            while (rs.next()) {
+                CategoryDAO cDao = new CategoryDAO();
+                SupplierDAO sDao = new SupplierDAO();
+                TypeDAO tDao = new TypeDAO();
+                String productname = rs.getString("productname");
+                int id = rs.getInt("id");
+                SupplierDTO supplier = sDao.getSupplierById(rs.getInt("supplierid"));
+                CategoryDTO category = cDao.getCategoryById(rs.getInt("categoryid"));
+                TypeDTO type = tDao.getTypeById(rs.getInt("typeid"));
+                int stock = rs.getInt("stock");
+                String description = rs.getString("description");
+                Date date = rs.getDate("releasedate");
+                double discount = rs.getDouble("discount");
+                int unitSold = rs.getInt("unitSold");
+                double price = rs.getDouble("price");
+                boolean status = rs.getBoolean("status");
+                String colors[] = rs.getString("colors").split(",");
+                String images[] = rs.getString("images").split(" ");
+                String sizes[] = rs.getString("size").split(",");
+                ProductDTO product = new ProductDTO(id, productname, description, stock, unitSold, images, colors, sizes, date, discount, price, status, category, supplier, type);
+                list.add(product);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return list;
+    }
+
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
 
@@ -642,8 +708,9 @@ public class ProductDAO extends DBContext {
 //        System.out.println(product.getProductName());
 //        dao.insertProduct("GIÀY CHELSEA BOOTS ALL BLACK", 12, 6, 3, 123.0, 0.7, "40,41,42,43", "Đen", 123, "2022-05-04", "assets/img/products/28-1.jpg assets/img/products/29-2.jpg assets/img/products/29-3.jpg ",
 //                "Vẻ đẹp của một đôi giày Chelsea boots bắt đầu bằng sự đơn giản. Từ việc không có những đường viền cầu kỳ đến hình dáng phức tạp là điều nổi bật nhất để sản phẩm này trường tồn mãi với thời gian.");
-        dao.insertProduct("", 12, 6, 3, 123.0, 1, "", "", 123, "", "",
-                "");
+        dao.insertProduct("", 12, 6, 3, 123.0, 1, "", "", 123, "", "","");
+        List<ProductDTO> list = new ArrayList<>();
+        list = dao.searchByPrice(100, 200);
         for (ProductDTO productDTO : dao.getData()) {
             System.out.println(productDTO.getName());
         }
