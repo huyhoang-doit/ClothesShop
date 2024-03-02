@@ -713,6 +713,16 @@ public class ProductDAO extends DBContext {
         return rs;
     }
 
+    public List<ProductDTO> searchByDiscount(List<ProductDTO> list, double discount) {
+        List<ProductDTO> rs = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getDiscount() > discount) {
+                rs.add(list.get(i));
+            }
+        }
+        return rs;
+    }
+
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
 

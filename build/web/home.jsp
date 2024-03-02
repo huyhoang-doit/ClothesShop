@@ -12,6 +12,8 @@
 
         <!-- all css here -->
         <%@include file="/common/web/add_css.jsp"%>
+        <style type="text/css">
+        </style>
     </head>
     <body>
         <!-- Add your site or application content here -->
@@ -185,6 +187,9 @@
                                                                 <div class="img_icone">
                                                                     <img src="assets/img/cart/span-new.png" alt="">
                                                                 </div>
+                                                                <c:if test="${p.discount != 0}">
+                                                                    <span class="discount">Up to ${p.discount * 100}%</span>
+                                                                </c:if>
                                                                 <div class="product_action">
                                                                     <a href="CartServlet?product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
@@ -194,7 +199,7 @@
                                                                     <c:if test="${p.price != p.salePrice}">
                                                                         <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}&#273;</span>
                                                                     </c:if>
-                                                                    <span class="current_price ani-fire">Rs. ${p.salePrice}&#273;
+                                                                    <span class="current_price">Rs. ${p.salePrice}&#273;
                                                                     </span>
                                                                 </div>
                                                                 <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
@@ -238,7 +243,7 @@
                                                                 <c:if test="${p.price != p.salePrice}">
                                                                     <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}&#273;</span>
                                                                 </c:if>
-                                                                <span class="current_price ani-fire">Rs. ${p.salePrice}&#273;
+                                                                <span class="current_price">Rs. ${p.salePrice}&#273;
                                                                 </span>
                                                             </div>
                                                             <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>

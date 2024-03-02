@@ -3884,3 +3884,18 @@
         display: flex;
     }
 }
+
+
+.product_thumb {
+    position: relative;
+}
+
+.discount {
+    position: absolute;
+    top: 5px; /* Adjust top position as needed */
+    right: 0px; /* Adjust right position as needed */
+    background: linear-gradient(to right, #ff5858, #ff8a8a); /* Gradient background for the discount */
+    color: #fff; /* Set text color for the discount */
+    padding: 5px 10px; /* Add padding to the discount element */
+    border-radius: 5px; /* Add border radius for rounded corners */
+}

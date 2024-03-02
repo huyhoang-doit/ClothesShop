@@ -80,7 +80,7 @@
                                             <li style="cursor: pointer" id="Black" onclick="getColor(this)"><a href="#"></a>Đen <span>(10)</span></li>
 
                                             <li style="cursor: pointer" id="Green" onclick="getColor(this)"><a href="#" ></a>Xanh lá <span>(12)</span></li>
-                                            
+
                                             <li style="cursor: pointer" id="Orange" onclick="getColor(this)"><a href="#" ></a>Cam <span>(12)</span></li>
 
                                             <li style="cursor: pointer" id="Blue" onclick="getColor(this)"><a href="#" ></a>Xanh dương<span>(14)</span></li>
@@ -90,7 +90,7 @@
                                             <li style="cursor: pointer" id="Brown" onclick="getColor(this)"><a href="#" ></a>Nâu <span>(16)</span></li>
 
                                             <li style="cursor: pointer" id="White" onclick="getColor(this)"><a href="#" ></a>Trắng <span>(11)</span></li>
-                                            
+
                                             <li style="cursor: pointer" id="Red" onclick="getColor(this)"><a href="#" ></a>Đỏ <span>(11)</span></li>
                                         </ul>
                                         <input type="hidden" value="${requestScope.CORLOR}" name="color" id="chooseColor"/>
@@ -116,13 +116,6 @@
                                         </div>
                                         <input type="number" style="height: 35px; width: 90px; background-color: white" name="priceto" class="shopee-price-range-filter__input" placeholder="&#273; TO" value="${price2}" step="0.5" min=1">
                                     </div>
-                                    <button  class="submit-price" style="font-size: 16px;
-                                             background-color: black;
-                                             color: white;
-                                             font-weight: 600;
-                                             padding: 5px 40px;
-                                             border-radius: 20px;
-                                             margin: 10px 0 20px">Apply</button>
                                 </div>                                    
                                 <!--price slider end-->
 
@@ -133,19 +126,19 @@
                                     <div class="layere_categorie">
                                         <ul>
                                             <li>
-                                                <input id="dis25" type="checkbox" name="discount">
+                                                <input ${requestScope.DISCOUNT.equals("dis25") ? "checked" : ""} id="dis25" type="radio" name="discount" value="dis25">
                                                 <label for="dis25">Up to 25%
                                                     <span>(1)</span>
                                                 </label>
                                             </li>
                                             <li>
-                                                <input id="dis50" type="checkbox" name="discount">
+                                                <input ${requestScope.DISCOUNT.equals("dis50") ? "checked" : ""} id="dis50" type="radio" name="discount" value="dis50">
                                                 <label for="dis50">Up to 50%
                                                     <span>(1)</span>
                                                 </label>
                                             </li>
                                             <li>
-                                                <input id="dis75" type="checkbox" name="discount">
+                                                <input ${requestScope.DISCOUNT.equals("dis75") ? "checked" : ""} id="dis75" type="radio" name="discount" value="dis75">
                                                 <label for="dis75">Up to 75%
                                                     <span>(1)</span>
                                                 </label>
@@ -154,6 +147,21 @@
                                     </div>
                                 </div>
 
+                                <button  class="submit-price" style="font-size: 16px;
+                                         background-color: black;
+                                         color: white;
+                                         font-weight: 600;
+                                         padding: 5px 40px;
+                                         border-radius: 20px;
+                                         margin: 10px 0 20px">Apply</button>
+                                <a href="ShopServlet" class="submit-price" style="font-size: 16px;
+                                   background-color: black;
+                                   color: white;
+                                   font-weight: 600;
+                                   padding: 5px 40px;
+                                   border-radius: 20px;
+                                   margin: 10px 0 20px"
+                                   type="reset">Reset</a>
                                 <!--special product start-->
                                 <div class="sidebar_widget special">
                                     <div class="block_title">
@@ -263,6 +271,9 @@
                                                                         <img src="assets/img/cart/span-new.png" alt="">
                                                                     </div>
                                                                 </c:if>
+                                                                <c:if test="${p.discount != 0}">
+                                                                    <span class="discount">Up to ${p.discount * 100}%</span>
+                                                                </c:if>
                                                                 <div class="product_action">
                                                                     <a href="CartServlet?product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
@@ -272,7 +283,7 @@
                                                                     <c:if test="${p.price != p.salePrice}">
                                                                         <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}&#273;</span>
                                                                     </c:if>
-                                                                    <span class="current_price ani-fire">Rs. ${p.salePrice}&#273;
+                                                                    <span class="current_price">Rs. ${p.salePrice}&#273;
                                                                     </span>
                                                                 </div>
                                                                 <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
@@ -310,7 +321,7 @@
                                                                     <c:if test="${p.price != p.salePrice}">
                                                                         <span class="old_price" id="oldprice">Rs. ${p.price}</span>
                                                                     </c:if>
-                                                                    <span class="current_price ani-fire">Rs. ${p.salePrice}
+                                                                    <span class="current_price">Rs. ${p.salePrice}
                                                                     </span>
                                                                 </div>
                                                                 <div class="add_links">

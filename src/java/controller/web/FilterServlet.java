@@ -81,8 +81,28 @@ public class FilterServlet extends HttpServlet {
 
             //Color
             String color = request.getParameter("color");
-            if (color != null) {
+            if (color != null && !color.equals("")) {
                 listProducts = pDao.searchByColor(listProducts, color);
+                url = SHOP_LIST;
+            }
+            
+            //Discount
+            String discount = request.getParameter("discount");
+            if (discount != null) {
+                switch (discount) {
+                    case "dis25":
+                        listProducts = pDao.searchByDiscount(listProducts, 0.25);
+                        break;
+                    case "dis50":
+                        listProducts = pDao.searchByDiscount(listProducts, 0.5);
+                        break;
+                    case "dis75":
+                        listProducts = pDao.searchByDiscount(listProducts, 0.75);
+                        break;
+                    default:
+                        break;
+                }
+                request.setAttribute("DISCOUNT", discount);
                 url = SHOP_LIST;
             }
 
