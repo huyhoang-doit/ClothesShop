@@ -11,6 +11,7 @@
 - [x] Login by account
 - [x] Register an account
 - [x] Search, view product
+- [x] Filter products
 - [ ] Add, update, remove cart
 - [ ] View ratings of product
 - [ ] View blogs
@@ -35,7 +36,7 @@
 
 **4. Admin:**
 - [x] Managing product
-- [ ] Managing accounts
+- [x] Managing accounts
 - [x] Managing categories
 - [ ] Managing orders
 - [x] Send email
