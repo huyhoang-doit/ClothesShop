@@ -1298,21 +1298,31 @@
 .widget_color ul li:first-child a::before{
     background: black;
 }
-.widget_color ul li:last-child a::before{
+
+.widget_color ul li:nth-last-child(2) a::before{
     background: white;
     border: 0.5px solid black;
 }
-.widget_color ul li:nth-last-child(2) a::before{
+.widget_color ul li:nth-last-child(3) a::before{
     background: brown;
 }
-.widget_color ul li:nth-last-child(3) a::before{
-    background: #F6EF04;
-}
 .widget_color ul li:nth-last-child(4) a::before{
-    background: #008CB7;
+    background: yellow;
 }
 .widget_color ul li:nth-last-child(5) a::before{
-    background: #F39C11;
+    background: #2CAAE1;
+}
+
+.widget_color ul li:nth-last-child(6) a::before{
+    background: orange;
+}
+
+.widget_color ul li:nth-last-child(7) a::before{
+    background: green;
+}
+
+.widget_color ul li:last-child a::before{
+    background: red;
 }
 .categorie__titile {
     margin-bottom: 10px;

@@ -44,7 +44,7 @@
                     <!--pos home section-->
                     <div class=" pos_home_section">
                         <div class="row pos_home">
-                            <form action="FilterServlet" method="get" class="col-lg-3 col-md-12">
+                            <form id="form-filter" action="FilterServlet" method="get" class="col-lg-3 col-md-12">
                                 <!--layere categorie"-->
                                 <input id="sortinput" type="hidden" value="${requestScope.VALUESORT}" name="valueSort"/>
                                 <div class="sidebar_widget shop_c">
@@ -77,18 +77,23 @@
                                     <h2>Color</h2>
                                     <div class="widget_color">
                                         <ul>
-                                            <li><a href="">Đen <span>(10)</span></a></li>
+                                            <li style="cursor: pointer" id="Black" onclick="getColor(this)"><a href="#"></a>Đen <span>(10)</span></li>
 
-                                            <li><a href="#">Cam <span>(12)</span></a></li>
+                                            <li style="cursor: pointer" id="Green" onclick="getColor(this)"><a href="#" ></a>Xanh lá <span>(12)</span></li>
+                                            
+                                            <li style="cursor: pointer" id="Orange" onclick="getColor(this)"><a href="#" ></a>Cam <span>(12)</span></li>
 
-                                            <li><a href="#">Xanh <span>(14)</span></a></li>
+                                            <li style="cursor: pointer" id="Blue" onclick="getColor(this)"><a href="#" ></a>Xanh dương<span>(14)</span></li>
 
-                                            <li><a href="#">Vàng <span>(15)</span></a></li>
+                                            <li style="cursor: pointer" id="Yellow" onclick="getColor(this)"><a href="#"></a>Vàng <span>(15)</span></li>
 
-                                            <li><a href="#">Nâu <span>(16)</span></a></li>
+                                            <li style="cursor: pointer" id="Brown" onclick="getColor(this)"><a href="#" ></a>Nâu <span>(16)</span></li>
 
-                                            <li><a href="#">Trắng <span>(11)</span></a></li>
+                                            <li style="cursor: pointer" id="White" onclick="getColor(this)"><a href="#" ></a>Trắng <span>(11)</span></li>
+                                            
+                                            <li style="cursor: pointer" id="Red" onclick="getColor(this)"><a href="#" ></a>Đỏ <span>(11)</span></li>
                                         </ul>
+                                        <input type="hidden" value="${requestScope.CORLOR}" name="color" id="chooseColor"/>
                                     </div>
                                 </div>                 
                                 <!--color area end--> 
@@ -102,14 +107,14 @@
                                          justify-content: space-between;
                                          align-items: center;
                                          padding-right: 30px">
-                                        <input type="number" style="height: 35px; width: 90px; background-color: white" name="pricefrom" class="shopee-price-range-filter__input" placeholder="$ FROM" value="${price1 == 0 ? "$ FROM" : price1}" step="0.5" min=1>
+                                        <input type="number" style="height: 35px; width: 90px; background-color: white" name="pricefrom" class="shopee-price-range-filter__input" placeholder="&#273; FROM" value="${price1}" step="0.5" min=1>
                                         <div class="shopee-price-range-filter__range-line" style="
                                              flex: 1;
                                              height: 1px;
                                              background: #bdbdbd;
                                              margin: 0 10px;">
                                         </div>
-                                        <input type="number" style="height: 35px; width: 90px; background-color: white" name="priceto" class="shopee-price-range-filter__input" placeholder="$ TO" value="${price2 == 0 ? "" : price2}" step="0.5" min=1">
+                                        <input type="number" style="height: 35px; width: 90px; background-color: white" name="priceto" class="shopee-price-range-filter__input" placeholder="&#273; TO" value="${price2}" step="0.5" min=1">
                                     </div>
                                     <button  class="submit-price" style="font-size: 16px;
                                              background-color: black;
@@ -265,9 +270,9 @@
                                                             <div class="product_content">
                                                                 <div style="display: flex; justify-content: center">
                                                                     <c:if test="${p.price != p.salePrice}">
-                                                                        <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}</span>
+                                                                        <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}&#273;</span>
                                                                     </c:if>
-                                                                    <span class="current_price ani-fire">Rs. ${p.salePrice}
+                                                                    <span class="current_price ani-fire">Rs. ${p.salePrice}&#273;
                                                                     </span>
                                                                 </div>
                                                                 <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>

@@ -192,9 +192,9 @@
                                                             <div class="product_content">
                                                                 <div style="display: flex; justify-content: center">
                                                                     <c:if test="${p.price != p.salePrice}">
-                                                                        <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}</span>
+                                                                        <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}&#273;</span>
                                                                     </c:if>
-                                                                    <span class="current_price ani-fire">Rs. ${p.salePrice}
+                                                                    <span class="current_price ani-fire">Rs. ${p.salePrice}&#273;
                                                                     </span>
                                                                 </div>
                                                                 <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
@@ -236,9 +236,9 @@
                                                         <div class="product_content">
                                                             <div style="display: flex; justify-content: center">
                                                                 <c:if test="${p.price != p.salePrice}">
-                                                                    <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}</span>
+                                                                    <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}&#273;</span>
                                                                 </c:if>
-                                                                <span class="current_price ani-fire">Rs. ${p.salePrice}
+                                                                <span class="current_price ani-fire">Rs. ${p.salePrice}&#273;
                                                                 </span>
                                                             </div>
                                                             <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
