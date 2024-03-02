@@ -28,8 +28,14 @@
                         </div>
                     </div>
                     <div class="product_content">
-                        <span class="product_price">${p.price}$</span>
-                        <h3 class="product_title"><a href="#">${p.name}</a></h3>
+                        <div style="display: flex; justify-content: center">
+                            <c:if test="${p.price != p.salePrice}">
+                                <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}</span>
+                            </c:if>
+                            <span class="current_price ani-fire">Rs. ${p.salePrice}
+                            </span>
+                        </div>
+                        <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
                     </div>
                     <div class="product_info">
                         <ul>

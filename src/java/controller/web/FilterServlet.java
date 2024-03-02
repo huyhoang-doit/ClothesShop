@@ -34,11 +34,11 @@ public class FilterServlet extends HttpServlet {
         String url = SHOP_LIST;
         try {
             ProductDAO pDao = new ProductDAO();
-            List<ProductDTO> listProducts = new ArrayList<>();
+            List<ProductDTO> listProducts = pDao.getData();
             String group = request.getParameter("sort_group");
             String action = request.getParameter("btnAction");
             String id = request.getParameter("id");
-            if(action == null) {
+            if (action == null) {
                 action = group;
             }
 
@@ -49,6 +49,8 @@ public class FilterServlet extends HttpServlet {
             }
             CategoryDAO cDao = new CategoryDAO();
             List<CategoryDTO> listCategories = cDao.getData();
+
+            //Sort Products
             String valueSort = request.getParameter("valueSort");
             if (valueSort != null) {
                 switch (valueSort) {
@@ -64,6 +66,18 @@ public class FilterServlet extends HttpServlet {
                 }
                 url = SORT;
             }
+
+            //Price
+            String priceFrom_raw = request.getParameter("pricefrom");
+            String priceTo_raw = request.getParameter("priceto");
+            double priceFrom = ((priceFrom_raw == null || "".equals(priceFrom_raw)) ? 0 : Double.parseDouble(priceFrom_raw));
+            double priceTo = ((priceTo_raw == null || "".equals(priceTo_raw)) ? 0 : Double.parseDouble(priceTo_raw));
+            if (priceFrom != 0 || priceTo != 0) {
+                listProducts = pDao.searchByPrice(priceFrom, priceTo);
+                url = SHOP_LIST;
+            }
+            
+            //Color
 
             //Paging
             int page, numPerPage = 9;
