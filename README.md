@@ -18,7 +18,6 @@
 **2. User**
 - [x] Search, view product
 - [ ] Add, update, remove cart
-- [ ] View ratings of product
 - [x] Subscribe received new daily information
 - [x] Logout
 - [x] Update account information
@@ -26,7 +25,7 @@
 - [ ] View, manage orders
 - [ ] Checkout
 
-**4. Admin:**
+**3. Admin:**
 - [x] Managing product
 - [x] Managing accounts
 - [x] Managing categories
