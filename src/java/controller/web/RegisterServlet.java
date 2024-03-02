@@ -84,6 +84,7 @@ public class RegisterServlet extends HttpServlet {
             String uName = request.getParameter("username");
             String uPass = request.getParameter("password");
             String email = request.getParameter("email");
+            String avatar = request.getParameter("avatar");
             String message;
             UserDAO ud = new UserDAO();
             boolean isDup = ud.checkUserNameDuplicate(uName);
@@ -92,7 +93,7 @@ public class RegisterServlet extends HttpServlet {
                 request.setAttribute("ERROR", message);
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             } else {
-                UserDTO user = new UserDTO(0, fName, lName, email, "assets/img/users/user.jpg", uName, uPass, "", "", 2, true);
+                UserDTO user = new UserDTO(0, fName, lName, email, (avatar == null ? "assets/img/users/user.jpg" : avatar), uName, uPass, "", "", 2, true);
                 ud.registerUser(user);
                 message = "Register successfully. Please Login!";
 

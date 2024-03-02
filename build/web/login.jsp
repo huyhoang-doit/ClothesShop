@@ -100,6 +100,7 @@
                                             <label>Username</label>
                                             <input name="username" type="text" required>
                                         </p>
+                                        <input type="hidden" name="avatar" value="${requestScope.avatar}"/>
                                         <p style="position: relative">   
                                             <label>Passwords</label>
                                             <input id="firstpass" oninput="checkNumberCharacter(this)" name="password" type="password" required>
