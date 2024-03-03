@@ -40,7 +40,7 @@
                         </div>
                     </div>
                     <!--breadcrumbs area end-->
-
+                    <c:set var="cat" value="${requestScope.LISTCATEGORIES}"/>
                     <!--pos home section-->
                     <div class=" pos_home_section">
                         <div class="row pos_home">
@@ -54,19 +54,22 @@
                                     <div class="layere_categorie">
                                         <ul>
                                             <li>
-                                                <input checked type="checkbox">
-                                                <label>Tất cả
+                                                <input onclick="setCheck(this)" class="" ${(chid[0] || chid == null) ? "checked":""} 
+                                                       id="defaultcate" value="0" name="id_filter" type="checkbox">
+                                                <label for="defaultcate">Tất cả
                                                     <span>(1)</span>
                                                 </label>
                                             </li>
-                                            <c:forEach items="${LISTCATEGORIES}" var="c">
+                                            <c:forEach begin="0" end="${LISTCATEGORIES.size()-1}" var="i">
                                                 <li>
-                                                    <input id="${c.id}" type="checkbox" name="">
-                                                    <label for="${c.id}">${c.name}
+                                                    <input onclick="setCheck(this)" ${chid[i+1] == true?"checked":""}
+                                                           value="${cat.get(i).getId()}" id="${cat.get(i).getId()}" type="checkbox" name="id_filter">
+                                                    <label for="${cat.get(i).getId()}">${cat.get(i).getName()}
                                                         <span>(1)</span>
                                                     </label>
                                                 </li>
                                             </c:forEach>
+                                            <input type="hidden" name="btnAction" value="${filterByCategory}" id="actionfilter">
                                         </ul>
                                     </div>
                                 </div>
@@ -283,7 +286,7 @@
                                                                     <c:if test="${p.price != p.salePrice}">
                                                                         <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}&#273;</span>
                                                                     </c:if>
-                                                                    <span class="current_price">Rs. ${p.salePrice}&#273;
+                                                                    <span class="current_price">Rs. ${p.getSalePrice()}&#273;
                                                                     </span>
                                                                 </div>
                                                                 <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>

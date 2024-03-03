@@ -23,6 +23,9 @@
                                 <img src="assets/img/cart/span-new.png" alt="">
                             </div>
                         </c:if>
+                        <c:if test="${p.discount != 0}">
+                            <span class="discount">Up to ${p.discount * 100}%</span>
+                        </c:if>
                         <div class="product_action">
                             <a href="single-product.html"> <i class="fa fa-shopping-cart"></i> Add to cart</a>
                         </div>

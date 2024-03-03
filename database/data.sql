@@ -79,18 +79,18 @@ INSERT INTO Products VALUES
 , 'assets/img/products/20-1.jpg assets/img/products/20-2.jpg' , N'Trắng' , '2024-11-01' , 0., 81, 550.000,1,1),
 (N'ÁO THUN DÀI TAY *CLOUD* ', 5, 2,'S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
 , 'assets/img/products/21-1.jpg assets/img/products/21-2.jpg' , N'Trắng' , '2024-12-01' , 0., 81, 700.000,1,1),
-(N'ÁO SƠ MI OXFORD *ANGEL* ', 1, 2,'XS,S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+(N'ÁO SƠ MI OXFORD *ANGEL* ', 1, 1,'XS,S,M,L,XL' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
 , 'assets/img/products/22-1.jpg assets/img/products/22-2.jpg' , N'Xanh dương' , '2024-09-01' , 0., 81, 500.000,1,1),
 (N'SƠ MI DÀI TAY *GLOWING HEART* ', 1, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
 , 'assets/img/products/23-1.jpg assets/img/products/23-2.jpg' , N'Trắng,Đen' , '2024-03-01' , 0., 81, 650.000,1,1),
-(N'ÁO KHOÁC DÙ *ANGELS* ', 4, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+(N'ÁO KHOÁC DÙ *ANGELS* ', 4, 4,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
 , 'assets/img/products/24-1.jpg assets/img/products/24-2.jpg' , N'Xanh lá,Đen' , '2024-10-01' , 0., 81, 950.000,1,1),
-(N'ÁO KHOÁC DÙ *LAST JUDGEMENT* ', 4, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+(N'ÁO KHOÁC DÙ *LAST JUDGEMENT* ', 4, 4,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
 , 'assets/img/products/25-1.jpg assets/img/products/25-2.jpg' , N'Xanh lá,Đen' , '2023-02-01' , 0., 81, 1500.000,1,1),
-(N'QUẦN DÀI *ANGEL BOBUI* ', 5, 2,'S' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/26-1.jpg assets/img/products/26-2.jpg' , N'Xanh lá' , '2023-03-02' , 0., 81, 700.000,1,1),
-(N'QUẦN DOUBLE KNEE CANVAS WORKWEAR ', 5, 2,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/27-1.jpg assets/img/products/27-2.jpg' , N'Vàng' , '2022-04-02' , 0., 81, 750.000,1,1)
+(N'QUẦN DÀI *ANGEL BOBUI* ', 5, 7,'S' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/26-1.jpg assets/img/products/26-2.jpg' , N'Xanh lá' , '2023-03-02' , 0.1, 81, 700.000,1,1),
+(N'QUẦN DOUBLE KNEE CANVAS WORKWEAR ', 5, 7,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/27-1.jpg assets/img/products/27-2.jpg' , N'Vàng' , '2022-04-02' , 0.2, 81, 750.000,1,1)
 --Phu kien
 --...
 
@@ -162,3 +162,5 @@ INSERT INTO OrderItem VALUES
 (3, 345.0, 19, 8),
 (3, 550.0, 20, 8),
 (5, 650.0, 23, 9);
+
+SELECT * FROM Products WHERE categoryid = 12 AND status = 1
