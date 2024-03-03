@@ -34,25 +34,51 @@ public class FilterServlet extends HttpServlet {
         String url = SHOP_LIST;
         try {
             ProductDAO pDao = new ProductDAO();
+            CategoryDAO cDao = new CategoryDAO();
+            List<CategoryDTO> listCategories = cDao.getData();
             List<ProductDTO> listProducts = pDao.getData();
             String group = request.getParameter("sort_group");
             String action = request.getParameter("btnAction");
-            String id = request.getParameter("id");
+            String id_filter_raw = request.getParameter("id_filter");
+            String[] cid_filter_raw = request.getParameterValues("id_filter");
+            int[] cid_filter = null;
+            Boolean[] chid = new Boolean[listCategories.size() + 1];
+            int id_filter = 0;
+
             if (action == null) {
                 action = group;
             }
 
-            if ("filterByCategory".equals(action)) {
-                listProducts = pDao.getProductByCategoryId(Integer.parseInt(id));
-            } else if ("filterBySupplier".equals(action)) {
-                listProducts = pDao.getProductSupplierId(Integer.parseInt(id));
+            //CategoryId 
+            if (id_filter_raw != null) {
+                id_filter = Integer.parseInt(id_filter_raw);
+                if ("filterByCategory".equals(action)) {
+                    //RefineBrand
+                    if (cid_filter_raw != null) {
+                        cid_filter = new int[cid_filter_raw.length];
+                        for (int i = 0; i < cid_filter.length; i++) {
+                            cid_filter[i] = Integer.parseInt(cid_filter_raw[i]);
+                        }
+                        listProducts = pDao.searchByCheckBox(listProducts, cid_filter);
+                        if (id_filter == 0) {
+                            chid[0] = true;
+                        }
+                    }
+//                  
+                } else if ("filterBySupplier".equals(action)) {
+                    listProducts = pDao.getProductSupplierId(id_filter);
+                }
+            } else if (id_filter_raw == null || id_filter == 0) {
+                chid[0] = true;
             }
-            CategoryDAO cDao = new CategoryDAO();
-            List<CategoryDTO> listCategories = cDao.getData();
+            if (cid_filter == null && cid_filter_raw != null) {
+                cid_filter = new int[cid_filter_raw.length];
+                cid_filter[0] = 0;
+            }
 
             //Sort Products
             String valueSort = request.getParameter("valueSort");
-            if (valueSort != null) {
+            if (valueSort != null && !valueSort.equals("")) {
                 switch (valueSort) {
                     case "1":
                         listProducts = pDao.sortProduct(listProducts, valueSort);
@@ -73,7 +99,7 @@ public class FilterServlet extends HttpServlet {
             double priceFrom = ((priceFrom_raw == null || "".equals(priceFrom_raw)) ? 0 : Double.parseDouble(priceFrom_raw));
             double priceTo = ((priceTo_raw == null || "".equals(priceTo_raw)) ? 0 : Double.parseDouble(priceTo_raw));
             if (priceFrom != 0 || priceTo != 0) {
-                listProducts = pDao.searchByPrice(priceFrom, priceTo);
+                listProducts = pDao.searchByPrice(listProducts, priceFrom, priceTo);
                 request.setAttribute("price1", priceFrom);
                 request.setAttribute("price2", priceTo);
                 url = SHOP_LIST;
@@ -85,7 +111,7 @@ public class FilterServlet extends HttpServlet {
                 listProducts = pDao.searchByColor(listProducts, color);
                 url = SHOP_LIST;
             }
-            
+
             //Discount
             String discount = request.getParameter("discount");
             if (discount != null) {
@@ -122,20 +148,48 @@ public class FilterServlet extends HttpServlet {
 
             List<ProductDTO> listByPage = pDao.getListByPage(listProducts, start, end);
 
+            //RefineBrand
+            if ((cid_filter_raw != null) && (cid_filter[0] != 0)) {
+                chid[0] = false;
+                for (int i = 1; i < chid.length; i++) {
+                    if (isCheck(listCategories.get(i - 1).getId(), cid_filter)) {
+//                        stringForLink += "cid_refinee=" + i + "&";
+                        chid[i] = true;
+                    } else {
+                        chid[i] = false;
+                    }
+                }
+            }
+
             request.setAttribute("CORLOR", color);
             request.setAttribute("SORT_GROUP", action);
-            request.setAttribute("ID_GROUP", id);
             request.setAttribute("DATA_FROM", "FilterServlet");
             request.setAttribute("NUMBERPAGE", numberpage);
             request.setAttribute("CURRENTPAGE", page);
+            request.setAttribute("chid", chid);
+            request.setAttribute("CIDCHECK", id_filter_raw);
             request.setAttribute("LISTPRODUCTS", listByPage);
             request.setAttribute("LISTCATEGORIES", listCategories);
             request.setAttribute("VALUESORT", valueSort);
+            request.setAttribute("filterByCategory", "filterByCategory");
 
         } catch (Exception e) {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
+    }
+
+    private boolean isCheck(int d, int[] id) {
+        if (id == null) {
+            return false;
+        } else {
+            for (int i = 0; i < id.length; i++) {
+                if (id[i] == d) {
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

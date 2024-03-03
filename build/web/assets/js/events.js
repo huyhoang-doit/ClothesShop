@@ -149,3 +149,21 @@ function getColor(element) {
     }
     document.getElementById('form-filter').submit();
 }
+
+function setCheck(obj) {
+    var fries = document.getElementsByName('id_filter');
+    if ((obj.id === 'defaultcate') && (fries[0].checked) === true) {
+        for (var i = 1; i < fries.length; i++) {
+            fries[i].checked = false;
+        }
+    } else {
+        for (var i = 1; i < fries.length; i++) {
+            if (fries[i].checked === true) {
+                fries[0].checked = false;
+                break;
+            }
+        }
+    }
+    document.getElementById('actionfilter').value = 'filterByCategory';
+    document.getElementById('form-filter').submit();
+}
