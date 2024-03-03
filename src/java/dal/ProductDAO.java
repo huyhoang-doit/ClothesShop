@@ -701,6 +701,28 @@ public class ProductDAO extends DBContext {
         return list;
     }
 
+    public List<ProductDTO> searchByColor(List<ProductDTO> list, String color) {
+        List<ProductDTO> rs = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            for (int j = 0; j < list.get(i).getColors().length; j++) {
+                if (list.get(i).getColors()[j].contains(color)) {
+                    rs.add(list.get(i));
+                }
+            }
+        }
+        return rs;
+    }
+
+    public List<ProductDTO> searchByDiscount(List<ProductDTO> list, double discount) {
+        List<ProductDTO> rs = new ArrayList<>();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getDiscount() > discount) {
+                rs.add(list.get(i));
+            }
+        }
+        return rs;
+    }
+
     public static void main(String[] args) throws SQLException {
         ProductDAO dao = new ProductDAO();
 
@@ -708,7 +730,7 @@ public class ProductDAO extends DBContext {
 //        System.out.println(product.getProductName());
 //        dao.insertProduct("GIÀY CHELSEA BOOTS ALL BLACK", 12, 6, 3, 123.0, 0.7, "40,41,42,43", "Đen", 123, "2022-05-04", "assets/img/products/28-1.jpg assets/img/products/29-2.jpg assets/img/products/29-3.jpg ",
 //                "Vẻ đẹp của một đôi giày Chelsea boots bắt đầu bằng sự đơn giản. Từ việc không có những đường viền cầu kỳ đến hình dáng phức tạp là điều nổi bật nhất để sản phẩm này trường tồn mãi với thời gian.");
-        dao.insertProduct("", 12, 6, 3, 123.0, 1, "", "", 123, "", "","");
+        dao.insertProduct("", 12, 6, 3, 123.0, 1, "", "", 123, "", "", "");
         List<ProductDTO> list = new ArrayList<>();
         list = dao.searchByPrice(100, 200);
         for (ProductDTO productDTO : dao.getData()) {

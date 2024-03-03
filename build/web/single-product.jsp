@@ -90,8 +90,8 @@
                                         </div>
 
                                         <div class="content_price mb-15">
-                                            <span>$${PRODUCT.getSalePrice()}</span>
-                                            <span class="old-price">$${PRODUCT.price}</span>
+                                            <span>${PRODUCT.getSalePrice()}&#273;</span>
+                                            <span class="old-price">$${PRODUCT.price}&#273;</span>
                                         </div>
                                         <div class="box_quantity mb-20">
                                             <form action="#">

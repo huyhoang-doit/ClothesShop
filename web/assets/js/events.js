@@ -78,7 +78,7 @@ function sortProducts(event) {
     });
 }
 
-function searchProducts(tag,scope) {
+function searchProducts(tag, scope) {
     var text = tag.value;
     var scope = scope;
     $.ajax({
@@ -97,7 +97,7 @@ function searchProducts(tag,scope) {
     });
 }
 
-function addProductToCart(product_id,quantity) {
+function addProductToCart(product_id, quantity) {
     var productId = product_id;
     var sl = quantity;
     $.ajax({
@@ -114,4 +114,38 @@ function addProductToCart(product_id,quantity) {
         error: function (xhr) {
         }
     });
+}
+
+function getColor(element) {
+    var inputColor = document.getElementById('chooseColor');
+    var a = element.id;
+    switch (a) {
+        case 'Black':
+            inputColor.value = 'Đen';
+            break;
+        case 'Orange':
+            inputColor.value = 'Cam';
+            break;
+        case 'Blue':
+            inputColor.value = 'Xanh dương';
+            break;
+        case 'Brown':
+            inputColor.value = 'Nâu';
+            break;
+        case 'Yellow':
+            inputColor.value = 'Vàng';
+            break;
+        case 'White':
+            inputColor.value = 'Trắng';
+            break;
+        case 'Red':
+            inputColor.value = 'Đỏ';
+            break;
+        case 'Green':
+            inputColor.value = 'Xanh lá';
+            break;
+        default:
+            break;
+    }
+    document.getElementById('form-filter').submit();
 }

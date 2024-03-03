@@ -74,10 +74,37 @@ public class FilterServlet extends HttpServlet {
             double priceTo = ((priceTo_raw == null || "".equals(priceTo_raw)) ? 0 : Double.parseDouble(priceTo_raw));
             if (priceFrom != 0 || priceTo != 0) {
                 listProducts = pDao.searchByPrice(priceFrom, priceTo);
+                request.setAttribute("price1", priceFrom);
+                request.setAttribute("price2", priceTo);
+                url = SHOP_LIST;
+            }
+
+            //Color
+            String color = request.getParameter("color");
+            if (color != null && !color.equals("")) {
+                listProducts = pDao.searchByColor(listProducts, color);
                 url = SHOP_LIST;
             }
             
-            //Color
+            //Discount
+            String discount = request.getParameter("discount");
+            if (discount != null) {
+                switch (discount) {
+                    case "dis25":
+                        listProducts = pDao.searchByDiscount(listProducts, 0.25);
+                        break;
+                    case "dis50":
+                        listProducts = pDao.searchByDiscount(listProducts, 0.5);
+                        break;
+                    case "dis75":
+                        listProducts = pDao.searchByDiscount(listProducts, 0.75);
+                        break;
+                    default:
+                        break;
+                }
+                request.setAttribute("DISCOUNT", discount);
+                url = SHOP_LIST;
+            }
 
             //Paging
             int page, numPerPage = 9;
@@ -95,6 +122,7 @@ public class FilterServlet extends HttpServlet {
 
             List<ProductDTO> listByPage = pDao.getListByPage(listProducts, start, end);
 
+            request.setAttribute("CORLOR", color);
             request.setAttribute("SORT_GROUP", action);
             request.setAttribute("ID_GROUP", id);
             request.setAttribute("DATA_FROM", "FilterServlet");
