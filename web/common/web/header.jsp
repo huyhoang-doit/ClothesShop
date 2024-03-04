@@ -25,10 +25,10 @@
                 <div class="header_links">
                     <ul>
                         <li><a href="contact.jsp" title="Contact">Contact</a></li>
+                        <li><a href="wishlist.jsp" title="wishlist">My wishlist</a></li>
+                        <li><a href="cart.jsp" title="My cart">My cart</a></li>  
                             <c:if test="${sessionScope.account != null}">
-                            <li><a href="wishlist.jsp" title="wishlist">My wishlist</a></li>
                             <li><a href="ProfileServlet" title="My account">My account</a></li>
-                            <li><a href="cart.jsp" title="My cart">My cart</a></li>  
                             </c:if>
                             <c:if test="${sessionScope.account == null}">
                             <li><a href="DispatchServlet?btnAction=Login" title="Login">Login</a></li>  
@@ -63,11 +63,11 @@
                         </form>
                     </div>
                     <div class="shopping_cart" id="cart-icon">
-                        <c:if test="${sessionScope.CART != null}">
+                        <c:if test="${sessionScope.CART != null && sessionScope.CART.size() != 0}">
                             <a href="#"><i class="fa fa-shopping-cart"></i> ${sessionScope.CART.size()} Items <i class="fa fa-angle-down"></i></a>
                             </c:if>
-                            <c:if test="${sessionScope.CART == null}">
-                            <a href="#"><i class="fa fa-shopping-cart"></i> ${sessionScope.CART.size()}<i class="fa fa-angle-down"></i></a>
+                            <c:if test="${sessionScope.CART == null || sessionScope.CART.size() == 0}">
+                            <a href="#"><i class="fa fa-shopping-cart"></i><i class="fa fa-angle-down"></i></a>
                             </c:if>
 
                         <!--mini cart-->
@@ -83,7 +83,7 @@
                                         <span class="quantity">X ${c.quantity}</span>
                                     </div>
                                     <div class="cart_remove">
-                                        <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                        <a title="Remove this item" href="CartServlet?action=Delete&product_id=${c.product.id}"><i class="fa fa-times-circle"></i></a>
                                     </div>
                                 </div>
                             </c:forEach>

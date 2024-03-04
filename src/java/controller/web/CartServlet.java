@@ -8,6 +8,8 @@ package controller.web;
 import dal.CartDAO;
 import dal.ProductDAO;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.CartDTO;
+import model.CartItem;
 import model.ProductDTO;
 import model.UserDTO;
 
@@ -27,37 +30,36 @@ import model.UserDTO;
 public class CartServlet extends HttpServlet {
 
     private static final String LOGIN = "LoginServlet?btnAction=Login";
-    private static final String CART_AJAX = "DispatchServlet";
+    private static final String DISPATCHSERVLET = "DispatchServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = CART_AJAX;
+        String url = DISPATCHSERVLET;
+        ProductDAO pDao = new ProductDAO();
+        CartUtil cartUtil = new CartUtil();
+        List<CartItem> carts = null;
+        HashMap<Integer, CartItem> listItem = null;
         try {
             HttpSession session = request.getSession();
-            String quantity = request.getParameter("quantity");
+            String action = request.getParameter("action");
             String product_id = request.getParameter("product_id");
-            UserDTO user = (UserDTO) session.getAttribute("account");
-            ProductDAO pDao = new ProductDAO();
-            CartDAO cDao = new CartDAO();
-
             ProductDTO product = pDao.getProductByID(Integer.parseInt(product_id));
-            if (user == null) {
-                url = LOGIN;
-            } else {
-                List<CartDTO> carts = null;
-                CartDTO cart = new CartDTO(product, Integer.parseInt(quantity), user.getUserName());
-                // Check cart exist ??
-                carts = (List<CartDTO>) session.getAttribute("CART");
+            if ("Add".equals(action)) {
+                String quantity = request.getParameter("quantity");
+                CartItem item = new CartItem(product, Integer.parseInt(quantity));
+                carts = (List<CartItem>) session.getAttribute("CART");
                 if (carts == null) {
-                    if (cDao.createCart(cart)) {
-                        carts = cDao.getCartByUserName(user.getUserName());
-                    }
+                    listItem = cartUtil.createCart(item);
                 } else {
-                    carts = cDao.insertCart(carts, cart);
+                    listItem = cartUtil.addItemToCart(item);
                 }
-                session.setAttribute("CART", carts);
+            } else if ("Delete".equals(action)) {
+                listItem = cartUtil.removeItem(product);
+                
             }
+            carts = new ArrayList<>(listItem.values());
+            session.setAttribute("CART", carts);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

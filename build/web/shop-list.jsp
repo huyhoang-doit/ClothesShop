@@ -219,7 +219,7 @@
                             <div class="col-lg-9 col-md-12">
                                 <!--banner slider start-->
                                 <div class="banner_slider mb-35">
-                                    <img src="assets\img\banner\bannner10.jpg" alt="">
+                                    <img src="assets\img\banner\banner10.jpg" alt="">
                                 </div> 
                                 <!--banner slider start-->
 
@@ -278,7 +278,7 @@
                                                                     <span class="discount">Up to ${p.discount * 100}%</span>
                                                                 </c:if>
                                                                 <div class="product_action">
-                                                                    <a href="CartServlet?product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <a href="CartServlet?action=Add&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">

@@ -31,15 +31,12 @@ public class DispatchServlet extends HttpServlet {
     private final String SEARCH = "Search";
     private final String LOGOUT = "Logout";
     private final String REGISTER = "Register";
-    private final String ADDTOCART = "AddToCart";
     private final String ADDTOWISHLIST = "AddToWishList";
     private final String WELCOME = "home.jsp";
     private final String LOGIN_CONTROLlER = "LoginServlet";
-    private final String CART_CONTROLlER = "CartServlet";
     private final String WISHLIST_CONTROLlER = "WishlistServlet";
     private final String REGISTER_CONTROLLER = "RegisterServlet";
     private final String SEARCH_CONTROLLER = "SearchServlet";
-    private final String SHOP_CONTROLLER = "SearchServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

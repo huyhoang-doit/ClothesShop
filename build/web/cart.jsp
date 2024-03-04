@@ -51,10 +51,12 @@
                                 <div class="col-12">
                                     <div class="table_desc">
                                         <div class="cart_page table-responsive">
-                                            <c:if test="${sessionScope.CART == null}">
-                                                <img src="" alt="Empty cart">
+                                            <c:if test="${sessionScope.CART == null || sessionScope.CART.size() == 0}">
+                                                <div style="text-align: center;">
+                                                    <img  src="assets/img/cart/emptycart1.png" alt="Empty cart">
+                                                </div>
                                             </c:if>
-                                            <c:if test="${sessionScope.CART != null}">
+                                            <c:if test="${sessionScope.CART != null && sessionScope.CART.size() != 0}">
                                                 <table>
                                                     <thead>
                                                         <tr>
@@ -74,7 +76,7 @@
                                                                 <td class="product-price">$${c.product.getSalePrice()}</td>
                                                                 <td class="product_quantity"><input min="0" max="${c.product.stock}" value="${c.quantity}" type="number"></td>
                                                                 <td class="product_total">$${c.product.getSalePrice() * c.quantity}</td>
-                                                                <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                                                <td class="product_remove"><a href="CartServlet?action=Delete&product_id=${c.product.id}"><i class="fa fa-trash-o"></i></a></td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>

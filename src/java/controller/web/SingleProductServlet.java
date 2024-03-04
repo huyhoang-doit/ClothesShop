@@ -30,14 +30,20 @@ public class SingleProductServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = SINGLE_PRODUCT_PAGE;
         try {
+            
             ProductDAO pDao = new ProductDAO();
             String product_id = request.getParameter("product_id");
             ProductDTO product = pDao.getProductByID(Integer.parseInt(product_id));
             List<ProductDTO> listProduct = pDao.getProductByCategoryId(pDao.getData(), product.getCategory().getId());
             List<ProductDTO> listSameCategory = new ArrayList<>();
+            int count = 0;
             for (ProductDTO productDTO : listProduct) {
                 if(productDTO.getId() != product.getId()){
                     listSameCategory.add(productDTO);
+                    count++;
+                    if(count == 4) {
+                        break;
+                    }
                 }
             }
             
