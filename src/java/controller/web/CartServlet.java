@@ -5,7 +5,6 @@
  */
 package controller.web;
 
-import dal.CartDAO;
 import dal.ProductDAO;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -17,10 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.CartDTO;
 import model.CartItem;
 import model.ProductDTO;
-import model.UserDTO;
 
 /**
  *
@@ -29,7 +26,6 @@ import model.UserDTO;
 @WebServlet(name = "CartServlet", urlPatterns = {"/CartServlet"})
 public class CartServlet extends HttpServlet {
 
-    private static final String LOGIN = "LoginServlet?btnAction=Login";
     private static final String DISPATCHSERVLET = "DispatchServlet";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -40,6 +36,10 @@ public class CartServlet extends HttpServlet {
         CartUtil cartUtil = new CartUtil();
         List<CartItem> carts = null;
         HashMap<Integer, CartItem> listItem = null;
+
+        WishlistUtil wUtil = new WishlistUtil();
+        List<ProductDTO> wishlists = null;
+        HashMap<Integer, ProductDTO> listWishlist = null;
         try {
             HttpSession session = request.getSession();
             String action = request.getParameter("action");
@@ -54,9 +54,16 @@ public class CartServlet extends HttpServlet {
                 } else {
                     listItem = cartUtil.addItemToCart(item);
                 }
+                // Delete product in wishlist
+                wishlists = (List<ProductDTO>) session.getAttribute("WISHLIST");
+                if (wishlists != null) {
+                    listWishlist = wUtil.removeItem(product);
+                    wishlists = new ArrayList<>(listWishlist.values());
+                    session.setAttribute("WISHLIST", wishlists);
+                }
             } else if ("Delete".equals(action)) {
                 listItem = cartUtil.removeItem(product);
-                
+
             }
             carts = new ArrayList<>(listItem.values());
             session.setAttribute("CART", carts);

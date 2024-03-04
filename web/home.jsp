@@ -64,41 +64,31 @@
                                     </ul>
                                 </div>
                                 <!--categorie menu end-->
-                                <c:if test="${sessionScope.account !=null}">
+                                <c:if test="${sessionScope.WISHLIST != null}">
                                     <!--wishlist block start-->
                                     <div class="sidebar_widget wishlist mb-35">
                                         <div class="block_title">
-                                            <h3><a href="#">Wishlist</a></h3>
+                                            <h3><a href="wishlist.jsp">Wishlist</a></h3>
                                         </div>
-                                        <div class="cart_item">
-                                            <div class="cart_img">
-                                                <a href="#"><img src="assets\img\cart\cart.jpg" alt=""></a>
-                                            </div>
-                                            <div class="cart_info">
-                                                <a href="#">lorem ipsum dolor</a>
-                                                <span class="cart_price">$115.00</span>
-                                                <span class="quantity">Qty: 1</span>
-                                            </div>
-                                            <div class="cart_remove">
-                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="cart_item">
-                                            <div class="cart_img">
-                                                <a href="#"><img src="assets\img\cart\cart2.jpg" alt=""></a>
-                                            </div>
-                                            <div class="cart_info">
-                                                <a href="#">Quisque ornare dui</a>
-                                                <span class="cart_price">$105.00</span>
-                                                <span class="quantity">Qty: 1</span>
-                                            </div>
-                                            <div class="cart_remove">
-                                                <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                            </div>
-                                        </div>
+                                        <c:forEach items="${sessionScope.WISHLIST}" var="p" varStatus="loop">
+                                            <c:if test="${loop.index <= 2}">
+                                                <div class="cart_item">
+                                                    <div class="cart_img">
+                                                        <a href="SingleProductServlet?product_id=${p.id}"><img src="${p.images[0]}" alt=""></a>
+                                                    </div>
+                                                    <div class="cart_info">
+                                                        <a href="SingleProductServlet?product_id=${p.id}">${p.name}</a>
+                                                        <span class="cart_price">$${p.salePrice}</span>
+                                                    </div>
+<!--                                                    <div class="cart_remove">
+                                                        <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                                    </div>-->
+                                                </div>
+                                            </c:if>
+                                        </c:forEach>
                                         <div class="block_content">
-                                            <p>2  products</p>
-                                            <a href="#">» My wishlists</a>
+                                            <p>${sessionScope.WISHLIST.size()}  products</p>
+                                            <a href="wishlist.jsp">» My wishlists</a>
                                         </div>
                                     </div>
                                     <!--wishlist block end-->
@@ -206,7 +196,7 @@
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
-                                                                    <li><a href="DispatchServlet?btnAction=AddToWishList&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                    <li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
                                                                     <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                                 </ul>
                                                             </div>
@@ -250,7 +240,7 @@
                                                         </div>
                                                         <div class="product_info">
                                                             <ul>
-                                                                <li><a href="DispatchServlet?btnAction=AddToWishList&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                <li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
                                                                 <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                             </ul>
                                                         </div>

@@ -169,7 +169,7 @@
                                         </div>
                                         <div class="product_info">
                                             <ul>
-                                                <li><a href="WishlistServlet" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                <li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
                                                 <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                             </ul>
                                         </div>

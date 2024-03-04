@@ -10,132 +10,113 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Favicon -->
         <link rel="shortcut icon" type="image/x-icon" href="assets\img\favicon.png">
-		
-		<!-- all css here -->
-       <%@include file="/common/web/add_css.jsp"%>
+
+        <!-- all css here -->
+        <%@include file="/common/web/add_css.jsp"%>
     </head>
     <body>
-            <!-- Add your site or application content here -->
-            
-            <!--pos page start-->
-            <div class="pos_page">
-                <div class="container">
-                    <!--pos page inner-->
-                    <div class="pos_page_inner">  
-                       <!--header area -->
-                        <%@include file="/common/web/header.jsp"%>
-                        <!--header end -->
-                         <!--breadcrumbs area start-->
-                        <div class="breadcrumbs_area">
+        <!-- Add your site or application content here -->
+
+        <!--pos page start-->
+        <div class="pos_page">
+            <div class="container">
+                <!--pos page inner-->
+                <div class="pos_page_inner">  
+                    <!--header area -->
+                    <%@include file="/common/web/header.jsp"%>
+                    <!--header end -->
+                    <!--breadcrumbs area start-->
+                    <div class="breadcrumbs_area">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="breadcrumb_content">
+                                    <ul>
+                                        <li><a href="DispatchServlet">home</a></li>
+                                        <li><i class="fa fa-angle-right"></i></li>
+                                        <li>wishlist</li>
+                                    </ul>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--breadcrumbs area end-->
+
+                    <!--shopping cart area start -->
+                    <div class="shopping_cart_area">
+                        <form action="#"> 
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="breadcrumb_content">
-                                        <ul>
-                                            <li><a href="index.html">home</a></li>
-                                            <li><i class="fa fa-angle-right"></i></li>
-                                            <li>wishlist</li>
-                                        </ul>
+                                    <div class="table_desc wishlist">
+                                        <div class="cart_page table-responsive">
+                                            <c:if test="${sessionScope.WISHLIST == null || sessionScope.WISHLIST.size() == 0}">
+                                                <div style="text-align: center;">
+                                                    <img  src="assets/img/cart/emptycart2.png" alt="Empty cart">
+                                                </div>
+                                            </c:if>
+                                            <c:if test="${sessionScope.WISHLIST != null && sessionScope.WISHLIST.size() != 0}">
+                                                <table>
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="product_thumb">Image</th>
+                                                            <th class="product_name">Product</th>
+                                                            <th class="product-price">Price</th>
+                                                            <th class="product_quantity">Stock Status</th>
+                                                            <th class="product_total">Add To Cart</th>
+                                                            <th class="product_remove">Delete</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <c:forEach items="${sessionScope.WISHLIST}" var="p">
+                                                            <tr>
+                                                                <td class="product_thumb"><a href="SingleProductServlet?product_id=${p.id}"><img src="${p.images[0]}" alt=""></a></td>
+                                                                <td class="product_name"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></td>
+                                                                <td class="product-price">$${p.salePrice}</td>
+                                                                <c:if test="${p.status == true}">
+                                                                    <td class="product_quantity">
+                                                                        In Stock
+                                                                    </td>
+                                                                    <td class="product_total"><a href="CartServlet?action=Add&product_id=${p.id}&quantity=1">Add To Cart</a></td>
+                                                                </c:if>
+                                                                    <c:if test="${p.status == false}">
+                                                                    <td class="product_quantity">
+                                                                        Out of Stock
+                                                                    </td>
+                                                                    <td class="product_total"><a href="WishlistServlet?action=Delete&product_id=${p.id}">Remove</a></td>
+                                                                </c:if>
+                                                                <td class="product_remove"><a href="WishlistServlet?action=Delete&product_id=${p.id}">X</a></td>
+                                                            </tr>
+                                                        </c:forEach>
+                                                    </tbody>
+                                                </table>   
+                                            </c:if>
+
+                                        </div>  
 
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!--breadcrumbs area end-->
 
-                         <!--shopping cart area start -->
-                        <div class="shopping_cart_area">
-                               <form action="#"> 
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="table_desc wishlist">
-                                                <div class="cart_page table-responsive">
-                                                    <table>
-                                                        <thead>
-                                                            <tr>
-                                                                <th class="product_remove">Delete</th>
-                                                                <th class="product_thumb">Image</th>
-                                                                <th class="product_name">Product</th>
-                                                                <th class="product-price">Price</th>
-                                                                <th class="product_quantity">Stock Status</th>
-                                                                <th class="product_total">Add To Cart</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                            <tr>
-                                                               <td class="product_remove"><a href="#">X</a></td>
-                                                                <td class="product_thumb"><a href="#"><img src="assets\img\cart\cart17.jpg" alt=""></a></td>
-                                                                <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                                                                <td class="product-price">£65.00</td>
-                                                                <td class="product_quantity">In Stock</td>
-                                                                <td class="product_total"><a href="#">Add To Cart</a></td>
-
-
-                                                            </tr>
-
-                                                            <tr>
-                                                               <td class="product_remove"><a href="#">X</a></td>
-                                                                <td class="product_thumb"><a href="#"><img src="assets\img\cart\cart18.jpg" alt=""></a></td>
-                                                                <td class="product_name"><a href="#">Handbags justo</a></td>
-                                                                <td class="product-price">£90.00</td>
-                                                                <td class="product_quantity">In Stock</td>
-                                                                <td class="product_total"><a href="#">Add To Cart</a></td>
-
-
-                                                            </tr>
-                                                            <tr>
-                                                               <td class="product_remove"><a href="#">X</a></td>
-                                                                <td class="product_thumb"><a href="#"><img src="assets\img\cart\cart19.jpg" alt=""></a></td>
-                                                                <td class="product_name"><a href="#">Handbag elit</a></td>
-                                                                <td class="product-price">£80.00</td>
-                                                                <td class="product_quantity">In Stock</td>
-                                                                <td class="product_total"><a href="#">Add To Cart</a></td>
-
-
-                                                            </tr>
-
-                                                        </tbody>
-                                                    </table>   
-                                                </div>  
-
-                                            </div>
-                                         </div>
-                                     </div>
-
-                                </form> 
-                                <div class="row">
-                                    <div class="col-12">
-                                         <div class="wishlist-share">
-                                            <h4>Share on:</h4>
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-rss"></i></a></li>           
-                                                <li><a href="#"><i class="fa fa-vimeo"></i></a></li>           
-                                                <li><a href="#"><i class="fa fa-tumblr"></i></a></li>           
-                                                <li><a href="#"><i class="fa fa-pinterest"></i></a></li>        
-                                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li>        
-                                            </ul>      
-                                        </div>
-                                    </div> 
-                                </div>
-
-                         </div>
-                         <!--shopping cart area end -->
-
+                        </form> 
                     </div>
-                    <!--pos page inner end-->
+                    <!--shopping cart area end -->
+
                 </div>
+                <!--pos page inner end-->
             </div>
-            <!--pos page end-->
-            
-            <!--footer area start-->
-            <%@include file="/common/web/footer.jsp"%>
-            <!--footer area end-->
-            
-            
-            
-            
-      
-		
-		<!-- all js here -->
+        </div>
+        <!--pos page end-->
+
+        <!--footer area start-->
+        <%@include file="/common/web/footer.jsp"%>
+        <!--footer area end-->
+
+
+
+
+
+
+        <!-- all js here -->
         <%@include file="/common/web/add_js.jsp"%>
     </body>
 </html>

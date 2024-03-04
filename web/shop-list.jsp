@@ -165,55 +165,37 @@
                                    border-radius: 20px;
                                    margin: 10px 0 20px"
                                    type="reset">Reset</a>
-                                <!--special product start-->
-                                <div class="sidebar_widget special">
-                                    <div class="block_title">
-                                        <h3>Special Products</h3>
-                                    </div>
-                                    <div class="special_product_inner mb-20">
-                                        <div class="special_p_thumb">
-                                            <a href="#"><img src="assets\img\cart\cart3.jpg" alt=""></a>
+                                <!--wishlist start-->
+                                <c:if test="${sessionScope.account !=null || sessionScope.WISHLIST != null}">
+                                    <!--wishlist block start-->
+                                    <div class="sidebar_widget wishlist mb-35">
+                                        <div class="block_title">
+                                            <h3><a href="wishlist.jsp">Wishlist</a></h3>
                                         </div>
-                                        <div class="small_p_desc">
-                                            <div class="product_ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <h3><a href="#">Lorem ipsum dolor</a></h3>
-                                            <div class="special_product_proce">
-                                                <span class="old_price">$124.58</span>
-                                                <span class="new_price">$118.35</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="special_product_inner">
-                                        <div class="special_p_thumb">
-                                            <a href="#"><img src="assets\img\cart\cart18.jpg" alt=""></a>
-                                        </div>
-                                        <div class="small_p_desc">
-                                            <div class="product_ratting">
-                                                <ul>
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                    <li><a href="#"><i class="fa fa-star"></i></a></li>
-                                                </ul>
-                                            </div>
-                                            <h3><a href="#">Printed Summer</a></h3>
-                                            <div class="special_product_proce">
-                                                <span class="old_price">$124.58</span>
-                                                <span class="new_price">$118.35</span>
-                                            </div>
+                                        <c:forEach items="${sessionScope.WISHLIST}" var="p" varStatus="loop">
+                                            <c:if test="${loop.index <= 2}">
+                                                <div class="cart_item">
+                                                    <div class="cart_img">
+                                                        <a href="SingleProductServlet?product_id=${p.id}"><img src="${p.images[0]}" alt=""></a>
+                                                    </div>
+                                                    <div class="cart_info">
+                                                        <a href="SingleProductServlet?product_id=${p.id}">${p.name}</a>
+                                                        <span class="cart_price">$${p.salePrice}</span>
+                                                    </div>
+<!--                                                    <div class="cart_remove">
+                                                        <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                                    </div>-->
+                                                </div>
+                                            </c:if>
+                                        </c:forEach>
+                                        <div class="block_content">
+                                            <p>${sessionScope.WISHLIST.size()}  products</p>
+                                            <a href="wishlist.jsp">» My wishlists</a>
                                         </div>
                                     </div>
-                                </div>
-                                <!--special product end-->
+                                    <!--wishlist block end-->
+                                </c:if>
+                                <!--wishlist end-->
 
                             </form>
                             <div class="col-lg-9 col-md-12">
@@ -293,7 +275,7 @@
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
-                                                                    <li><a href="#" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                    <li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
                                                                     <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                                 </ul>
                                                             </div>
