@@ -135,8 +135,8 @@
                                                 </label>
                                             </li>
                                             <li>
-                                                <input ${requestScope.DISCOUNT.equals("dis50") ? "checked" : ""} id="dis50" type="radio" name="discount" value="dis50">
-                                                <label for="dis50">Up to 50%
+                                                <input ${requestScope.DISCOUNT.equals("dis40") ? "checked" : ""} id="dis50" type="radio" name="discount" value="dis40">
+                                                <label for="dis50">Up to 40%
                                                     <span>(1)</span>
                                                 </label>
                                             </li>
@@ -230,9 +230,9 @@
                                             <li>
                                                 <a class="active" data-toggle="tab" href="#large" role="tab" aria-controls="large" aria-selected="true"><i class="fa fa-th-large"></i></a>
                                             </li>
-                                            <li>
+<!--                                            <li>
                                                 <a data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false"><i class="fa fa-th-list"></i></a>
-                                            </li>
+                                            </li>-->
                                         </ul>
                                     </div>
                                     <div class="page_amount">
@@ -302,7 +302,7 @@
                                                 </c:forEach>
                                             </div>  
                                         </div>
-                                        <div class="tab-pane fade" id="list" role="tabpanel">
+<!--                                        <div class="tab-pane fade" id="list" role="tabpanel">
                                             <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
                                                 <div class="product_list_item mb-35">
                                                     <div class="row align-items-center">
@@ -340,8 +340,7 @@
                                                     </div> 
                                                 </div>
                                             </c:forEach>
-                                        </div>
-
+                                        </div>-->
                                     </div>
                                 </div>    
                                 <!--shop tab product end-->
@@ -375,17 +374,17 @@
                                                 <c:set var="page" value="${requestScope.CURRENTPAGE}"/>
                                                 <c:if test="${page != 1}">
                                                     <li>
-                                                        <a href="FilterServlet?page=${page - 1}&id_group=${requestScope.ID_GROUP}&sort_group=${requestScope.SORT_GROUP}">«</a>
+                                                        <a href="FilterServlet?page=${page - 1}&${requestScope.QUERYSTRING}">«</a>
                                                     </li>
                                                 </c:if>
                                                 <c:forEach var="i" begin="1" end="${requestScope.NUMBERPAGE}">
                                                     <li>
-                                                        <a style="${page == i ? "color: #e84c3d" :""}" href="FilterServlet?id=${requestScope.ID_GROUP}&page=${i}&sort_group=${requestScope.SORT_GROUP}">${i}</a>
+                                                        <a style="${page == i ? "color: #e84c3d" :""}" href="FilterServlet?page=${i}&${requestScope.QUERYSTRING}">${i}</a>
                                                     </li>
                                                 </c:forEach>
                                                 <c:if test="${page != NUMBERPAGE}">
                                                     <li>
-                                                        <a href="FilterServlet?page=${page + 1}&id_group=${requestScope.ID_GROUP}&sort_group=${requestScope.SORT_GROUP}">»</a>
+                                                        <a href="FilterServlet?page=${page + 1}&${requestScope.QUERYSTRING}">»</a>
                                                     </li>
                                                 </c:if>
                                             </c:if>

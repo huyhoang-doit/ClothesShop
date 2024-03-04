@@ -44,6 +44,7 @@ public class FilterServlet extends HttpServlet {
             int[] cid_filter = null;
             Boolean[] chid = new Boolean[listCategories.size() + 1];
             int id_filter = 0;
+            String queryString = request.getQueryString();
 
             if (action == null) {
                 action = group;
@@ -119,8 +120,8 @@ public class FilterServlet extends HttpServlet {
                     case "dis25":
                         listProducts = pDao.searchByDiscount(listProducts, 0.25);
                         break;
-                    case "dis50":
-                        listProducts = pDao.searchByDiscount(listProducts, 0.5);
+                    case "dis40":
+                        listProducts = pDao.searchByDiscount(listProducts, 0.4);
                         break;
                     case "dis75":
                         listProducts = pDao.searchByDiscount(listProducts, 0.75);
@@ -153,7 +154,6 @@ public class FilterServlet extends HttpServlet {
                 chid[0] = false;
                 for (int i = 1; i < chid.length; i++) {
                     if (isCheck(listCategories.get(i - 1).getId(), cid_filter)) {
-//                        stringForLink += "cid_refinee=" + i + "&";
                         chid[i] = true;
                     } else {
                         chid[i] = false;
@@ -172,7 +172,7 @@ public class FilterServlet extends HttpServlet {
             request.setAttribute("LISTCATEGORIES", listCategories);
             request.setAttribute("VALUESORT", valueSort);
             request.setAttribute("filterByCategory", "filterByCategory");
-
+            request.setAttribute("QUERYSTRING", queryString);
         } catch (Exception e) {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
