@@ -36,6 +36,7 @@ public class OrderDAO extends DBContext {
     private static final String GET_ORDERS_USER = "SELECT * FROM [Orders] WHERE username = ?";
     private static final String GET_ORDERS_BYID = "SELECT * FROM [Orders] WHERE order_id = ?";
     private static final String GET_RECENT_ORDERS = "SELECT Top 10 * FROM Orders ORDER BY orderdate DESC";
+    private static final String UPDATE_STATUS = "UPDATE [Orders] SET status = 1 WHERE order_id = ?";
 
     public double getTotalSale() throws SQLException {
         double result = 0;
@@ -347,6 +348,32 @@ public class OrderDAO extends DBContext {
             }
         }
         return orders;
+    }
+    
+    public void UpdateStatus(String orderId) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_STATUS);
+                ptm.setString(1, orderId);
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
     }
 
     public static void main(String[] args) throws SQLException {

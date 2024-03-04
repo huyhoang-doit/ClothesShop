@@ -78,3 +78,21 @@ function setValue() {
     here.value = dobFull;
 }
 
+function changeStatus(button, orderID) {
+    var id = orderID;
+    var action = 'changeStatus';
+    $.ajax({
+        url: "/PRJ301_Sp24_ClothesShop/ManageOrderServlet",
+        type: "post",
+        data: {
+            id: id,
+            action: action
+        },
+        success: function () {
+            var row = button.parentElement;
+            row.innerHTML = 'Đã giao';
+        },
+        error: function (xhr) {
+        }
+    });
+}

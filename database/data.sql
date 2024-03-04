@@ -89,10 +89,19 @@ INSERT INTO Products VALUES
 , 'assets/img/products/25-1.jpg assets/img/products/25-2.jpg' , N'Xanh lá,Đen' , '2023-02-01' , 0., 81, 1500.000,1,1),
 (N'QUẦN DÀI *ANGEL BOBUI* ', 5, 7,'S' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
 , 'assets/img/products/26-1.jpg assets/img/products/26-2.jpg' , N'Xanh lá' , '2023-03-02' , 0.1, 81, 700.000,1,1),
-(N'QUẦN DOUBLE KNEE CANVAS WORKWEAR ', 5, 7,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+(N'QUẦN DOUBLE KNEE CANVAS WORKWEAR', 5, 7,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
 , 'assets/img/products/27-1.jpg assets/img/products/27-2.jpg' , N'Vàng' , '2022-04-02' , 0.2, 81, 750.000,1,1)
 --Phu kien
 --...
+INSERT INTO Products VALUES
+(N'GIÀY CHELSEA BOOTS ALL BLACK', 4, 12,'41,42,43,44' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
+, 'assets/img/products/28-1.jpg assets/img/products/28-2.jpg assets/img/products/29-2.jpg' , N'Đen' , '2022-04-02' , 0.77, 11, 1040.000,1,3),
+(N'Túi Đeo Chéo Nam Adidas Airliner Bag Archive HY4320', 1, 11,'21cm x 5.5cm x 16cm' , 10, N'Túi Đeo Chéo Nam Adidas Airliner Bag Archive HY4320 Màu Đen là chiếc túi cao cấp đến từ thương hiệu Adidas nỗi tiếng của Đức. Nếu chiếc túi airliner này trông có vẻ quen thuộc, thì có lẽ là vì đây là một trong những thiết kế đặc trưng trong bộ sưu tập adidas. Nhưng phiên bản hiện đại này mang đến nét thanh lịch mới mẻ cho thiết kế nguyên bản.'
+, 'assets/img/products/29-1.jpg' , N'Đen' , '2022-04-02' , 0.3, 11, 1290.000,1,3),
+(N'Túi Đeo Chéo Adidas Festival', 1, 11,'4cm x 14cm x 16cm' , 10, N'Túi Đeo Chéo Adidas Must Haves Seasonal Small Bag HY3030 Màu Đen là chiếc túi cao cấp đến từ thương hiệu Adidas nỗi tiếng của Đức. Nếu chiếc túi airliner này trông...'
+, 'assets/img/products/30-1.jpg' , N'Đen' , '2022-04-02' , 0.40, 11, 1250.000,1,3),
+(N'Mũ Nam Louis Vuitton', 3, 10,'L,M' , 5, N'Mű Nam Louis Vuitton LV Monogram Constellation Cap M7136M Màu Xanh Denim là chiếc mũ thời trang dành cho nam đến từ thương hiệu Louis Vuitton nổi tiếng.'
+, 'assets/img/products/31-1.jpg assets/img/products/31-2.jpg' , N'Xanh lá,Xanh dương' , '2022-04-02' , 0.06, 15, 550.000,1,3)
 
 INSERT INTO Carts VALUES 
 (1,'admin', 1),
@@ -120,11 +129,11 @@ INSERT INTO [Orders] VALUES
 ('2024-01-19 11:30:00', 2200.00, 1, 1, 'user2', 1),
 ('2020-09-10 12:30:00', 2685.00, 1, 1, 'phuuthanh2003', 1),
 ('2021-10-20 11:19:00', 3250.00, 1, 1, 'phuuthanh2003', 1),
-('2021-03-10 12:30:00', 114.11, 1, 1, 'user2', 1),
-('2024-04-20 11:19:00', 10.59, 1, 1, 'user2', 1),
-('2024-05-19 11:30:00', 80.50, 1, 1, 'phuuthanh2003', 1),
-('2023-06-10 12:30:00', 41.59, 1, 1, 'phuuthanh2003', 1),
-('2022-07-20 11:19:00', 160.59, 1, 1, 'user2', 1),
+('2021-03-10 12:30:00', 500.00, 1, 1, 'user2', 1),
+('2024-04-20 11:19:00', 824.00, 1, 1, 'user2', 1),
+('2024-05-19 11:30:00', 2200.00, 1, 1, 'phuuthanh2003', 1),
+('2023-06-10 12:30:00', 1190.00, 1, 1, 'phuuthanh2003', 1),
+('2022-07-20 11:19:00', 1040.00, 1, 1, 'user2', 1),
 ('2021-08-19 11:30:00', 80.50, 1, 1, 'phuuthanh2003', 1),
 ('2024-09-10 12:30:00', 110.59, 1, 1, 'user2', 1),
 ('2020-11-20 11:19:00', 110.59, 1, 1, 'phuuthanh2003', 1),
@@ -161,6 +170,12 @@ INSERT INTO OrderItem VALUES
 (2, 1100.0, 11, 7),
 (3, 345.0, 19, 8),
 (3, 550.0, 20, 8),
-(5, 650.0, 23, 9);
+(5, 650.0, 23, 9),
+(1, 500.0, 22, 10),
+(2, 412.0, 22, 11),
+(1, 2200.0, 14, 12),
+(1, 875.0, 6, 13),
+(1, 315.0, 5, 13),
+(1, 1040.0, 28, 14);
 
 SELECT * FROM Products WHERE categoryid = 12 AND status = 1
