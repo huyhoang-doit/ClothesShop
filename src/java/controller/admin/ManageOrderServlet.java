@@ -30,6 +30,7 @@ public class ManageOrderServlet extends HttpServlet {
 
     private final static String ORDER_PAGE ="admin_order.jsp";
     private final static String ORDER_DETAIL_PAGE ="admin_order_detail.jsp";
+    private final static String CHANGE_STATUS = "changeStatus";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -40,7 +41,6 @@ public class ManageOrderServlet extends HttpServlet {
             List<OrderDTO> listOrders = oDao.getAllOrders();
             String action = request.getParameter("action");
             
-            
             if ("showdetail".equals(action)) {
                 url= ORDER_DETAIL_PAGE;
                 String bill_id = request.getParameter("bill_id");
@@ -49,6 +49,8 @@ public class ManageOrderServlet extends HttpServlet {
                 List<OrderItem> list = oIDao.getOrderItemByOrderId(id);
                 request.setAttribute("LIST_PRODUCTS_IN_ORDER", list);
                 
+            } else if (CHANGE_STATUS.equals(action)) {
+                oDao.UpdateStatus(request.getParameter("id"));
             }
             request.setAttribute("LIST_ORDERS", listOrders);
         } catch (SQLException ex) {
