@@ -90,7 +90,7 @@ public class CartUtil {
 
     }
 
-    public String convertToString() {
+    public String convertToString(HashMap<Integer, CartItem> listItemsInCart) {
         List<CartItem> list = new ArrayList<>(listItemsInCart.values());
         return list.toString();
 

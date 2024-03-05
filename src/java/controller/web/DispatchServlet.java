@@ -111,16 +111,19 @@ public class DispatchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        CartUtil cartUtil = new CartUtil();
-        try {
-            HttpSession session = request.getSession();
-            Cookie cookie = cartUtil.getCookieByName(request, "Cart");
-            if (cookie != null) {
-                List<CartItem> carts = cartUtil.getCartFromCookie(cookie);
-                session.setAttribute("CART", carts);
-            }
-        } catch (Exception e) {
-        }
+//        CartUtil cartUtil = new CartUtil();
+//        try {
+//            HttpSession session = request.getSession();
+//            if (session.getAttribute("CART") == null) {
+//                Cookie cookie = cartUtil.getCookieByName(request, "Cart");
+//                if (cookie != null) {
+//                    List<CartItem> carts = cartUtil.getCartFromCookie(cookie);
+//                    session.setAttribute("CART", carts);
+//                }
+//            }
+//
+//        } catch (Exception e) {
+//        }
         processRequest(request, response);
     }
 

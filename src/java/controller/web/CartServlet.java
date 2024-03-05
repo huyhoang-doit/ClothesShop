@@ -63,14 +63,17 @@ public class CartServlet extends HttpServlet {
                 }
             } else if ("Delete".equals(action)) {
                 listItem = cartUtil.removeItem(product);
-
             }
             carts = new ArrayList<>(listItem.values());
             session.setAttribute("CART", carts);
-            
             // Save to cookie
-            String strCarts = cartUtil.convertToString();
+            String strCarts = cartUtil.convertToString(listItem);
             cartUtil.saveCartToCookie(request, response, strCarts);
+            
+            String strWishlist = wUtil.convertToString(listWishlist);
+            wUtil.saveWishlistToCookie(request, response, strWishlist);
+            
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
