@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/Context/DBContext.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/controller/web/DispatchServlet.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/controller/web/CartServlet.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/common/web/header.jsp</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/ajax/cart_ajax.jsp</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/dal/ProductDAO.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/dal/CartDAO.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/shop-list.jsp</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/home.jsp</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/model/Email.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
