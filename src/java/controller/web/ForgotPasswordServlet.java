@@ -5,58 +5,44 @@
  */
 package controller.web;
 
-import dal.ProductDAO;
+import dal.UserDAO;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import model.ProductDTO;
+import model.Email;
 
 /**
  *
  * @author lvhho
  */
-@WebServlet(name = "WishlistServlet", urlPatterns = {"/WishlistServlet"})
-public class WishlistServlet extends HttpServlet {
+@WebServlet(name = "ForgotPasswordServlet", urlPatterns = {"/ForgotPasswordServlet"})
+public class ForgotPasswordServlet extends HttpServlet {
 
-    private static final String DISPATCHSERVLET = "DispatchServlet";
+    private static final String FORGOT_PAGE = "forgot_password.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = DISPATCHSERVLET;
-        ProductDAO pDao = new ProductDAO();
-        WishlistUtil wUtil = new WishlistUtil();
-        List<ProductDTO>  wishlists = null;
-        HashMap<Integer, ProductDTO> listItem = null;
+        String url = FORGOT_PAGE;
+        HttpSession session = request.getSession();
+        String emailInput = request.getParameter("email");
+        UserDAO ud = new UserDAO();
+        Email handleEmail = new Email();
+        String message = "";
+        String check = null;
+        String status = request.getParameter("status");
         try {
-            HttpSession session = request.getSession();
-            String action = request.getParameter("action");
-            String product_id = request.getParameter("product_id");
-            ProductDTO product = pDao.getProductByID(Integer.parseInt(product_id));
-            if ("Add".equals(action)) {
-                wishlists = (List<ProductDTO>) session.getAttribute("WISHLIST");
-                if (wishlists == null) {
-                    listItem = wUtil.createWishlist(product);
-                } else {
-                    listItem = wUtil.addItemToWishlist(product);
-                }
-            } else if ("Delete".equals(action)) {
-                listItem = wUtil.removeItem(product);
+            if ("forgot".equals(status)) {
+                request.setAttribute("STATUS", status);
+            }
+            if(emailInput != null) {
                 
             }
-            // Save to Cookie
-            String strItemsWishlist = wUtil.convertToString(listItem);
-            wUtil.saveWishlistToCookie(request, response, strItemsWishlist);
-            
-            wishlists = new ArrayList<>(listItem.values());
-            session.setAttribute("WISHLIST", wishlists);
+
         } catch (Exception e) {
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
