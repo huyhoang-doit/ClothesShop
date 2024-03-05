@@ -67,6 +67,10 @@ public class CartServlet extends HttpServlet {
             }
             carts = new ArrayList<>(listItem.values());
             session.setAttribute("CART", carts);
+            
+            // Save to cookie
+            String strCarts = cartUtil.convertToString();
+            cartUtil.saveCartToCookie(request, response, strCarts);
         } catch (Exception e) {
             e.printStackTrace();
         } finally {

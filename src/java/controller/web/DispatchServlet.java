@@ -12,10 +12,12 @@ import dal.TypeDAO;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import model.CartItem;
 import model.CategoryDTO;
 import model.ProductDTO;
 import model.SupplierDTO;
@@ -109,6 +111,16 @@ public class DispatchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        CartUtil cartUtil = new CartUtil();
+        try {
+            HttpSession session = request.getSession();
+            Cookie cookie = cartUtil.getCookieByName(request, "Cart");
+            if (cookie != null) {
+                List<CartItem> carts = cartUtil.getCartFromCookie(cookie);
+                session.setAttribute("CART", carts);
+            }
+        } catch (Exception e) {
+        }
         processRequest(request, response);
     }
 
