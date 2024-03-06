@@ -32,6 +32,8 @@ public class UserDAO extends DBContext {
 
     private static final String UPDATE_USER = "UPDATE Users SET firstName = ?, lastName = ?, email = ?, address = ?, phone = ? WHERE username = ?";
 
+    private static final String UPDATE_PASSWORD_FOR_USER = "UPDATE Users SET password = ? WHERE username = ?";
+
     private static final String CHECK_USERNAME_DUPLICATE = "SELECT * FROM Users WHERE userName = ? or email = ? and [status] = 1";
 
     private static final String REGISTER_USER = "INSERT INTO [dbo].[Users]\n"
@@ -130,7 +132,7 @@ public class UserDAO extends DBContext {
         }
         return user;
     }
-    
+
     public int getTotalUsers() throws SQLException {
         int result = 0;
         Connection conn = null;
@@ -191,6 +193,31 @@ public class UserDAO extends DBContext {
                 conn.close();
             }
         }
+    }
+
+    public boolean updatePasswordUser(UserDTO user, String pass) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_PASSWORD_FOR_USER);
+                ptm.setString(1, pass);
+                ptm.setString(2, user.getUserName());
+                ptm.executeUpdate();
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
     }
 
     public UserDTO getUserByName(String userName) throws SQLException {

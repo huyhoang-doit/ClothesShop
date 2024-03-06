@@ -105,7 +105,7 @@ public class WishlistUtil {
         String[] elements = inputString.split(",");
 
         for (int i = 0; i < elements.length; i++) {
-            ProductDTO product = pDao.getProductByID(Integer.parseInt(elements[i]));
+            ProductDTO product = pDao.getProductByID(Integer.parseInt(elements[i].trim()));
             listItemsCart.add(product);
         }
         return listItemsCart;

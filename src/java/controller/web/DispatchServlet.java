@@ -111,7 +111,7 @@ public class DispatchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        CartUtil cartUtil = new CartUtil();
+        CartUtil cartUtil = new CartUtil();
 //        try {
 //            HttpSession session = request.getSession();
 //            if (session.getAttribute("CART") == null) {

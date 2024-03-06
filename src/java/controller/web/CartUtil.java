@@ -109,12 +109,12 @@ public class CartUtil {
 
         List<ProductDTO> products = new ArrayList<>();
         for (int i = 0; i < elements.length; i += 2) {
-            ProductDTO product = pDao.getProductByID(Integer.parseInt(elements[i]));
+            ProductDTO product = pDao.getProductByID(Integer.parseInt(elements[i].trim()));
             products.add(product);
         }
         List<Integer> quantitys = new ArrayList<>();
         for (int i = 1; i < elements.length; i += 2) {
-            quantitys.add(Integer.parseInt(elements[i]));
+            quantitys.add(Integer.parseInt(elements[i].trim()));
         }
         // Lấy ra ListCartItem 
         for (int i = 0; i < products.size(); i++) {
