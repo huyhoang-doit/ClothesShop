@@ -81,6 +81,7 @@ public class ShopServlet extends HttpServlet {
             request.setAttribute("LISTCATEGORIES", listCategories);
             request.setAttribute("VALUESORT", valueSort);
         } catch (Exception ex) {
+            log("ShopServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

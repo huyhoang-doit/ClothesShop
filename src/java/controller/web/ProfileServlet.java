@@ -36,7 +36,7 @@ public class ProfileServlet extends HttpServlet {
 
             request.setAttribute("LISTORDERS", listOrders);
         } catch (Exception ex) {
-
+            log("ProfileServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(PROFILE).forward(request, response);
         }

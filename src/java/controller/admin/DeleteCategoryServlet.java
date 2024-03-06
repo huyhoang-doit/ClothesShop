@@ -43,8 +43,8 @@ public class DeleteCategoryServlet extends HttpServlet {
             CategoryDAO dao = new CategoryDAO();
             dao.deleteCategory(cid);
             request.setAttribute("mess", "Delete successfully!");
-        } catch (SQLException ex) {
-            Logger.getLogger(DeleteProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            log("DeleteCategoryServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(MANAGE_CATEGORY_CONTROLLER).forward(request, response);
         }

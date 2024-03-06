@@ -133,8 +133,8 @@ public class EditProductServlet extends HttpServlet {
                 request.setAttribute("mess", "Edit successfully!");
                 request.getRequestDispatcher(url).forward(request, response);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(EditProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            log("EditProductServlet error:" + ex.getMessage());
         }
     }
 

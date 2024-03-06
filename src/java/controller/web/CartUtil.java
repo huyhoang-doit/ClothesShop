@@ -22,7 +22,7 @@ import model.ProductDTO;
  */
 public class CartUtil {
 
-    private static HashMap<Integer, CartItem> listItemsInCart = null;
+    private static HashMap<Integer, CartItem> listItemsInCart = new HashMap<>();
 
     public HashMap<Integer, CartItem> createCart(CartItem item) {
         listItemsInCart = new HashMap<>();
@@ -90,7 +90,7 @@ public class CartUtil {
 
     }
 
-    public String convertToString(HashMap<Integer, CartItem> listItemsInCart) {
+    public String convertToString() {
         List<CartItem> list = new ArrayList<>(listItemsInCart.values());
         return list.toString();
 
@@ -109,7 +109,7 @@ public class CartUtil {
 
         List<ProductDTO> products = new ArrayList<>();
         for (int i = 0; i < elements.length; i += 2) {
-            ProductDTO product = pDao.getProductByID(Integer.parseInt(elements[i]));
+            ProductDTO product = pDao.getProductByID(Integer.parseInt(elements[i].trim()));
             products.add(product);
         }
         List<Integer> quantitys = new ArrayList<>();

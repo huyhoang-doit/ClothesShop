@@ -35,11 +35,11 @@ public class CartServlet extends HttpServlet {
         ProductDAO pDao = new ProductDAO();
         CartUtil cartUtil = new CartUtil();
         List<CartItem> carts = null;
-        HashMap<Integer, CartItem> listItem = null;
+        HashMap<Integer, CartItem> listItem = new HashMap<>();
 
         WishlistUtil wUtil = new WishlistUtil();
         List<ProductDTO> wishlists = null;
-        HashMap<Integer, ProductDTO> listWishlist = null;
+        HashMap<Integer, ProductDTO> listWishlist = new HashMap<>();
         try {
             HttpSession session = request.getSession();
             String action = request.getParameter("action");
@@ -67,15 +67,15 @@ public class CartServlet extends HttpServlet {
             carts = new ArrayList<>(listItem.values());
             session.setAttribute("CART", carts);
             // Save to cookie
-            String strCarts = cartUtil.convertToString(listItem);
+            String strCarts = cartUtil.convertToString();
             cartUtil.saveCartToCookie(request, response, strCarts);
             
             String strWishlist = wUtil.convertToString(listWishlist);
             wUtil.saveWishlistToCookie(request, response, strWishlist);
             
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            log("CartServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

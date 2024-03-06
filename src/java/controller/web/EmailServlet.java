@@ -55,7 +55,7 @@ public class EmailServlet extends HttpServlet {
                 }
             }
         } catch (Exception ex) {
-            ex.printStackTrace();
+            log("EmailServlet error:" + ex.getMessage());
         } finally {
             request.setAttribute("MESSAGE", message);
             request.setAttribute("CHECK", check);

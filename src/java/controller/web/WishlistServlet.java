@@ -52,12 +52,14 @@ public class WishlistServlet extends HttpServlet {
                 
             }
             // Save to Cookie
+            wishlists = new ArrayList<>(listItem.values());
+            session.setAttribute("WISHLIST", wishlists);
+            
             String strItemsWishlist = wUtil.convertToString(listItem);
             wUtil.saveWishlistToCookie(request, response, strItemsWishlist);
             
-            wishlists = new ArrayList<>(listItem.values());
-            session.setAttribute("WISHLIST", wishlists);
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            log("WishlistServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

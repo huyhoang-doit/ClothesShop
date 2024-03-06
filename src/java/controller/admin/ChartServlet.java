@@ -77,8 +77,8 @@ public class ChartServlet extends HttpServlet {
             request.setAttribute("MONTH12", month12);
             
             request.setAttribute("action", "BIEUDO");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            log("CharSerlvet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(CHART).forward(request, response);
         }

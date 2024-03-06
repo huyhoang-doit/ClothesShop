@@ -93,8 +93,8 @@ public class DispatchServlet extends HttpServlet {
             request.setAttribute("LIST_SUPPLIERS", listSuppliers);
             request.setAttribute("LIST_PRODUCTS_NEW", listProductsNew);
             request.setAttribute("LIST_PRODUCTS_SELLER", listProductsBestSeller);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            log("DispatchServlet error:" + ex.getMessage());
         }
 
     }
@@ -111,19 +111,34 @@ public class DispatchServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        CartUtil cartUtil = new CartUtil();
-//        try {
-//            HttpSession session = request.getSession();
-//            if (session.getAttribute("CART") == null) {
-//                Cookie cookie = cartUtil.getCookieByName(request, "Cart");
+        CartUtil cartUtil = new CartUtil();
+        WishlistUtil wishlistUtil = new WishlistUtil();
+        try {
+            List<CartItem> carts = null;
+            List<ProductDTO> wishlists = null;
+
+            HttpSession session = request.getSession();
+            if (session.getAttribute("CART") == null) {
+                Cookie cookie = cartUtil.getCookieByName(request, "Cart");
+                if (cookie != null) {
+                    carts = cartUtil.getCartFromCookie(cookie);
+                }
+            } else {
+                carts = (List<CartItem>) session.getAttribute("CART");
+            }
+//            if (session.getAttribute("WISHLIST") == null) {
+//                Cookie cookie = wishlistUtil.getCookieByName(request, "Wishlist");
 //                if (cookie != null) {
-//                    List<CartItem> carts = cartUtil.getCartFromCookie(cookie);
-//                    session.setAttribute("CART", carts);
+//                    wishlists = wishlistUtil.getWishlistFromCookie(cookie);
 //                }
+//            } else {
+//                carts = (List<CartItem>) session.getAttribute("WISHLIST");
 //            }
-//
-//        } catch (Exception e) {
-//        }
+//            session.setAttribute("WISHLIST", wishlists);
+            session.setAttribute("CART", carts);
+
+        } catch (Exception e) {
+        }
         processRequest(request, response);
     }
 

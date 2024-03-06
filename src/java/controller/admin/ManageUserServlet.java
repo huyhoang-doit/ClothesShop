@@ -41,8 +41,8 @@ public class ManageUserServlet extends HttpServlet {
                 url = INSERT_USER_PAGE;
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            log("ManageUserServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

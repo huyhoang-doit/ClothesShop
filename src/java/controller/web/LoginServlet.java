@@ -125,8 +125,8 @@ public class LoginServlet extends HttpServlet {
                     }
                 }
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(LoginServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            log("LoginServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
@@ -188,8 +188,8 @@ public class LoginServlet extends HttpServlet {
                 RequestDispatcher rd = request.getRequestDispatcher(LOGIN);
                 rd.forward(request, response);
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            log("LoginServlet error:" + ex.getMessage());
         } finally {
             out.close();
         }
