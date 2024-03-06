@@ -71,8 +71,8 @@ public class ManageProductServlet extends HttpServlet {
 //                    request.setAttribute("STATUS_INSERT_CATE", msgInsertCate);
 //                }
 //            }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            log("ManageProductServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

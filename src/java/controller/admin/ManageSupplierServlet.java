@@ -41,8 +41,8 @@ public class ManageSupplierServlet extends HttpServlet {
 
             request.setAttribute("LISTSUPPLIERS", list);
             request.setAttribute("action", "MNGSUPPLIER");
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            log("ManageSupplierServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(MANAGESUPPLIERPAGE).forward(request, response);
         }

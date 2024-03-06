@@ -101,7 +101,8 @@ public class ForgotPasswordServlet extends HttpServlet {
             request.setAttribute("message", message);
             request.setAttribute("STATUS", status);
 
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            log("ForgotPasswordServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

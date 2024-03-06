@@ -54,7 +54,7 @@ public class EditProfileServlet extends HttpServlet {
             
             request.setAttribute("STATUS", "Update successfully!!!");
         } catch (Exception ex) {
-            ex.printStackTrace();
+            log("EditProfileServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(PROFILE).forward(request, response);
         }

@@ -8,7 +8,6 @@ package controller.web;
 import dal.CategoryDAO;
 import dal.ProductDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -89,8 +88,8 @@ public class SearchServlet extends HttpServlet {
             request.setAttribute("VALUESORT", valueSort);
             request.setAttribute("LISTPRODUCTS", listByPage);
             request.setAttribute("LISTCATEGORIES", listCategories);
-        } catch (Exception e) {
-
+        } catch (Exception ex) {
+            log("SearchServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

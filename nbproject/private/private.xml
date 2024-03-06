@@ -2,6 +2,7 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+<<<<<<< HEAD
         <group>
             <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/forgot_password.jsp</file>
             <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/common/web/add_js.jsp</file>
@@ -10,5 +11,8 @@
             <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/controller/web/CartUtil.java</file>
             <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/model/Email.java</file>
         </group>
+=======
+        <group/>
+>>>>>>> 6ab76b23cd6237d6d271f987ab7eed743363c08a
     </open-files>
 </project-private>

@@ -59,8 +59,8 @@ public class ManageCategoryServlet extends HttpServlet {
             List<CategoryDTO> list = cDao.getData();
             request.setAttribute("LIST_CATEGORIES", list);
             request.setAttribute("LIST_TYPES", listTypes);
-        } catch (SQLException ex) {
-            Logger.getLogger(ManageProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            log("ManageCategoryServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

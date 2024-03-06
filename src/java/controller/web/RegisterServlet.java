@@ -100,8 +100,8 @@ public class RegisterServlet extends HttpServlet {
                 request.setAttribute("SUCCESS", message);
                 request.getRequestDispatcher("login.jsp").forward(request, response);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(RegisterServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            log("RegisterServlet error:" + ex.getMessage());
         }
     }
 

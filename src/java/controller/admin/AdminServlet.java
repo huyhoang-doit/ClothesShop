@@ -13,6 +13,7 @@ import dal.TypeDAO;
 import dal.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -63,7 +64,7 @@ public class AdminServlet extends HttpServlet {
         OrderItemDAO oIDao = new OrderItemDAO();
         OrderDAO oDao = new OrderDAO();
         UserDAO uDao = new UserDAO();
-  
+
         String url = ADMIN;
         try {
             double totalSale = oDao.getTotalSale();
@@ -92,8 +93,8 @@ public class AdminServlet extends HttpServlet {
 
             }
 
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            log("AdminServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(ADMIN).forward(request, response);
         }

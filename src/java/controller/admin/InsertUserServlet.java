@@ -73,8 +73,8 @@ public class InsertUserServlet extends HttpServlet {
                 dao.registerUser(user);
                 request.setAttribute("mess", "Insert successfully!");
             }
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            log("InserUserServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

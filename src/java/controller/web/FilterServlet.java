@@ -173,7 +173,8 @@ public class FilterServlet extends HttpServlet {
             request.setAttribute("VALUESORT", valueSort);
             request.setAttribute("filterByCategory", "filterByCategory");
             request.setAttribute("QUERYSTRING", queryString);
-        } catch (Exception e) {
+        } catch (Exception ex) {
+            log("FilterServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

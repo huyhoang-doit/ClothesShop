@@ -47,12 +47,11 @@ public class SingleProductServlet extends HttpServlet {
                 }
             }
             
-            
             request.setAttribute("PRODUCT", product);
             request.setAttribute("LIST_PRODUCTS_SAME_CATEGORY", listSameCategory);
             
-        } catch (Exception e) {
-            e.printStackTrace();
+        } catch (Exception ex) {
+            log("SingleProductServlet error:" + ex.getMessage());
         }finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

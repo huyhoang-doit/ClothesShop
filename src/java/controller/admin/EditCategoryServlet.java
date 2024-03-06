@@ -7,9 +7,7 @@ package controller.admin;
 
 import dal.CategoryDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.logging.Level;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,8 +43,8 @@ public class EditCategoryServlet extends HttpServlet {
 
             dao.editCategory(cName, tId, cId);
             request.setAttribute("mess", "Edit successfully!");
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (Exception ex) {
+            log("EditCategoryServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }

@@ -19,7 +19,7 @@ import model.ProductDTO;
  * @author lvhho
  */
 public class WishlistUtil {
-    private static HashMap<Integer, ProductDTO> listItemsInWishlist = null;
+    private static HashMap<Integer, ProductDTO> listItemsInWishlist = new HashMap<>();
 
     public HashMap<Integer, ProductDTO> createWishlist(ProductDTO item) {
         listItemsInWishlist = new HashMap<>();
@@ -93,7 +93,7 @@ public class WishlistUtil {
 
     }
 
-    public List<ProductDTO> getCartFromCookie(Cookie cookieWishlist) {
+    public List<ProductDTO> getWishlistFromCookie(Cookie cookieWishlist) {
         ProductDAO pDao = new ProductDAO();
         List<ProductDTO> listItemsCart = new ArrayList<>();
         String inputString = cookieWishlist.getValue();

@@ -24,15 +24,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "DeleteProductServlet", urlPatterns = {"/DeleteProductServlet"})
 public class DeleteProductServlet extends HttpServlet {
     private static final String MANAGE_PRODUCT_CONTROLLER = "ManageProductServlet";
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -67,8 +59,8 @@ public class DeleteProductServlet extends HttpServlet {
             ProductDAO dao = new ProductDAO();
             dao.deleteProduct(pid);
             request.setAttribute("mess", "Delete successfully!");
-        } catch (SQLException ex) {
-            Logger.getLogger(DeleteProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            log("DeleteProductServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(MANAGE_PRODUCT_CONTROLLER).forward(request, response);
         }

@@ -100,8 +100,8 @@ public class InsertProductServlet extends HttpServlet {
                 request.setAttribute("mess", "Insert successfully!");
                 url = MANAGE_PRODUCT_CONTROLLER;
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(InsertProductServlet.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            log("InsertProductServlet error:" + ex.getMessage());
         } finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
