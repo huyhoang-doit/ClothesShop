@@ -114,7 +114,7 @@ public class CartUtil {
         }
         List<Integer> quantitys = new ArrayList<>();
         for (int i = 1; i < elements.length; i += 2) {
-            quantitys.add(Integer.parseInt(elements[i]));
+            quantitys.add(Integer.parseInt(elements[i].trim()));
         }
         // Lấy ra ListCartItem 
         for (int i = 0; i < products.size(); i++) {

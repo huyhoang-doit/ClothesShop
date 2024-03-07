@@ -112,6 +112,7 @@ public class DispatchServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         CartUtil cartUtil = new CartUtil();
+
         WishlistUtil wishlistUtil = new WishlistUtil();
         try {
             List<CartItem> carts = null;

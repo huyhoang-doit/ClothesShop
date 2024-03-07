@@ -48,34 +48,50 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="account_form">
                                     <h2>Reset your password</h2>
-                                    <form id="login-form" action="ForgotPasswordServlet" method="post">
+                                    <form action="ForgotPasswordServlet" method="get">
                                         <p> 
-                                            <label>Enter email you want to receive the code to reset your password?</label><br/>
-                                            <input type="email" name="txtEmail" value="${requestScope.email}"/>
-                                        <h7 style="color: red">${requestScope.msg}</h7>
+                                            <c:if test="${requestScope.STATUS == 'forgot'}">
+                                                <label>Enter email you want to receive the code to reset your password?</label><br/>
+                                                <input type="email" name="txtEmail" value="${sessionScope.email}"/>
+                                            </c:if>
+                                            <c:if test="${requestScope.check == 'true'}">
+                                            <h7 style="color: green">${requestScope.message}</h7>
+                                            </c:if>
+                                            <c:if test="${requestScope.check == 'false'}">
+                                            <h7 style="color: red">${requestScope.message}</h7>
+                                            </c:if>
                                         </p>
-                                        <c:if test="${requestScope.STATUS != 'forgot'}">
+                                        <c:if test="${requestScope.STATUS == 'confirm'}">
+                                            <input type="hidden" name="txtEmail" value="${sessionScope.email}"/>
                                             <p style="position: relative">   
-                                            <label>Code - 6 digit <span>*</span></label>
-                                            <input  type="number" name="txtCode" value="${requestScope.code}" ${requestScope.STATUS == 'forgot'?'readonly':''}/>
-                                            <c:if test="${requestScope.STATUS != 'forgot' && requestScope.STATUS != 'confirm' }">
+                                                <label>Code - 6 digit <span>*</span></label>
+                                                <input  type="number" name="txtCode" value="${requestScope.code}"/>
+                                            </c:if>
+                                            <c:if test="${requestScope.STATUS == 'enterpass'}">
+
                                                 <label>Passwords <span>*</span></label>
-                                                <input id="password" type="password" name="txtPassword" value="${requestScope.uPass}" ${requestScope.STATUS == 'forgot'?'readonly':''}/>
+                                                <input id="password" type="password" name="txtPassword" value="${requestScope.newpass}" minlength="6"/>
                                                 <!--<i id="iconsee" style="cursor: pointer; position: absolute; top: 40px; right: 10px" onclick="changeIcon(this)" class="fa-solid fa-eye-slash"></i>-->
                                                 <label>Confirm passwords <span>*</span></label>
-                                                <input id="password" type="password" name="txtPassword" value="${requestScope.uPass}" ${requestScope.STATUS == 'forgot'?'readonly':''}/>
+                                                <input id="password" type="password" name="txtConfirm" value="${requestScope.confirmpass}" minlength="6"/>
                                                 <!--<i id="iconsee" style="cursor: pointer; position: absolute; top: 40px; right: 10px" onclick="changeIcon(this)" class="fa-solid fa-eye-slash"></i>-->
                                             </c:if>
                                         </p>
+                                        <c:if test="${requestScope.STATUS != 'success'}">
+                                            <div class="login_submit">
+                                                <button name="btnAction" value="Enter" type="submit">Enter</button>
+                                            </div>
                                         </c:if>
-                                        
-                                        <div  style="margin-top: 10px" class="login_submit">
-                                            <button type="submit" name="btnAction" value="Login">Enter</button>
-                                        </div>
+                                        <c:if test="${requestScope.STATUS == 'success'}">
+                                            <div class="login_submit">
+                                                <button name="LoginServlet">Login</button>
+                                            </div>
+                                        </c:if>
                                     </form>
                                 </div>    
                             </div>
                             <!--login area start-->
+
                         </div>
                     </div>
                     <!-- customer login end -->
@@ -91,7 +107,11 @@
         <!--footer area end-->
 
         <!-- all js here -->
-        <%@include file="/common/web/add_js.jsp"%>
+        <script src="assets\js\vendor\jquery-1.12.0.min.js"></script>
+        <script src="assets\js\popper.js"></script>
+        <script src="assets\js\bootstrap.min.js"></script>
+        <script src="assets\js\plugins.js"></script>
+        <script src="assets\js\main.js"></script>
     </body>
 </html>
 

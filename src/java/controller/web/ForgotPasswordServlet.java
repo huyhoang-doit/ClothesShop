@@ -7,6 +7,7 @@ package controller.web;
 
 import dal.UserDAO;
 import java.io.IOException;
+import java.util.Random;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.Email;
+import model.UserDTO;
 
 /**
  *
@@ -29,19 +31,75 @@ public class ForgotPasswordServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = FORGOT_PAGE;
         HttpSession session = request.getSession();
-        String emailInput = request.getParameter("email");
+        String emailInput = request.getParameter("txtEmail");
+        String txtCode = request.getParameter("txtCode");
+        String status = request.getParameter("status");
+        String password = request.getParameter("txtPassword");
+        String confirm = request.getParameter("txtConfirm");
         UserDAO ud = new UserDAO();
         Email handleEmail = new Email();
         String message = "";
         String check = null;
-        String status = request.getParameter("status");
+        UserDTO user = null;
+        String code_str = null;
         try {
             if ("forgot".equals(status)) {
                 request.setAttribute("STATUS", status);
             }
-            if(emailInput != null) {
-                
+            if (emailInput != null) {
+                user = ud.getUserByEmail(emailInput);
+                if (user != null) {
+                    Random random = new Random();
+                    message = "EXIST - valid email, check your email to have resetcode";
+                    check = "true";
+                    status = "confirm";
+                    // Tạo số nguyên ngẫu nhiên có 6 chữ số
+                    Integer code = 100000 + random.nextInt(900000);
+                    code_str = code.toString();
+                    String subject = handleEmail.subjectForgotPass();
+                    String msgEmail = handleEmail.messageFogot(user.getUserName(), code);
+                    handleEmail.sendEmail(subject, msgEmail, emailInput);
+                } else {
+                    message = "NOT EXIST - Invalid email";
+                    check = "false";
+                }
             }
+            if (txtCode != null) {
+                code_str = (String) session.getAttribute("code");
+                if (txtCode.equals(code_str)) {
+                    message = "Valid code, enter your new password!";
+                    check = "true";
+                    status = "enterpass";
+                } else {
+                    message = "Ivalid code, try again!";
+                    check = "false";
+                    status = "confirm";
+                }
+            }
+            if (password != null && confirm != null) {
+                if (password.equalsIgnoreCase(confirm)) {
+                    user = ud.getUserByEmail(emailInput);
+                    if (ud.updatePasswordUser(user, password)) {
+                        message = "New password has been updated";
+                        check = "true";
+                        status = "success";
+                    } else {
+                        message = "Error, please try again!";
+                        check = "false";
+                        status = "enterpass";
+                    }
+                } else {
+                    message = "Passwords do not match, please try again!";
+                    check = "false";
+                    status = "enterpass";
+                }
+            }
+            // 
+            session.setAttribute("code", code_str);
+            session.setAttribute("email", emailInput);
+            request.setAttribute("check", check);
+            request.setAttribute("message", message);
+            request.setAttribute("STATUS", status);
 
         } catch (Exception ex) {
             log("ForgotPasswordServlet error:" + ex.getMessage());

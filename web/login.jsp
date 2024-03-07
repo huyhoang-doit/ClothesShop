@@ -137,6 +137,20 @@
 
         <!-- all js here -->
         <%@include file="/common/web/add_js.jsp"%>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+        <script>
+                                                var form = document.getElementById("login-form");
+                                                var error = document.getElementById("error");
+                                                form.addEventListener("submit", function (event) {
+                                                    event.preventDefault();
+                                                    const response = grecaptcha.getResponse();
+                                                    if (response) {
+                                                        form.submit();
+                                                    } else {
+                                                        error.textContent = "Vui lòng xác minh rằng bạn không phải robot.";
+                                                    }
+                                                });
+        </script>
     </body>
 </html>
 
