@@ -35,11 +35,11 @@ public class CartServlet extends HttpServlet {
         ProductDAO pDao = new ProductDAO();
         CartUtil cartUtil = new CartUtil();
         List<CartItem> carts = null;
-        HashMap<Integer, CartItem> listItem = new HashMap<>();
+        HashMap<Integer, CartItem> listItem = null;
 
         WishlistUtil wUtil = new WishlistUtil();
         List<ProductDTO> wishlists = null;
-        HashMap<Integer, ProductDTO> listWishlist = new HashMap<>();
+        HashMap<Integer, ProductDTO> listWishlist = null;
         try {
             HttpSession session = request.getSession();
             String action = request.getParameter("action");
@@ -70,7 +70,7 @@ public class CartServlet extends HttpServlet {
             String strCarts = cartUtil.convertToString();
             cartUtil.saveCartToCookie(request, response, strCarts);
             
-            String strWishlist = wUtil.convertToString(listWishlist);
+            String strWishlist = wUtil.convertToString();
             wUtil.saveWishlistToCookie(request, response, strWishlist);
             
 

@@ -55,7 +55,7 @@ public class WishlistServlet extends HttpServlet {
             wishlists = new ArrayList<>(listItem.values());
             session.setAttribute("WISHLIST", wishlists);
             
-            String strItemsWishlist = wUtil.convertToString(listItem);
+            String strItemsWishlist = wUtil.convertToString();
             wUtil.saveWishlistToCookie(request, response, strItemsWishlist);
             
         } catch (Exception ex) {

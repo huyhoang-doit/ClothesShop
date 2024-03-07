@@ -121,6 +121,11 @@ public class CartUtil {
             CartItem item = new CartItem(products.get(i), quantitys.get(i));
             listItemsCart.add(item);
         }
+        
+        // add listItems to util
+        for (CartItem cartItem : listItemsCart) {
+            addItemToCart(cartItem);
+        }
         return listItemsCart;
     }
 

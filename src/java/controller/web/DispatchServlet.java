@@ -127,9 +127,19 @@ public class DispatchServlet extends HttpServlet {
             } else {
                 carts = (List<CartItem>) session.getAttribute("CART");
             }
+            if(session.getAttribute("WISHLIST") == null) {
+                Cookie cookie = wishlistUtil.getCookieByName(request, "Wishlist");
+                if(cookie != null) {
+                    wishlists = wishlistUtil.getWishlistFromCookie(cookie);
+                }
+            }else {
+                wishlists = (List<ProductDTO>)session.getAttribute("WISHLIST");
+            }
             session.setAttribute("CART", carts);
+            session.setAttribute("WISHLIST", wishlists);
 
         } catch (Exception e) {
+            log("Error in doGet DispatchServlet: " + e.getMessage());
         }
         processRequest(request, response);
     }
