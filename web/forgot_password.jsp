@@ -86,10 +86,10 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${requestScope.STATUS == 'success'}">
-                                            <div class="login_submit">
-                                                <form action="LoginServlet" method="get">
-                                                    <button name="Login" type="submit">Login</button>
-                                                </form>
+                                            <div class="user-actions mb-20">
+                                                <h3> 
+                                                    <a class="Returning" href="login.jsp">Click here to login</a>     
+                                                </h3>
                                             </div>
                                         </c:if>
                                     </form>

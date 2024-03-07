@@ -124,7 +124,7 @@
                                                     </p>
                                                 </div>
                                                 <div class="checkout_btn">
-                                                    <a href="checkout.jsp">Proceed to Checkout</a>
+                                                    <a href="CheckoutServlet">Checkout</a>
                                                 </div>
                                             </div>
                                         </div>
