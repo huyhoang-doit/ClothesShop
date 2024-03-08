@@ -31,7 +31,7 @@
                             <div class="col-12">
                                 <div class="breadcrumb_content">
                                     <ul>
-                                        <li><a href="index.html">home</a></li>
+                                        <li><a href="DispatchServlet">home</a></li>
                                         <li><i class="fa fa-angle-right"></i></li>
                                         <li>contact</li>
                                     </ul>
@@ -83,8 +83,8 @@
                                     <p>Chắc chắn! ClothesShop là điểm đến lý tưởng cho các quý ông đam mê thể thao và phong cách. Với một bộ sưu tập đa dạng từ quần áo, giày dép đến phụ kiện thể thao, chúng tôi cam kết mang đến cho quý khách hàng những sản phẩm chất lượng và thời trang nhất. Từ những bài tập nhẹ nhàng đến những buổi tập thể dục mạnh mẽ, ClothesShop luôn có những lựa chọn phù hợp để bạn tỏa sáng và thoải mái. Hãy khám phá ngay để trải nghiệm sự đẳng cấp và phong cách tại ClothesShop!</p>
                                     <ul>
                                         <li><i class="fa fa-fax"></i>  Address : Lô E2a-7, Đường D1, Khu Công nghệ cao, P.Long Thạnh Mỹ, Tp. Thủ Đức, TP.HCM.</li>
-                                        <li><i class="fa fa-phone"></i> <a href="#">ThisTeamStrong@roadthemes.com</a></li>
-                                        <li><i class="fa fa-envelope-o"></i> 0(1234) 567 890</li>
+                                        <li><i class="fa fa-envelope-o"></i> <a href="#">ThisTeamStrong@roadthemes.com</a></li>
+                                        <li><i class="fa fa-phone"></i> 0(1234) 567 890</li>
                                     </ul>        
                                     <h3><strong>Working hours</strong></h3>
                                     <p><strong>Monday – Saturday</strong>:  08AM – 22PM</p>       

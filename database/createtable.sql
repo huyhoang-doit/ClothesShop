@@ -3,12 +3,9 @@
 USE ClothesShop
 
 DROP TABLE OrderItem
-DROP TABLE Wallets
 DROP TABLE Orders
 DROP TABLE Shipments
 DROP TABLE Payments
-DROP TABLE WishLists
-DROP TABLE Carts
 DROP TABLE Products
 DROP TABLE Suppliers
 DROP TABLE Categories
@@ -65,18 +62,6 @@ CREATE TABLE Products(
  typeid int not null FOREIGN KEY REFERENCES [dbo].[Types](id) ON DELETE CASCADE ON UPDATE CASCADE
 )
 
-CREATE TABLE Carts (
-cartid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-quantity INT,
-username VARCHAR(30) FOREIGN KEY REFERENCES  Users(username),
-productid INT FOREIGN KEY REFERENCES [dbo].[Products]([id]) ON DELETE CASCADE ON UPDATE CASCADE
-)
-
-CREATE TABLE WishLists( 
-wishListid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
-username VARCHAR(30) FOREIGN KEY REFERENCES  Users(username),
-productid INT FOREIGN KEY REFERENCES [dbo].[Products]([id]),
-)
 CREATE TABLE Payments(
 paymentid INT NOT NULL IDENTITY(1,1) PRIMARY KEY,
 payment_method NVARCHAR(30)
@@ -98,15 +83,6 @@ paymentid INT NOT NULL FOREIGN KEY REFERENCES Payments(paymentid) ,
 shipmentid INT NOT NULL FOREIGN KEY REFERENCES Shipments(shipment_id) ,
 username VARCHAR(30) NOT NULL FOREIGN KEY REFERENCES Users([username]),
 status bit NOT NULL,
-)
-
-CREATE TABLE Wallets (
-    walletid INT IDENTITY(1,1),
-	username VARCHAR(30),
-    balance DECIMAL(10, 2),
-	CONSTRAINT [PK_Wallets] PRIMARY KEY (walletid),
-	CONSTRAINT [FK_Wallets_Users] FOREIGN KEY (username)
-	REFERENCES [dbo].[Users](username)
 )
 
 CREATE TABLE OrderItem(

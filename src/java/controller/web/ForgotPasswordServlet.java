@@ -42,6 +42,7 @@ public class ForgotPasswordServlet extends HttpServlet {
         String check = null;
         UserDTO user = null;
         String code_str = null;
+        String emailsession = null;
         try {
             if ("forgot".equals(status)) {
                 request.setAttribute("STATUS", status);
@@ -63,6 +64,9 @@ public class ForgotPasswordServlet extends HttpServlet {
                     message = "NOT EXIST - Invalid email";
                     check = "false";
                 }
+                emailsession = emailInput;
+                session.setAttribute("email", emailsession);
+
             }
             if (txtCode != null) {
                 code_str = (String) session.getAttribute("code");
@@ -78,7 +82,8 @@ public class ForgotPasswordServlet extends HttpServlet {
             }
             if (password != null && confirm != null) {
                 if (password.equalsIgnoreCase(confirm)) {
-                    user = ud.getUserByEmail(emailInput);
+                    String email = (String) session.getAttribute("email");
+                    user = ud.getUserByEmail(email);
                     if (ud.updatePasswordUser(user, password)) {
                         message = "New password has been updated";
                         check = "true";
@@ -96,7 +101,6 @@ public class ForgotPasswordServlet extends HttpServlet {
             }
             // 
             session.setAttribute("code", code_str);
-            session.setAttribute("email", emailInput);
             request.setAttribute("check", check);
             request.setAttribute("message", message);
             request.setAttribute("STATUS", status);

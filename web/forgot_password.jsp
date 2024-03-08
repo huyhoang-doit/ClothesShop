@@ -62,16 +62,19 @@
                                             </c:if>
                                         </p>
                                         <c:if test="${requestScope.STATUS == 'confirm'}">
-                                            <input type="hidden" name="txtEmail" value="${sessionScope.email}"/>
                                             <p style="position: relative">   
                                                 <label>Code - 6 digit <span>*</span></label>
                                                 <input  type="number" name="txtCode" value="${requestScope.code}"/>
-                                            </c:if>
-                                            <c:if test="${requestScope.STATUS == 'enterpass'}">
+                                            </p>
 
+                                        </c:if>
+                                        <c:if test="${requestScope.STATUS == 'enterpass'}">
+                                            <p style="position: relative">
                                                 <label>Passwords <span>*</span></label>
                                                 <input id="password" type="password" name="txtPassword" value="${requestScope.newpass}" minlength="6"/>
-                                                <!--<i id="iconsee" style="cursor: pointer; position: absolute; top: 40px; right: 10px" onclick="changeIcon(this)" class="fa-solid fa-eye-slash"></i>-->
+                                                <i id="iconsee" style="cursor: pointer; position: absolute; top: 40px; right: 10px" onclick="changeIcon(this)" class="fa-solid fa-eye-slash"></i>
+                                            </p>
+                                            <p style="position: relative">
                                                 <label>Confirm passwords <span>*</span></label>
                                                 <input id="password" type="password" name="txtConfirm" value="${requestScope.confirmpass}" minlength="6"/>
                                                 <!--<i id="iconsee" style="cursor: pointer; position: absolute; top: 40px; right: 10px" onclick="changeIcon(this)" class="fa-solid fa-eye-slash"></i>-->
@@ -83,8 +86,10 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${requestScope.STATUS == 'success'}">
-                                            <div class="login_submit">
-                                                <button name="LoginServlet">Login</button>
+                                            <div class="user-actions mb-20">
+                                                <h3> 
+                                                    <a class="Returning" href="login.jsp">Click here to login</a>     
+                                                </h3>
                                             </div>
                                         </c:if>
                                     </form>
@@ -112,6 +117,20 @@
         <script src="assets\js\bootstrap.min.js"></script>
         <script src="assets\js\plugins.js"></script>
         <script src="assets\js\main.js"></script>
+        <script>
+                                                    function changeIcon(obj) {
+                                                        var id = obj.previousSibling.previousSibling.id;
+                                                        var inputP = document.getElementById(id);
+
+                                                        if (obj.className === 'fa-solid fa-eye-slash') {
+                                                            obj.className = 'fa-solid fa-eye';
+                                                            inputP.type = 'text';
+                                                        } else {
+                                                            obj.className = 'fa-solid fa-eye-slash';
+                                                            inputP.type = 'password';
+                                                        }
+                                                    }
+        </script>
     </body>
 </html>
 

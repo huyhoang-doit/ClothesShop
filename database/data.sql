@@ -113,19 +113,11 @@ INSERT INTO Products VALUES
 (N'Áo Nike Men’s Max90 Basketball T-Shirt ', 2, 2, 'S,L,XL', 30, N'Phong cách: thể thao, Hàn Quốc, đường phố'
 , 'assets/img/products/35-1.jpg', N'Đen' , '2022-11-01', 0.41, 51, 412.000,1,1),
 (N'ÁO HOODIE KHÓA KÉO STREET NEUCLASSICS', 1, 5,'S,M,L' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/36-1.jpg' , N'Xanh' , '2024-03-01' , 0., 81, 650.000,1,1),
+, 'assets/img/products/36-1.jpg' , N'Xanh dương' , '2024-03-01' , 0., 81, 650.000,1,1),
 (N'KÍNH MÁT DÁNG CHỮ NHẬT ', 4, 14,'Free' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
 , 'assets/img/products/37-1.jpg' , N'Đen' , '2024-10-01' , 0., 81, 950.000,1,1),
 (N'KÍNH MÁT DÁNG BẦU DỤC', 4, 14,'Free' , 30, N'Phong cách: trẻ trung, thời thượng, đường phố.'
-, 'assets/img/products/38-1.jpg' , N'Xanh,Nâu,Đỏ' , '2023-02-01' , 0., 81, 1500.000,1,1)
-
-INSERT INTO Carts VALUES 
-(1,'admin', 1),
-(2,'admin', 2)
-
-INSERT INTO WishLists VALUES 
-('admin', 3),
-('admin', 4)
+, 'assets/img/products/38-1.jpg' , N'Xanh dương,Nâu,Đỏ' , '2023-02-01' , 0., 81, 1500.000,1,1)
 
 INSERT INTO Payments VALUES 
 (N'Tiền mặt'),
@@ -162,10 +154,6 @@ INSERT INTO [Orders] VALUES
 ('2023-02-10 12:30:00', 50.70, 1, 1, 'phuuthanh2003', 0),
 ('2020-02-10 12:30:00', 159.50, 1, 1, 'phuuthanh2003', 1),
 ('2019-02-14 12:30:00', 100.50, 1, 2, 'admin', 1);
-
-INSERT INTO Wallets VALUES 
-('phuuthanh2003', 1000000),
-('admin', 9999999)
 
 INSERT INTO OrderItem VALUES 
 (1, 249.000, 1, 1),

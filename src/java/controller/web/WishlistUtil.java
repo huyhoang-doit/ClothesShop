@@ -19,6 +19,7 @@ import model.ProductDTO;
  * @author lvhho
  */
 public class WishlistUtil {
+
     private static HashMap<Integer, ProductDTO> listItemsInWishlist = new HashMap<>();
 
     public HashMap<Integer, ProductDTO> createWishlist(ProductDTO item) {
@@ -42,12 +43,14 @@ public class WishlistUtil {
         }
         return false;
     }
-    
-    public HashMap<Integer,ProductDTO> removeItem(ProductDTO product) {
-        listItemsInWishlist.remove(product.getId());
+
+    public HashMap<Integer, ProductDTO> removeItem(ProductDTO product) {
+        if (listItemsInWishlist.containsKey(product.getId())) {
+            listItemsInWishlist.remove(product.getId());
+        }
         return listItemsInWishlist;
     }
-    
+
     // Xử lý với Cookie
     public Cookie getCookieByName(HttpServletRequest request, String cookieName) {
         Cookie[] arrCookies = request.getCookies();
@@ -83,7 +86,7 @@ public class WishlistUtil {
 
     }
 
-    public String convertToString(HashMap<Integer, ProductDTO> listItemsInWishlist) {
+    public String convertToString() {
         List<ProductDTO> list = new ArrayList<>(listItemsInWishlist.values());
         String result = "";
         for (ProductDTO productDTO : list) {
@@ -97,17 +100,24 @@ public class WishlistUtil {
         ProductDAO pDao = new ProductDAO();
         List<ProductDTO> listItemsCart = new ArrayList<>();
         String inputString = cookieWishlist.getValue();
-        if (inputString.startsWith("[") && inputString.endsWith("]")) {
-            inputString = inputString.substring(1, inputString.length() - 1);
+        if (inputString.endsWith(",")) {
+            inputString = inputString.substring(0, inputString.length() - 1);
         }
 
-        // Chia chuỗi thành các phần tử
-        String[] elements = inputString.split(",");
+        if (inputString.length() > 0) {
+            // Chia chuỗi thành các phần tử
+            String[] elements = inputString.split(",");
 
-        for (int i = 0; i < elements.length; i++) {
-            ProductDTO product = pDao.getProductByID(Integer.parseInt(elements[i].trim()));
-            listItemsCart.add(product);
+            for (int i = 0; i < elements.length; i++) {
+                ProductDTO product = pDao.getProductByID(Integer.parseInt(elements[i].trim()));
+                listItemsCart.add(product);
+            }
         }
+        // add to util
+        for (ProductDTO productDTO : listItemsCart) {
+            addItemToWishlist(productDTO);
+        }
+
         return listItemsCart;
     }
 }

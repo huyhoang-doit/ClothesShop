@@ -99,7 +99,7 @@
                                 </span>
                             </div>
                             <div class="cart_button">
-                                <a href="checkout.jsp"> Check out</a>
+                                <a href="CheckoutServlet"> Check out</a>
                             </div>
                         </div>
                         <!--mini cart end-->
