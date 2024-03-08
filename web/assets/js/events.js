@@ -104,6 +104,25 @@ function addProductToCart(product_id, quantity) {
     });
 }
 
+function checkDuplicate(input) {
+    var username = input.value;
+    console.log(username);
+    $.ajax({
+        url: "/PRJ301_Sp24_ClothesShop/RegisterServlet",
+        type: "post",
+        data: {
+            username: username,
+            action: "CheckDuplicate"
+        },
+        success: function (data) {
+            var row = document.getElementById("errorduplicate");
+            row.innerHTML = data;
+        },
+        error: function (xhr) {
+        }
+    });
+}
+
 function getColor(element) {
     var inputColor = document.getElementById('chooseColor');
     var a = element.id;

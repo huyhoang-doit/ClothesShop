@@ -85,8 +85,20 @@ public class RegisterServlet extends HttpServlet {
             String uPass = request.getParameter("password");
             String email = request.getParameter("email");
             String avatar = request.getParameter("avatar");
+            String action = request.getParameter("action");
             String message;
             UserDAO ud = new UserDAO();
+            if (action != null && action.equals("CheckDuplicate")) {
+                PrintWriter out = response.getWriter();
+                String username = request.getParameter("username");
+                boolean isDuplicate = ud.checkUserNameDuplicate(uName);
+                if (isDuplicate) {
+                    request.setAttribute("DUPLICATE", 1);
+                    out.println("<h6 style='color: red'>Username already exist!</h6>");
+                }
+                request.setAttribute("DUPLICATE", 0);
+                return;
+            }
             boolean isDup = ud.checkUserNameDuplicate(uName);
             if (isDup == true) {
                 message = "Username already exist!";

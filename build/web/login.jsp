@@ -98,7 +98,8 @@
                                         </div>
                                         <p>   
                                             <label>Username</label>
-                                            <input name="username" type="text" required>
+                                            <input oninput="checkDuplicate(this)" name="username" type="text" required/>
+                                            <h5 style="color: red" id="errorduplicate"></h5>
                                         </p>
                                         <input type="hidden" name="avatar" value="${requestScope.avatar}"/>
                                         <p style="position: relative">   

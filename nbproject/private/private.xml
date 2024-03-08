@@ -3,19 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/cart.jsp</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/forgot_password.jsp</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/dal/PaymentDAO.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/common/web/header.jsp</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/model/PaymentDTO.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/controller/web/ForgotPasswordServlet.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/assets/js/events.js</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/dal/UserDAO.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/checkout.jsp</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/controller/web/FilterServlet.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/controller/web/CheckoutServlet.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/controller/web/WishlistUtil.java</file>
-            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/controller/web/LoginServlet.java</file>
+            <file>file:/D:/Project/ClothingStore/web/checkout.jsp</file>
+            <file>file:/D:/Project/ClothingStore/web/cart.jsp</file>
+            <file>file:/D:/Project/ClothingStore/src/java/model/ProductDTO.java</file>
+            <file>file:/D:/Project/ClothingStore/web/chart.jsp</file>
+            <file>file:/D:/Project/ClothingStore/src/java/controller/web/DispatchServlet.java</file>
         </group>
     </open-files>
 </project-private>
