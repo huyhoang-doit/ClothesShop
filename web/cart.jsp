@@ -84,9 +84,9 @@
                                             </c:if>
 
                                         </div>  
-<!--                                        <div class="cart_submit">
-                                            <button type="submit">update cart</button>
-                                        </div>      -->
+                                        <!--                                        <div class="cart_submit">
+                                                                                    <button type="submit">update cart</button>
+                                                                                </div>      -->
                                     </div>
                                 </div>
                             </div>
@@ -123,9 +123,11 @@
                                                         ${totalPrice} 
                                                     </p>
                                                 </div>
-                                                <div class="checkout_btn">
-                                                    <a href="CheckoutServlet">Checkout</a>
-                                                </div>
+                                                <c:if test="${sessionScope.CART != null && sessionScope.CART.size() > 0}">
+                                                    <div class="checkout_btn">
+                                                        <a href="CheckoutServlet">Checkout</a>
+                                                    </div>
+                                                </c:if>
                                             </div>
                                         </div>
                                     </div>

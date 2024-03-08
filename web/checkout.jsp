@@ -89,15 +89,15 @@
 
                                                 <div class="col-lg-6 mb-30">
                                                     <label>First Name <span>*</span></label>
-                                                    <input type="text">    
+                                                    <input type="text" value="${sessionScope.account != null ? sessionScope.account.firstName: ''}">    
                                                 </div>
                                                 <div class="col-lg-6 mb-30">
                                                     <label>Last Name  <span>*</span></label>
-                                                    <input type="text"> 
+                                                    <input type="text" value="${sessionScope.account != null ? sessionScope.account.lastName: ''}"> 
                                                 </div>
                                                 <div class="col-12 mb-30">
                                                     <label>Email</label>
-                                                    <input type="text">     
+                                                    <input type="email" value="${sessionScope.account != null ? sessionScope.account.email: ''}">     
                                                 </div>
                                                 <!--                                            <div class="col-12 mb-30">
                                                                                                 <label for="country">country <span>*</span></label>
@@ -116,16 +116,16 @@
 
                                                 <div class="col-12 mb-30">
                                                     <label>Address  <span>*</span></label>
-                                                    <input placeholder="House number and street name" type="text">     
+                                                    <input placeholder="House number and street name" type="text" value="${sessionScope.account != null ? sessionScope.account.address: ''}">     
                                                 </div>
                                                 <div class="col-lg-6 mb-30">
                                                     <label>Phone<span>*</span></label>
-                                                    <input type="text"> 
+                                                    <input type="number" value="${sessionScope.account != null ? sessionScope.account.phone: ''}"> 
 
                                                 </div> 
                                                 <div class="col-lg-6 mb-30">
                                                     <label> Email Address   <span>*</span></label>
-                                                    <input type="text"> 
+                                                    <input type="email" value="${sessionScope.account != null ? sessionScope.account.email: ''}"> 
 
                                                 </div> 
                                                 <div class="col-12">

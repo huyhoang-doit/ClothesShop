@@ -98,9 +98,11 @@
                                     ${totalPrice}  
                                 </span>
                             </div>
-                            <div class="cart_button">
-                                <a href="CheckoutServlet"> Check out</a>
-                            </div>
+                                    <c:if test="${sessionScope.CART != null && sessionScope.CART.size() > 0}">
+                                        <div class="cart_button">
+                                            <a href="CheckoutServlet"> Check out</a>
+                                        </div>
+                                    </c:if>
                         </div>
                         <!--mini cart end-->
                     </div>
