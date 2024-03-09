@@ -1,5 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>filter.AdminFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/AdminServlet</url-pattern>
+        <url-pattern>/ChartServlet</url-pattern>
+        <url-pattern>/DeleteCategoryServlet</url-pattern>
+        <url-pattern>/DeleteProductServlet</url-pattern>
+        <url-pattern>/EditProductServlet</url-pattern>
+        <url-pattern>/EditCategoryServlet</url-pattern>
+        <url-pattern>/InsertCategoryServlet</url-pattern>
+        <url-pattern>/InsertProductServlet</url-pattern>
+        <url-pattern>/InsertUserServlet</url-pattern>
+        <url-pattern>/ManageCategoryServlet</url-pattern>
+        <url-pattern>/ManageOrderServlet</url-pattern>
+        <url-pattern>/ManageProductServlet</url-pattern>
+        <url-pattern>/ManageSupplierServlet</url-pattern>
+        <url-pattern>/ManageUserServlet</url-pattern>
+    </filter-mapping>
     <servlet>
         <servlet-name>DispatchServlet</servlet-name>
         <servlet-class>controller.web.DispatchServlet</servlet-class>
