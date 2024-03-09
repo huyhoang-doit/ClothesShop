@@ -123,11 +123,9 @@
                                                         ${totalPrice} 
                                                     </p>
                                                 </div>
-                                                <c:if test="${sessionScope.CART != null && sessionScope.CART.size() > 0}">
-                                                    <div class="checkout_btn">
-                                                        <a href="CheckoutServlet">Checkout</a>
-                                                    </div>
-                                                </c:if>
+                                                <div class="checkout_btn">
+                                                    <a href="CheckoutServlet">Checkout</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

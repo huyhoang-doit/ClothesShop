@@ -68,7 +68,7 @@
                             </c:if>
                             <c:if test="${sessionScope.CART == null || sessionScope.CART.size() == 0}">
                             <a href="#"><i class="fa fa-shopping-cart"></i><i class="fa fa-angle-down"></i></a>
-                            </c:if>
+                                </c:if>
 
                         <!--mini cart-->
                         <div class="mini_cart">
@@ -98,11 +98,9 @@
                                     ${totalPrice}  
                                 </span>
                             </div>
-                                    <c:if test="${sessionScope.CART != null && sessionScope.CART.size() > 0}">
-                                        <div class="cart_button">
-                                            <a href="CheckoutServlet"> Check out</a>
-                                        </div>
-                                    </c:if>
+                            <div class="cart_button">
+                                <a href="CheckoutServlet"> Check out</a>
+                            </div>
                         </div>
                         <!--mini cart end-->
                     </div>
@@ -126,32 +124,6 @@
                             </ul>
                         </nav>
                     </div>
-                    <!--                    <div class="mobile-menu d-lg-none">
-                                            <nav>
-                                                <ul>
-                                                    <li><a href="home.jsp">Home</a></li>
-                                                    <li><a href="shop-list.jsp">shop</a>
-                                                        <div>
-                                                            <div>
-                                                                <ul>
-                                                                    <li><a href="shop-list.html">shop list</a></li>
-                                                                    <li><a href="shop-fullwidth.html">shop Full Width Grid</a></li>
-                                                                    <li><a href="shop-fullwidth-list.html">shop Full Width list</a></li>
-                                                                    <li><a href="shop-sidebar.html">shop Right Sidebar</a></li>
-                                                                    <li><a href="shop-sidebar-list.html">shop list Right Sidebar</a></li>
-                                                                    <li><a href="single-product.html">Product Details</a></li>
-                                                                    <li><a href="single-product-sidebar.html">Product sidebar</a></li>
-                                                                    <li><a href="single-product-video.html">Product Details video</a></li>
-                                                                    <li><a href="single-product-gallery.html">Product Details Gallery</a></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>  
-                                                    </li>
-                                                    <li><a href="contact.jsp">contact us</a></li>
-                    
-                                                </ul>
-                                            </nav>
-                                        </div>-->
                 </div>
             </div>
         </div>

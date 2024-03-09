@@ -38,7 +38,6 @@ public class LoginServlet extends HttpServlet {
     private final String ADMIN_DASHBOARD = "AdminServlet";
     private final String REGISTER_CONTROLLER = "RegisterServlet";
 
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -108,6 +107,11 @@ public class LoginServlet extends HttpServlet {
                     if (account != null) {
                         HttpSession session = request.getSession();
                         session.setAttribute("account", account);
+                        if (account.getRoleID() == 1) {
+                            response.sendRedirect(ADMIN_DASHBOARD);
+                        } else {
+                            response.sendRedirect(WELCOME);
+                        }
                     } else {
                         String error = "You need register your account!";
                         request.setAttribute("msgRegisterGG", error);

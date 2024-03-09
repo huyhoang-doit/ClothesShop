@@ -16,7 +16,6 @@ public class OrderDTO {
     private Date orderDate;
     private double totalPrice;
     private PaymentDTO paymentMethod;
-    private int shipmentID;
     private UserDTO user;
     private boolean status;
 
@@ -24,12 +23,11 @@ public class OrderDTO {
     }
     
 
-    public OrderDTO(int orderID, Date orderDate, double totalPrice, PaymentDTO paymentMethod, int shipmentID, UserDTO user, boolean status) {
+    public OrderDTO(int orderID, Date orderDate, double totalPrice, PaymentDTO paymentMethod, UserDTO user, boolean status) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.totalPrice = totalPrice;
         this.paymentMethod = paymentMethod;
-        this.shipmentID = shipmentID;
         this.user = user;
         this.status = status;
     }
@@ -65,15 +63,6 @@ public class OrderDTO {
     public void setPaymentMethod(PaymentDTO paymentMethod) {
         this.paymentMethod = paymentMethod;
     }
-
-    public int getShipmentID() {
-        return shipmentID;
-    }
-
-    public void setShipmentID(int shipmentID) {
-        this.shipmentID = shipmentID;
-    }
-
     public UserDTO getUser() {
         return user;
     }

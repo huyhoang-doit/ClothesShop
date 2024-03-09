@@ -37,6 +37,13 @@ public class OrderDAO extends DBContext {
     private static final String GET_ORDERS_BYID = "SELECT * FROM [Orders] WHERE order_id = ?";
     private static final String GET_RECENT_ORDERS = "SELECT Top 10 * FROM Orders ORDER BY orderdate DESC";
     private static final String UPDATE_STATUS = "UPDATE [Orders] SET status = 1 WHERE order_id = ?";
+    private static final String CREATE_ORDER = "INSERT INTO [dbo].[Orders]\n"
+            + "           ([orderdate]\n"
+            + "           ,[totalprice]\n"
+            + "           ,[paymentid]\n"
+            + "           ,[username]\n"
+            + "           ,[status])\n"
+            + "     VALUES(?,?,?,?, false)";
 
     public double getTotalSale() throws SQLException {
         double result = 0;
@@ -176,11 +183,10 @@ public class OrderDAO extends DBContext {
                     double totalPrice = rs.getDouble("totalprice");
                     int paymentId = rs.getInt("paymentid");
                     PaymentDTO payment = pDao.getPaymentById(paymentId);
-                    int shipmentId = rs.getInt("shipmentid");
                     String userName = rs.getString("username");
                     UserDTO user = uDao.getUserByName(userName);
                     boolean status = rs.getBoolean("status");
-                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, payment, shipmentId, user, status);
+                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, payment, user, status);
                     orders.add(order);
                 }
             }
@@ -217,10 +223,9 @@ public class OrderDAO extends DBContext {
                     double totalPrice = rs.getDouble("totalprice");
                     int paymentId = rs.getInt("paymentid");
                     PaymentDTO payment = pDao.getPaymentById(paymentId);
-                    int shipmentId = rs.getInt("shipmentid");
                     boolean status = rs.getBoolean("status");
                     UserDTO user = uDao.getUserByName(userName);
-                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, payment, shipmentId, user, status);
+                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, payment, user, status);
                     orders.add(order);
                 }
             }
@@ -257,11 +262,10 @@ public class OrderDAO extends DBContext {
                     double totalPrice = rs.getDouble("totalprice");
                     int paymentId = rs.getInt("paymentid");
                     PaymentDTO payment = pDao.getPaymentById(paymentId);
-                    int shipmentId = rs.getInt("shipmentid");
                     boolean status = rs.getBoolean("status");
                     String userName = rs.getString("username");
                     UserDTO user = uDao.getUserByName(userName);
-                    order = new OrderDTO(orderId, orderDate, totalPrice, payment, shipmentId, user, status);
+                    order = new OrderDTO(orderId, orderDate, totalPrice, payment, user, status);
                 }
             }
         } catch (Exception e) {
@@ -326,11 +330,10 @@ public class OrderDAO extends DBContext {
                     double totalPrice = rs.getDouble("totalprice");
                     int paymentId = rs.getInt("paymentid");
                     PaymentDTO payment = pDao.getPaymentById(paymentId);
-                    int shipmentId = rs.getInt("shipmentid");
                     String userName = rs.getString("username");
                     UserDTO user = uDao.getUserByName(userName);
                     boolean status = rs.getBoolean("status");
-                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, payment, shipmentId, user, status);
+                    OrderDTO order = new OrderDTO(orderId, orderDate, totalPrice, payment , user, status);
                     orders.add(order);
                 }
             }
@@ -349,7 +352,7 @@ public class OrderDAO extends DBContext {
         }
         return orders;
     }
-    
+
     public void UpdateStatus(String orderId) throws SQLException {
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -374,6 +377,38 @@ public class OrderDAO extends DBContext {
                 conn.close();
             }
         }
+    }
+    
+    public boolean CreateNewOrder(String date,double total, PaymentDTO payment, UserDTO user) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(CREATE_ORDER);
+                ptm.setString(1, date);
+                ptm.setDouble(2, total);
+                ptm.setInt(3, payment.getPaymentID());
+                ptm.setString(4, user.getUserName());
+                ptm.executeUpdate();
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return false;
     }
 
     public static void main(String[] args) throws SQLException {
