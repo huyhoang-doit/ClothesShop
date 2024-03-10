@@ -43,7 +43,7 @@ public class OrderDAO extends DBContext {
             + "           ,[paymentid]\n"
             + "           ,[username]\n"
             + "           ,[status])\n"
-            + "     VALUES(?,?,?,?, false)";
+            + "     VALUES(?,?,?,?, 0)";
 
     public double getTotalSale() throws SQLException {
         double result = 0;

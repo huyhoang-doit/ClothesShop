@@ -54,6 +54,14 @@
                                             To pay for your order, you need to log in >>
                                             <a class="Returning" href="login.jsp">Click here to login</a>     
                                         </h3>
+
+                                    </c:if>
+                                    <c:if test="${sessionScope.account != null}">
+                                        <h3> 
+                                            <i class="fa fa-file-o" aria-hidden="true"></i>
+                                            Edit information >>
+                                            <a class="Returning" href="my-account.jsp">My account</a>     
+                                        </h3>
                                     </c:if>
                                 </div>
                             </div>
@@ -95,17 +103,19 @@
                                                     <input type="email" value="${sessionScope.account != null ? sessionScope.account.email: ''}" readonly> 
 
                                                 </div> 
-<!--                                                <div class="col-12">
-                                                    <div class="order-notes">
-                                                        <label for="order_note">Order Notes</label>
-                                                        <textarea id="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
-                                                    </div>    
-                                                </div>     	    	    	    	    	    	    -->
+                                                <!--                                                <div class="col-12">
+                                                                                                    <div class="order-notes">
+                                                                                                        <label for="order_note">Order Notes</label>
+                                                                                                        <textarea id="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                                                                                    </div>    
+                                                                                                </div>   
+                                                -->
+
                                             </div>
                                         </form>    
                                     </div>
                                     <div class="col-lg-6 col-md-6">
-                                        <c:if test="${sessionScope.CART != null}">
+                                        <c:if test="${sessionScope.CART != null && sessionScope.CART.size() > 0 }">
 
                                             <form action="CheckoutServlet" method="GET">    
                                                 <h3>Your order</h3> 
@@ -157,9 +167,9 @@
                                                 </div>
                                                 <div class="payment_method">
                                                     <h3>PAYMENT</h3>
-                                                    <c:forEach items="${requestScope.PAYMENTS}" var="p">
+                                                    <c:forEach items="${sessionScope.PAYMENTS}" var="p">
                                                         <div class="panel-default">
-                                                            <input id="payment" name="check_method" type="radio" value="${p.paymentID}">
+                                                            <input id="payment" name="check_method" type="radio" value="${p.paymentID}" checked>
                                                             <label for="payment" >${p.paymentMethod}</label>
                                                         </div> 
                                                     </c:forEach>
@@ -173,7 +183,7 @@
                                                 </c:if>
                                             </form>         
                                         </c:if>
-                                        <c:if test="${sessionScope.CART == null}">
+                                        <c:if test="${sessionScope.CART == null || sessionScope.CART.size() == 0}">
                                             <div style="text-align: center;">
                                                 <img  src="assets/img/cart/emptycart1.png" alt="Empty cart">
                                             </div>

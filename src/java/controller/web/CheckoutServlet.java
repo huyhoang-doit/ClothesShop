@@ -13,6 +13,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -36,11 +37,14 @@ public class CheckoutServlet extends HttpServlet {
         String url = CHECKOUT_PAGE;
         PaymentDAO pmDAO = new PaymentDAO();
         OrderDAO oDAO = new OrderDAO();
+        CartUtil cUtil = new CartUtil();
         double total = 0;
         String message = "";
         String check = "false";
+        String emptyCart = "[]";
         try {
             HttpSession session = request.getSession();
+            Cookie cookie = null;
 
             // Check out
             String paymentId = request.getParameter("check_method");
@@ -59,6 +63,8 @@ public class CheckoutServlet extends HttpServlet {
                 if (oDAO.CreateNewOrder(date, total, payment, user)) {
                     message = "Order Success";
                     carts = null;
+                    cookie = cUtil.getCookieByName(request, "Cart");
+                    cUtil.saveCartToCookie(request, response, emptyCart);
                     session.setAttribute("CART", carts);
                     check = "true";
 
@@ -74,7 +80,7 @@ public class CheckoutServlet extends HttpServlet {
             }
 
             List<PaymentDTO> pms = pmDAO.getPaymentData();
-            request.setAttribute("PAYMENTS", pms);
+            session.setAttribute("PAYMENTS", pms);
             request.setAttribute("MESSAGE", message);
             request.setAttribute("CHECK", check);
         } catch (Exception e) {
