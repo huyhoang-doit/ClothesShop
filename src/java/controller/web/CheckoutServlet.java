@@ -6,7 +6,9 @@
 package controller.web;
 
 import dal.OrderDAO;
+import dal.OrderItemDAO;
 import dal.PaymentDAO;
+import dal.ProductDAO;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,6 +21,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import model.CartItem;
+import model.OrderDTO;
 import model.PaymentDTO;
 import model.UserDTO;
 
@@ -36,8 +39,11 @@ public class CheckoutServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String url = CHECKOUT_PAGE;
         PaymentDAO pmDAO = new PaymentDAO();
+        ProductDAO pDAO = new ProductDAO();
         OrderDAO oDAO = new OrderDAO();
+        OrderItemDAO oiDAO = new OrderItemDAO();
         CartUtil cUtil = new CartUtil();
+        OrderDTO orderLatest = null;
         double total = 0;
         String message = "";
         String check = "false";
@@ -59,12 +65,21 @@ public class CheckoutServlet extends HttpServlet {
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
                 String date = daynow.format(format);
 
-                // Create checkout 
+                // Create new order 
                 if (oDAO.CreateNewOrder(date, total, payment, user)) {
                     message = "Order Success";
+                    // create orderdetails
+                    orderLatest = oDAO.getTheLatestOrder();
+
+                    for (CartItem cart : carts) {
+                        oiDAO.createNewOrderDetail(cart, orderLatest);
+                        // Update product quantity
+                        pDAO.updateQuanityProduct(cart);
+                    }
                     carts = null;
                     cookie = cUtil.getCookieByName(request, "Cart");
                     cUtil.saveCartToCookie(request, response, emptyCart);
+
                     session.setAttribute("CART", carts);
                     check = "true";
 

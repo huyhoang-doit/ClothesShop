@@ -37,6 +37,7 @@ public class OrderDAO extends DBContext {
     private static final String GET_ORDERS_BYID = "SELECT * FROM [Orders] WHERE order_id = ?";
     private static final String GET_RECENT_ORDERS = "SELECT Top 10 * FROM Orders ORDER BY orderdate DESC";
     private static final String UPDATE_STATUS = "UPDATE [Orders] SET status = 1 WHERE order_id = ?";
+    private static final String GET_LATEST_ORDER = "SELECT TOP 1 * FROM Orders ORDER BY order_id DESC";
     private static final String CREATE_ORDER = "INSERT INTO [dbo].[Orders]\n"
             + "           ([orderdate]\n"
             + "           ,[totalprice]\n"
@@ -206,6 +207,43 @@ public class OrderDAO extends DBContext {
         return orders;
     }
 
+        public OrderDTO getTheLatestOrder() throws SQLException {
+        OrderDTO order = null;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_LATEST_ORDER);
+                rs = ptm.executeQuery();
+                if (rs.next()) {
+                    int orderId = rs.getInt("order_id");
+                    Date orderDate = rs.getDate("orderdate");
+                    double totalPrice = rs.getDouble("totalprice");
+                    int paymentId = rs.getInt("paymentid");
+                    PaymentDTO payment = pDao.getPaymentById(paymentId);
+                    String userName = rs.getString("username");
+                    UserDTO user = uDao.getUserByName(userName);
+                    boolean status = rs.getBoolean("status");
+                    order = new OrderDTO(orderId, orderDate, totalPrice, payment, user, status);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return order;
+    }
     public List<OrderDTO> getOrdersByUsername(String userName) throws SQLException {
         List<OrderDTO> orders = new ArrayList<>();
         Connection conn = null;

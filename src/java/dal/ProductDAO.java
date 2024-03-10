@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import model.CartItem;
 import model.CategoryDTO;
 import model.ProductDTO;
 import model.SupplierDTO;
@@ -37,6 +38,7 @@ public class ProductDAO extends DBContext {
     private static final String GET_PRODUCTS_BEST_SELLER = "SELECT TOP(5) * from Products WHERE status = 1 order by unitSold desc";
     private static final String GET_PRODUCTS_BY_SEARCH = "SELECT * FROM Products WHERE productname LIKE ? AND status = 1";
     private static final String DELETE_PRODUCT = "UPDATE Products SET status = 0 WHERE id = ?";
+    private static final String UPDATE_QUANTITY_PRODUCT = "UPDATE Products SET [stock] = ? WHERE id = ?";
     private static final String INSERT_PRODUCT = "INSERT INTO Products VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
     public List<ProductDTO> getData() throws SQLException {
@@ -605,6 +607,33 @@ public class ProductDAO extends DBContext {
         }
     }
 
+    public void updateQuanityProduct(CartItem item) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(UPDATE_QUANTITY_PRODUCT);
+                ptm.setInt(1, (item.getProduct().getStock() - item.getQuantity()));
+                ptm.setInt(2, item.getProduct().getId());
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+
     public void insertProduct(String name, int cId, int sId, int tId, double price, double discount, String size, String color, int stock,
             String date, String images, String description) throws SQLException {
         Connection conn = null;
@@ -650,7 +679,7 @@ public class ProductDAO extends DBContext {
         for (ProductDTO productDTO : list) {
             if (priceFrom != 0) {
                 if (priceTo != 0) {
-                    if (productDTO.getSalePrice()>= priceFrom && productDTO.getSalePrice() <= priceTo) {
+                    if (productDTO.getSalePrice() >= priceFrom && productDTO.getSalePrice() <= priceTo) {
                         rs.add(productDTO);
                     }
                 } else if (productDTO.getSalePrice() >= priceFrom) {
