@@ -170,7 +170,7 @@
                                     <!--wishlist block start-->
                                     <div class="sidebar_widget wishlist mb-35">
                                         <div class="block_title">
-                                            <h3><a href="wishlist.jsp">Wishlist</a></h3>
+                                            <h3><a href="WishlistServlet">Wishlist</a></h3>
                                         </div>
                                         <c:forEach items="${sessionScope.WISHLIST}" var="p" varStatus="loop">
                                             <c:if test="${loop.index <= 2}">
@@ -190,7 +190,7 @@
                                         </c:forEach>
                                         <div class="block_content">
                                             <p>${sessionScope.WISHLIST.size()}  products</p>
-                                            <a href="wishlist.jsp">» My wishlists</a>
+                                            <a href="WishlistServlet">» My wishlists</a>
                                         </div>
                                     </div>
                                     <!--wishlist block end-->

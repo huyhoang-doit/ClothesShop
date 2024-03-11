@@ -52,7 +52,7 @@
                                         <h3> 
                                             <i class="fa fa-file-o" aria-hidden="true"></i>
                                             To pay for your order, you need to log in >>
-                                            <a class="Returning" href="login.jsp">Click here to login</a>     
+                                            <a class="Returning" href="LoginServlet?from=checkout.jsp">Click here to login</a>     
                                         </h3>
 
                                     </c:if>
@@ -60,7 +60,7 @@
                                         <h3> 
                                             <i class="fa fa-file-o" aria-hidden="true"></i>
                                             Edit information >>
-                                            <a class="Returning" href="my-account.jsp">My account</a>     
+                                            <a class="Returning" href="ProfileServlet">My account</a>     
                                         </h3>
                                     </c:if>
                                 </div>

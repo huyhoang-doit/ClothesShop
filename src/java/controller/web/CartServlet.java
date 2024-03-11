@@ -27,6 +27,8 @@ import model.ProductDTO;
 public class CartServlet extends HttpServlet {
 
     private static final String DISPATCHSERVLET = "DispatchServlet";
+        private static final String CART_PAGE = "cart.jsp";
+
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -43,26 +45,30 @@ public class CartServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             String action = request.getParameter("action");
-            String product_id = request.getParameter("product_id");
-            ProductDTO product = pDao.getProductByID(Integer.parseInt(product_id));
-            if ("Add".equals(action)) {
-                String quantity = request.getParameter("quantity");
-                CartItem item = new CartItem(product, Integer.parseInt(quantity));
-                carts = (List<CartItem>) session.getAttribute("CART");
-                if (carts == null) {
-                    listItem = cartUtil.createCart(item);
-                } else {
-                    listItem = cartUtil.addItemToCart(item);
+            if(action == null){
+                url = CART_PAGE;
+            }else {
+                String product_id = request.getParameter("product_id");
+                ProductDTO product = pDao.getProductByID(Integer.parseInt(product_id));
+                if ("Add".equals(action)) {
+                    String quantity = request.getParameter("quantity");
+                    CartItem item = new CartItem(product, Integer.parseInt(quantity));
+                    carts = (List<CartItem>) session.getAttribute("CART");
+                    if (carts == null) {
+                        listItem = cartUtil.createCart(item);
+                    } else {
+                        listItem = cartUtil.addItemToCart(item);
+                    }
+                    // Delete product in wishlist
+                    wishlists = (List<ProductDTO>) session.getAttribute("WISHLIST");
+                    if (wishlists != null) {
+                        listWishlist = wUtil.removeItem(product);
+                        wishlists = new ArrayList<>(listWishlist.values());
+                        session.setAttribute("WISHLIST", wishlists);
+                    }
+                } else if ("Delete".equals(action)) {
+                    listItem = cartUtil.removeItem(product);
                 }
-                // Delete product in wishlist
-                wishlists = (List<ProductDTO>) session.getAttribute("WISHLIST");
-                if (wishlists != null) {
-                    listWishlist = wUtil.removeItem(product);
-                    wishlists = new ArrayList<>(listWishlist.values());
-                    session.setAttribute("WISHLIST", wishlists);
-                }
-            } else if ("Delete".equals(action)) {
-                listItem = cartUtil.removeItem(product);
             }
             carts = new ArrayList<>(listItem.values());
             session.setAttribute("CART", carts);

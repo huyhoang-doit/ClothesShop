@@ -3,72 +3,33 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.web;
 
-import dal.ProductDAO;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.ProductDTO;
 
 /**
  *
  * @author lvhho
  */
-@WebServlet(name = "WishlistServlet", urlPatterns = {"/WishlistServlet"})
-public class WishlistServlet extends HttpServlet {
-
-    private static final String DISPATCHSERVLET = "DispatchServlet";
-    private static final String WISHLIST_PAGE = "wishlist.jsp";
-
+@WebServlet(urlPatterns = {"/ContactServlet"})
+public class ContactServlet extends HttpServlet {
+    private static final String CONTACT_PAGE = "contact.jsp";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = DISPATCHSERVLET;
-        ProductDAO pDao = new ProductDAO();
-        WishlistUtil wUtil = new WishlistUtil();
-        List<ProductDTO>  wishlists = null;
-        HashMap<Integer, ProductDTO> listItem = null;
+        String url = CONTACT_PAGE;
         try {
-            HttpSession session = request.getSession();
-            String action = request.getParameter("action");
-            if(action == null) {
-                url = WISHLIST_PAGE;
-            }else {
-                String product_id = request.getParameter("product_id");
-                ProductDTO product = pDao.getProductByID(Integer.parseInt(product_id));
-                if ("Add".equals(action)) {
-                    wishlists = (List<ProductDTO>) session.getAttribute("WISHLIST");
-                    if (wishlists == null) {
-                        listItem = wUtil.createWishlist(product);
-                    } else {
-                        listItem = wUtil.addItemToWishlist(product);
-                    }
-                } else if ("Delete".equals(action)) {
-                    listItem = wUtil.removeItem(product);
-
-                }
-            }
-            // Save to Cookie
-            wishlists = new ArrayList<>(listItem.values());
-            session.setAttribute("WISHLIST", wishlists);
             
-            String strItemsWishlist = wUtil.convertToString();
-            wUtil.saveWishlistToCookie(request, response, strItemsWishlist);
-            
-        } catch (Exception ex) {
-            log("WishlistServlet error:" + ex.getMessage());
-        } finally {
+        } catch (Exception e) {
+            log("ContactServlet error:" + e.getMessage());
+        }finally {
             request.getRequestDispatcher(url).forward(request, response);
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

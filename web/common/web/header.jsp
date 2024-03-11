@@ -24,9 +24,9 @@
             <div class="col-lg-6 col-md-6">
                 <div class="header_links">
                     <ul>
-                        <li><a href="contact.jsp" title="Contact">Contact</a></li>
-                        <li><a href="wishlist.jsp" title="wishlist">My wishlist</a></li>
-                        <li><a href="cart.jsp" title="My cart">My cart</a></li>  
+                        <li><a href="ContactServlet" title="Contact">Contact</a></li>
+                        <li><a href="WishlistServlet" title="wishlist">My wishlist</a></li>
+                        <li><a href="CartServlet" title="My cart">My cart</a></li>  
                             <c:if test="${sessionScope.account != null}">
                             <li><a href="ProfileServlet" title="My account">My account</a></li>
                             </c:if>
@@ -119,7 +119,7 @@
                             <ul>
                                 <li class="active"><a href="DispatchServlet">Home</a></li>
                                 <li><a href="ShopServlet">SHOP</a></li>
-                                <li><a href="contact.jsp">contact us</a></li>
+                                <li><a href="ContactServlet">contact us</a></li>
 
                             </ul>
                         </nav>
