@@ -12,18 +12,18 @@
 - [x] Register an account
 - [x] Search, view product
 - [x] Filter products
-- [ ] Add, update, remove cart
+- [x] Add, update, remove cart
 - [x] Login by google account
 
 **2. User**
 - [x] Search, view product
-- [ ] Add, update, remove cart
+- [x] Add, update, remove cart
 - [x] Subscribe received new daily information
 - [x] Logout
 - [x] Update account information
-- [ ] Password retrieval
-- [ ] View, manage orders
-- [ ] Checkout
+- [x] Password retrieval
+- [x] View, manage orders
+- [x] Checkout
 
 **3. Admin:**
 - [x] Managing product
@@ -33,5 +33,5 @@
 - [x] Send email
 - [x] Update admin account information
 - [x] Statistic revenue
-- [ ] Order confirmation
+- [x] Order confirmation
 

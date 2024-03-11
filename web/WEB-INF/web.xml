@@ -2,11 +2,11 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <filter>
         <filter-name>AdminFilter</filter-name>
-        <filter-class>filter.AdminFilter</filter-class>
+        <filter-class>clothingstore.filter.AdminFilter</filter-class>
     </filter>
     <filter>
         <filter-name>LoginFilter</filter-name>
-        <filter-class>filter.LoginFilter</filter-class>
+        <filter-class>clothingstore.filter.LoginFilter</filter-class>
     </filter>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
@@ -31,23 +31,23 @@
     </filter-mapping>
     <servlet>
         <servlet-name>DispatchServlet</servlet-name>
-        <servlet-class>controller.web.DispatchServlet</servlet-class>
+        <servlet-class>clothingstore.controller.web.DispatchServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AdminServlet</servlet-name>
-        <servlet-class>controller.admin.AdminServlet</servlet-class>
+        <servlet-class>clothingstore.controller.admin.AdminServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ShopServlet</servlet-name>
-        <servlet-class>controller.web.ShopServlet</servlet-class>
+        <servlet-class>clothingstore.controller.web.shop.ShopServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ProfileServlet</servlet-name>
-        <servlet-class>controller.web.ProfileServlet</servlet-class>
+        <servlet-class>clothingstore.controller.web.profile.ProfileServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditProfileServlet</servlet-name>
-        <servlet-class>controller.web.EditProfileServlet</servlet-class>
+        <servlet-class>clothingstore.controller.web.profile.EditProfileServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>DispatchServlet</servlet-name>
