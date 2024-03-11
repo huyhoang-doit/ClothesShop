@@ -140,7 +140,7 @@
                                                                 <th>Cart Subtotal</th>
                                                                 <td>$
                                                                     <c:set var="totalPrice" value="0" />
-                                                                    <c:forEach items="${sessionScope.CART}" var="c">
+                                                                    <c:forEach items="${requestScope.CART}" var="c">
                                                                         <c:set var="productTotal" value="${c.product.getSalePrice() * c.quantity}" />
                                                                         <c:set var="totalPrice" value="${totalPrice + productTotal}" />
                                                                     </c:forEach>
@@ -155,7 +155,7 @@
                                                                 <th>Order Total</th>
                                                                 <td><strong>$
                                                                         <c:set var="totalPrice" value="0" />
-                                                                        <c:forEach items="${sessionScope.CART}" var="c">
+                                                                        <c:forEach items="${requestScope.CART}" var="c">
                                                                             <c:set var="productTotal" value="${c.product.getSalePrice() * c.quantity}" />
                                                                             <c:set var="totalPrice" value="${totalPrice + productTotal}" />
                                                                         </c:forEach>

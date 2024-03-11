@@ -22,7 +22,7 @@ public class UserDAO extends DBContext {
 
     private static final String LOGIN = "SELECT * FROM Users WHERE (username=? OR email = ?) AND password=? and status=1";
 
-    private static final String GET_DATA = "SELECT * FROM Users WHERE status = 1";
+    private static final String GET_DATA = "SELECT * FROM Users WHERE status = 1 Order by roleid asc";
 
     private static final String GET_USER_BY_NAME = "SELECT * FROM Users WHERE username = ? AND status = 1";
 
@@ -30,12 +30,14 @@ public class UserDAO extends DBContext {
 
     private static final String GET_TOTAL_USERS = "SELECT COUNT(*) AS Total FROM Users WHERE status = 1 AND roleid=2";
 
-    private static final String UPDATE_USER = "UPDATE Users SET firstName = ?, lastName = ?, email = ?, address = ?, phone = ? WHERE username = ?";
+    private static final String UPDATE_USER = "UPDATE Users SET firstName = ?, lastName = ?, email = ?, address = ?, phone = ?, avatar = ?, roleid = ? WHERE username = ?";
 
     private static final String UPDATE_PASSWORD_FOR_USER = "UPDATE Users SET password = ? WHERE username = ?";
 
     private static final String CHECK_USERNAME_DUPLICATE = "SELECT * FROM Users WHERE userName = ? or email = ? and [status] = 1";
 
+    private static final String DELETE_USER = "UPDATE Users SET status = 0 WHERE id = ?";
+    
     private static final String REGISTER_USER = "INSERT INTO [dbo].[Users]\n"
             + "           ([firstname]\n"
             + "           ,[lastname]\n"
@@ -163,7 +165,7 @@ public class UserDAO extends DBContext {
         return result;
     }
 
-    public void updateUser(String firstName, String lastName, String email, String address, String phone, String userName) throws SQLException {
+    public void updateUser(String firstName, String lastName, String email, String address, String phone, String userName, String avatar, int roleId) throws SQLException {
         UserDTO user = null;
         Connection conn = null;
         PreparedStatement ptm = null;
@@ -177,7 +179,9 @@ public class UserDAO extends DBContext {
                 ptm.setString(3, email);
                 ptm.setString(4, address);
                 ptm.setString(5, phone);
-                ptm.setString(6, userName);
+                ptm.setString(6, avatar);
+                ptm.setInt(7, roleId);
+                ptm.setString(8, userName);
                 ptm.executeUpdate();
             }
         } catch (Exception e) {
@@ -352,6 +356,32 @@ public class UserDAO extends DBContext {
                 ptm.setString(8, user.getPhone());
                 ptm.setInt(9, user.getRoleID());
                 ptm.setBoolean(10, user.isStatus());
+                ptm.executeUpdate();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+    }
+    
+    public void deleteUser(String uid) throws SQLException {
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(DELETE_USER);
+                ptm.setString(1, uid);
                 ptm.executeUpdate();
             }
         } catch (Exception e) {

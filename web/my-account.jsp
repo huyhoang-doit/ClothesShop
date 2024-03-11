@@ -110,6 +110,7 @@
                                                             <input class="input_type " type="text" name="last-name" value="${sessionScope.account.lastName}" readonly>
                                                             <label>Email</label>
                                                             <input class="input_type " type="text" name="email" value="${sessionScope.account.email}" readonly>
+                                                            <input class="input_type " type="hidden" name="avatar" value="${sessionScope.account.avatar}" readonly>
                                                             <label>Address</label>
                                                             <input class="input_type " type="text" name="address" value="${sessionScope.account.address}" readonly>
                                                             <label>Phone</label>

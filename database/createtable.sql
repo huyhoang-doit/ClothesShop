@@ -46,8 +46,8 @@ CREATE TABLE Suppliers(
 CREATE TABLE Products(
  id INT NOT NULL IDENTITY(1,1)  PRIMARY KEY ,
  productname NVARCHAR(max) NOT NULL,
- supplierid INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Suppliers](supplierid) ON DELETE CASCADE ON UPDATE CASCADE,
- categoryid INT NOT NULL FOREIGN KEY REFERENCES [dbo].[Categories](categoryid) ON DELETE CASCADE ON UPDATE CASCADE,
+ supplierid INT FOREIGN KEY REFERENCES [dbo].[Suppliers](supplierid) ON DELETE SET NULL ON UPDATE CASCADE,
+ categoryid INT FOREIGN KEY REFERENCES [dbo].[Categories](categoryid) ON DELETE SET NULL ON UPDATE CASCADE,
  size VARCHAR(40) NOT NULL,
  stock INT NOT NULL, 
  [description] NVARCHAR(max),

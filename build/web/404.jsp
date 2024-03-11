@@ -34,10 +34,6 @@
                                         <h1>404</h1>
                                         <h2>Opps! PAGE NOT BE FOUND</h2>
                                         <p>Sorry but the page you are looking for does not exist, have been<br> removed, name changed or is temporarity unavailable.</p>
-                                        <form action="#">
-                                            <input placeholder="Search..." type="text">
-                                            <button type="submit"><i class="fa fa-search"></i></button>
-                                        </form>
                                         <a href="DispatchServlet">Back to home page</a>
                                     </div>
                                 </div>

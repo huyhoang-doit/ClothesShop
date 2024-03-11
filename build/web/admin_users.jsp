@@ -55,6 +55,7 @@
                                             class="fas fa-print"></i> In dữ liệu</a>
                                 </div>
                             </div>
+                            <h3 style="color: green; text-align: center; margin: 20px 0">${requestScope.mess}</h3>
                             <table class="table table-hover table-bordered js-copytextarea" cellpadding="0" cellspacing="0" border="0"
                                    id="sampleTable">
                                 <thead>
@@ -79,8 +80,13 @@
                                             <td>${u.getAddress()}</td>
                                             <td>${u.getPhone()}</td>
                                             <td>${u.getRoleID() == 1 ? "Admin" : "User"}</td>
-                                            <td><button class="btn btn-primary btn-sm edit" type="button" title="Sửa" id="show-emp" data-toggle="modal"
-                                                        data-target="#ModalUP${u.getId()}"><i class="fas fa-edit"></i></button></td>
+                                            <td>
+                                                <a class="btn btn-primary btn-sm trash" id="logout" data-toggle="modal" data-target="#modal_box" href="#" onclick="confirmDelete('modal_box', ${u.id})">
+                                                    <i class="fas fa-trash-alt"></i>
+                                                </a>
+                                                <a class="btn btn-primary btn-sm edit" href="EditUserServlet?username=${u.userName}"><i class="fas fa-edit"></i>
+                                                </a>
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
@@ -127,42 +133,41 @@
                 </div>
             </div>
         </c:forEach>
+        
+        <div class="modal fade" id="modal_box" role="dialog"></div>
         <!-- Essential javascripts for application to work-->
         <script src="admin/js/jquery-3.2.1.min.js"></script>
         <script src="admin/js/popper.min.js"></script>
         <script src="admin/js/bootstrap.min.js"></script>
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="admin/js/main.js"></script>
-        <!-- The javascript plugin to display page loading on top-->
-        <script src="admin/js/plugins/pace.min.js"></script>
         <!-- Page specific javascripts-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
         <!-- Data table plugin-->
         <script type="text/javascript" src="admin/js/plugins/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="admin/js/plugins/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript">$('#sampleTable').DataTable();</script>
-        <script>
-            function deleteRow(r) {
-                var i = r.parentNode.parentNode.rowIndex;
-                document.getElementById("myTable").deleteRow(i);
+        <script type="text/javascript">
+            function confirmDelete(modalID, uid) {
+                let modalElement = document.getElementById(modalID);
+                let modal = '<div class="modal-dialog modal-dialog-centered" role="document" style="text-align:center">' +
+                        '<div class="modal-content" style="width:500px; margin: 0 auto">' +
+                        '<div class="modal-header" style="color: black; font-size:28px; font-weight: 600; margin: 15px auto">Cảnh báo</div>' +
+                        '<div class="swal-text">Bạn có chắc chắn là muốn xóa người dùng này?</div>' +
+                        '<div class="swal-footer">' +
+                        '<div class="swal-button-container">' +
+                        '<button data-dismiss="modal" aria-hidden="true" class="swal-button swal-button--cancel">Hủy bỏ</button>' +
+                        '</div>' +
+                        '<div class="swal-button-container">' +
+                        '<a href="DeleteUserServlet?uid=' + uid + '" class="swal-button swal-button--confirm">Xác nhận</a>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                console.log(modal);
+                let result = modalElement.innerHTML = modal;
+                return result;
             }
-            jQuery(function () {
-                jQuery(".trash").click(function () {
-                    swal({
-                        title: "Cảnh báo",
-
-                        text: "Bạn có chắc chắn là muốn xóa nhân viên này?",
-                        buttons: ["Hủy bỏ", "Đồng ý"],
-                    })
-                            .then((willDelete) => {
-                                if (willDelete) {
-                                    swal("Đã xóa thành công.!", {
-
-                                    });
-                                }
-                            });
-                });
-            });
 
             //Thời Gian
             function time() {

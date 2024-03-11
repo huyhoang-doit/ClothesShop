@@ -3,62 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package controller.web;
+package controller.admin;
 
 import dal.UserDAO;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.UserDTO;
 
 /**
  *
- * @author HuuThanh
+ * @author Administrator
  */
-public class EditProfileServlet extends HttpServlet {
+@WebServlet(name = "DeleteUserServlet", urlPatterns = {"/DeleteUserServlet"})
+public class DeleteUserServlet extends HttpServlet {
 
-    private final String PROFILE = "my-account.jsp";
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
+    private static final String MANAGE_USER_CONTROLLER = "ManageUserServlet";
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try {
-            String firstName = request.getParameter("first-name");
-            String lastName = request.getParameter("last-name");
-            String email = request.getParameter("email");
-            String address = request.getParameter("address");
-            String phone = request.getParameter("phone");
-            String avatar = request.getParameter("avatar");
-            String role_raw = request.getParameter("role");
-            UserDAO uDao = new UserDAO();
-
-            int roleId = (role_raw.equals("Admin") ? 1 : 2);
-            HttpSession session = request.getSession();
-            UserDTO user = (UserDTO) session.getAttribute("account");
-
-            uDao.updateUser(firstName, lastName, email, address, phone, user.getUserName(), avatar, roleId);
-            
-            // refresh lại session user vì mới update
-            user = uDao.checkLogin(user.getUserName(), user.getPassword());
-            session.setAttribute("account", user);
-            
-            request.setAttribute("STATUS", "Update successfully!!!");
-        } catch (Exception ex) {
-            log("EditProfileServlet error:" + ex.getMessage());
-        } finally {
-            request.getRequestDispatcher(PROFILE).forward(request, response);
+        try (PrintWriter out = response.getWriter()) {
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet DeleteUserServlet</title>");            
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet DeleteUserServlet at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -74,7 +52,16 @@ public class EditProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            String uid = request.getParameter("uid");
+            UserDAO dao = new UserDAO();
+            dao.deleteUser(uid);
+            request.setAttribute("mess", "Delete successfully!");
+        } catch (Exception ex) {
+            log("DeleteProductServlet error:" + ex.getMessage());
+        } finally {
+            request.getRequestDispatcher(MANAGE_USER_CONTROLLER).forward(request, response);
+        }
     }
 
     /**
