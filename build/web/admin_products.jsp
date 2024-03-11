@@ -126,8 +126,6 @@
         <script src="admin/js/bootstrap.min.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
         <script src="admin/js/main.js"></script>
-        <!-- The javascript plugin to display page loading on top-->
-        <script src="admin/js/plugins/pace.min.js"></script>
         <!-- Page specific javascripts-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js"></script>
         <!-- Data table plugin-->
@@ -139,7 +137,7 @@
                                                             let modal = '<div class="modal-dialog modal-dialog-centered" role="document" style="text-align:center">' +
                                                                     '<div class="modal-content" style="width:500px; margin: 0 auto">' +
                                                                     '<div class="modal-header" style="color: black; font-size:28px; font-weight: 600; margin: 15px auto">Cảnh báo</div>' +
-                                                                    '<div class="swal-text">Bạn có chắc chắn là muốn xóa danh mục này?</div>' +
+                                                                    '<div class="swal-text">Bạn có chắc chắn là muốn xóa sản phẩm này?</div>' +
                                                                     '<div class="swal-footer">' +
                                                                     '<div class="swal-button-container">' +
                                                                     '<button data-dismiss="modal" aria-hidden="true" class="swal-button swal-button--cancel">Hủy bỏ</button>' +
@@ -153,6 +151,7 @@
                                                             console.log(modal);
                                                             let result = modalElement.innerHTML = modal;
                                                             return result;
+                                                        }
         </script>
         <script>
                 //In

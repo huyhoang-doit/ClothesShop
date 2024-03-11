@@ -39,8 +39,11 @@ public class ManageUserServlet extends HttpServlet {
                 url = MANAGE_USER_PAGE;
             } else if (action.equals("Insert")) {
                 url = INSERT_USER_PAGE;
+            } else if (action.equals("Update")) {
+                List<UserDTO> list = dao.getData();
+                request.setAttribute("LISTUSERS", list);
+                url = MANAGE_USER_PAGE;
             }
-
         } catch (Exception ex) {
             log("ManageUserServlet error:" + ex.getMessage());
         } finally {
