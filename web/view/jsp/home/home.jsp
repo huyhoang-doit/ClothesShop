@@ -66,7 +66,7 @@
                                 <!--categorie menu end-->
                                 <c:if test="${sessionScope.WISHLIST != null}">
                                     <!--wishlist block start-->
-                                    <div class="sidebar_widget wishlist mb-35">
+                                    <div class="sidebar_widget wishlist mb-35" id="wishlist-small">
                                         <div class="block_title">
                                             <h3><a href="WishlistServlet">Wishlist</a></h3>
                                         </div>
@@ -80,9 +80,9 @@
                                                         <a href="SingleProductServlet?product_id=${p.id}">${p.name}</a>
                                                         <span class="cart_price">$${p.salePrice}</span>
                                                     </div>
-<!--                                                    <div class="cart_remove">
-                                                        <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                                    </div>-->
+                                                    <!--                                                    <div class="cart_remove">
+                                                                                                            <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                                                                                        </div>-->
                                                 </div>
                                             </c:if>
                                         </c:forEach>
@@ -181,7 +181,8 @@
                                                                     <span class="discount">Up to ${p.discount * 100}%</span>
                                                                 </c:if>
                                                                 <div class="product_action">
-                                                                    <a href="CartServlet?action=Add&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <!--<a href="CartServlet?action=Add&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>-->
+                                                                    <button onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
@@ -196,7 +197,8 @@
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
-                                                                    <li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                    <!--<li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>-->
+                                                                    <li><button onclick="addProductToWishlist('Add',${p.id})">Yêu thích</button></li>
                                                                     <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                                 </ul>
                                                             </div>
@@ -225,7 +227,7 @@
                                                                 <img src="view\assets\home\img\cart\span-hot.png" alt="">
                                                             </div>
                                                             <div class="product_action">
-                                                                <a href="CartServlet?action=Add&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                <button onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
                                                             </div>
                                                         </div>
                                                         <div class="product_content">
@@ -240,7 +242,8 @@
                                                         </div>
                                                         <div class="product_info">
                                                             <ul>
-                                                                <li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                <!--<li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>-->
+                                                                <li><button onclick="addProductToWishlist('Add',${p.id})">Yêu thích</button></li>
                                                                 <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                             </ul>
                                                         </div>

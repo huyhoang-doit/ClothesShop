@@ -71,12 +71,12 @@
                                                             <tr>
                                                                 <td class="product_thumb"><a href="SingleProductServlet?product_id=${p.id}"><img src="${p.images[0]}" alt=""></a></td>
                                                                 <td class="product_name"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></td>
-                                                                <td class="product-price">$${p.salePrice}</td>
+                                                                <td class="product-price">${p.salePrice}đ</td>
                                                                 <c:if test="${p.status == true}">
                                                                     <td class="product_quantity">
                                                                         In Stock
                                                                     </td>
-                                                                    <td class="product_total"><a href="CartServlet?action=Add&product_id=${p.id}&quantity=1">Add To Cart</a></td>
+                                                                    <td class="product_total"><button onclick="addProductToCart('Add',${p.id},1)">Add To Cart</button></td>
                                                                 </c:if>
                                                                     <c:if test="${p.status == false}">
                                                                     <td class="product_quantity">

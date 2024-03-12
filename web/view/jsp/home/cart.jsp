@@ -73,10 +73,10 @@
                                                             <tr>
                                                                 <td class="product_thumb"><a href="SingleProductServlet?product_id=${c.product.id}"><img src="${c.product.images[0]}" alt="Photo"></a></td>
                                                                 <td class="product_name"><a href="SingleProductServlet?product_id=${c.product.id}">${c.product.name}</a></td>
-                                                                <td class="product-price">$${c.product.getSalePrice()}</td>
+                                                                <td class="product-price">${c.product.getSalePrice()}đ</td>
                                                                 <td class="product_quantity"><input min="0" max="${c.product.stock}" value="${c.quantity}" type="number" readonly=""></td>
-                                                                <td class="product_total">$${c.product.getSalePrice() * c.quantity}</td>
-                                                                <td class="product_remove"><a href="CartServlet?action=Delete&product_id=${c.product.id}"><i class="fa fa-trash-o"></i></a></td>
+                                                                <td class="product_total">${c.product.getSalePrice() * c.quantity}đ</td>
+                                                                <td class="product_remove"><a href="CartServlet?action=Delete&product_id=${c.product.id}&curPage=cart.jsp"><i class="fa fa-trash-o"></i></a></td>
                                                             </tr>
                                                         </c:forEach>
                                                     </tbody>
@@ -105,7 +105,7 @@
                                                             <c:set var="productTotal" value="${c.product.getSalePrice() * c.quantity}" />
                                                             <c:set var="totalPrice" value="${totalPrice + productTotal}" />
                                                         </c:forEach>
-                                                        ${totalPrice}      
+                                                        ${totalPrice}đ      
                                                     </p>
                                                 </div>
                                                 <div class="cart_subtotal ">
@@ -120,7 +120,7 @@
                                                             <c:set var="productTotal" value="${c.product.getSalePrice() * c.quantity}" />
                                                             <c:set var="totalPrice" value="${totalPrice + productTotal}" />
                                                         </c:forEach>
-                                                        ${totalPrice} 
+                                                        ${totalPrice}đ
                                                     </p>
                                                 </div>
                                                 <div class="checkout_btn">

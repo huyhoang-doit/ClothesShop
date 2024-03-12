@@ -28,11 +28,12 @@ public class WishlistServlet extends HttpServlet {
 
     private static final String DISPATCHSERVLET = "DispatchServlet";
     private static final String WISHLIST_PAGE = "view/jsp/home/wishlist.jsp";
+    private static final String WISHLIST_AJAX = "view/jsp/ajax/wishlist_ajax.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = DISPATCHSERVLET;
+        String url = WISHLIST_AJAX;
         ProductDAO pDao = new ProductDAO();
         WishlistUtil wUtil = new WishlistUtil();
         List<ProductDTO>  wishlists = null;
@@ -53,6 +54,7 @@ public class WishlistServlet extends HttpServlet {
                         listItem = wUtil.addItemToWishlist(product);
                     }
                 } else if ("Delete".equals(action)) {
+                    url = WISHLIST_PAGE;
                     listItem = wUtil.removeItem(product);
 
                 }

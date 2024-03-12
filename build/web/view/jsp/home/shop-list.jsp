@@ -168,7 +168,7 @@
                                 <!--wishlist start-->
                                 <c:if test="${sessionScope.account !=null || sessionScope.WISHLIST != null}">
                                     <!--wishlist block start-->
-                                    <div class="sidebar_widget wishlist mb-35">
+                                    <div class="sidebar_widget wishlist mb-35" id="wishlist-small">
                                         <div class="block_title">
                                             <h3><a href="WishlistServlet">Wishlist</a></h3>
                                         </div>
@@ -182,9 +182,9 @@
                                                         <a href="SingleProductServlet?product_id=${p.id}">${p.name}</a>
                                                         <span class="cart_price">$${p.salePrice}</span>
                                                     </div>
-<!--                                                    <div class="cart_remove">
-                                                        <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
-                                                    </div>-->
+                                                    <!--                                                    <div class="cart_remove">
+                                                                                                            <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
+                                                                                                        </div>-->
                                                 </div>
                                             </c:if>
                                         </c:forEach>
@@ -212,9 +212,9 @@
                                             <li>
                                                 <a class="active" data-toggle="tab" href="#large" role="tab" aria-controls="large" aria-selected="true"><i class="fa fa-th-large"></i></a>
                                             </li>
-<!--                                            <li>
-                                                <a data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false"><i class="fa fa-th-list"></i></a>
-                                            </li>-->
+                                            <!--                                            <li>
+                                                                                            <a data-toggle="tab" href="#list" role="tab" aria-controls="list" aria-selected="false"><i class="fa fa-th-list"></i></a>
+                                                                                        </li>-->
                                         </ul>
                                     </div>
                                     <div class="page_amount">
@@ -260,7 +260,7 @@
                                                                     <span class="discount">Up to ${p.discount * 100}%</span>
                                                                 </c:if>
                                                                 <div class="product_action">
-                                                                    <a href="CartServlet?action=Add&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>
+                                                                    <button onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
@@ -275,7 +275,8 @@
                                                             </div>
                                                             <div class="product_info">
                                                                 <ul>
-                                                                    <li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>
+                                                                    <!--<li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>-->
+                                                                    <li><button onclick="addProductToWishlist('Add',${p.id})">Yêu thích</button></li>
                                                                     <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                                 </ul>
                                                             </div>
@@ -284,45 +285,45 @@
                                                 </c:forEach>
                                             </div>  
                                         </div>
-<!--                                        <div class="tab-pane fade" id="list" role="tabpanel">
-                                            <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
-                                                <div class="product_list_item mb-35">
-                                                    <div class="row align-items-center">
-                                                        <div class="col-lg-4 col-md-6 col-sm-6">
-                                                            <div class="product_thumb">
-                                                                <a href="SingleProductServlet?product_id=${p.id}"><img src="${p.images[0]}" alt=""></a> 
-                                                                <div class="hot_img">
-                                                                    <img src="view\assets\img\cart\span-hot.png" alt="">
-                                                                </div>
+                                        <!--                                        <div class="tab-pane fade" id="list" role="tabpanel">
+                                        <c:forEach items="${requestScope.LISTPRODUCTS}" var="p">
+                                            <div class="product_list_item mb-35">
+                                                <div class="row align-items-center">
+                                                    <div class="col-lg-4 col-md-6 col-sm-6">
+                                                        <div class="product_thumb">
+                                                            <a href="SingleProductServlet?product_id=${p.id}"><img src="${p.images[0]}" alt=""></a> 
+                                                            <div class="hot_img">
+                                                                <img src="view\assets\img\cart\span-hot.png" alt="">
                                                             </div>
                                                         </div>
-                                                        <div class="col-lg-8 col-md-6 col-sm-6">
-                                                            <div class="list_product_content">
-                                                                <div class="list_title">
-                                                                    <h3><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
-                                                                </div>
-                                                                <p class="design">${p.description}</p>
-                                                                <div class="content_price">
-                                                                    <c:if test="${p.price != p.salePrice}">
-                                                                        <span class="old_price" id="oldprice">Rs. ${p.price}</span>
-                                                                    </c:if>
-                                                                    <span class="current_price">Rs. ${p.salePrice}
-                                                                    </span>
-                                                                </div>
-                                                                <div class="add_links">
-                                                                    <ul>
-                                                                        <li><a href="CartServlet?product_id=${p.id}&quantity=1" title="add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
-                                                                        <li><a href="#" title="add to wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
+                                                    </div>
+                                                    <div class="col-lg-8 col-md-6 col-sm-6">
+                                                        <div class="list_product_content">
+                                                            <div class="list_title">
+                                                                <h3><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
+                                                            </div>
+                                                            <p class="design">${p.description}</p>
+                                                            <div class="content_price">
+                                            <c:if test="${p.price != p.salePrice}">
+                                                <span class="old_price" id="oldprice">Rs. ${p.price}</span>
+                                            </c:if>
+                                            <span class="current_price">Rs. ${p.salePrice}
+                                            </span>
+                                        </div>
+                                        <div class="add_links">
+                                            <ul>
+                                                <li><a href="CartServlet?product_id=${p.id}&quantity=1" title="add to cart"><i class="fa fa-shopping-cart" aria-hidden="true"></i></a></li>
+                                                <li><a href="#" title="add to wishlist"><i class="fa fa-heart" aria-hidden="true"></i></a></li>
 
-                                                                        <li><a href="SingleProductServlet?product_id=${p.id}" title="Quick view"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
-                                                                    </ul>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div> 
-                                                </div>
-                                            </c:forEach>
-                                        </div>-->
+                                                <li><a href="SingleProductServlet?product_id=${p.id}" title="Quick view"><i class="fa fa-eye" aria-hidden="true"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> 
+                        </div>
+                                        </c:forEach>
+                                    </div>-->
                                     </div>
                                 </div>    
                                 <!--shop tab product end-->

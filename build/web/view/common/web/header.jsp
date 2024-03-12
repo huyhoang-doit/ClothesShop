@@ -71,22 +71,25 @@
                                 </c:if>
 
                         <!--mini cart-->
-                        <div class="mini_cart">
-                            <c:forEach items="${sessionScope.CART}" var="c">
-                                <div class="cart_item">
-                                    <div class="cart_img">
-                                        <a href="SingleProductServlet?product_id=${c.product.id}"><img src="${c.product.images[0]}" alt=""></a>
+                        <div class="mini_cart" >
+                            <div style="max-height: 300px; overflow-y: auto;">
+                                <c:forEach items="${sessionScope.CART}" var="c">
+                                    <div class="cart_item">
+                                        <div class="cart_img">
+                                            <a href="SingleProductServlet?product_id=${c.product.id}"><img src="${c.product.images[0]}" alt=""></a>
+                                        </div>
+                                        <div class="cart_info">
+                                            <a href="SingleProductServlet?product_id=${c.product.id}">${c.product.name}</a>
+                                            <span class="cart_price">$${c.product.getSalePrice()}</span>
+                                            <span class="quantity">X ${c.quantity}</span>
+                                        </div>
+                                        <div class="cart_remove">
+                                            <!--<a title="Remove this item" href="CartServlet?action=Delete&product_id=${c.product.id}&curPage=header.jsp"><i class="fa fa-times-circle"></i></a>-->
+                                            <button onclick="deleteProductToCart('Delete',${c.product.id})"><i class="fa fa-times-circle"></i></button>
+                                        </div>
                                     </div>
-                                    <div class="cart_info">
-                                        <a href="SingleProductServlet?product_id=${c.product.id}">${c.product.name}</a>
-                                        <span class="cart_price">$${c.product.getSalePrice()}</span>
-                                        <span class="quantity">X ${c.quantity}</span>
-                                    </div>
-                                    <div class="cart_remove">
-                                        <a title="Remove this item" href="CartServlet?action=Delete&product_id=${c.product.id}"><i class="fa fa-times-circle"></i></a>
-                                    </div>
-                                </div>
-                            </c:forEach>
+                                </c:forEach>
+                            </div>
                             <div class="total_price">
                                 <span> Total </span>
                                 <span class="prices">  $

@@ -52,7 +52,7 @@
                                         <h3> 
                                             <i class="fa fa-file-o" aria-hidden="true"></i>
                                             To pay for your order, you need to log in >>
-                                            <a class="Returning" href="LoginServlet?from=checkout.jsp">Click here to login</a>     
+                                            <a class="Returning" href="DispatchServlet?btnAction=Login">Click here to login</a>     
                                         </h3>
 
                                     </c:if>
@@ -131,20 +131,20 @@
                                                             <c:forEach items="${sessionScope.CART}" var="c">
                                                                 <tr>
                                                                     <td>${c.product.name}<strong> × ${c.quantity}</strong></td>
-                                                                    <td> $${c.product.getSalePrice() * c.quantity}</td>
+                                                                    <td> ${c.product.getSalePrice() * c.quantity}đ</td>
                                                                 </tr>
                                                             </c:forEach>
                                                         </tbody>
                                                         <tfoot>
                                                             <tr>
                                                                 <th>Cart Subtotal</th>
-                                                                <td>$
+                                                                <td>
                                                                     <c:set var="totalPrice" value="0" />
-                                                                    <c:forEach items="${requestScope.CART}" var="c">
+                                                                    <c:forEach items="${sessionScope.CART}" var="c">
                                                                         <c:set var="productTotal" value="${c.product.getSalePrice() * c.quantity}" />
                                                                         <c:set var="totalPrice" value="${totalPrice + productTotal}" />
                                                                     </c:forEach>
-                                                                    ${totalPrice}  
+                                                                    ${totalPrice}đ
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -153,13 +153,13 @@
                                                             </tr>
                                                             <tr class="order_total">
                                                                 <th>Order Total</th>
-                                                                <td><strong>$
+                                                                <td><strong>
                                                                         <c:set var="totalPrice" value="0" />
-                                                                        <c:forEach items="${requestScope.CART}" var="c">
+                                                                        <c:forEach items="${sessionScope.CART}" var="c">
                                                                             <c:set var="productTotal" value="${c.product.getSalePrice() * c.quantity}" />
                                                                             <c:set var="totalPrice" value="${totalPrice + productTotal}" />
                                                                         </c:forEach>
-                                                                        ${totalPrice}  
+                                                                        ${totalPrice}đ  
                                                                     </strong></td>
                                                             </tr>
                                                         </tfoot>
@@ -185,7 +185,7 @@
                                         </c:if>
                                         <c:if test="${sessionScope.CART == null || sessionScope.CART.size() == 0}">
                                             <div style="text-align: center;">
-                                                <img  src="assets/home/img/cart/emptycart1.png" alt="Empty cart">
+                                                <img  src="view/assets/home/img/cart/emptycart1.png" alt="Empty cart">
                                             </div>
                                             <div class="order_button">
                                                 <form action="DispatchServlet" method="GET">

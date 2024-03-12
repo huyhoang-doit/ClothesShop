@@ -29,13 +29,13 @@ import clothingstore.model.ProductDTO;
 public class CartServlet extends HttpServlet {
 
     private static final String DISPATCHSERVLET = "DispatchServlet";
-        private static final String CART_PAGE = "view/jsp/home/cart.jsp";
-
+    private static final String CART_PAGE = "view/jsp/home/cart.jsp";
+    private static final String CART_AJAX = "view/jsp/ajax/cart_ajax.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String url = DISPATCHSERVLET;
+        String url = CART_AJAX;
         ProductDAO pDao = new ProductDAO();
         CartUtil cartUtil = new CartUtil();
         List<CartItem> carts = null;
@@ -47,9 +47,9 @@ public class CartServlet extends HttpServlet {
         try {
             HttpSession session = request.getSession();
             String action = request.getParameter("action");
-            if(action == null){
+            if (action == null) {
                 url = CART_PAGE;
-            }else {
+            } else {
                 String product_id = request.getParameter("product_id");
                 ProductDTO product = pDao.getProductByID(Integer.parseInt(product_id));
                 if ("Add".equals(action)) {
@@ -69,6 +69,13 @@ public class CartServlet extends HttpServlet {
                         session.setAttribute("WISHLIST", wishlists);
                     }
                 } else if ("Delete".equals(action)) {
+                    String curPage = request.getParameter("curPage");
+                    if ("cart.jsp".equals(curPage)) {
+                        url = CART_PAGE;
+                    } else if("header.jsp".equals(curPage)){
+                        url=DISPATCHSERVLET;
+                    }
+                    
                     listItem = cartUtil.removeItem(product);
                 }
             }
@@ -77,10 +84,9 @@ public class CartServlet extends HttpServlet {
             // Save to cookie
             String strCarts = cartUtil.convertToString();
             cartUtil.saveCartToCookie(request, response, strCarts);
-            
+
             String strWishlist = wUtil.convertToString();
             wUtil.saveWishlistToCookie(request, response, strWishlist);
-            
 
         } catch (Exception ex) {
             log("CartServlet error:" + ex.getMessage());

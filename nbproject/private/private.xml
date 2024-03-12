@@ -2,6 +2,18 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/clothingstore/controller/web/shop/FilterServlet.java</file>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/view/common/web/header.jsp</file>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/view/jsp/home/shop-list.jsp</file>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/view/jsp/home/home.jsp</file>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/view/jsp/ajax/cart_ajax.jsp</file>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/clothingstore/controller/web/cart_wishlist/CartServlet.java</file>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/view/assets/home/js/events.js</file>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/view/jsp/ajax/sortproducts.jsp</file>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/src/java/clothingstore/controller/web/cart_wishlist/WishlistServlet.java</file>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/view/jsp/home/single-product.jsp</file>
+            <file>file:/D:/Workspace/Project_team/PRJ301_Sp24_ClothesShop/Project_PRJ301_Spring24/web/view/jsp/home/cart.jsp</file>
+        </group>
     </open-files>
 </project-private>

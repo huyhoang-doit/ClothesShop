@@ -85,15 +85,73 @@ function searchProducts(tag, scope) {
     });
 }
 
-function addProductToCart(product_id, quantity) {
+function addProductToCart(action, product_id, quantity) {
+    var action = action;
     var productId = product_id;
     var sl = quantity;
     $.ajax({
         url: "/PRJ301_Sp24_ClothesShop/CartServlet",
         type: "get",
         data: {
+            action: action,
             product_id: productId,
             quantity: sl
+        },
+        success: function (data) {
+            var row = document.getElementById("cart-icon");
+            row.innerHTML = data;
+        },
+        error: function (xhr) {
+        }
+    });
+}
+function addProductToWishlist(action, product_id) {
+    var action = action;
+    var productId = product_id;
+    $.ajax({
+        url: "/PRJ301_Sp24_ClothesShop/WishlistServlet",
+        type: "get",
+        data: {
+            action: action,
+            product_id: productId,
+        },
+        success: function (data) {
+            var row = document.getElementById("wishlist-small");
+            row.innerHTML = data;
+        },
+        error: function (xhr) {
+        }
+    });
+}
+function addProductFromSingle(action, product_id) {
+    var action = action;
+    var productId = product_id;
+    var sl = document.getElementById('input-quantity').value;
+    $.ajax({
+        url: "/PRJ301_Sp24_ClothesShop/CartServlet",
+        type: "get",
+        data: {
+            action: action,
+            product_id: productId,
+            quantity: sl
+        },
+        success: function (data) {
+            var row = document.getElementById("cart-icon");
+            row.innerHTML = data;
+        },
+        error: function (xhr) {
+        }
+    });
+}
+function deleteProductToCart(action, product_id) {
+    var action = action;
+    var productId = product_id;
+    $.ajax({
+        url: "/PRJ301_Sp24_ClothesShop/CartServlet",
+        type: "get",
+        data: {
+            action: action,
+            product_id: productId,
         },
         success: function (data) {
             var row = document.getElementById("cart-icon");
