@@ -167,7 +167,7 @@
                                                 </div>
                                                 <div class="payment_method">
                                                     <h3>PAYMENT</h3>
-                                                    <c:forEach items="${sessionScope.PAYMENTS}" var="p">
+                                                    <c:forEach items="${requestScope.PAYMENTS}" var="p">
                                                         <div class="panel-default">
                                                             <input id="payment" name="check_method" type="radio" value="${p.paymentID}" checked>
                                                             <label for="payment" >${p.paymentMethod}</label>
