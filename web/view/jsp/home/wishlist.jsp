@@ -76,8 +76,13 @@
                                                                     <td class="product_quantity">
                                                                         In Stock
                                                                     </td>
-                                                                    <td class="product_total"><button onclick="addProductToCart('Add',${p.id},1)">Add To Cart</button></td>
-                                                                </c:if>
+                                                                    <td class="product_total"><button style="color: #00bba6;
+                                                                                                      border: none;
+                                                                                                      border-radius: 4px;
+                                                                                                      font-size: 13px;
+                                                                                                      padding: 2px 11px;
+                                                                                                      font-weight: 600;" onclick="addProductToCart('Add',${p.id}, 1)">Add To Cart</button></td>
+                                                                    </c:if>
                                                                     <c:if test="${p.status == false}">
                                                                     <td class="product_quantity">
                                                                         Out of Stock

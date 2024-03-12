@@ -182,7 +182,13 @@
                                                                 </c:if>
                                                                 <div class="product_action">
                                                                     <!--<a href="CartServlet?action=Add&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>-->
-                                                                    <button onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+                                                                    <button style="color: #00bba6;
+                                                                            border: none;
+                                                                            border-radius: 4px;
+                                                                            font-size: 13px;
+                                                                            padding: 2px 11px;
+                                                                            font-weight: 600;"
+                                                                            onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
@@ -198,7 +204,12 @@
                                                             <div class="product_info">
                                                                 <ul>
                                                                     <!--<li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>-->
-                                                                    <li><button onclick="addProductToWishlist('Add',${p.id})">Yêu thích</button></li>
+                                                                    <li><button style="color: red;
+                                                                                border: none;
+                                                                                border-radius: 4px;
+                                                                                font-size: 13px;
+                                                                                padding: 2px 11px;
+                                                                                font-weight: 600;" onclick="addProductToWishlist('Add',${p.id})">Yêu thích</button></li>
                                                                     <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                                 </ul>
                                                             </div>
@@ -227,7 +238,13 @@
                                                                 <img src="view\assets\home\img\cart\span-hot.png" alt="">
                                                             </div>
                                                             <div class="product_action">
-                                                                <button onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+                                                                <button style="color: #00bba6;
+                                                                        border: none;
+                                                                        border-radius: 4px;
+                                                                        font-size: 13px;
+                                                                        padding: 2px 11px;
+                                                                        font-weight: 600;"
+                                                                        onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
                                                             </div>
                                                         </div>
                                                         <div class="product_content">
@@ -243,7 +260,12 @@
                                                         <div class="product_info">
                                                             <ul>
                                                                 <!--<li><a href="WishlistServlet?action=Add&product_id=${p.id}" title=" Add to Wishlist ">Yêu thích</a></li>-->
-                                                                <li><button onclick="addProductToWishlist('Add',${p.id})">Yêu thích</button></li>
+                                                                <li><button style="color: red;
+                                                                            border: none;
+                                                                            border-radius: 4px;
+                                                                            font-size: 13px;
+                                                                            padding: 2px 11px;
+                                                                            font-weight: 600;" onclick="addProductToWishlist('Add',${p.id})">Yêu thích</button></li>
                                                                 <li><a href="SingleProductServlet?product_id=${p.id}" title="View Detail">Xem sản phẩm</a></li>
                                                             </ul>
                                                         </div>
