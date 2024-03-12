@@ -82,7 +82,7 @@
                                         </div>
                                         <div class="cart_info">
                                             <a href="SingleProductServlet?product_id=${c.product.id}">${c.product.name}</a>
-                                            <span class="cart_price">${c.product.getSalePrice()}Ä</span>
+                                            <span class="cart_price">${c.product.getSalePrice()}&#273;</span>
                                             <span class="quantity">X ${c.quantity}</span>
                                         </div>
                                         <div class="cart_remove">
@@ -102,7 +102,7 @@
                                         <c:set var="productTotal" value="${c.product.getSalePrice() * c.quantity}" />
                                         <c:set var="totalPrice" value="${totalPrice + productTotal}" />
                                     </c:forEach>
-                                    ${totalPrice}Ä
+                                    ${totalPrice}&#273;
                                 </span>
                             </div>
                             <div class="cart_button">

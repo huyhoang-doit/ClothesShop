@@ -67,7 +67,7 @@
                                                 <c:forEach items="${PRODUCT.images}" var="img" varStatus="loop">
                                                     <div class="tab-pane fade show active" id="p_tab1" role="tabpanel">
                                                         <div class="modal_img">
-                                                            <a href="#"><img src="${img}" alt=""></a>
+                                                            <a href="#"><img style="margin-bottom: 10px; border: 1px solid #00BBA6" src="${img}" alt=""></a>
                                                             <div class="img_icone">
                                                                 <img src="view\assets\home\img\cart\span-new.png" alt="">
                                                             </div>
@@ -170,9 +170,15 @@
 
                                         </div>
                                         <div class="product_content">
-                                            <span class="product_price">${p.getSalePrice()}</span>
-                                            <span class="old_price">$${p.price}</span>
+                                            <div style="display: flex; justify-content: center">
+                                                <c:if test="${p.price != p.salePrice}">
+                                                    <span style="margin-right: 10px; font-weight: 400;" class="old_price" id="oldprice">Rs. ${p.price}&#273;</span>
+                                                </c:if>
+                                                <span class="current_price">Rs. ${p.getSalePrice()}&#273;
+                                                </span>
+                                            </div>
                                             <h3 class="product_title"><a href="SingleProductServlet?product_id=${p.id}">${p.name}</a></h3>
+
                                         </div>
                                         <div class="product_info">
                                             <ul>
