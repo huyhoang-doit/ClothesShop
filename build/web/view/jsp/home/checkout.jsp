@@ -73,7 +73,8 @@
                                                 ${requestScope.MESSAGE}
                                             </h3>
                                         </c:if>
-                                        <form action="#">
+                                        <form style="padding: 20px;
+                                              border: 1px black solid;" action="#">
                                             <h3>Billing Details</h3>
                                             <div class="row">
 

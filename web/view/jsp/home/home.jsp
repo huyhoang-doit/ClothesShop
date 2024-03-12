@@ -182,7 +182,14 @@
                                                                 </c:if>
                                                                 <div class="product_action">
                                                                     <!--<a href="CartServlet?action=Add&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>-->
-                                                                    <button onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+                                                                    <button style="display: block;
+                                                                            border: none;
+                                                                            width: 100%;
+                                                                            background: #018576;
+                                                                            color: #fff;
+                                                                            padding: 7px 0;
+                                                                            text-transform: capitalize;
+                                                                            font-size: 13px;" onclick="addProductToCart('Add',${p.id}, 1)"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
@@ -227,7 +234,14 @@
                                                                 <img src="view\assets\home\img\cart\span-hot.png" alt="">
                                                             </div>
                                                             <div class="product_action">
-                                                                <button onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+                                                                <button style="display: block;
+                                                                            border: none;
+                                                                            width: 100%;
+                                                                            background: #018576;
+                                                                            color: #fff;
+                                                                            padding: 7px 0;
+                                                                            text-transform: capitalize;
+                                                                            font-size: 13px;" onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
                                                             </div>
                                                         </div>
                                                         <div class="product_content">
