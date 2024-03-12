@@ -1,4 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+
 <div class="header_area">
     <!--header top--> 
     <div class="header_top">
@@ -80,26 +82,27 @@
                                         </div>
                                         <div class="cart_info">
                                             <a href="SingleProductServlet?product_id=${c.product.id}">${c.product.name}</a>
-                                            <span class="cart_price">$${c.product.getSalePrice()}</span>
+                                            <span class="cart_price">${c.product.getSalePrice()}Ä</span>
                                             <span class="quantity">X ${c.quantity}</span>
                                         </div>
                                         <div class="cart_remove">
                                             <!--<a title="Remove this item" href="CartServlet?action=Delete&product_id=${c.product.id}&curPage=header.jsp"><i class="fa fa-times-circle"></i></a>-->
                                             <button style="border: none;
                                                     background-color: white;" onclick="deleteProductToCart('Delete',${c.product.id})"><i class="fa fa-times-circle"></i></button>
+
                                         </div>
                                     </div>
                                 </c:forEach>
                             </div>
                             <div class="total_price">
                                 <span> Total </span>
-                                <span class="prices">  $
+                                <span class="prices">  
                                     <c:set var="totalPrice" value="0" />
                                     <c:forEach items="${sessionScope.CART}" var="c">
                                         <c:set var="productTotal" value="${c.product.getSalePrice() * c.quantity}" />
                                         <c:set var="totalPrice" value="${totalPrice + productTotal}" />
                                     </c:forEach>
-                                    ${totalPrice}  
+                                    ${totalPrice}Ä
                                 </span>
                             </div>
                             <div class="cart_button">

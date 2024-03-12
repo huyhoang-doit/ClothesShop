@@ -67,7 +67,7 @@
                             </div>
                             <div class="checkout_form">
                                 <div class="row">
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-6 col-md-6" style="padding: 0 36px;">
                                         <c:if test="${requestScope.MESSAGE != null}">
                                             <h3 style="color: ${requestScope.CHECK == 'true' ? 'green': 'red'}">
                                                 ${requestScope.MESSAGE}
@@ -115,7 +115,7 @@
                                             </div>
                                         </form>    
                                     </div>
-                                    <div class="col-lg-6 col-md-6">
+                                    <div class="col-lg-6 col-md-6" style="padding: 0 36px;">
                                         <c:if test="${sessionScope.CART != null && sessionScope.CART.size() > 0 }">
 
                                             <form action="CheckoutServlet" method="GET">    
@@ -168,7 +168,7 @@
                                                 </div>
                                                 <div class="payment_method">
                                                     <h3>PAYMENT</h3>
-                                                    <c:forEach items="${sessionScope.PAYMENTS}" var="p">
+                                                    <c:forEach items="${requestScope.PAYMENTS}" var="p">
                                                         <div class="panel-default">
                                                             <input id="payment" name="check_method" type="radio" value="${p.paymentID}" checked>
                                                             <label for="payment" >${p.paymentMethod}</label>

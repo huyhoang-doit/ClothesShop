@@ -29,6 +29,7 @@ public class ProductDAO extends DBContext {
     private static final String GET_DATA = "SELECT * FROM Products WHERE status = 1";
     private static final String GET_TOTAL_PRODUCTS = "SELECT COUNT(*) AS Total FROM Products WHERE status = 1";
     private static final String GET_QUANTITY_SOLD = "SELECT SUM(unitSold) AS Total from Products";
+    private static final String GET_STOCK = "SELECT stock AS Total FROM Products WHERE id = ?";
     private static final String GET_PRODUCTS_LOW_QUANTITY = "SELECT COUNT(*) AS Total from Products WHERE Stock < 10 AND status = 1";
     private static final String GET_PRODUCTS_BY_ID = "SELECT * FROM Products WHERE id = ? AND status = 1";
     private static final String GET_PRODUCTS_BY_TYPE_ID = "SELECT * FROM Products WHERE typeid = ? AND status = 1";
@@ -300,6 +301,37 @@ public class ProductDAO extends DBContext {
             conn = getConnection();
             if (conn != null) {
                 ptm = conn.prepareStatement(GET_QUANTITY_SOLD);
+                rs = ptm.executeQuery();
+                while (rs.next()) {
+                    result = rs.getInt("Total");
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (rs != null) {
+                rs.close();
+            }
+            if (ptm != null) {
+                ptm.close();
+            }
+            if (conn != null) {
+                conn.close();
+            }
+        }
+        return result;
+    }
+
+    public int getStock(int id) throws SQLException {
+        int result = 0;
+        Connection conn = null;
+        PreparedStatement ptm = null;
+        ResultSet rs = null;
+        try {
+            conn = getConnection();
+            if (conn != null) {
+                ptm = conn.prepareStatement(GET_STOCK);
+                ptm.setInt(1, id);
                 rs = ptm.executeQuery();
                 while (rs.next()) {
                     result = rs.getInt("Total");
@@ -779,10 +811,14 @@ public class ProductDAO extends DBContext {
 //        System.out.println(product.getProductName());
 //        dao.insertProduct("GIÀY CHELSEA BOOTS ALL BLACK", 12, 6, 3, 123.0, 0.7, "40,41,42,43", "Đen", 123, "2022-05-04", "assets/img/products/28-1.jpg assets/img/products/29-2.jpg assets/img/products/29-3.jpg ",
 //                "Vẻ đẹp của một đôi giày Chelsea boots bắt đầu bằng sự đơn giản. Từ việc không có những đường viền cầu kỳ đến hình dáng phức tạp là điều nổi bật nhất để sản phẩm này trường tồn mãi với thời gian.");
-        dao.insertProduct("", 12, 6, 3, 123.0, 1, "", "", 123, "", "", "");
-        List<ProductDTO> list = new ArrayList<>();
-        for (ProductDTO productDTO : dao.getData()) {
-            System.out.println(productDTO.getName());
-        }
+//        dao.insertProduct("", 12, 6, 3, 123.0, 1, "", "", 123, "", "", "");
+//        List<ProductDTO> list = new ArrayList<>();
+//        for (ProductDTO productDTO : dao.getData()) {
+//            System.out.println(productDTO.getName());
+//  
+        int value = dao.getStock(3);
+        System.out.println(value);
     }
 }
+
+

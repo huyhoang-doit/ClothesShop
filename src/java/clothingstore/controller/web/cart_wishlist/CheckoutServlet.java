@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import clothingstore.model.CartItem;
+import clothingstore.model.Email;
 import clothingstore.model.OrderDTO;
 import clothingstore.model.PaymentDTO;
 import clothingstore.model.UserDTO;
@@ -46,21 +47,27 @@ public class CheckoutServlet extends HttpServlet {
         CartUtil cUtil = new CartUtil();
         OrderDTO orderLatest = null;
         double total = 0;
+        int totalQuantity = 0;
         String message = "";
         String check = "false";
         String emptyCart = "[]";
+        Email emailHandle = new Email();
         try {
             HttpSession session = request.getSession();
             Cookie cookie = null;
-
+            List<PaymentDTO> pms = pmDAO.getPaymentData();
             // Check out
             String paymentId = request.getParameter("check_method");
             UserDTO user = (UserDTO) session.getAttribute("account");
             List<CartItem> carts = (List<CartItem>) session.getAttribute("CART");
-            if (user != null && user.getRoleID() != 1) {
+            if (user != null && user.getRoleID() != 1 && paymentId != null) {
                 PaymentDTO payment = pmDAO.getPaymentById(Integer.parseInt(paymentId));
                 for (CartItem cart : carts) {
-                    total += (cart.getQuantity() * cart.getProduct().getSalePrice());
+                    // Check quanity of product in stock
+                    if(pDAO.getStock(cart.getProduct().getId()) > 5) {
+                        total += (cart.getQuantity() * cart.getProduct().getSalePrice());
+                        totalQuantity += cart.getQuantity();
+                    }
                 }
                 LocalDateTime daynow = LocalDateTime.now();
                 DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
@@ -71,7 +78,10 @@ public class CheckoutServlet extends HttpServlet {
                     message = "Order Success";
                     // create orderdetails
                     orderLatest = oDAO.getTheLatestOrder();
-
+                    // Send email to user
+                    String subEmail = emailHandle.subjectNewOrder();
+                    String messageEmail = emailHandle.messageNewOrder(user.getFirstName(), totalQuantity, orderLatest.getTotalPrice());
+                    emailHandle.sendEmail(subEmail, messageEmail, user.getEmail());
                     for (CartItem cart : carts) {
                         oiDAO.createNewOrderDetail(cart, orderLatest);
                         // Update product quantity
@@ -95,8 +105,7 @@ public class CheckoutServlet extends HttpServlet {
                 }
             }
 
-            List<PaymentDTO> pms = pmDAO.getPaymentData();
-            session.setAttribute("PAYMENTS", pms);
+            request.setAttribute("PAYMENTS", pms);
             request.setAttribute("MESSAGE", message);
             request.setAttribute("CHECK", check);
         } catch (Exception e) {
