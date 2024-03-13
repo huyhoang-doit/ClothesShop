@@ -19,7 +19,6 @@
             <c:if test="${sessionScope.CART == null || sessionScope.CART.size() == 0}">
             <a href="#"><i class="fa fa-shopping-cart"></i><i class="fa fa-angle-down"></i></a>
                 </c:if>
-
         <!--mini cart-->
         <div class="mini_cart" >
             <div style="max-height: 300px; overflow-y: auto;">

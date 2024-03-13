@@ -82,14 +82,14 @@
                                         </div>
                                         <div class="cart_info">
                                             <a href="SingleProductServlet?product_id=${c.product.id}">${c.product.name}</a>
-                                            <span class="cart_price">${c.product.getSalePrice()}đ</span>
+                                            <span class="cart_price">${c.product.getSalePrice()}&#273;</span>
                                             <span class="quantity">X ${c.quantity}</span>
                                         </div>
                                         <div class="cart_remove">
                                             <!--<a title="Remove this item" href="CartServlet?action=Delete&product_id=${c.product.id}&curPage=header.jsp"><i class="fa fa-times-circle"></i></a>-->
-                                            <button style="background-color: transparent;
-                                                    border: none;
-                                                    color: #28a745;" onclick="deleteProductToCart('Delete',${c.product.id})"><i class="fa fa-times-circle"></i></button>
+                                            <button style="border: none;
+                                                    background-color: white;" onclick="deleteProductToCart('Delete',${c.product.id})"><i class="fa fa-times-circle"></i></button>
+
                                         </div>
                                     </div>
                                 </c:forEach>
@@ -102,7 +102,7 @@
                                         <c:set var="productTotal" value="${c.product.getSalePrice() * c.quantity}" />
                                         <c:set var="totalPrice" value="${totalPrice + productTotal}" />
                                     </c:forEach>
-                                    ${totalPrice}đ
+                                    ${totalPrice}&#273;
                                 </span>
                             </div>
                             <div class="cart_button">

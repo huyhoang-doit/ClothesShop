@@ -182,13 +182,15 @@
                                                                 </c:if>
                                                                 <div class="product_action">
                                                                     <!--<a href="CartServlet?action=Add&product_id=${p.id}&quantity=1"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</a>-->
-                                                                    <button style="color: #00bba6;
+                                                                    <button style="display: block;
                                                                             border: none;
-                                                                            border-radius: 4px;
-                                                                            font-size: 13px;
-                                                                            padding: 2px 11px;
-                                                                            font-weight: 600;"
-                                                                            onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+                                                                            width: 100%;
+                                                                            background: #018576;
+                                                                            color: #fff;
+                                                                            padding: 7px 0;
+                                                                            text-transform: capitalize;
+                                                                            font-size: 13px;" onclick="addProductToCart('Add',${p.id}, 1)"><i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
@@ -238,13 +240,15 @@
                                                                 <img src="view\assets\home\img\cart\span-hot.png" alt="">
                                                             </div>
                                                             <div class="product_action">
-                                                                <button style="color: #00bba6;
-                                                                        border: none;
-                                                                        border-radius: 4px;
-                                                                        font-size: 13px;
-                                                                        padding: 2px 11px;
-                                                                        font-weight: 600;"
-                                                                        onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+                                                                <button style="display: block;
+                                                                            border: none;
+                                                                            width: 100%;
+                                                                            background: #018576;
+                                                                            color: #fff;
+                                                                            padding: 7px 0;
+                                                                            text-transform: capitalize;
+                                                                            font-size: 13px;" onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+
                                                             </div>
                                                         </div>
                                                         <div class="product_content">

@@ -57,7 +57,6 @@
                                                 <input onclick="setCheck(this)" class="" ${(chid[0] || chid == null) ? "checked":""} 
                                                        id="defaultcate" value="0" name="id_filter" type="checkbox">
                                                 <label for="defaultcate">Tất cả
-                                                    <span>(1)</span>
                                                 </label>
                                             </li>
                                             <c:forEach begin="0" end="${LISTCATEGORIES.size()-1}" var="i">
@@ -65,7 +64,6 @@
                                                     <input onclick="setCheck(this)" ${chid[i+1] == true?"checked":""}
                                                            value="${cat.get(i).getId()}" id="${cat.get(i).getId()}" type="checkbox" name="id_filter">
                                                     <label for="${cat.get(i).getId()}">${cat.get(i).getName()}
-                                                        <span>(1)</span>
                                                     </label>
                                                 </li>
                                             </c:forEach>
@@ -80,21 +78,21 @@
                                     <h2>Color</h2>
                                     <div class="widget_color">
                                         <ul>
-                                            <li style="cursor: pointer" id="Black" onclick="getColor(this)"><a href="#"></a>Đen <span>(10)</span></li>
+                                            <li style="cursor: pointer" id="Black" onclick="getColor(this)"><a href="#"></a>Đen</li>
 
-                                            <li style="cursor: pointer" id="Green" onclick="getColor(this)"><a href="#" ></a>Xanh lá <span>(12)</span></li>
+                                            <li style="cursor: pointer" id="Green" onclick="getColor(this)"><a href="#" ></a>Xanh lá</li>
 
-                                            <li style="cursor: pointer" id="Orange" onclick="getColor(this)"><a href="#" ></a>Cam <span>(12)</span></li>
+                                            <li style="cursor: pointer" id="Orange" onclick="getColor(this)"><a href="#" ></a>Cam </li>
 
-                                            <li style="cursor: pointer" id="Blue" onclick="getColor(this)"><a href="#" ></a>Xanh dương<span>(14)</span></li>
+                                            <li style="cursor: pointer" id="Blue" onclick="getColor(this)"><a href="#" ></a>Xanh dương</li>
 
-                                            <li style="cursor: pointer" id="Yellow" onclick="getColor(this)"><a href="#"></a>Vàng <span>(15)</span></li>
+                                            <li style="cursor: pointer" id="Yellow" onclick="getColor(this)"><a href="#"></a>Vàng </li>
 
-                                            <li style="cursor: pointer" id="Brown" onclick="getColor(this)"><a href="#" ></a>Nâu <span>(16)</span></li>
+                                            <li style="cursor: pointer" id="Brown" onclick="getColor(this)"><a href="#" ></a>Nâu</li>
 
-                                            <li style="cursor: pointer" id="White" onclick="getColor(this)"><a href="#" ></a>Trắng <span>(11)</span></li>
+                                            <li style="cursor: pointer" id="White" onclick="getColor(this)"><a href="#" ></a>Trắng</li>
 
-                                            <li style="cursor: pointer" id="Red" onclick="getColor(this)"><a href="#" ></a>Đỏ <span>(11)</span></li>
+                                            <li style="cursor: pointer" id="Red" onclick="getColor(this)"><a href="#" ></a>Đỏ </li>
                                         </ul>
                                         <input type="hidden" value="${requestScope.CORLOR}" name="color" id="chooseColor"/>
                                     </div>
@@ -131,19 +129,16 @@
                                             <li>
                                                 <input ${requestScope.DISCOUNT.equals("dis25") ? "checked" : ""} id="dis25" type="radio" name="discount" value="dis25">
                                                 <label for="dis25">Up to 25%
-                                                    <span>(1)</span>
                                                 </label>
                                             </li>
                                             <li>
                                                 <input ${requestScope.DISCOUNT.equals("dis40") ? "checked" : ""} id="dis50" type="radio" name="discount" value="dis40">
                                                 <label for="dis50">Up to 40%
-                                                    <span>(1)</span>
                                                 </label>
                                             </li>
                                             <li>
                                                 <input ${requestScope.DISCOUNT.equals("dis75") ? "checked" : ""} id="dis75" type="radio" name="discount" value="dis75">
                                                 <label for="dis75">Up to 75%
-                                                    <span>(1)</span>
                                                 </label>
                                             </li>
                                         </ul>
@@ -180,7 +175,7 @@
                                                     </div>
                                                     <div class="cart_info">
                                                         <a href="SingleProductServlet?product_id=${p.id}">${p.name}</a>
-                                                        <span class="cart_price">$${p.salePrice}</span>
+                                                        <span class="cart_price">${p.salePrice}&#273;</span>
                                                     </div>
                                                     <!--                                                    <div class="cart_remove">
                                                                                                             <a title="Remove this item" href="#"><i class="fa fa-times-circle"></i></a>
@@ -260,13 +255,15 @@
                                                                     <span class="discount">Up to ${p.discount * 100}%</span>
                                                                 </c:if>
                                                                 <div class="product_action">
-                                                                    <button style="color: #00bba6;
+                                                                    <button style="display: block;
                                                                             border: none;
-                                                                            border-radius: 4px;
-                                                                            font-size: 13px;
-                                                                            padding: 2px 11px;
-                                                                            font-weight: 600;"
-                                                                            onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+                                                                            width: 100%;
+                                                                            background: #018576;
+                                                                            color: #fff;
+                                                                            padding: 7px 0;
+                                                                            text-transform: capitalize;
+                                                                            font-size: 13px;" onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+
                                                                 </div>
                                                             </div>
                                                             <div class="product_content">
