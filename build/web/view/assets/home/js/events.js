@@ -123,10 +123,15 @@ function addProductToWishlist(action, product_id) {
         }
     });
 }
-function addProductFromSingle(action, product_id) {
+function addProductFromSingle(action, product_id, stock) {
     var action = action;
     var productId = product_id;
     var sl = document.getElementById('input-quantity').value;
+    console.log(stock, sl);
+    if (stock < sl) {
+        document.getElementById("error-stock").textContent = "Out of stock!";
+        return;
+    }
     $.ajax({
         url: "/PRJ301_Sp24_ClothesShop/CartServlet",
         type: "get",
@@ -143,6 +148,7 @@ function addProductFromSingle(action, product_id) {
         }
     });
 }
+
 function deleteProductToCart(action, product_id) {
     var action = action;
     var productId = product_id;

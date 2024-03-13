@@ -95,13 +95,14 @@
                                             <div class="content_price mb-15">
                                                 <span>${PRODUCT.getSalePrice()}&#273;</span>
                                                 <span class="old-price">$${PRODUCT.price}&#273;</span>
+                                                <h6 id="error-stock" style="color: red"></h6>
                                             </div>
                                             <div class="box_quantity mb-20">
                                                 <form action="#">
                                                     <label>Số lượng</label>
-                                                    <input id="input-quantity" min="0" max="${PRODUCT.stock}" value="1" type="number" name="quantity">
-                                                </form> 
-                                                <button type="button" onclick="addProductFromSingle('Add',${PRODUCT.id})">
+                                                    <input id="input-quantity" min="1" max="${PRODUCT.stock}" value="1" type="number" name="quantity">
+                                                </form>
+                                                <button type="button" onclick="addProductFromSingle('Add',${PRODUCT.id}, ${PRODUCT.stock})">
                                                     <i class="fa fa-shopping-cart"></i> thêm vào giỏ
                                                 </button>
                                                 <button type="button" onclick="addProductToWishlist('Add',${PRODUCT.id})"><i class="fa fa-heart" aria-hidden="true"></i></button>    
@@ -111,7 +112,7 @@
                                                 <div class="widget_color">
                                                     <ul>
                                                         <c:forEach items="${PRODUCT.size}" var="s" varStatus="loop">
-                                                            <li><button >${s}</button></li>
+                                                            <li><button type="button">${s}</button></li>
                                                             </c:forEach>
                                                     </ul>
                                                 </div>
@@ -122,7 +123,7 @@
                                                 <div class="widget_color">
                                                     <ul>
                                                         <c:forEach items="${PRODUCT.colors}" var="s" varStatus="loop">
-                                                            <li><button >${s}</button></li>
+                                                            <li><button type="button">${s}</button></li>
                                                             </c:forEach>
                                                     </ul>
                                                 </div>
