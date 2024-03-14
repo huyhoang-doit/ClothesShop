@@ -40,6 +40,17 @@ public class CartUtil {
         }
         return listItemsInCart;
     }
+    
+     public HashMap<Integer, CartItem> updateItemToCart(CartItem item) {
+        if (checkItemExist(item.getProduct())) {
+            CartItem itemExist = listItemsInCart.get(item.getProduct().getId());
+            itemExist.setQuantity(item.getQuantity());
+            listItemsInCart.put(itemExist.getProduct().getId(), itemExist);
+        } else {
+            listItemsInCart.put(item.getProduct().getId(), item);
+        }
+        return listItemsInCart;
+    }
 
     public boolean checkItemExist(ProductDTO product) {
         for (Integer id : listItemsInCart.keySet()) {

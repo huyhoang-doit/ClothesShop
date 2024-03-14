@@ -36,7 +36,7 @@
                             <!--<a title="Remove this item" href="CartServlet?action=Delete&product_id=${c.product.id}&curPage=header.jsp"><i class="fa fa-times-circle"></i></a>-->
                             <button style="    background-color: transparent;
                                     border: none;
-                                    color: #28a745;" onclick="deleteProductToCart('Delete',${c.product.id})"><i class="fa fa-times-circle"></i></button>
+                                    color: #28a745;" onclick="deleteProducOnICon('Delete',${c.product.id}, 'header.jsp')"><i class="fa fa-times-circle"></i></button>
                         </div>
                     </div>
                 </c:forEach>

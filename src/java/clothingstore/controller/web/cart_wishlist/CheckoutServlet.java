@@ -64,7 +64,7 @@ public class CheckoutServlet extends HttpServlet {
                 PaymentDTO payment = pmDAO.getPaymentById(Integer.parseInt(paymentId));
                 for (CartItem cart : carts) {
                     // Check quanity of product in stock
-                    if(pDAO.getStock(cart.getProduct().getId()) > 5) {
+                    if(pDAO.getStock(cart.getProduct().getId()) > 5 && cart.getQuantity() < cart.getProduct().getStock()) {
                         total += (cart.getQuantity() * cart.getProduct().getSalePrice());
                         totalQuantity += cart.getQuantity();
                     }

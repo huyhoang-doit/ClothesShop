@@ -31,6 +31,7 @@ public class CartServlet extends HttpServlet {
     private static final String DISPATCHSERVLET = "DispatchServlet";
     private static final String CART_PAGE = "view/jsp/home/cart.jsp";
     private static final String CART_AJAX = "view/jsp/ajax/cart_ajax.jsp";
+    private static final String CART_PAGE_AJAX = "view/jsp/ajax/cart_page_ajax.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -71,12 +72,17 @@ public class CartServlet extends HttpServlet {
                 } else if ("Delete".equals(action)) {
                     String curPage = request.getParameter("curPage");
                     if ("cart.jsp".equals(curPage)) {
-                        url = CART_PAGE;
-                    } else if("header.jsp".equals(curPage)){
-                        url=DISPATCHSERVLET;
+                        url = CART_PAGE_AJAX;
+                    } else if ("header.jsp".equals(curPage)) {
+                        url = CART_AJAX;
                     }
-                    
+
                     listItem = cartUtil.removeItem(product);
+                } else if ("Update".equals(action)) {
+                    url = CART_PAGE_AJAX;
+                    String quantity = request.getParameter("quantity");
+                    CartItem item = new CartItem(product, Integer.parseInt(quantity));
+                    listItem = cartUtil.updateItemToCart(item);
                 }
             }
             carts = new ArrayList<>(listItem.values());

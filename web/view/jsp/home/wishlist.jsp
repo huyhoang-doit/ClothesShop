@@ -47,7 +47,7 @@
                         <form action="#"> 
                             <div class="row">
                                 <div class="col-12">
-                                    <div class="table_desc wishlist">
+                                    <div class="table_desc wishlist" style="max-height: 600px; overflow-y: auto;">
                                         <div class="cart_page table-responsive">
                                             <c:if test="${sessionScope.WISHLIST == null || sessionScope.WISHLIST.size() == 0}">
                                                 <div style="text-align: center;">
@@ -57,11 +57,10 @@
                                             <c:if test="${sessionScope.WISHLIST != null && sessionScope.WISHLIST.size() != 0}">
                                                 <table>
                                                     <thead>
-                                                        <tr>
-                                                            <th class="product_thumb">Image</th>
-                                                            <th class="product_name">Product</th>
+                                                        <tr><th class="product_thumb" style="min-width: 165px;">Image</th>
+                                                            <th class="product_name" style="min-width: 280px;">Product</th>
                                                             <th class="product-price">Price</th>
-                                                            <th class="product_quantity">Stock Status</th>
+                                                            <th class="product_quantity"style="min-width: 150px;">Stock Status</th>
                                                             <th class="product_total">Add To Cart</th>
                                                             <th class="product_remove">Delete</th>
                                                         </tr>
@@ -76,14 +75,17 @@
                                                                     <td class="product_quantity">
                                                                         In Stock
                                                                     </td>
-                                                                    <td class="product_total"><button style="color: #00bba6;
-                                                                                                      border: none;
-                                                                                                      border-radius: 4px;
-                                                                                                      font-size: 13px;
-                                                                                                      padding: 2px 11px;
-                                                                                                      font-weight: 600;" onclick="addProductToCart('Add',${p.id}, 1)">Add To Cart</button></td>
-                                                                    </c:if>
-                                                                    <c:if test="${p.status == false}">
+                                                                    <td class="product_total">
+                                                                        <button style="color: #00bba6;
+                                                                                border: none;
+                                                                                border-radius: 4px;
+                                                                                font-size: 13px;
+                                                                                padding: 2px 11px;
+                                                                                font-weight: 600;" onclick="addProductToCart('Add',${p.id}, 1)">Add To Cart
+                                                                        </button>
+                                                                    </td>
+                                                                </c:if>
+                                                                <c:if test="${p.status == false}">
                                                                     <td class="product_quantity">
                                                                         Out of Stock
                                                                     </td>

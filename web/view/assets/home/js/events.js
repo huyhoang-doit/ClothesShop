@@ -149,18 +149,67 @@ function addProductFromSingle(action, product_id, stock) {
     });
 }
 
-function deleteProductToCart(action, product_id) {
+function updateProductCart(action, product_id, stock) {
     var action = action;
     var productId = product_id;
+     var idInput = 'input-quantity-' + productId;
+    var sl = document.getElementById(idInput).value;
+    console.log(stock, sl);
+    if (stock < sl) {
+        document.getElementById("error-stock").textContent = "Out of stock!";
+        return;
+    }
     $.ajax({
         url: "/PRJ301_Sp24_ClothesShop/CartServlet",
         type: "get",
         data: {
             action: action,
             product_id: productId,
+            quantity: sl
+        },
+        success: function (data) {
+            var row = document.getElementById("shopping-cart-area");
+            row.innerHTML = data;
+        },
+        error: function (xhr) {
+        }
+    });
+}
+
+function deleteProducOnICon(action, product_id, curPage) {
+    var action = action;
+    var productId = product_id;
+    var curPage = curPage;
+    $.ajax({
+        url: "/PRJ301_Sp24_ClothesShop/CartServlet",
+        type: "get",
+        data: {
+            action: action,
+            product_id: productId,
+            curPage: curPage
         },
         success: function (data) {
             var row = document.getElementById("cart-icon");
+            row.innerHTML = data;
+        },
+        error: function (xhr) {
+        }
+    });
+}
+function deleteProductFromCartPage(action, product_id, curPage) {
+    var action = action;
+    var productId = product_id;
+    var curPage = curPage;
+    $.ajax({
+        url: "/PRJ301_Sp24_ClothesShop/CartServlet",
+        type: "get",
+        data: {
+            action: action,
+            product_id: productId,
+            curPage: curPage
+        },
+        success: function (data) {
+            var row = document.getElementById("shopping-cart-area");
             row.innerHTML = data;
         },
         error: function (xhr) {
