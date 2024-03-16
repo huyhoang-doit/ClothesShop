@@ -141,7 +141,7 @@
 
 ---
 
-## Contributes 😎
+## Contributors 😎
 
 <a href="https://contrib.rocks/image?repo=huyhoang-doit/ClothesShop/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=huyhoang-doit/ClothesShop"/>
