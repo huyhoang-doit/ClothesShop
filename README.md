@@ -133,13 +133,17 @@
 - Apache Tomcat 8
 - Visual Studio Code
 - Microsoft SQL Server Management Studio 19
-  **6.Libraries**
+
+**6.Libraries**
 
 - JSTL
 - sqljdbc4
 - javax.mail
-
----
+- commoms-logging-1.2
+- gson-2.8.2
+- fluent-hc-4.5.5
+- httpclient-4.5.5
+- httpcore-4.9.9
 
 ## Contributors 😎
 
