@@ -53,17 +53,17 @@
 **2. User**<br>
 <img src="./Screenshot/7.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
 <img src="./Screenshot/8.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
-<img src="./Screenshot/9.JPG" style="border-radius:4%" width="30%" height="49%" />&nbsp;
-<img src="./Screenshot/10.JPG" style="border-radius:4%" width="30%" height="49%" />&nbsp;
-<img src="./Screenshot/12.JPG" style="border-radius:4%" width="30%" height="49%" />&nbsp;
-<img src="./Screenshot/13.JPG" style="border-radius:4%" width="30%" height="49%" />&nbsp;<br>
+<img src="./Screenshot/9.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
+<img src="./Screenshot/10.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
+<img src="./Screenshot/12.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
+<img src="./Screenshot/13.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;<br>
 **3. Admin:**<br>
-<img src="./Screenshot/14.JPG" style="border-radius:4%" width="30%" height="49%" />&nbsp;
-<img src="./Screenshot/15.JPG" style="border-radius:4%" width="30%" height="49%" />&nbsp;
-<img src="./Screenshot/16.JPG" style="border-radius:4%" width="30%" height="49%" />&nbsp;
-<img src="./Screenshot/17.JPG" style="border-radius:4%" width="30%" height="49%" />&nbsp;
-<img src="./Screenshot/18.JPG" style="border-radius:4%" width="30%" height="49%" />&nbsp;
-<img src="./Screenshot/19.JPG" style="border-radius:4%" width="30%" height="49%" />&nbsp;
+<img src="./Screenshot/14.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
+<img src="./Screenshot/15.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
+<img src="./Screenshot/16.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
+<img src="./Screenshot/17.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
+<img src="./Screenshot/18.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
+<img src="./Screenshot/19.jpg" style="border-radius:4%" width="30%" height="49%" />&nbsp;
 
 ---
 
