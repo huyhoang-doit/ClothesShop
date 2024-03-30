@@ -153,10 +153,11 @@ function updateProductCart(action, product_id, stock) {
     var action = action;
     var productId = product_id;
      var idInput = 'input-quantity-' + productId;
+     var error = 'error-stock-' + productId;
     var sl = document.getElementById(idInput).value;
     console.log(stock, sl);
     if (stock < sl) {
-        document.getElementById("error-stock").textContent = "Out of stock!";
+        document.getElementById("error").textContent = "Out of stock!";
         return;
     }
     $.ajax({
@@ -229,6 +230,25 @@ function checkDuplicate(input) {
         },
         success: function (data) {
             var row = document.getElementById("errorduplicate");
+            row.innerHTML = data;
+        },
+        error: function (xhr) {
+        }
+    });
+}
+
+function subscribeEmailAtHome(action) {
+    var email = document.getElementById('email-input-at-home').value;
+    var action = action;
+    $.ajax({
+        url: "/PRJ301_Sp24_ClothesShop/EmailServlet",
+        type: "get",
+        data: {
+            email: email,
+            action: action
+        },
+        success: function (data) {
+            var row = document.getElementById("newsletter-div");
             row.innerHTML = data;
         },
         error: function (xhr) {

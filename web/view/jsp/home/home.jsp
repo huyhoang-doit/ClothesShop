@@ -12,8 +12,26 @@
 
         <!-- all css here -->
         <%@include file="../../common/web/add_css.jsp"%>
-        <style type="text/css">
-        </style>
+        <script>
+            function subscribeEmailAtHome(action) {
+                var email = document.getElementById('email-input-at-home').value;
+                var action = action;
+                $.ajax({
+                    url: "/PRJ301_Sp24_ClothesShop/EmailServlet",
+                    type: "get",
+                    data: {
+                        email: email,
+                        action: action
+                    },
+                    success: function (data) {
+                        var row = document.getElementById("newsletter-div");
+                        row.innerHTML = data;
+                    },
+                    error: function (xhr) {
+                    }
+                });
+            }</script>
+
     </head>
     <body>
         <!-- Add your site or application content here -->
@@ -95,25 +113,23 @@
                                 </c:if>
                                 <c:if test="${sessionScope.account == null}">
                                     <!--newsletter block start-->
-                                    <div class="sidebar_widget newsletter mb-35">
+                                    <div class="sidebar_widget newsletter mb-35" id="newsletter-div">
                                         <div class="block_title">
                                             <h3>newsletter</h3>
                                         </div> 
-                                        <form action="EmailServlet" method="POST">
-                                            <p>Sign up for your newsletter</p>
-                                            <input placeholder="Your email address" type="text" name="email" value="<c:if test="${requestScope.EMAIL_CUSTOMER != null}">${requestScope.EMAIL_CUSTOMER}</c:if>">
-                                                <button type="submit" name="action" value="subscribe">Subscribe</button>
-                                            <c:if test="${requestScope.CHECK == 'success'}">
-                                                <div class="col-12">
-                                                    <span class="form-messege" style='color: green;'>${requestScope.MESSAGE}</span>
-                                                </div>
-                                            </c:if>
-                                            <c:if test="${requestScope.CHECK == 'fail'}">
-                                                <div class="col-12">
-                                                    <span class="form-messege" style='color: red;'>${requestScope.MESSAGE}</span>
-                                                </div>
-                                            </c:if>
-                                        </form>   
+                                        <p>Sign up for your newsletter</p>
+                                        <input id="email-input-at-home" placeholder="Your email address" type="text" value="<c:if test="${requestScope.EMAIL_CUSTOMER != null}">${requestScope.EMAIL_CUSTOMER}</c:if>">
+                                            <button  onclick="subscribeEmailAtHome('subscribe')">Subscribe</button>
+                                        <c:if test="${requestScope.CHECK == 'success'}">
+                                            <div class="col-12">
+                                                <span class="form-messege" style='color: green;'>${requestScope.MESSAGE}</span>
+                                            </div>
+                                        </c:if>
+                                        <c:if test="${requestScope.CHECK == 'fail'}">
+                                            <div class="col-12">
+                                                <span class="form-messege" style='color: red;'>${requestScope.MESSAGE}</span>
+                                            </div>
+                                        </c:if>
                                     </div>
                                     <!--newsletter block end--> 
                                 </c:if>
@@ -175,7 +191,7 @@
                                                             <div class="product_thumb">
                                                                 <a href="SingleProductServlet?product_id=${p.id}"><img src="${p.images[0]}" alt=""></a> 
                                                                 <div class="img_icone">
-                                                                    <img src="assets/home/img/cart/span-new.png" alt="">
+                                                                    <img src="view/assets/home/img/cart/span-new.png" alt="">
                                                                 </div>
                                                                 <c:if test="${p.discount != 0}">
                                                                     <span class="discount">Up to ${p.discount * 100}%</span>
@@ -241,13 +257,13 @@
                                                             </div>
                                                             <div class="product_action">
                                                                 <button style="display: block;
-                                                                            border: none;
-                                                                            width: 100%;
-                                                                            background: #018576;
-                                                                            color: #fff;
-                                                                            padding: 7px 0;
-                                                                            text-transform: capitalize;
-                                                                            font-size: 13px;" onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
+                                                                        border: none;
+                                                                        width: 100%;
+                                                                        background: #018576;
+                                                                        color: #fff;
+                                                                        padding: 7px 0;
+                                                                        text-transform: capitalize;
+                                                                        font-size: 13px;" onclick="addProductToCart('Add',${p.id}, 1)"> <i class="fa fa-shopping-cart"></i> Thêm vào giỏ</button>
 
                                                             </div>
                                                         </div>
