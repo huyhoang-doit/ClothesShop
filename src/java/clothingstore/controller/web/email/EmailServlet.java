@@ -23,6 +23,7 @@ public class EmailServlet extends HttpServlet {
 
     private static final String CONTACT_PAGE = "view/jsp/home/contact.jsp";
     private static final String HOME_PAGE = "view/jsp/home/home.jsp";
+    private static final String NEWSLETTER_AJAX = "view/jsp/ajax/newsletter_ajax.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -45,7 +46,7 @@ public class EmailServlet extends HttpServlet {
                     handleEmail.sendEmail(sub, msg, email);
                 }
             } else if (action.equals("subscribe")) {
-                url = HOME_PAGE;
+                url = NEWSLETTER_AJAX;
                 if (handleEmail.isValidEmail(email)) {
                     message = "Cảm ơn bạn đã liên hệ với chúng tôi";
                     check = "success";

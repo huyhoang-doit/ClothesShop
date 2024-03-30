@@ -75,7 +75,7 @@
                                                             <td class="product-price">${c.product.getSalePrice()}đ</td>
                                                             <td class="product_quantity">
                                                                 <input id="input-quantity-${c.product.id}" min="0" max="${c.product.stock}" value="${c.quantity}" type="number">
-                                                                <h6 id="error-stock" style="color: red"></h6>
+                                                                <h6 id="error-stock-${c.product.id}" style="color: red"></h6>
                                                             </td>
                                                             <td class="product_total">${c.product.getSalePrice() * c.quantity}đ</td>
                                                             <td class="product_remove">
