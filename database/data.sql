@@ -3,9 +3,7 @@
 (N'admin', N'', 'admin@gmail.com', 'view/assets/home/img/users/user.jpg', 'admin', '12345', N'Quận 9', '0981347469', 1, 1),
 (N'Phùng', N'Thành', 'thanh@gmail.com', 'view/assets/home/img/users/1.jpg','phuuthanh2003', '12345', N'60 Nguyễn Văn Trỗi, Phường 2, TP.Bảo Lộc', '0707064154', 1, 1),
 (N'Bé', N'Moon', 'Moon123@gmail.com', 'view/assets/home/img/users/user1.jpg','user2', '12345', N'13 Hoàng Hữu Nam, Phường 2, TP.Bảo Lộc', '06868686868', 2, 1),
-(N'User', N'3', 'user3@gmail.com', 'view/assets/home/img/users/user3.jpg','user3', '12345', N'USA', '06868686868', 2, 1),
-(N'Phung', N'Huu Thanh', 'thanhphse170345@fpt.edu.vn', 'https://lh3.googleusercontent.com/a/ACg8ocLr-hUF3FDFfLGwVsXKxgXBIQ1trDWhb0DY2qaJhcJQTLo=s96-c', 'thanhphse170345@fpt.edu.vn', '1234', N'', '', 1, 1),
-(N'Huy', N'Hoang', 'lvhhoangg171@gmail.com', 'https://lh3.googleusercontent.com/a/ACg8ocJTlRpCgDDh0FK2ypPcy9FgD3xUrHXPIeH1zNrtA8X64A=s96-c', 'lvhhoangg171@gmail.com', '12345', N'', '', 2, 1)
+(N'User', N'3', 'user3@gmail.com', 'view/assets/home/img/users/user3.jpg','user3', '12345', N'USA', '06868686868', 2, 1)
 
 INSERT INTO Types VALUES
 (N'Áo'),
